@@ -73,6 +73,16 @@ namespace CorazonDeCafeStockManager.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap close_m {
+            get {
+                object obj = ResourceManager.GetObject("close-m", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap close1 {
             get {
                 object obj = ResourceManager.GetObject("close1", resourceCulture);
@@ -136,6 +146,16 @@ namespace CorazonDeCafeStockManager.Properties {
         internal static System.Drawing.Bitmap CORAZÓN_DE_CAFÉ2 {
             get {
                 object obj = ResourceManager.GetObject("CORAZÓN DE CAFÉ2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap max {
+            get {
+                object obj = ResourceManager.GetObject("max", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
