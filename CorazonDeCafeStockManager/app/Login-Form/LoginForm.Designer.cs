@@ -29,16 +29,14 @@
         private void InitializeComponent()
         {
             lblTitle = new Label();
-            ipPassword = new TextBox();
             lblSubtitle = new Label();
-            btnLogin = new Button();
             panel1 = new Panel();
             closeBtn = new PictureBox();
-            panel3 = new Panel();
-            panel2 = new Panel();
             mySqlCommand1 = new MySql.Data.MySqlClient.MySqlCommand();
-            ipUser = new TextBox();
             btnError = new Button();
+            btnLogin = new ButtonCustom();
+            ipUser = new utils.Custom.TextBox.TextBoxCustom();
+            textBoxCustom1 = new utils.Custom.TextBox.TextBoxCustom();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)closeBtn).BeginInit();
             SuspendLayout();
@@ -56,23 +54,6 @@
             lblTitle.Text = "Bienvenido!";
             lblTitle.Click += LblTitle_Click;
             // 
-            // ipPassword
-            // 
-            ipPassword.BackColor = SystemColors.Window;
-            ipPassword.BorderStyle = BorderStyle.None;
-            ipPassword.Cursor = Cursors.Hand;
-            ipPassword.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            ipPassword.ForeColor = Color.FromArgb(0, 0, 0, 0);
-            ipPassword.Location = new Point(41, 269);
-            ipPassword.Margin = new Padding(4);
-            ipPassword.MaxLength = 25;
-            ipPassword.Name = "ipPassword";
-            ipPassword.PlaceholderText = "CONTRASEÑA";
-            ipPassword.Size = new Size(253, 22);
-            ipPassword.TabIndex = 3;
-            ipPassword.UseSystemPasswordChar = true;
-            ipPassword.TextChanged += IpPassword_TextChanged;
-            // 
             // lblSubtitle
             // 
             lblSubtitle.AutoSize = true;
@@ -85,22 +66,6 @@
             lblSubtitle.TabIndex = 4;
             lblSubtitle.Text = "Ingrese usuario y contraseña";
             lblSubtitle.Click += lblSubtitle_Click;
-            // 
-            // btnLogin
-            // 
-            btnLogin.Cursor = Cursors.Hand;
-            btnLogin.FlatAppearance.BorderSize = 2;
-            btnLogin.FlatAppearance.MouseDownBackColor = Color.FromArgb(146, 90, 57);
-            btnLogin.FlatAppearance.MouseOverBackColor = Color.White;
-            btnLogin.FlatStyle = FlatStyle.Flat;
-            btnLogin.ForeColor = Color.FromArgb(0, 0, 0, 0);
-            btnLogin.Location = new Point(38, 371);
-            btnLogin.Name = "btnLogin";
-            btnLogin.Size = new Size(258, 48);
-            btnLogin.TabIndex = 5;
-            btnLogin.Text = "Iniciar Sesión";
-            btnLogin.UseVisualStyleBackColor = false;
-            btnLogin.Click += BtnLogin_Click;
             // 
             // panel1
             // 
@@ -115,6 +80,7 @@
             // 
             // closeBtn
             // 
+            closeBtn.BackColor = Color.Transparent;
             closeBtn.BackgroundImage = Properties.Resources.close2;
             closeBtn.BackgroundImageLayout = ImageLayout.Zoom;
             closeBtn.Cursor = Cursors.Hand;
@@ -127,47 +93,12 @@
             closeBtn.TabStop = false;
             closeBtn.Click += closeBtn_Click;
             // 
-            // panel3
-            // 
-            panel3.BackColor = Color.Black;
-            panel3.ForeColor = Color.Black;
-            panel3.Location = new Point(38, 209);
-            panel3.Name = "panel3";
-            panel3.Size = new Size(258, 2);
-            panel3.TabIndex = 7;
-            // 
-            // panel2
-            // 
-            panel2.BackColor = Color.Black;
-            panel2.ForeColor = Color.Black;
-            panel2.Location = new Point(38, 293);
-            panel2.Name = "panel2";
-            panel2.Size = new Size(258, 2);
-            panel2.TabIndex = 6;
-            // 
             // mySqlCommand1
             // 
             mySqlCommand1.CacheAge = 0;
             mySqlCommand1.Connection = null;
             mySqlCommand1.EnableCaching = false;
             mySqlCommand1.Transaction = null;
-            // 
-            // ipUser
-            // 
-            ipUser.AutoCompleteMode = AutoCompleteMode.Suggest;
-            ipUser.BackColor = SystemColors.Window;
-            ipUser.BorderStyle = BorderStyle.None;
-            ipUser.Cursor = Cursors.Hand;
-            ipUser.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            ipUser.ForeColor = Color.FromArgb(0, 0, 0, 0);
-            ipUser.Location = new Point(42, 185);
-            ipUser.Margin = new Padding(8);
-            ipUser.MaxLength = 25;
-            ipUser.Name = "ipUser";
-            ipUser.PlaceholderText = "USUARIO";
-            ipUser.Size = new Size(253, 22);
-            ipUser.TabIndex = 2;
-            ipUser.TextChanged += IpUser_TextChanged;
             // 
             // btnError
             // 
@@ -186,21 +117,77 @@
             btnError.Visible = false;
             btnError.Click += btnError_Click;
             // 
+            // btnLogin
+            // 
+            btnLogin.BackColor = Color.Transparent;
+            btnLogin.BackgroundColor = Color.Transparent;
+            btnLogin.BorderColor = Color.FromArgb(147, 90, 57);
+            btnLogin.BorderRadius = 10;
+            btnLogin.BorderSize = 2;
+            btnLogin.Cursor = Cursors.Hand;
+            btnLogin.FlatAppearance.BorderSize = 0;
+            btnLogin.FlatStyle = FlatStyle.Flat;
+            btnLogin.ForeColor = Color.FromArgb(147, 90, 57);
+            btnLogin.Location = new Point(42, 354);
+            btnLogin.Name = "btnLogin";
+            btnLogin.Size = new Size(254, 48);
+            btnLogin.TabIndex = 10;
+            btnLogin.Text = "Iniciar Sesion";
+            btnLogin.TextColor = Color.FromArgb(147, 90, 57);
+            btnLogin.UseVisualStyleBackColor = false;
+            btnLogin.Click += BtnLogin_Click;
+            // 
+            // ipUser
+            // 
+            ipUser.BackColor = Color.FromArgb(255, 219, 197);
+            ipUser.BorderColor = Color.FromArgb(146, 90, 57);
+            ipUser.BorderFocusColor = Color.HotPink;
+            ipUser.BorderRadius = 0;
+            ipUser.BorderSize = 2;
+            ipUser.Location = new Point(46, 190);
+            ipUser.Multiline = false;
+            ipUser.Name = "ipUser";
+            ipUser.Padding = new Padding(10, 7, 10, 7);
+            ipUser.PasswordChar = false;
+            ipUser.PlaceholderColor = Color.DarkGray;
+            ipUser.PlaceholderText = "";
+            ipUser.Size = new Size(250, 30);
+            ipUser.TabIndex = 11;
+            ipUser.Texts = "Hello Wolrd";
+            ipUser.UnderlinedStyle = false;
+            // 
+            // textBoxCustom1
+            // 
+            textBoxCustom1.BackColor = Color.FromArgb(255, 219, 197);
+            textBoxCustom1.BorderColor = Color.FromArgb(146, 90, 57);
+            textBoxCustom1.BorderFocusColor = Color.HotPink;
+            textBoxCustom1.BorderRadius = 0;
+            textBoxCustom1.BorderSize = 2;
+            textBoxCustom1.Location = new Point(46, 272);
+            textBoxCustom1.Multiline = false;
+            textBoxCustom1.Name = "textBoxCustom1";
+            textBoxCustom1.Padding = new Padding(10, 7, 10, 7);
+            textBoxCustom1.PasswordChar = false;
+            textBoxCustom1.PlaceholderColor = Color.DarkGray;
+            textBoxCustom1.PlaceholderText = "";
+            textBoxCustom1.Size = new Size(250, 36);
+            textBoxCustom1.TabIndex = 12;
+            textBoxCustom1.Texts = "";
+            textBoxCustom1.UnderlinedStyle = false;
+            // 
             // LoginForm
             // 
             AutoScaleDimensions = new SizeF(9F, 21F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Window;
             ClientSize = new Size(993, 467);
-            Controls.Add(btnError);
-            Controls.Add(panel3);
-            Controls.Add(panel1);
-            Controls.Add(panel2);
+            Controls.Add(textBoxCustom1);
+            Controls.Add(ipUser);
             Controls.Add(btnLogin);
+            Controls.Add(btnError);
+            Controls.Add(panel1);
             Controls.Add(lblTitle);
             Controls.Add(lblSubtitle);
-            Controls.Add(ipUser);
-            Controls.Add(ipPassword);
             Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             FormBorderStyle = FormBorderStyle.None;
             Margin = new Padding(4);
@@ -217,15 +204,15 @@
         #endregion
 
         private Label lblTitle;
-        private TextBox ipPassword;
         private Label lblSubtitle;
-        private Button btnLogin;
         private Panel panel1;
         private Panel panel2;
         private MySql.Data.MySqlClient.MySqlCommand mySqlCommand1;
         private Panel panel3;
-        private TextBox ipUser;
         private PictureBox closeBtn;
         private Button btnError;
+        private ButtonCustom btnLogin;
+        private utils.Custom.TextBox.TextBoxCustom ipUser;
+        private utils.Custom.TextBox.TextBoxCustom textBoxCustom1;
     }
 }
