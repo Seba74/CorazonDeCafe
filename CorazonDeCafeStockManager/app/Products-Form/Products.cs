@@ -16,6 +16,10 @@ namespace CorazonDeCafeStockManager
         private System.Windows.Forms.Timer searchTimer = new System.Windows.Forms.Timer();
         private readonly PrivateFontCollection privateFontCollection = new();
         private readonly Font poppinsFont;
+
+        List<Product> productsList = new();
+        List<Category> categories = new();
+        List<Tipo> types = new();
         public Products()
         {
             InitializeComponent();
@@ -27,6 +31,8 @@ namespace CorazonDeCafeStockManager
 
             searchTimer.Interval = 1500;
             searchTimer.Tick += SearchTimer_Tick!;
+
+            pictureBox4.Visible = false;
 
         }
 
@@ -42,19 +48,14 @@ namespace CorazonDeCafeStockManager
 
         private void Products_Load(string filter = "")
         {
-
-            List<Product> products = new();
-            List<Category> categories = new();
-            List<Tipo> types = new();
-
             RequestProducts requestProducts = new();
             RequestCategoryAndType requestCategoryAndType = new();
 
             categories = requestCategoryAndType.GetCategories();
             types = requestCategoryAndType.GetTypes();
-            products = requestProducts.GetProducts(filter);
+            productsList = requestProducts.GetProducts(filter);
 
-            Color headerBackColor = Color.BurlyWood;
+            Color headerBackColor = Color.FromArgb(146, 90, 57);
             ChangeDataGridViewFont(productList, poppinsFont);
             productList.EnableHeadersVisualStyles = false;
             productList.ColumnHeadersDefaultCellStyle.BackColor = headerBackColor;
@@ -62,7 +63,7 @@ namespace CorazonDeCafeStockManager
             productList.Rows.Clear();
             productList.Refresh();
 
-            foreach (Product product in products)
+            foreach (Product product in productsList)
             {
                 string category = categories.Where(c => c.Id == product.Categoria_Id).FirstOrDefault()?.Nombre ?? "";
                 string type = types.Where(t => t.Id == product.Tipo_Id).FirstOrDefault()?.Nombre ?? "";
@@ -83,7 +84,10 @@ namespace CorazonDeCafeStockManager
 
         private void productList_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-
+            // select button
+            int productId = Convert.ToInt32(productList.Rows[e.RowIndex].Cells[0].Value);
+            Product product = productsList.FirstOrDefault(p => p.Id == productId)!;
+            MessageBox.Show(product?.Nombre);
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -101,6 +105,36 @@ namespace CorazonDeCafeStockManager
         private void selectCategory_Enter(object sender, EventArgs e)
         {
 
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void pictureBox4_Click(object sender, EventArgs e)
+        {
+            pictureBox4.Visible = false;
+            pictureBox3.Visible = true;
+            this.WindowState = FormWindowState.Normal;
+        }
+
+        private void pictureBox3_Click(object sender, EventArgs e)
+        {
+            pictureBox4.Visible = true;
+            pictureBox3.Visible = false;
+            // maximize
+            this.WindowState = FormWindowState.Maximized;
+        }
+
+        private void pictureBox5_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
         }
     }
 }
