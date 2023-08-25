@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "c:\\Users\\HP\\Desktop\\stock-manager\\CorazonDeCafeStockManager\\CorazonDeCafeStockManager\\CorazonDeCafeStockManager.csproj": {}
+    "C:\\Users\\HP\\Desktop\\stock-manager\\CorazonDeCafeStockManager\\CorazonDeCafeStockManager\\CorazonDeCafeStockManager.csproj": {}
   },
   "projects": {
-    "c:\\Users\\HP\\Desktop\\stock-manager\\CorazonDeCafeStockManager\\CorazonDeCafeStockManager\\CorazonDeCafeStockManager.csproj": {
+    "C:\\Users\\HP\\Desktop\\stock-manager\\CorazonDeCafeStockManager\\CorazonDeCafeStockManager\\CorazonDeCafeStockManager.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\HP\\Desktop\\stock-manager\\CorazonDeCafeStockManager\\CorazonDeCafeStockManager\\CorazonDeCafeStockManager.csproj",
+        "projectUniqueName": "C:\\Users\\HP\\Desktop\\stock-manager\\CorazonDeCafeStockManager\\CorazonDeCafeStockManager\\CorazonDeCafeStockManager.csproj",
         "projectName": "CorazonDeCafeStockManager",
-        "projectPath": "c:\\Users\\HP\\Desktop\\stock-manager\\CorazonDeCafeStockManager\\CorazonDeCafeStockManager\\CorazonDeCafeStockManager.csproj",
+        "projectPath": "C:\\Users\\HP\\Desktop\\stock-manager\\CorazonDeCafeStockManager\\CorazonDeCafeStockManager\\CorazonDeCafeStockManager.csproj",
         "packagesPath": "C:\\Users\\HP\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\HP\\Desktop\\stock-manager\\CorazonDeCafeStockManager\\CorazonDeCafeStockManager\\obj\\",
+        "outputPath": "C:\\Users\\HP\\Desktop\\stock-manager\\CorazonDeCafeStockManager\\CorazonDeCafeStockManager\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\HP\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -21,6 +21,7 @@
           "net7.0-windows"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -75,7 +76,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.306\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
         }
       }
     }

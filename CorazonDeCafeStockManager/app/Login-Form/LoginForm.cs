@@ -1,11 +1,8 @@
 using System.Drawing.Text;
-
 namespace CorazonDeCafeStockManager
 {
     public partial class LoginForm : Form
     {
-        private readonly PrivateFontCollection privateFontCollection = new();
-
         public LoginForm()
         {
             InitializeComponent();
@@ -14,6 +11,7 @@ namespace CorazonDeCafeStockManager
             lblTitle.Font = new Font(loadFonts.poppinsFont!.FontFamily, 16, FontStyle.Bold);
 
             ipUser.Font = loadFonts.poppinsLightFont!;
+            ipPassword.Font = loadFonts.poppinsLightFont!;
             lblSubtitle.Font = loadFonts.poppinsLightFont;
             btnLogin.Font = loadFonts.poppinsLightFont;
             btnError.Font = loadFonts.poppinsLightFont;
@@ -46,7 +44,7 @@ namespace CorazonDeCafeStockManager
         private void BtnLogin_Click(object sender, EventArgs e)
         {
             string user = ipUser.Texts;
-            string password = "";
+            string password = ipPassword.Texts;
             RequestLogin requestLogin = new();
             if (requestLogin.Login(user, password))
             {

@@ -36,7 +36,7 @@
             btnError = new Button();
             btnLogin = new ButtonCustom();
             ipUser = new utils.Custom.TextBox.TextBoxCustom();
-            textBoxCustom1 = new utils.Custom.TextBox.TextBoxCustom();
+            ipPassword = new utils.Custom.TextBox.TextBoxCustom();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)closeBtn).BeginInit();
             SuspendLayout();
@@ -122,10 +122,10 @@
             btnLogin.BackColor = Color.Transparent;
             btnLogin.BackgroundColor = Color.Transparent;
             btnLogin.BorderColor = Color.FromArgb(147, 90, 57);
-            btnLogin.BorderRadius = 10;
+            btnLogin.BorderRadius = 5;
             btnLogin.BorderSize = 2;
             btnLogin.Cursor = Cursors.Hand;
-            btnLogin.FlatAppearance.BorderSize = 0;
+            btnLogin.FlatAppearance.MouseDownBackColor = Color.FromArgb(147, 90, 57);
             btnLogin.FlatStyle = FlatStyle.Flat;
             btnLogin.ForeColor = Color.FromArgb(147, 90, 57);
             btnLogin.Location = new Point(42, 354);
@@ -140,40 +140,42 @@
             // ipUser
             // 
             ipUser.BackColor = Color.FromArgb(255, 219, 197);
-            ipUser.BorderColor = Color.FromArgb(146, 90, 57);
-            ipUser.BorderFocusColor = Color.HotPink;
-            ipUser.BorderRadius = 0;
+            ipUser.BorderColor = Color.FromArgb(255, 219, 197);
+            ipUser.BorderFocusColor = Color.FromArgb(146, 90, 57);
+            ipUser.BorderRadius = 5;
             ipUser.BorderSize = 2;
-            ipUser.Location = new Point(46, 190);
+            ipUser.Cursor = Cursors.Hand;
+            ipUser.Location = new Point(42, 194);
             ipUser.Multiline = false;
             ipUser.Name = "ipUser";
             ipUser.Padding = new Padding(10, 7, 10, 7);
             ipUser.PasswordChar = false;
-            ipUser.PlaceholderColor = Color.DarkGray;
-            ipUser.PlaceholderText = "";
-            ipUser.Size = new Size(250, 30);
+            ipUser.PlaceholderColor = Color.FromArgb(146, 90, 57);
+            ipUser.PlaceholderText = "USUARIO";
+            ipUser.Size = new Size(254, 30);
             ipUser.TabIndex = 11;
-            ipUser.Texts = "Hello Wolrd";
+            ipUser.Texts = "";
             ipUser.UnderlinedStyle = false;
             // 
-            // textBoxCustom1
+            // ipPassword
             // 
-            textBoxCustom1.BackColor = Color.FromArgb(255, 219, 197);
-            textBoxCustom1.BorderColor = Color.FromArgb(146, 90, 57);
-            textBoxCustom1.BorderFocusColor = Color.HotPink;
-            textBoxCustom1.BorderRadius = 0;
-            textBoxCustom1.BorderSize = 2;
-            textBoxCustom1.Location = new Point(46, 272);
-            textBoxCustom1.Multiline = false;
-            textBoxCustom1.Name = "textBoxCustom1";
-            textBoxCustom1.Padding = new Padding(10, 7, 10, 7);
-            textBoxCustom1.PasswordChar = false;
-            textBoxCustom1.PlaceholderColor = Color.DarkGray;
-            textBoxCustom1.PlaceholderText = "";
-            textBoxCustom1.Size = new Size(250, 36);
-            textBoxCustom1.TabIndex = 12;
-            textBoxCustom1.Texts = "";
-            textBoxCustom1.UnderlinedStyle = false;
+            ipPassword.BackColor = Color.FromArgb(255, 219, 197);
+            ipPassword.BorderColor = Color.FromArgb(255, 219, 197);
+            ipPassword.BorderFocusColor = Color.FromArgb(146, 90, 57);
+            ipPassword.BorderRadius = 5;
+            ipPassword.BorderSize = 2;
+            ipPassword.Cursor = Cursors.Hand;
+            ipPassword.Location = new Point(42, 269);
+            ipPassword.Multiline = false;
+            ipPassword.Name = "ipPassword";
+            ipPassword.Padding = new Padding(10, 7, 10, 7);
+            ipPassword.PasswordChar = true;
+            ipPassword.PlaceholderColor = Color.FromArgb(146, 90, 57);
+            ipPassword.PlaceholderText = "CONTRASEÑA";
+            ipPassword.Size = new Size(254, 30);
+            ipPassword.TabIndex = 12;
+            ipPassword.Texts = "";
+            ipPassword.UnderlinedStyle = false;
             // 
             // LoginForm
             // 
@@ -181,7 +183,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Window;
             ClientSize = new Size(993, 467);
-            Controls.Add(textBoxCustom1);
+            Controls.Add(ipPassword);
             Controls.Add(ipUser);
             Controls.Add(btnLogin);
             Controls.Add(btnError);
@@ -213,6 +215,6 @@
         private Button btnError;
         private ButtonCustom btnLogin;
         private utils.Custom.TextBox.TextBoxCustom ipUser;
-        private utils.Custom.TextBox.TextBoxCustom textBoxCustom1;
+        private utils.Custom.TextBox.TextBoxCustom ipPassword;
     }
 }

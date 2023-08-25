@@ -167,18 +167,6 @@ namespace CorazonDeCafeStockManager.utils.Custom.TextBox
             }
         }
         [Category("Coffee Input Custom")]
-        public override Font Font
-        {
-            get { return base.Font; }
-            set
-            {
-                base.Font = value;
-                textBox1.Font = value;
-                if (this.DesignMode)
-                    UpdateControlHeight();
-            }
-        }
-        [Category("Coffee Input Custom")]
         public string Texts
         {
             get
@@ -251,8 +239,8 @@ namespace CorazonDeCafeStockManager.utils.Custom.TextBox
                 int smoothSize = borderSize > 0 ? borderSize : 1;
                 using (GraphicsPath pathBorderSmooth = GetFigurePath(rectBorderSmooth, borderRadius))
                 using (GraphicsPath pathBorder = GetFigurePath(rectBorder, borderRadius - borderSize))
-                using (Pen penBorderSmooth = new Pen(this.Parent.BackColor, smoothSize))
-                using (Pen penBorder = new Pen(borderColor, borderSize))
+                using (Pen penBorderSmooth = new(this.Parent!.BackColor, smoothSize))
+                using (Pen penBorder = new(borderColor, borderSize))
                 {
                     //-Drawing
                     this.Region = new Region(pathBorderSmooth);//Set the rounded region of UserControl
@@ -293,17 +281,13 @@ namespace CorazonDeCafeStockManager.utils.Custom.TextBox
             }
         }
 
-        [DefaultEvent("_TextChanged")]
-        public partial class RJTextBox : UserControl
+        //Default Event
+        public event EventHandler? _TextChanged;
+        //TextBox-> TextChanged event
+        private void textBox1_TextChanged(object sender, EventArgs e)
         {
-            //Default Event
-            public event EventHandler _TextChanged;
-            //TextBox-> TextChanged event
-            private void textBox1_TextChanged(object sender, EventArgs e)
-            {
-                if (_TextChanged != null)
-                    _TextChanged.Invoke(sender, e);
-            }
+            if (_TextChanged != null)
+                _TextChanged.Invoke(sender, e);
         }
 
         private void textBox1_Enter(object sender, EventArgs e)
@@ -334,11 +318,6 @@ namespace CorazonDeCafeStockManager.utils.Custom.TextBox
         private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
         {
             this.OnKeyPress(e);
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }

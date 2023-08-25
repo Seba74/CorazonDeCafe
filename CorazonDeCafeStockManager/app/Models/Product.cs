@@ -8,7 +8,7 @@ using System.ComponentModel;
 
 namespace CorazonDeCafeStockManager
 {
-    internal class Product
+    public class Product
     {
         public int Id { get; set; }
         [DisplayName("Category Id")]

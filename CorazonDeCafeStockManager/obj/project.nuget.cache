@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "bUuTNpEIyeQ8EKcEe5wmgfq9Dl/kGmhNPQVvXlt9EHPS252SGOi0L6+wE5FQETi9uEtyymnzHFABj3kUUfCnQQ==",
+  "dgSpecHash": "jJZY1CLzSabIT6A1PbZrS+KJlIKFjIIC93om/42mO1wAYvgP99p0tFlQ40D+Ax/JI+v2/t4d0yQGsFjgYku2PQ==",
   "success": true,
-  "projectFilePath": "c:\\Users\\HP\\Desktop\\stock-manager\\CorazonDeCafeStockManager\\CorazonDeCafeStockManager\\CorazonDeCafeStockManager.csproj",
+  "projectFilePath": "C:\\Users\\HP\\Desktop\\stock-manager\\CorazonDeCafeStockManager\\CorazonDeCafeStockManager\\CorazonDeCafeStockManager.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\HP\\.nuget\\packages\\bcrypt.net-next\\4.0.3\\bcrypt.net-next.4.0.3.nupkg.sha512",
     "C:\\Users\\HP\\.nuget\\packages\\cryptsharp\\1.3.0\\cryptsharp.1.3.0.nupkg.sha512",

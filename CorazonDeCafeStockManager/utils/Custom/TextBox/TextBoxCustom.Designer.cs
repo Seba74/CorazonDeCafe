@@ -40,6 +40,8 @@
             textBox1.Size = new Size(230, 16);
             textBox1.TabIndex = 0;
             textBox1.TextChanged += textBox1_TextChanged;
+            textBox1.Enter += textBox1_Enter;
+            textBox1.Leave += textBox1_Leave;
             // 
             // TextBoxCustom
             // 
