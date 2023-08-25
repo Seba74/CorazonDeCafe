@@ -15,6 +15,12 @@ namespace CorazonDeCafeStockManager
         public Product_Form()
         {
             InitializeComponent();
+            LoadFonts loadFonts = new();
+        }
+
+        private void iName_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

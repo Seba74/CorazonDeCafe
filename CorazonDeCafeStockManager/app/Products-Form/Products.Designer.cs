@@ -33,17 +33,10 @@
             DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Products));
             DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Products));
             productList = new DataGridView();
-            textBox1 = new TextBox();
-            pictureBox1 = new PictureBox();
-            comboBox1 = new ComboBox();
-            pictureBox2 = new PictureBox();
-            pictureBox3 = new PictureBox();
-            pictureBox4 = new PictureBox();
-            pictureBox5 = new PictureBox();
             Id = new DataGridViewTextBoxColumn();
             Nombre = new DataGridViewTextBoxColumn();
             Precio = new DataGridViewTextBoxColumn();
@@ -52,6 +45,13 @@
             Categoria = new DataGridViewTextBoxColumn();
             Estado = new DataGridViewTextBoxColumn();
             Accion = new DataGridViewButtonColumn();
+            textBox1 = new TextBox();
+            pictureBox1 = new PictureBox();
+            pictureBox2 = new PictureBox();
+            pictureBox3 = new PictureBox();
+            pictureBox4 = new PictureBox();
+            pictureBox5 = new PictureBox();
+            comboBox1 = new ComboBox();
             ((System.ComponentModel.ISupportInitialize)productList).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
@@ -126,97 +126,6 @@
             productList.TabIndex = 0;
             productList.CellContentClick += productList_CellContentClick;
             // 
-            // textBox1
-            // 
-            textBox1.BackColor = SystemColors.ButtonFace;
-            textBox1.BorderStyle = BorderStyle.FixedSingle;
-            textBox1.Font = new Font("Arial", 8.25F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
-            textBox1.Location = new Point(43, 45);
-            textBox1.MaximumSize = new Size(220, 35);
-            textBox1.MinimumSize = new Size(220, 35);
-            textBox1.Name = "textBox1";
-            textBox1.PlaceholderText = "Buscar por Id o Nombre";
-            textBox1.Size = new Size(220, 35);
-            textBox1.TabIndex = 1;
-            textBox1.TextChanged += textBox1_TextChanged;
-            // 
-            // pictureBox1
-            // 
-            pictureBox1.Image = Properties.Resources.search;
-            pictureBox1.Location = new Point(12, 48);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(25, 24);
-            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox1.TabIndex = 2;
-            pictureBox1.TabStop = false;
-            // 
-            // comboBox1
-            // 
-            comboBox1.BackColor = SystemColors.ButtonShadow;
-            comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
-            comboBox1.ForeColor = Color.Black;
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Items.AddRange(new object[] { "Todos", "Grano", "Molido", "Soluble" });
-            comboBox1.Location = new Point(281, 43);
-            comboBox1.MaximumSize = new Size(163, 0);
-            comboBox1.MinimumSize = new Size(163, 0);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(163, 23);
-            comboBox1.TabIndex = 3;
-            comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
-            // 
-            // pictureBox2
-            // 
-            pictureBox2.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            pictureBox2.BackColor = Color.Transparent;
-            pictureBox2.BackgroundImage = Properties.Resources.close_m;
-            pictureBox2.BackgroundImageLayout = ImageLayout.Zoom;
-            pictureBox2.Location = new Point(1153, 10);
-            pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(23, 23);
-            pictureBox2.TabIndex = 4;
-            pictureBox2.TabStop = false;
-            pictureBox2.Click += pictureBox2_Click;
-            // 
-            // pictureBox3
-            // 
-            pictureBox3.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            pictureBox3.BackColor = Color.Transparent;
-            pictureBox3.BackgroundImage = Properties.Resources.max;
-            pictureBox3.BackgroundImageLayout = ImageLayout.Zoom;
-            pictureBox3.Location = new Point(1117, 12);
-            pictureBox3.Name = "pictureBox3";
-            pictureBox3.Size = new Size(18, 18);
-            pictureBox3.TabIndex = 5;
-            pictureBox3.TabStop = false;
-            pictureBox3.Click += pictureBox3_Click;
-            // 
-            // pictureBox4
-            // 
-            pictureBox4.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            pictureBox4.BackColor = Color.Transparent;
-            pictureBox4.BackgroundImage = (Image)resources.GetObject("pictureBox4.BackgroundImage");
-            pictureBox4.BackgroundImageLayout = ImageLayout.Zoom;
-            pictureBox4.Location = new Point(1117, 12);
-            pictureBox4.Name = "pictureBox4";
-            pictureBox4.Size = new Size(18, 18);
-            pictureBox4.TabIndex = 6;
-            pictureBox4.TabStop = false;
-            pictureBox4.Click += pictureBox4_Click;
-            // 
-            // pictureBox5
-            // 
-            pictureBox5.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            pictureBox5.BackColor = Color.Transparent;
-            pictureBox5.BackgroundImage = (Image)resources.GetObject("pictureBox5.BackgroundImage");
-            pictureBox5.BackgroundImageLayout = ImageLayout.Zoom;
-            pictureBox5.Location = new Point(1078, 12);
-            pictureBox5.Name = "pictureBox5";
-            pictureBox5.Size = new Size(18, 18);
-            pictureBox5.TabIndex = 7;
-            pictureBox5.TabStop = false;
-            pictureBox5.Click += pictureBox5_Click;
-            // 
             // Id
             // 
             Id.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
@@ -284,16 +193,100 @@
             Accion.ToolTipText = "Editar";
             Accion.UseColumnTextForButtonValue = true;
             // 
+            // textBox1
+            // 
+            textBox1.BackColor = SystemColors.ButtonFace;
+            textBox1.BorderStyle = BorderStyle.FixedSingle;
+            textBox1.Font = new Font("Arial", 8.25F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
+            textBox1.Location = new Point(43, 45);
+            textBox1.MaximumSize = new Size(220, 35);
+            textBox1.MinimumSize = new Size(220, 35);
+            textBox1.Name = "textBox1";
+            textBox1.PlaceholderText = "Buscar por Id o Nombre";
+            textBox1.Size = new Size(220, 35);
+            textBox1.TabIndex = 1;
+            textBox1.TextChanged += textBox1_TextChanged;
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.Image = Properties.Resources.search;
+            pictureBox1.Location = new Point(12, 48);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(25, 24);
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox1.TabIndex = 2;
+            pictureBox1.TabStop = false;
+            // 
+            // pictureBox2
+            // 
+            pictureBox2.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            pictureBox2.BackColor = Color.Transparent;
+            pictureBox2.BackgroundImage = Properties.Resources.close_m;
+            pictureBox2.BackgroundImageLayout = ImageLayout.Zoom;
+            pictureBox2.Location = new Point(1153, 10);
+            pictureBox2.Name = "pictureBox2";
+            pictureBox2.Size = new Size(23, 23);
+            pictureBox2.TabIndex = 4;
+            pictureBox2.TabStop = false;
+            pictureBox2.Click += pictureBox2_Click;
+            // 
+            // pictureBox3
+            // 
+            pictureBox3.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            pictureBox3.BackColor = Color.Transparent;
+            pictureBox3.BackgroundImage = Properties.Resources.max;
+            pictureBox3.BackgroundImageLayout = ImageLayout.Zoom;
+            pictureBox3.Location = new Point(1117, 12);
+            pictureBox3.Name = "pictureBox3";
+            pictureBox3.Size = new Size(18, 18);
+            pictureBox3.TabIndex = 5;
+            pictureBox3.TabStop = false;
+            pictureBox3.Click += pictureBox3_Click;
+            // 
+            // pictureBox4
+            // 
+            pictureBox4.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            pictureBox4.BackColor = Color.Transparent;
+            pictureBox4.BackgroundImage = (Image)resources.GetObject("pictureBox4.BackgroundImage");
+            pictureBox4.BackgroundImageLayout = ImageLayout.Zoom;
+            pictureBox4.Location = new Point(1117, 12);
+            pictureBox4.Name = "pictureBox4";
+            pictureBox4.Size = new Size(18, 18);
+            pictureBox4.TabIndex = 6;
+            pictureBox4.TabStop = false;
+            pictureBox4.Click += pictureBox4_Click;
+            // 
+            // pictureBox5
+            // 
+            pictureBox5.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            pictureBox5.BackColor = Color.Transparent;
+            pictureBox5.BackgroundImage = (Image)resources.GetObject("pictureBox5.BackgroundImage");
+            pictureBox5.BackgroundImageLayout = ImageLayout.Zoom;
+            pictureBox5.Location = new Point(1078, 12);
+            pictureBox5.Name = "pictureBox5";
+            pictureBox5.Size = new Size(18, 18);
+            pictureBox5.TabIndex = 7;
+            pictureBox5.TabStop = false;
+            pictureBox5.Click += pictureBox5_Click;
+            // 
+            // comboBox1
+            // 
+            comboBox1.FormattingEnabled = true;
+            comboBox1.Location = new Point(458, 65);
+            comboBox1.Name = "comboBox1";
+            comboBox1.Size = new Size(121, 23);
+            comboBox1.TabIndex = 8;
+            // 
             // Products
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1188, 663);
+            Controls.Add(comboBox1);
             Controls.Add(pictureBox5);
             Controls.Add(pictureBox4);
             Controls.Add(pictureBox3);
             Controls.Add(pictureBox2);
-            Controls.Add(comboBox1);
             Controls.Add(pictureBox1);
             Controls.Add(textBox1);
             Controls.Add(productList);
@@ -303,6 +296,7 @@
             Name = "Products";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Products";
+            Load += Products_Load;
             ((System.ComponentModel.ISupportInitialize)productList).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
@@ -318,7 +312,6 @@
         private DataGridView productList;
         private TextBox textBox1;
         private PictureBox pictureBox1;
-        private ComboBox comboBox1;
         private PictureBox pictureBox2;
         private PictureBox pictureBox3;
         private PictureBox pictureBox4;
@@ -331,5 +324,6 @@
         private DataGridViewTextBoxColumn Categoria;
         private DataGridViewTextBoxColumn Estado;
         private DataGridViewButtonColumn Accion;
+        private ComboBox comboBox1;
     }
 }

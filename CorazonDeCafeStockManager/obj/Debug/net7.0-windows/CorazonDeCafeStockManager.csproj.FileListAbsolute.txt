@@ -35,3 +35,4 @@ C:\Users\HP\Desktop\stock-manager\CorazonDeCafeStockManager\CorazonDeCafeStockMa
 C:\Users\HP\Desktop\stock-manager\CorazonDeCafeStockManager\CorazonDeCafeStockManager\obj\Debug\net7.0-windows\CorazonDeCafeStockManager.Home.resources
 C:\Users\HP\Desktop\stock-manager\CorazonDeCafeStockManager\CorazonDeCafeStockManager\obj\Debug\net7.0-windows\CorazonDeCafeStockManager.Products.resources
 C:\Users\HP\Desktop\stock-manager\CorazonDeCafeStockManager\CorazonDeCafeStockManager\obj\Debug\net7.0-windows\CorazonDeCafeStockManager.Product_Form.resources
+C:\Users\HP\Desktop\stock-manager\CorazonDeCafeStockManager\CorazonDeCafeStockManager\obj\Debug\net7.0-windows\CorazonDeCafeStockManager.utils.Custom.TextBox.TextBoxCustom.resources

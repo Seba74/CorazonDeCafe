@@ -1,49 +1,23 @@
 using System.Drawing.Text;
-using System.Windows.Forms;
-using System.Windows.Forms.VisualStyles;
-
 namespace CorazonDeCafeStockManager
 {
     public partial class LoginForm : Form
     {
-
-        // Global Variables
-        private readonly PrivateFontCollection privateFontCollection = new();
-
         public LoginForm()
         {
             InitializeComponent();
-            string path = Path.Combine(Application.StartupPath, "fonts", "poppins.ttf");
-            string pathLight = Path.Combine(Application.StartupPath, "fonts", "poppins-Light.ttf");
-            path = path.Replace("bin\\Debug\\net7.0-windows\\", "");
-            pathLight = pathLight.Replace("bin\\Debug\\net7.0-windows\\", "");
+            LoadFonts loadFonts = new();
 
-            privateFontCollection.AddFontFile(path);
-            privateFontCollection.AddFontFile(pathLight);
+            lblTitle.Font = new Font(loadFonts.poppinsFont!.FontFamily, 16, FontStyle.Bold);
 
-            ApplyFont(lblTitle, 16, FontStyle.Bold);
-            ApplyFont(lblSubtitle, 12, FontStyle.Regular);
-            ApplyFont(ipUser, 11, FontStyle.Regular);
-            ApplyFont(ipPassword, 11, FontStyle.Regular);
-            ApplyFont(btnLogin, 11, FontStyle.Regular);
-            ApplyFontLight(btnError, 10, FontStyle.Regular);
+            ipUser.Font = loadFonts.poppinsLightFont!;
+            ipPassword.Font = loadFonts.poppinsLightFont!;
+            lblSubtitle.Font = loadFonts.poppinsLightFont;
+            btnLogin.Font = loadFonts.poppinsLightFont;
+            btnError.Font = loadFonts.poppinsLightFont;
 
             closeBtn.BackColor = Color.Transparent;
 
-        }
-
-        private void ApplyFont(Control control, float fontSize, FontStyle fontStyle)
-        {
-            FontFamily fontFamily = privateFontCollection.Families[0];
-            Font font = new(fontFamily, fontSize, fontStyle);
-            control.Font = font;
-        }
-
-        private void ApplyFontLight(Control control, float fontSize, FontStyle fontStyle)
-        {
-            FontFamily fontFamily = privateFontCollection.Families[1];
-            Font font = new(fontFamily, fontSize, fontStyle);
-            control.Font = font;
         }
 
         private void LblTitle_Click(object sender, EventArgs e)
@@ -69,8 +43,8 @@ namespace CorazonDeCafeStockManager
 
         private void BtnLogin_Click(object sender, EventArgs e)
         {
-            string user = ipUser.Text;
-            string password = ipPassword.Text;
+            string user = ipUser.Texts;
+            string password = ipPassword.Texts;
             RequestLogin requestLogin = new();
             if (requestLogin.Login(user, password))
             {
