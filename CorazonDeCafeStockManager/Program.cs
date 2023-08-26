@@ -1,15 +1,37 @@
+using System.Configuration;
+using CorazonDeCafeStockManager.App.Models;
+using CorazonDeCafeStockManager.App.Presenters;
+using CorazonDeCafeStockManager.App.Repository;
+using CorazonDeCafeStockManager.App.Repository._Repository;
+using CorazonDeCafeStockManager.App.Views.Home_Form;
+using CorazonDeCafeStockManager.App.Views.Login_Form;
+using Microsoft.EntityFrameworkCore;
+
 namespace CorazonDeCafeStockManager
 {
     internal static class Program
     {
         /// <summary>
-        ///  The main entry point for the application.
         /// </summary>
         [STAThread]
         static void Main()
         {
             ApplicationConfiguration.Initialize();
-            Application.Run(new LoginForm());
+
+            string connectionString = ConfigurationManager.ConnectionStrings["CorazonDeCafeStockManager.App.SqlConnection"].ConnectionString;
+            DbContextOptionsBuilder<CorazonDeCafeContext> optionsBuilder = new();
+            CorazonDeCafeContext dbContext = new(optionsBuilder.UseSqlServer(connectionString).Options);
+            
+            // Init Home View
+            IHomeView homeView = new Home();
+            new HomePresenter(homeView, dbContext);
+
+            // First View Presentation
+            IAuthRepository authRepository = new AuthRepository(dbContext);
+            IAuthView authLogin = new LoginForm();
+            new AuthPresenter(authLogin, authRepository, homeView);
+
+            Application.Run((LoginForm)authLogin);
         }
     }
 }
