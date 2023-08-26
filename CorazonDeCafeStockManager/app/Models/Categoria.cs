@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace CorazonDeCafeStockManager.App.Models;
 
-public partial class Tipo
+public partial class Categoria
 {
     public int Id { get; set; }
 
