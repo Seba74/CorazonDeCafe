@@ -214,6 +214,8 @@
         private PictureBox closeBtn;
         private Button btnError;
         private ButtonCustom btnLogin;
+
+
         private utils.Custom.TextBox.TextBoxCustom ipUser;
         private utils.Custom.TextBox.TextBoxCustom ipPassword;
     }
