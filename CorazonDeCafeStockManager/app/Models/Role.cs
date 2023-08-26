@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace CorazonDeCafeStockManager.Models;
+namespace CorazonDeCafeStockManager.App.Models;
 
-public partial class Categoria
+public partial class Role
 {
     public int Id { get; set; }
 
@@ -13,5 +13,5 @@ public partial class Categoria
 
     public string Activo { get; set; } = null!;
 
-    public virtual ICollection<Product> Products { get; set; } = new List<Product>();
+    public virtual ICollection<Usuario> Usuarios { get; set; } = new List<Usuario>();
 }

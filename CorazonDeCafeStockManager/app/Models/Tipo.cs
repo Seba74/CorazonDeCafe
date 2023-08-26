@@ -1,28 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel;
 
-namespace CorazonDeCafeStockManager
+namespace CorazonDeCafeStockManager.App.Models;
+
+public partial class Tipo
 {
-    internal class Tipo
-    {
-        [DisplayName("Id")]
-        public int Id { get; set; }
+    public int Id { get; set; }
 
-        [DisplayName("Name")]
-        [Required(ErrorMessage = "El nombre es requerido")]
-        public string? Nombre { get; set; }
+    public string Nombre { get; set; } = null!;
 
-        [DisplayName("Description")]
-        [Required(ErrorMessage = "La descripcion es requerida")]
-        public string? Descripcion { get; set; }
+    public string Descripcion { get; set; } = null!;
 
-        [DisplayName("Active")]
-        [Required(ErrorMessage = "El estado es requerido")]
-        public string? Activo { get; set; }
-    }
+    public string Activo { get; set; } = null!;
+
+    public virtual ICollection<Product> Products { get; set; } = new List<Product>();
 }

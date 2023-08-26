@@ -1,16 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Compile Update="app\Home-Form\Home.cs">
+    <Compile Update="App\Views\Home-Form\Home.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="app\Login-Form\LoginForm.cs">
+    <Compile Update="App\Views\Login-Form\LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="app\Product-Form\Product-Form.cs">
+    <Compile Update="App\Views\Product-Form\Product-Form.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="app\Products-Form\Products.cs">
+    <Compile Update="App\Views\Products-Form\Products.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="utils\Custom\Button\ButtonCustom.cs">

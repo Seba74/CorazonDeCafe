@@ -124,7 +124,6 @@
             productList.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             productList.Size = new Size(1164, 519);
             productList.TabIndex = 0;
-            productList.CellContentClick += productList_CellContentClick;
             // 
             // Id
             // 

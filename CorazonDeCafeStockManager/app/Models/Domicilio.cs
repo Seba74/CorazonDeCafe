@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace CorazonDeCafeStockManager.Models;
+namespace CorazonDeCafeStockManager.App.Models;
 
 public partial class Domicilio
 {

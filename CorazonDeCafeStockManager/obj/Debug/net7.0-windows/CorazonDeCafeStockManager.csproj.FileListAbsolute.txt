@@ -76,3 +76,4 @@ C:\Users\HP\Desktop\stock-manager\CorazonDeCafeStockManager\CorazonDeCafeStockMa
 C:\Users\HP\Desktop\stock-manager\CorazonDeCafeStockManager\CorazonDeCafeStockManager\obj\Debug\net7.0-windows\CorazonDeCafeStockManager.pdb
 C:\Users\HP\Desktop\stock-manager\CorazonDeCafeStockManager\CorazonDeCafeStockManager\obj\Debug\net7.0-windows\CorazonDeCafeStockManager.genruntimeconfig.cache
 C:\Users\HP\Desktop\stock-manager\CorazonDeCafeStockManager\CorazonDeCafeStockManager\obj\Debug\net7.0-windows\ref\CorazonDeCafeStockManager.dll
+C:\Users\HP\Desktop\stock-manager\CorazonDeCafeStockManager\CorazonDeCafeStockManager\bin\Debug\net7.0-windows\CorazonDeCafeStockManager.dll.config

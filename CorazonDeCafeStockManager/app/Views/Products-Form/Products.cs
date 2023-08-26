@@ -15,9 +15,9 @@ namespace CorazonDeCafeStockManager
     {
         private System.Windows.Forms.Timer searchTimer = new System.Windows.Forms.Timer(); private readonly Font poppinsFont;
 
-        List<Product> productsList = new();
-        List<Category> categories = new();
-        List<Tipo> types = new();
+        // List<Product> productsList = new();
+        // List<Category> categories = new();
+        // List<Tipo> types = new();
         public Products()
         {
             InitializeComponent();
@@ -35,11 +35,11 @@ namespace CorazonDeCafeStockManager
 
         private void Products_Load(string filter = "")
         {
-            RequestProducts requestProducts = new();
-            RequestCategoryAndType requestCategoryAndType = new();
-            categories = requestCategoryAndType.GetCategories();
-            types = requestCategoryAndType.GetTypes();
-            productsList = requestProducts.GetProducts(filter);
+            // RequestProducts requestProducts = new();
+            // RequestCategoryAndType requestCategoryAndType = new();
+            // categories = requestCategoryAndType.GetCategories();
+            // types = requestCategoryAndType.GetTypes();
+            // productsList = requestProducts.GetProducts(filter);
 
             Color headerBackColor = Color.FromArgb(146, 90, 57);
             ChangeDataGridViewFont(productList);
@@ -49,14 +49,14 @@ namespace CorazonDeCafeStockManager
             productList.Rows.Clear();
             productList.Refresh();
 
-            foreach (Product product in productsList)
-            {
-                string category = categories.Where(c => c.Id == product.Categoria_Id).FirstOrDefault()?.Nombre ?? "";
-                string type = types.Where(t => t.Id == product.Tipo_Id).FirstOrDefault()?.Nombre ?? "";
-                product.Estado = product.Estado == "SI" ? "Activo" : "Inactivo";
-                string price = "$" + product.Precio.ToString();
-                productList.Rows.Add(product.Id, product.Nombre, price, product.Stock, type, category, product.Estado);
-            }
+            // foreach (Product product in productsList)
+            // {
+            //     string category = categories.Where(c => c.Id == product.Categoria_Id).FirstOrDefault()?.Nombre ?? "";
+            //     string type = types.Where(t => t.Id == product.Tipo_Id).FirstOrDefault()?.Nombre ?? "";
+            //     product.Estado = product.Estado == "SI" ? "Activo" : "Inactivo";
+            //     string price = "$" + product.Precio.ToString();
+            //     productList.Rows.Add(product.Id, product.Nombre, price, product.Stock, type, category, product.Estado);
+            // }
         }
 
         private void ChangeDataGridViewFont(DataGridView dataGridView)
@@ -68,13 +68,13 @@ namespace CorazonDeCafeStockManager
             }
         }
 
-        private void productList_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            // select button
-            int productId = Convert.ToInt32(productList.Rows[e.RowIndex].Cells[0].Value);
-            Product product = productsList.FirstOrDefault(p => p.Id == productId)!;
-            MessageBox.Show(product?.Nombre);
-        }
+        // private void productList_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        // {
+        //     // select button
+        //     int productId = Convert.ToInt32(productList.Rows[e.RowIndex].Cells[0].Value);
+        //     Product product = productsList.FirstOrDefault(p => p.Id == productId)!;
+        //     MessageBox.Show(product?.Nombre);
+        // }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {

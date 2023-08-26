@@ -1,10 +1,16 @@
 using System.Drawing.Text;
+using CorazonDeCafeStockManager.App.Repository;
+using CorazonDeCafeStockManager.App.Repository._Repository;
+
 namespace CorazonDeCafeStockManager
 {
     public partial class LoginForm : Form
     {
-        public LoginForm()
+
+        private readonly IAuthRepository requestLogin;
+        public LoginForm(IAuthRepository requestLogin)
         {
+            this.requestLogin = requestLogin;
             InitializeComponent();
             LoadFonts loadFonts = new();
 
@@ -20,33 +26,16 @@ namespace CorazonDeCafeStockManager
 
         }
 
-        private void LblTitle_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void LoginForm_Load(object sender, EventArgs e)
         {
             this.ActiveControl = lblTitle;
         }
-
-        private void IpUser_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-
-        private void IpPassword_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void BtnLogin_Click(object sender, EventArgs e)
+        private async void BtnLogin_Click(object sender, EventArgs e)
         {
             string user = ipUser.Texts;
             string password = ipPassword.Texts;
-            RequestLogin requestLogin = new();
-            if (requestLogin.Login(user, password))
+            bool logged = await this.requestLogin.Login(user, password);
+            if (logged)
             {
                 // Home home = new();
                 // home.Show();
@@ -60,29 +49,9 @@ namespace CorazonDeCafeStockManager
             }
         }
 
-        private void cdcTitle_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void lblSubtitle_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void closeBtn_Click(object sender, EventArgs e)
         {
             this.Close();
-        }
-
-        private void btnError_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

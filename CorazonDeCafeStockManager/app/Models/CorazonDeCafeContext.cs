@@ -2,32 +2,29 @@
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 
-namespace CorazonDeCafeStockManager.Models;
+namespace CorazonDeCafeStockManager.App.Models;
 
 public partial class CorazonDeCafeContext : DbContext
 {
     public CorazonDeCafeContext() { }
 
-    public CorazonDeCafeContext(DbContextOptions<CorazonDeCafeContext> options)
-        : base(options)
-    {
-    }
+    public CorazonDeCafeContext(DbContextOptions<CorazonDeCafeContext> options) : base(options){}
 
-    public virtual DbSet<Cart> Carts { get; set; }
+    public virtual DbSet<Cart>? Carts { get; set; }
 
-    public virtual DbSet<CartProducto> CartProductos { get; set; }
+    public virtual DbSet<CartProducto>? CartProductos { get; set; }
 
-    public virtual DbSet<Categoria> Categorias { get; set; }
+    public virtual DbSet<Categoria>? Categorias { get; set; }
 
-    public virtual DbSet<Domicilio> Domicilios { get; set; }
+    public virtual DbSet<Domicilio>? Domicilios { get; set; }
 
-    public virtual DbSet<Product> Products { get; set; }
+    public virtual DbSet<Product>? Products { get; set; }
 
-    public virtual DbSet<Role> Roles { get; set; }
+    public virtual DbSet<Role>? Roles { get; set; }
 
-    public virtual DbSet<Tipo> Tipos { get; set; }
+    public virtual DbSet<Tipo>? Tipos { get; set; }
 
-    public virtual DbSet<Usuario> Usuarios { get; set; }
+    public virtual DbSet<Usuario>? Usuarios { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) { }
 

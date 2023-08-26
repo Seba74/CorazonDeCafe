@@ -52,7 +52,6 @@
             lblTitle.Size = new Size(92, 21);
             lblTitle.TabIndex = 0;
             lblTitle.Text = "Bienvenido!";
-            lblTitle.Click += LblTitle_Click;
             // 
             // lblSubtitle
             // 
@@ -65,7 +64,6 @@
             lblSubtitle.Size = new Size(209, 21);
             lblSubtitle.TabIndex = 4;
             lblSubtitle.Text = "Ingrese usuario y contraseña";
-            lblSubtitle.Click += lblSubtitle_Click;
             // 
             // panel1
             // 
@@ -76,7 +74,6 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(690, 546);
             panel1.TabIndex = 8;
-            panel1.Paint += panel1_Paint;
             // 
             // closeBtn
             // 
@@ -115,7 +112,6 @@
             btnError.Text = "Usuario o Contraseña Incorrecto";
             btnError.UseVisualStyleBackColor = false;
             btnError.Visible = false;
-            btnError.Click += btnError_Click;
             // 
             // btnLogin
             // 
