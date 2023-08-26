@@ -13,9 +13,7 @@ namespace CorazonDeCafeStockManager
 {
     public partial class Products : Form
     {
-        private System.Windows.Forms.Timer searchTimer = new System.Windows.Forms.Timer();
-        private readonly PrivateFontCollection privateFontCollection = new();
-        private readonly Font poppinsFont;
+        private System.Windows.Forms.Timer searchTimer = new System.Windows.Forms.Timer(); private readonly Font poppinsFont;
 
         List<Product> productsList = new();
         List<Category> categories = new();
@@ -23,12 +21,11 @@ namespace CorazonDeCafeStockManager
         public Products()
         {
             InitializeComponent();
-            poppinsFont = LoadFont();
+            LoadFonts loadFonts = new();
+            poppinsFont = new Font(loadFonts.poppinsFont!.FontFamily, 12, FontStyle.Regular);
             Products_Load();
 
             textBox1.Font = poppinsFont;
-            productList.Font = poppinsFont;
-
             searchTimer.Interval = 1500;
             searchTimer.Tick += SearchTimer_Tick!;
 
@@ -36,27 +33,16 @@ namespace CorazonDeCafeStockManager
 
         }
 
-        private Font LoadFont()
-        {
-            string path = Path.Combine(Application.StartupPath, "fonts", "poppins.ttf");
-            path = path.Replace("bin\\Debug\\net7.0-windows\\", "");
-
-            privateFontCollection.AddFontFile(path);
-            FontFamily fontFamily = privateFontCollection.Families[0];
-            return new Font(fontFamily, 12, FontStyle.Regular);
-        }
-
         private void Products_Load(string filter = "")
         {
             RequestProducts requestProducts = new();
             RequestCategoryAndType requestCategoryAndType = new();
-
             categories = requestCategoryAndType.GetCategories();
             types = requestCategoryAndType.GetTypes();
             productsList = requestProducts.GetProducts(filter);
 
             Color headerBackColor = Color.FromArgb(146, 90, 57);
-            ChangeDataGridViewFont(productList, poppinsFont);
+            ChangeDataGridViewFont(productList);
             productList.EnableHeadersVisualStyles = false;
             productList.ColumnHeadersDefaultCellStyle.BackColor = headerBackColor;
 
@@ -73,12 +59,12 @@ namespace CorazonDeCafeStockManager
             }
         }
 
-        private void ChangeDataGridViewFont(DataGridView dataGridView, Font font)
+        private void ChangeDataGridViewFont(DataGridView dataGridView)
         {
             foreach (DataGridViewColumn column in dataGridView.Columns)
             {
-                column.DefaultCellStyle.Font = font;
-                column.HeaderCell.Style.Font = font;
+                column.DefaultCellStyle.Font = poppinsFont;
+                column.HeaderCell.Style.Font = poppinsFont;
             }
         }
 
@@ -135,6 +121,11 @@ namespace CorazonDeCafeStockManager
         private void pictureBox5_Click(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Minimized;
+        }
+
+        private void Products_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

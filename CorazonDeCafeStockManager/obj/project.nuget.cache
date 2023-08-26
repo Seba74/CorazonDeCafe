@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "42j84YRv5+jLEbzkm2y3gI81bWEp4U64zJ+uXs1f3JzHWpFMSL5dIvAjpOJFkotk6BNpGpB6wbg2YWmuQaq82Q==",
+  "dgSpecHash": "jJZY1CLzSabIT6A1PbZrS+KJlIKFjIIC93om/42mO1wAYvgP99p0tFlQ40D+Ax/JI+v2/t4d0yQGsFjgYku2PQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\HP\\Desktop\\stock-manager\\CorazonDeCafeStockManager\\CorazonDeCafeStockManager\\CorazonDeCafeStockManager.csproj",
   "expectedPackageFiles": [
@@ -16,6 +16,7 @@
     "C:\\Users\\HP\\.nuget\\packages\\mysql.data\\8.1.0\\mysql.data.8.1.0.nupkg.sha512",
     "C:\\Users\\HP\\.nuget\\packages\\portable.bouncycastle\\1.9.0\\portable.bouncycastle.1.9.0.nupkg.sha512",
     "C:\\Users\\HP\\.nuget\\packages\\system.buffers\\4.5.1\\system.buffers.4.5.1.nupkg.sha512",
+    "C:\\Users\\HP\\.nuget\\packages\\system.componentmodel.annotations\\5.0.0\\system.componentmodel.annotations.5.0.0.nupkg.sha512",
     "C:\\Users\\HP\\.nuget\\packages\\system.configuration.configurationmanager\\4.4.1\\system.configuration.configurationmanager.4.4.1.nupkg.sha512",
     "C:\\Users\\HP\\.nuget\\packages\\system.diagnostics.diagnosticsource\\7.0.2\\system.diagnostics.diagnosticsource.7.0.2.nupkg.sha512",
     "C:\\Users\\HP\\.nuget\\packages\\system.drawing.common\\4.7.0\\system.drawing.common.4.7.0.nupkg.sha512",
