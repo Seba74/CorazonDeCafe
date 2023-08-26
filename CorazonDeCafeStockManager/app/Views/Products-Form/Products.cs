@@ -8,10 +8,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using CorazonDeCafeStockManager.App.Views.Login_Form;
 
 namespace CorazonDeCafeStockManager
 {
-    public partial class Products : Form
+    public partial class Products : Form, IProductsView
     {
         private System.Windows.Forms.Timer searchTimer = new System.Windows.Forms.Timer(); private readonly Font poppinsFont;
 

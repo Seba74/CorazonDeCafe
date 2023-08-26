@@ -1,17 +1,27 @@
 using System.Drawing.Text;
 using CorazonDeCafeStockManager.App.Repository;
 using CorazonDeCafeStockManager.App.Repository._Repository;
+using CorazonDeCafeStockManager.App.Views.Login_Form;
 
 namespace CorazonDeCafeStockManager
 {
-    public partial class LoginForm : Form
+    public partial class LoginForm : Form, IAuthView
     {
-
-        private readonly IAuthRepository requestLogin;
-        public LoginForm(IAuthRepository requestLogin)
+        public string Username
         {
-            this.requestLogin = requestLogin;
+            get { return ipUser.Texts; }
+            set { ipUser.Texts = value; }
+        }
+        public string Password
+        {
+            get { return ipPassword.Texts; }
+            set { ipPassword.Texts = value; }
+        }
+
+        public LoginForm()
+        {
             InitializeComponent();
+            AssociateEvents();
             LoadFonts loadFonts = new();
 
             lblTitle.Font = new Font(loadFonts.poppinsFont!.FontFamily, 16, FontStyle.Bold);
@@ -26,32 +36,28 @@ namespace CorazonDeCafeStockManager
 
         }
 
+        public event EventHandler<Tuple<string, string>>? LoginEvent;
+
+        private void AssociateEvents()
+        {
+            btnLogin.Click += delegate (object? sender, EventArgs e)
+            {
+                LoginEvent?.Invoke(this, new Tuple<string, string>(Username, Password));
+            };
+        }
         private void LoginForm_Load(object sender, EventArgs e)
         {
             this.ActiveControl = lblTitle;
         }
-        private async void BtnLogin_Click(object sender, EventArgs e)
-        {
-            string user = ipUser.Texts;
-            string password = ipPassword.Texts;
-            bool logged = await this.requestLogin.Login(user, password);
-            if (logged)
-            {
-                // Home home = new();
-                // home.Show();
-                Products products = new();
-                products.Show();
-                this.Hide();
-            }
-            else
-            {
-                btnError.Visible = true;
-            }
-        }
-
-        private void closeBtn_Click(object sender, EventArgs e)
+        
+        private void CloseBtn_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        public void ShowError(string message)
+        {
+            btnError.Visible = true;
         }
     }
 }

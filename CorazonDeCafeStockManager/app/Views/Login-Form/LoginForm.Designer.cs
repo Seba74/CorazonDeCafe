@@ -88,14 +88,7 @@
             closeBtn.Size = new Size(34, 28);
             closeBtn.TabIndex = 0;
             closeBtn.TabStop = false;
-            closeBtn.Click += closeBtn_Click;
-            // 
-            // mySqlCommand1
-            // 
-            mySqlCommand1.CacheAge = 0;
-            mySqlCommand1.Connection = null;
-            mySqlCommand1.EnableCaching = false;
-            mySqlCommand1.Transaction = null;
+            closeBtn.Click += CloseBtn_Click;
             // 
             // btnError
             // 
@@ -131,7 +124,6 @@
             btnLogin.Text = "Iniciar Sesion";
             btnLogin.TextColor = Color.FromArgb(147, 90, 57);
             btnLogin.UseVisualStyleBackColor = false;
-            btnLogin.Click += BtnLogin_Click;
             // 
             // ipUser
             // 
