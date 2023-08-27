@@ -1,12 +1,12 @@
 using CorazonDeCafeStockManager.App.Models;
+using CorazonDeCafeStockManager.App.Vars;
 using Microsoft.EntityFrameworkCore;
 using System.Text;
 
-namespace CorazonDeCafeStockManager.App.Repository._Repository;
+namespace CorazonDeCafeStockManager.App.Repositories._Repository;
 
 public class AuthRepository : IAuthRepository
 {
-
     private readonly CorazonDeCafeContext _context;
 
     public AuthRepository(CorazonDeCafeContext context)
@@ -28,6 +28,11 @@ public class AuthRepository : IAuthRepository
             // check password
             if (userFromDb.Pass == password)
             {
+                SessionManager.Name = userFromDb.Nombre;
+                SessionManager.RoleId = userFromDb.RoleId;
+                SessionManager.Username = userFromDb.Usuario1;
+                SessionManager.IsLoggedIn = true;
+                
                 return true;
             }
             else

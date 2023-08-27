@@ -4,8 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CorazonDeCafeStockManager.App.Models;
-using CorazonDeCafeStockManager.App.Repository;
-using CorazonDeCafeStockManager.App.Repository._Repository;
+using CorazonDeCafeStockManager.App.Repositories;
+using CorazonDeCafeStockManager.App.Repositories._Repository;
 using CorazonDeCafeStockManager.App.Views.Home_Form;
 using CorazonDeCafeStockManager.App.Views.Login_Form;
 
@@ -28,7 +28,6 @@ namespace CorazonDeCafeStockManager.App.Presenters
             IProductRepository productRepository = new ProductRepository(this.dbContext);
             IProductsView productView = new Products();
             new ProductPresenter(productView, productRepository);
-            productView.Show();
         }
     }
 }

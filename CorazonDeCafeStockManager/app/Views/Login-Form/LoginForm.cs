@@ -1,6 +1,4 @@
 using System.Drawing.Text;
-using CorazonDeCafeStockManager.App.Repository;
-using CorazonDeCafeStockManager.App.Repository._Repository;
 using CorazonDeCafeStockManager.App.Views.Login_Form;
 
 namespace CorazonDeCafeStockManager

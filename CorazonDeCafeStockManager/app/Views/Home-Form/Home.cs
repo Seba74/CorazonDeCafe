@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using CorazonDeCafeStockManager.App.Vars;
 using CorazonDeCafeStockManager.App.Views.Home_Form;
 
 namespace CorazonDeCafeStockManager
@@ -21,11 +22,12 @@ namespace CorazonDeCafeStockManager
 
         private void AssociateEvents()
         {
-            this.btnProducts.Click += delegate{ this.ShowProductsView?.Invoke(this, EventArgs.Empty); };
+            this.btnProducts.Click += delegate { this.ShowProductsView?.Invoke(this, EventArgs.Empty); };
         }
 
-        public event EventHandler? ShowLoginView;
-        public event EventHandler? ShowHomeView;
+        private void BtnProducts_Click(object sender, EventArgs e)
+        { }
+
         public event EventHandler? ShowProductsView;
         public event EventHandler? ShowProducView;
     }
