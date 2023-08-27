@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,23 +14,23 @@ namespace CorazonDeCafeStockManager.App.Presenters
     {
         private readonly IProductsView view;
         private readonly IProductRepository repository;
-
         private IEnumerable<Product>? products;
 
         public ProductPresenter(IProductsView view, IProductRepository repository)
         {
             this.view = view;
             this.repository = repository;
-            LoadAllProducts();
             this.view.SearchEvent += SearchEvent!;
+
+            LoadAllProducts();
+
             this.view.Show();
         }
 
-        private async void LoadAllProducts()
+        private void LoadAllProducts()
         {
-            products = await repository.GetAllProducts();
-            if (products != null)
-                view.LoadProducts(products);
+            products = repository.GetAllProducts();
+            this.view.LoadProducts(products);
         }
 
         private async void SearchEvent(object sender, EventArgs e)
@@ -37,12 +38,12 @@ namespace CorazonDeCafeStockManager.App.Presenters
             if (view.Search != null)
             {
                 products = await repository.GetAllProductsByFilter(view.Search);
-                view.LoadProducts(products);
+                this.view.LoadProducts(products);
             }
             else
             {
-                products = await repository.GetAllProducts();
-                view.LoadProducts(products);
+                products = repository.GetAllProducts();
+                this.view.LoadProducts(products);
             }
         }
     }

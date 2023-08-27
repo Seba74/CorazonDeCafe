@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using CorazonDeCafeStockManager.App.Vars;
+using CorazonDeCafeStockManager.App.Common;
 using CorazonDeCafeStockManager.App.Views.Home_Form;
 
 namespace CorazonDeCafeStockManager

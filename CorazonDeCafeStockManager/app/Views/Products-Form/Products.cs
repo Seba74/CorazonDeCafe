@@ -18,7 +18,6 @@ namespace CorazonDeCafeStockManager
         private System.Windows.Forms.Timer SearchTimer = new System.Windows.Forms.Timer(); private readonly Font poppinsFont;
 
 
-        private IEnumerable<Product>? ProductsGridView { get; set; }
         public string? Search
         {
             get { return textBox1.Text; }
@@ -28,13 +27,14 @@ namespace CorazonDeCafeStockManager
         public Products()
         {
             InitializeComponent();
+
             LoadFonts loadFonts = new();
+
             poppinsFont = new Font(loadFonts.poppinsFont!.FontFamily, 12, FontStyle.Regular);
 
             textBox1.Font = poppinsFont;
             SearchTimer.Interval = 1500;
             SearchTimer.Tick += SearchTimer_Tick!;
-
             pictureBox4.Visible = false;
 
         }
@@ -45,34 +45,24 @@ namespace CorazonDeCafeStockManager
 
         public void LoadProducts(IEnumerable<Product> productsList)
         {
-            ProductsGridView = productsList;
-            if (productsList == null)
-            {
-                productList.Rows.Clear();
-                productList.Refresh();
-                return;
-            }
-
-            Color headerBackColor = Color.FromArgb(146, 90, 57);
             ChangeDataGridViewFont(productList);
-            productList.EnableHeadersVisualStyles = false;
-            productList.ColumnHeadersDefaultCellStyle.BackColor = headerBackColor;
-
-            productList.Rows.Clear();
-            productList.Refresh();
-
-            foreach (Product product in ProductsGridView)
+            foreach (Product product in productsList)
             {
                 // string category = categories.Where(c => c.Id == product.Categoria_Id).FirstOrDefault()?.Nombre ?? "";
                 // string type = types.Where(t => t.Id == product.Tipo_Id).FirstOrDefault()?.Nombre ?? "";
                 // product.Estado = product.Estado == "SI" ? "Activo" : "Inactivo";
                 // string price = "$" + product.Precio.ToString();
+
                 productList.Rows.Add(product.Id, product.Nombre, product.Stock, product.Estado);
             }
         }
 
         private void ChangeDataGridViewFont(DataGridView dataGridView)
         {
+            Color headerBackColor = Color.FromArgb(146, 90, 57);
+            productList.EnableHeadersVisualStyles = false;
+            productList.ColumnHeadersDefaultCellStyle.BackColor = headerBackColor;
+
             foreach (DataGridViewColumn column in dataGridView.Columns)
             {
                 column.DefaultCellStyle.Font = poppinsFont;

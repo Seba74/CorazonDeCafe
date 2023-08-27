@@ -1,5 +1,5 @@
 using CorazonDeCafeStockManager.App.Models;
-using CorazonDeCafeStockManager.App.Vars;
+using CorazonDeCafeStockManager.App.Common;
 using Microsoft.EntityFrameworkCore;
 using System.Text;
 

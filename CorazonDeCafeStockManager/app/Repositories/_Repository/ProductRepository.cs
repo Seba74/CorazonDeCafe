@@ -27,9 +27,9 @@ public class ProductRepository : IProductRepository
     }
 
     // Get All Products
-    public async Task<IEnumerable<Product>> GetAllProducts()
+    public IEnumerable<Product> GetAllProducts()
     {
-        IEnumerable<Product> products = await _context.Products!.ToListAsync();
+        IEnumerable<Product> products = _context.Products!.ToList();
         return products;
     }
 

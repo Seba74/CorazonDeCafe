@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CorazonDeCafeStockManager.App.Vars
+namespace CorazonDeCafeStockManager.App.Common
 {
     public static class SessionManager
     {
+        public static int? Id { get; set; }
         public static string? Name { get; set; }
         public static int? RoleId { get; set; }
         public static string? Username { get; set; }
@@ -15,6 +16,7 @@ namespace CorazonDeCafeStockManager.App.Vars
 
         public static void Logout()
         {
+            Id = null;
             Name = null;
             RoleId = null;
             Username = null;
