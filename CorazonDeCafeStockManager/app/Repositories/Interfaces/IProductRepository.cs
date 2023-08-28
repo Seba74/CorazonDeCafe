@@ -4,11 +4,11 @@ namespace CorazonDeCafeStockManager.App.Repositories;
 
 public interface IProductRepository
 {
-    IEnumerable<Product> GetAllProducts();
-    Task<IEnumerable<Product>> GetAllProductsByFilter(string filter);
-    Task<IEnumerable<Product>> GetProductsByCategory(int categoryId);
-    Task<IEnumerable<Product>> GetProductsByType(int typeId);
-    Task<Product> GetProductById(int id);
+    Task<IEnumerable<Product>> GetAllProducts();
+    IEnumerable<Product> GetAllProductsByFilter(string filter);
+    IEnumerable<Product> GetProductsByCategory(int categoryId);
+    IEnumerable<Product> GetProductsByType(int typeId);
+    Product GetProductById(int id);
     void AddProduct(Product product);
     void UpdateProduct(Product product);
     void DeleteProduct(Product product);

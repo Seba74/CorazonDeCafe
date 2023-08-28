@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using CorazonDeCafeStockManager.App.Common;
 using CorazonDeCafeStockManager.App.Models;
 using CorazonDeCafeStockManager.App.Views.Login_Form;
 
@@ -15,27 +16,24 @@ namespace CorazonDeCafeStockManager
 {
     public partial class Products : Form, IProductsView
     {
-        private System.Windows.Forms.Timer SearchTimer = new System.Windows.Forms.Timer(); private readonly Font poppinsFont;
-
-
+        private System.Windows.Forms.Timer SearchTimer = new System.Windows.Forms.Timer();
+        private LoadFonts loadFonts;
         public string? Search
         {
             get { return textBox1.Text; }
             set { textBox1.Text = value; }
         }
 
+        public IEnumerable<Product>? ProductsList { get; set; }
+
         public Products()
         {
             InitializeComponent();
-
-            LoadFonts loadFonts = new();
-
-            poppinsFont = new Font(loadFonts.poppinsFont!.FontFamily, 12, FontStyle.Regular);
-
-            textBox1.Font = poppinsFont;
+            loadFonts = new LoadFonts();
             SearchTimer.Interval = 1500;
             SearchTimer.Tick += SearchTimer_Tick!;
             pictureBox4.Visible = false;
+            ChangeDataGridViewFont(productList);
 
         }
         public event EventHandler? SearchEvent;
@@ -43,31 +41,27 @@ namespace CorazonDeCafeStockManager
         public event EventHandler? EditEvent;
         public event EventHandler? DeleteEvent;
 
-        public void LoadProducts(IEnumerable<Product> productsList)
+        public void LoadProducts()
         {
-            ChangeDataGridViewFont(productList);
-            foreach (Product product in productsList)
-            {
-                // string category = categories.Where(c => c.Id == product.Categoria_Id).FirstOrDefault()?.Nombre ?? "";
-                // string type = types.Where(t => t.Id == product.Tipo_Id).FirstOrDefault()?.Nombre ?? "";
-                // product.Estado = product.Estado == "SI" ? "Activo" : "Inactivo";
-                // string price = "$" + product.Precio.ToString();
+            productList.Rows.Clear();
+            productList.Refresh();
 
-                productList.Rows.Add(product.Id, product.Nombre, product.Stock, product.Estado);
+            foreach (Product product in ProductsList!)
+            {
+                product.Estado = product.Estado == "SI" ? "Activo" : "Inactivo";
+                string price = "$" + product.Precio.ToString();
+
+                productList.Rows.Add(product.Id, product.Nombre, price, product.Stock, product.Tipo.Nombre, product.Categoria.Nombre, product.Estado);
             }
         }
 
-        private void ChangeDataGridViewFont(DataGridView dataGridView)
+        public void ChangeDataGridViewFont(DataGridView dataGridView)
         {
-            Color headerBackColor = Color.FromArgb(146, 90, 57);
-            productList.EnableHeadersVisualStyles = false;
-            productList.ColumnHeadersDefaultCellStyle.BackColor = headerBackColor;
-
-            foreach (DataGridViewColumn column in dataGridView.Columns)
-            {
-                column.DefaultCellStyle.Font = poppinsFont;
-                column.HeaderCell.Style.Font = poppinsFont;
-            }
+            Color colorFondoEncabezado = Color.FromArgb(146, 90, 57);
+            dataGridView.ColumnHeadersDefaultCellStyle.BackColor = colorFondoEncabezado;
+            dataGridView.EnableHeadersVisualStyles = false;
+            dataGridView.DefaultCellStyle.Font = loadFonts.poppinsFont;
+            dataGridView.ColumnHeadersDefaultCellStyle.Font = loadFonts.poppinsFont;
         }
 
         // private void productList_CellContentClick(object sender, DataGridViewCellEventArgs e)

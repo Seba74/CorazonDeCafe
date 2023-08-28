@@ -33,12 +33,14 @@
             panel1 = new Panel();
             closeBtn = new PictureBox();
             mySqlCommand1 = new MySql.Data.MySqlClient.MySqlCommand();
-            btnError = new Button();
             btnLogin = new ButtonCustom();
             ipUser = new utils.Custom.TextBox.TextBoxCustom();
             ipPassword = new utils.Custom.TextBox.TextBoxCustom();
+            lblError = new Label();
+            inError = new PictureBox();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)closeBtn).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)inError).BeginInit();
             SuspendLayout();
             // 
             // lblTitle
@@ -46,7 +48,7 @@
             lblTitle.AutoSize = true;
             lblTitle.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             lblTitle.ForeColor = Color.FromArgb(0, 0, 0, 0);
-            lblTitle.Location = new Point(35, 28);
+            lblTitle.Location = new Point(27, 28);
             lblTitle.Margin = new Padding(4, 0, 4, 0);
             lblTitle.Name = "lblTitle";
             lblTitle.Size = new Size(92, 21);
@@ -58,7 +60,7 @@
             lblSubtitle.AutoSize = true;
             lblSubtitle.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             lblSubtitle.ForeColor = Color.FromArgb(0, 0, 0, 0);
-            lblSubtitle.Location = new Point(38, 60);
+            lblSubtitle.Location = new Point(30, 60);
             lblSubtitle.Margin = new Padding(4, 0, 4, 0);
             lblSubtitle.Name = "lblSubtitle";
             lblSubtitle.Size = new Size(209, 21);
@@ -70,9 +72,9 @@
             panel1.BackColor = Color.FromArgb(147, 90, 57);
             panel1.BackgroundImage = Properties.Resources.CORAZÓN_DE_CAFÉ2;
             panel1.Controls.Add(closeBtn);
-            panel1.Location = new Point(340, -40);
+            panel1.Location = new Point(326, -40);
             panel1.Name = "panel1";
-            panel1.Size = new Size(690, 546);
+            panel1.Size = new Size(652, 546);
             panel1.TabIndex = 8;
             // 
             // closeBtn
@@ -90,21 +92,12 @@
             closeBtn.TabStop = false;
             closeBtn.Click += CloseBtn_Click;
             // 
-            // btnError
+            // mySqlCommand1
             // 
-            btnError.BackColor = Color.FromArgb(255, 186, 186);
-            btnError.Enabled = false;
-            btnError.FlatAppearance.BorderColor = Color.FromArgb(255, 95, 95);
-            btnError.FlatAppearance.BorderSize = 2;
-            btnError.FlatStyle = FlatStyle.Flat;
-            btnError.ForeColor = Color.FromArgb(255, 95, 95);
-            btnError.Location = new Point(38, 105);
-            btnError.Name = "btnError";
-            btnError.Size = new Size(258, 42);
-            btnError.TabIndex = 9;
-            btnError.Text = "Usuario o Contraseña Incorrecto";
-            btnError.UseVisualStyleBackColor = false;
-            btnError.Visible = false;
+            mySqlCommand1.CacheAge = 0;
+            mySqlCommand1.Connection = null;
+            mySqlCommand1.EnableCaching = false;
+            mySqlCommand1.Transaction = null;
             // 
             // btnLogin
             // 
@@ -117,7 +110,7 @@
             btnLogin.FlatAppearance.MouseDownBackColor = Color.FromArgb(147, 90, 57);
             btnLogin.FlatStyle = FlatStyle.Flat;
             btnLogin.ForeColor = Color.FromArgb(147, 90, 57);
-            btnLogin.Location = new Point(42, 354);
+            btnLogin.Location = new Point(34, 354);
             btnLogin.Name = "btnLogin";
             btnLogin.Size = new Size(254, 48);
             btnLogin.TabIndex = 10;
@@ -133,7 +126,7 @@
             ipUser.BorderRadius = 5;
             ipUser.BorderSize = 2;
             ipUser.Cursor = Cursors.Hand;
-            ipUser.Location = new Point(42, 194);
+            ipUser.Location = new Point(34, 194);
             ipUser.Multiline = false;
             ipUser.Name = "ipUser";
             ipUser.Padding = new Padding(10, 7, 10, 7);
@@ -153,7 +146,7 @@
             ipPassword.BorderRadius = 5;
             ipPassword.BorderSize = 2;
             ipPassword.Cursor = Cursors.Hand;
-            ipPassword.Location = new Point(42, 269);
+            ipPassword.Location = new Point(34, 269);
             ipPassword.Multiline = false;
             ipPassword.Name = "ipPassword";
             ipPassword.Padding = new Padding(10, 7, 10, 7);
@@ -165,16 +158,43 @@
             ipPassword.Texts = "";
             ipPassword.UnderlinedStyle = false;
             // 
+            // lblError
+            // 
+            lblError.AutoSize = true;
+            lblError.BackColor = Color.Transparent;
+            lblError.Font = new Font("Poppins Light", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            lblError.ForeColor = Color.FromArgb(255, 95, 95);
+            lblError.Location = new Point(57, 136);
+            lblError.Name = "lblError";
+            lblError.Size = new Size(236, 25);
+            lblError.TabIndex = 13;
+            lblError.Text = "Usuario o contraseña incorrecta";
+            lblError.Visible = false;
+            // 
+            // inError
+            // 
+            inError.BackColor = Color.Transparent;
+            inError.BackgroundImage = Properties.Resources.adv1;
+            inError.BackgroundImageLayout = ImageLayout.Zoom;
+            inError.ErrorImage = null;
+            inError.Location = new Point(34, 135);
+            inError.Name = "inError";
+            inError.Size = new Size(22, 24);
+            inError.TabIndex = 14;
+            inError.TabStop = false;
+            inError.Visible = false;
+            // 
             // LoginForm
             // 
             AutoScaleDimensions = new SizeF(9F, 21F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Window;
-            ClientSize = new Size(993, 467);
+            ClientSize = new Size(977, 467);
+            Controls.Add(inError);
+            Controls.Add(lblError);
             Controls.Add(ipPassword);
             Controls.Add(ipUser);
             Controls.Add(btnLogin);
-            Controls.Add(btnError);
             Controls.Add(panel1);
             Controls.Add(lblTitle);
             Controls.Add(lblSubtitle);
@@ -187,6 +207,7 @@
             Load += LoginForm_Load;
             panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)closeBtn).EndInit();
+            ((System.ComponentModel.ISupportInitialize)inError).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -200,11 +221,12 @@
         private MySql.Data.MySqlClient.MySqlCommand mySqlCommand1;
         private Panel panel3;
         private PictureBox closeBtn;
-        private Button btnError;
         private ButtonCustom btnLogin;
 
 
         private utils.Custom.TextBox.TextBoxCustom ipUser;
         private utils.Custom.TextBox.TextBoxCustom ipPassword;
+        private Label lblError;
+        private PictureBox inError;
     }
 }

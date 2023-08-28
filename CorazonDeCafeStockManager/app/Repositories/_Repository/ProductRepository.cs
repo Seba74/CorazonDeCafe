@@ -14,58 +14,66 @@ public class ProductRepository : IProductRepository
         _context = context;
     }
 
-    public async void AddProduct(Product product)
+    private async Task LoadCategoriesAndTypes()
     {
-        // Add Product
-        await _context.Products!.AddAsync(product);
+        await _context.Categorias!.LoadAsync();
+        await _context.Tipos!.LoadAsync();
+    }
+
+    public void AddProduct(Product product)
+    {
+        _context.Products!.Add(product);
     }
 
     public async void DeleteProduct(Product product)
     {
         product.Estado = "NO";
-        await Task.Run(() => _context.Products!.Update(product));
+        _context.Products!.Update(product);
+        await _context.SaveChangesAsync();
     }
 
     // Get All Products
-    public IEnumerable<Product> GetAllProducts()
+    public async Task<IEnumerable<Product>> GetAllProducts()
     {
-        IEnumerable<Product> products = _context.Products!.ToList();
+        await LoadCategoriesAndTypes();
+        IEnumerable<Product> products = await _context.Products!.ToListAsync();
         return products;
     }
 
-    public async Task<IEnumerable<Product>> GetAllProductsByFilter(string filter)
+    public IEnumerable<Product> GetAllProductsByFilter(string filter)
     {
         IEnumerable<Product> products = new List<Product>();
         if (int.TryParse(filter, out int id))
         {
-            products = await _context.Products!.Where(p => p.Id == id).ToListAsync();
+            products = _context.Products!.Where(p => p.Id == id).ToList();
         }
         else
         {
-            products = await _context.Products!.Where(p => p.Nombre.Contains(filter)).ToListAsync();
+            products = _context.Products!.Where(p => p.Nombre.Contains(filter)).ToList();
         }
 
         return products;
     }
 
-    public async Task<Product> GetProductById(int id)
+    public Product GetProductById(int id)
     {
-        return await _context.Products!.FirstAsync(p => p.Id == id);
+        return _context.Products!.First(p => p.Id == id);
     }
 
-    public async Task<IEnumerable<Product>> GetProductsByCategory(int categoryId)
+    public IEnumerable<Product> GetProductsByCategory(int categoryId)
     {
-        return await _context.Products!.Where(p => p.CategoriaId == categoryId).ToListAsync();
+        return _context.Products!.Where(p => p.CategoriaId == categoryId).ToList();
     }
 
-    public async Task<IEnumerable<Product>> GetProductsByType(int typeId)
+    public IEnumerable<Product> GetProductsByType(int typeId)
     {
-        return await _context.Products!.Where(p => p.TipoId == typeId).ToListAsync();
+        return _context.Products!.Where(p => p.TipoId == typeId).ToList();
     }
 
     public async void UpdateProduct(Product product)
     {
-        await Task.Run(() => _context.Products!.Update(product));
+        _context.Products!.Update(product);
+        await _context.SaveChangesAsync();
     }
 }
 

@@ -30,13 +30,21 @@
         {
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Products));
             DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Products));
+            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
             productList = new DataGridView();
+            textBox1 = new TextBox();
+            pictureBox1 = new PictureBox();
+            pictureBox2 = new PictureBox();
+            pictureBox3 = new PictureBox();
+            pictureBox4 = new PictureBox();
+            pictureBox5 = new PictureBox();
+            comboBox1 = new ComboBox();
             Id = new DataGridViewTextBoxColumn();
             Nombre = new DataGridViewTextBoxColumn();
             Precio = new DataGridViewTextBoxColumn();
@@ -45,13 +53,6 @@
             Categoria = new DataGridViewTextBoxColumn();
             Estado = new DataGridViewTextBoxColumn();
             Accion = new DataGridViewButtonColumn();
-            textBox1 = new TextBox();
-            pictureBox1 = new PictureBox();
-            pictureBox2 = new PictureBox();
-            pictureBox3 = new PictureBox();
-            pictureBox4 = new PictureBox();
-            pictureBox5 = new PictureBox();
-            comboBox1 = new ComboBox();
             ((System.ComponentModel.ISupportInitialize)productList).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
@@ -87,34 +88,34 @@
             productList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             productList.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             productList.Columns.AddRange(new DataGridViewColumn[] { Id, Nombre, Precio, Stock, Tipo, Categoria, Estado, Accion });
-            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = Color.FromArgb(146, 90, 57);
-            dataGridViewCellStyle5.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle5.ForeColor = SystemColors.ControlLightLight;
-            dataGridViewCellStyle5.SelectionBackColor = Color.FromArgb(146, 90, 57);
-            dataGridViewCellStyle5.SelectionForeColor = Color.White;
-            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.False;
-            productList.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = Color.FromArgb(146, 90, 57);
+            dataGridViewCellStyle6.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle6.ForeColor = SystemColors.ControlLightLight;
+            dataGridViewCellStyle6.SelectionBackColor = Color.FromArgb(146, 90, 57);
+            dataGridViewCellStyle6.SelectionForeColor = Color.White;
+            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.False;
+            productList.DefaultCellStyle = dataGridViewCellStyle6;
             productList.GridColor = SystemColors.WindowText;
             productList.Location = new Point(12, 132);
             productList.MultiSelect = false;
             productList.Name = "productList";
             productList.ReadOnly = true;
-            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = Color.IndianRed;
-            dataGridViewCellStyle6.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle6.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle6.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.True;
-            productList.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = Color.IndianRed;
+            dataGridViewCellStyle7.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle7.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle7.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle7.WrapMode = DataGridViewTriState.True;
+            productList.RowHeadersDefaultCellStyle = dataGridViewCellStyle7;
             productList.RowHeadersVisible = false;
             productList.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToFirstHeader;
-            dataGridViewCellStyle7.BackColor = Color.FromArgb(146, 90, 57);
-            dataGridViewCellStyle7.ForeColor = Color.White;
-            dataGridViewCellStyle7.SelectionBackColor = Color.FromArgb(146, 90, 57);
-            dataGridViewCellStyle7.SelectionForeColor = Color.White;
-            productList.RowsDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle8.BackColor = Color.FromArgb(146, 90, 57);
+            dataGridViewCellStyle8.ForeColor = Color.White;
+            dataGridViewCellStyle8.SelectionBackColor = Color.FromArgb(146, 90, 57);
+            dataGridViewCellStyle8.SelectionForeColor = Color.White;
+            productList.RowsDefaultCellStyle = dataGridViewCellStyle8;
             productList.RowTemplate.DefaultCellStyle.BackColor = SystemColors.Menu;
             productList.RowTemplate.DefaultCellStyle.ForeColor = Color.Black;
             productList.RowTemplate.DefaultCellStyle.SelectionBackColor = Color.FromArgb(255, 219, 197);
@@ -125,78 +126,11 @@
             productList.Size = new Size(1164, 519);
             productList.TabIndex = 0;
             // 
-            // Id
-            // 
-            Id.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle3.BackColor = Color.FromArgb(146, 90, 57);
-            dataGridViewCellStyle3.ForeColor = Color.White;
-            dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(146, 90, 57);
-            dataGridViewCellStyle3.SelectionForeColor = Color.White;
-            Id.DefaultCellStyle = dataGridViewCellStyle3;
-            Id.HeaderText = "Id";
-            Id.Name = "Id";
-            Id.ReadOnly = true;
-            // 
-            // Nombre
-            // 
-            Nombre.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            Nombre.FillWeight = 200F;
-            Nombre.HeaderText = "Nombre";
-            Nombre.Name = "Nombre";
-            Nombre.ReadOnly = true;
-            // 
-            // Precio
-            // 
-            Precio.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            Precio.HeaderText = "Precio";
-            Precio.Name = "Precio";
-            Precio.ReadOnly = true;
-            // 
-            // Stock
-            // 
-            Stock.HeaderText = "Stock";
-            Stock.Name = "Stock";
-            Stock.ReadOnly = true;
-            // 
-            // Tipo
-            // 
-            Tipo.HeaderText = "Tipo";
-            Tipo.Name = "Tipo";
-            Tipo.ReadOnly = true;
-            // 
-            // Categoria
-            // 
-            Categoria.HeaderText = "Categoría";
-            Categoria.Name = "Categoria";
-            Categoria.ReadOnly = true;
-            // 
-            // Estado
-            // 
-            Estado.HeaderText = "Estado";
-            Estado.Name = "Estado";
-            Estado.ReadOnly = true;
-            // 
-            // Accion
-            // 
-            Accion.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.BackColor = SystemColors.Menu;
-            dataGridViewCellStyle4.ForeColor = Color.Black;
-            dataGridViewCellStyle4.SelectionBackColor = SystemColors.Menu;
-            dataGridViewCellStyle4.SelectionForeColor = Color.Black;
-            Accion.DefaultCellStyle = dataGridViewCellStyle4;
-            Accion.HeaderText = "Acción";
-            Accion.Name = "Accion";
-            Accion.ReadOnly = true;
-            Accion.Text = "Editar";
-            Accion.ToolTipText = "Editar";
-            Accion.UseColumnTextForButtonValue = true;
-            // 
             // textBox1
             // 
             textBox1.BackColor = SystemColors.ButtonFace;
             textBox1.BorderStyle = BorderStyle.FixedSingle;
-            textBox1.Font = new Font("Arial", 8.25F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
+            textBox1.Font = new Font("Poppins Light", 12F, FontStyle.Regular, GraphicsUnit.Point);
             textBox1.Location = new Point(43, 45);
             textBox1.MaximumSize = new Size(220, 35);
             textBox1.MinimumSize = new Size(220, 35);
@@ -276,6 +210,76 @@
             comboBox1.Size = new Size(121, 23);
             comboBox1.TabIndex = 8;
             // 
+            // Id
+            // 
+            Id.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dataGridViewCellStyle3.BackColor = Color.FromArgb(146, 90, 57);
+            dataGridViewCellStyle3.ForeColor = Color.White;
+            dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(146, 90, 57);
+            dataGridViewCellStyle3.SelectionForeColor = Color.White;
+            Id.DefaultCellStyle = dataGridViewCellStyle3;
+            Id.HeaderText = "Id";
+            Id.Name = "Id";
+            Id.ReadOnly = true;
+            // 
+            // Nombre
+            // 
+            Nombre.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            Nombre.FillWeight = 200F;
+            Nombre.HeaderText = "Nombre";
+            Nombre.Name = "Nombre";
+            Nombre.ReadOnly = true;
+            // 
+            // Precio
+            // 
+            Precio.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dataGridViewCellStyle4.Format = "C2";
+            dataGridViewCellStyle4.NullValue = null;
+            Precio.DefaultCellStyle = dataGridViewCellStyle4;
+            Precio.HeaderText = "Precio";
+            Precio.Name = "Precio";
+            Precio.ReadOnly = true;
+            // 
+            // Stock
+            // 
+            Stock.HeaderText = "Stock";
+            Stock.Name = "Stock";
+            Stock.ReadOnly = true;
+            // 
+            // Tipo
+            // 
+            Tipo.HeaderText = "Tipo";
+            Tipo.Name = "Tipo";
+            Tipo.ReadOnly = true;
+            // 
+            // Categoria
+            // 
+            Categoria.HeaderText = "Categoría";
+            Categoria.Name = "Categoria";
+            Categoria.ReadOnly = true;
+            // 
+            // Estado
+            // 
+            Estado.HeaderText = "Estado";
+            Estado.Name = "Estado";
+            Estado.ReadOnly = true;
+            // 
+            // Accion
+            // 
+            Accion.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = SystemColors.Menu;
+            dataGridViewCellStyle5.ForeColor = Color.Black;
+            dataGridViewCellStyle5.SelectionBackColor = SystemColors.Menu;
+            dataGridViewCellStyle5.SelectionForeColor = Color.Black;
+            Accion.DefaultCellStyle = dataGridViewCellStyle5;
+            Accion.HeaderText = "Acción";
+            Accion.Name = "Accion";
+            Accion.ReadOnly = true;
+            Accion.Text = "Editar";
+            Accion.ToolTipText = "Editar";
+            Accion.UseColumnTextForButtonValue = true;
+            // 
             // Products
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -315,6 +319,7 @@
         private PictureBox pictureBox3;
         private PictureBox pictureBox4;
         private PictureBox pictureBox5;
+        private ComboBox comboBox1;
         private DataGridViewTextBoxColumn Id;
         private DataGridViewTextBoxColumn Nombre;
         private DataGridViewTextBoxColumn Precio;
@@ -323,6 +328,5 @@
         private DataGridViewTextBoxColumn Categoria;
         private DataGridViewTextBoxColumn Estado;
         private DataGridViewButtonColumn Accion;
-        private ComboBox comboBox1;
     }
 }

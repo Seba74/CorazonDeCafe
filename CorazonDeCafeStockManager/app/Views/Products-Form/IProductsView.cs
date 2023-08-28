@@ -12,6 +12,7 @@ namespace CorazonDeCafeStockManager.App.Views.Login_Form
 
         // Properties 
         string? Search { get; set; }
+        IEnumerable<Product>? ProductsList { get; set; }
         // Events
         event EventHandler? SearchEvent;
         event EventHandler? AddEvent;
@@ -20,7 +21,7 @@ namespace CorazonDeCafeStockManager.App.Views.Login_Form
 
         // Methods
         void ShowError(string message);
-        void LoadProducts(IEnumerable<Product> products);
+        void LoadProducts();
         void Show();
     }
 }

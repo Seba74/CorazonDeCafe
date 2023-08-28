@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CorazonDeCafeStockManager.App.Common;
 using CorazonDeCafeStockManager.App.Models;
 using CorazonDeCafeStockManager.App.Repositories;
 using CorazonDeCafeStockManager.App.Repositories._Repository;
@@ -23,11 +24,12 @@ namespace CorazonDeCafeStockManager.App.Presenters
             this.view.ShowProductsView += ShowProductsView;
         }
 
-        private void ShowProductsView(object? sender, EventArgs e)
+        private async void ShowProductsView(object? sender, EventArgs e)
         {
             IProductRepository productRepository = new ProductRepository(this.dbContext);
+
             IProductsView productView = new Products();
-            new ProductPresenter(productView, productRepository);
-        }
+            await ProductPresenter.CreateAsync(productView, productRepository);
+        }   
     }
 }
