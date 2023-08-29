@@ -1,6 +1,6 @@
 using CorazonDeCafeStockManager.App.Models;
 
-namespace CorazonDeCafeStockManager.App.Repository;
+namespace CorazonDeCafeStockManager.App.Repositories;
 
 public interface IAuthRepository
 {

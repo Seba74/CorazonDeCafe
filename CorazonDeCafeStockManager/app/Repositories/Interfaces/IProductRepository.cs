@@ -1,6 +1,6 @@
 using CorazonDeCafeStockManager.App.Models;
 
-namespace CorazonDeCafeStockManager.App.Repository;
+namespace CorazonDeCafeStockManager.App.Repositories;
 
 public interface IProductRepository
 {
@@ -12,4 +12,5 @@ public interface IProductRepository
     void AddProduct(Product product);
     void UpdateProduct(Product product);
     void DeleteProduct(Product product);
+
 }

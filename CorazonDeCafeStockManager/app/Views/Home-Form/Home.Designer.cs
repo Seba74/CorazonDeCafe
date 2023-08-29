@@ -59,6 +59,7 @@
             btnProducts.Text = "Products";
             btnProducts.TextColor = Color.White;
             btnProducts.UseVisualStyleBackColor = false;
+            btnProducts.Click += BtnProducts_Click;
             // 
             // Home
             // 

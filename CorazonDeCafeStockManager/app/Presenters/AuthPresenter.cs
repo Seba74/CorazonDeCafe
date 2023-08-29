@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using CorazonDeCafeStockManager.App.Repository;
+using CorazonDeCafeStockManager.App.Repositories;
+using CorazonDeCafeStockManager.App.Common;
 using CorazonDeCafeStockManager.App.Views.Home_Form;
 using CorazonDeCafeStockManager.App.Views.Login_Form;
 
@@ -22,6 +23,7 @@ namespace CorazonDeCafeStockManager.App.Presenters
             this.repository = repository;
             this.homeView = homeView;
             this.view.LoginEvent += LoginEvent;
+            this.view.Show();
         }
 
         private async void LoginEvent(object? sender, Tuple<string, string> e)
@@ -30,7 +32,7 @@ namespace CorazonDeCafeStockManager.App.Presenters
             if (logged)
             {
                 this.homeView.Show();
-                this.view.Hide();
+                this.view.Close();
             }
             else
             {
