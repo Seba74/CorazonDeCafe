@@ -3,7 +3,7 @@ using System.Drawing.Text;
 
 namespace CorazonDeCafeStockManager
 {
-    internal class LoadFonts
+    public class LoadFonts
     {
         private readonly PrivateFontCollection privateFontCollection = new();
         public Font? poppinsFont;
@@ -28,5 +28,5 @@ namespace CorazonDeCafeStockManager
             poppinsFont = new Font(privateFontCollection.Families[0], 12f);
             poppinsLightFont = new Font(privateFontCollection.Families[1], 12f);
         }
-    }
+    }   
 }
