@@ -7,12 +7,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using CorazonDeCafeStockManager.App.Common;
 using CorazonDeCafeStockManager.App.Views.Home_Form;
 
 namespace CorazonDeCafeStockManager
 {
     public partial class Home : Form, IHomeView
     {
+        public Control ControlPanel { get { return this.viewPanel; } }
         public Home()
         {
             InitializeComponent();
@@ -21,11 +23,32 @@ namespace CorazonDeCafeStockManager
 
         private void AssociateEvents()
         {
-            this.btnProducts.Click += delegate{ this.ShowProductsView?.Invoke(this, EventArgs.Empty); };
+            this.btnProducts.Click += delegate { this.ShowProductsView?.Invoke(this, EventArgs.Empty); };
         }
 
-        public event EventHandler? ShowLoginView;
-        public event EventHandler? ShowHomeView;
+        private void BtnClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void BtnMin_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
+        }
+
+        private void BtnNormal_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Normal;
+            this.btnNormal.Visible = false;
+            this.btnMax.Visible = true;
+        }
+        private void BtnMax_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Maximized;
+            this.btnNormal.Visible = true;
+            this.btnMax.Visible = false;
+        }
+
         public event EventHandler? ShowProductsView;
         public event EventHandler? ShowProducView;
     }

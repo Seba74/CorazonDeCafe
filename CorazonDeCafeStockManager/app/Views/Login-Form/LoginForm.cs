@@ -1,6 +1,5 @@
 using System.Drawing.Text;
-using CorazonDeCafeStockManager.App.Repository;
-using CorazonDeCafeStockManager.App.Repository._Repository;
+using CorazonDeCafeStockManager.App.Common;
 using CorazonDeCafeStockManager.App.Views.Login_Form;
 
 namespace CorazonDeCafeStockManager
@@ -22,16 +21,12 @@ namespace CorazonDeCafeStockManager
         {
             InitializeComponent();
             AssociateEvents();
-            LoadFonts loadFonts = new();
 
-            lblTitle.Font = new Font(loadFonts.poppinsFont!.FontFamily, 16, FontStyle.Bold);
-
-            ipUser.Font = loadFonts.poppinsLightFont!;
-            ipPassword.Font = loadFonts.poppinsLightFont!;
-            lblSubtitle.Font = loadFonts.poppinsLightFont;
-            btnLogin.Font = loadFonts.poppinsLightFont;
-            btnError.Font = loadFonts.poppinsLightFont;
-
+            lblTitle.Font = new Font(FontsManager.PoppinsFont!.FontFamily, 16);
+            ipUser.Font = new Font(FontsManager.PoppinsFont!.FontFamily, 12);
+            ipPassword.Font = new Font(FontsManager.PoppinsFont!.FontFamily, 12);
+            lblSubtitle.Font = new Font(FontsManager.PoppinsFont!.FontFamily, 12);
+            lblError.Font = new Font(FontsManager.PoppinsFont!.FontFamily, 10);
             closeBtn.BackColor = Color.Transparent;
 
         }
@@ -49,7 +44,7 @@ namespace CorazonDeCafeStockManager
         {
             this.ActiveControl = lblTitle;
         }
-        
+
         private void CloseBtn_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -57,7 +52,13 @@ namespace CorazonDeCafeStockManager
 
         public void ShowError(string message)
         {
-            btnError.Visible = true;
+            inError.Visible = true;
+            lblError.Visible = true;
+            ipPassword.Texts = "";
+            ipUser.BorderColor = Color.FromArgb(255, 145, 145);
+            ipUser.BackColor = Color.FromArgb(255, 200, 200);
+            ipPassword.BorderColor = Color.FromArgb(255, 145, 145);
+            ipPassword.BackColor = Color.FromArgb(255, 200, 200);
         }
     }
 }

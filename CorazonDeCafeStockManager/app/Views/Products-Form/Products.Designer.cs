@@ -28,13 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle9 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle12 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle13 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle14 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle10 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle11 = new DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Products));
             productList = new DataGridView();
             Id = new DataGridViewTextBoxColumn();
@@ -44,20 +44,11 @@
             Tipo = new DataGridViewTextBoxColumn();
             Categoria = new DataGridViewTextBoxColumn();
             Estado = new DataGridViewTextBoxColumn();
-            Accion = new DataGridViewButtonColumn();
-            textBox1 = new TextBox();
-            pictureBox1 = new PictureBox();
-            pictureBox2 = new PictureBox();
-            pictureBox3 = new PictureBox();
-            pictureBox4 = new PictureBox();
-            pictureBox5 = new PictureBox();
-            comboBox1 = new ComboBox();
+            IcSearch = new PictureBox();
+            ipSearch = new utils.Custom.TextBox.TextBoxCustom();
+            selectCategory = new ComboBoxCustom();
             ((System.ComponentModel.ISupportInitialize)productList).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox5).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)IcSearch).BeginInit();
             SuspendLayout();
             // 
             // productList
@@ -66,55 +57,55 @@
             productList.AllowUserToDeleteRows = false;
             productList.AllowUserToResizeColumns = false;
             productList.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.BackColor = Color.FromArgb(146, 90, 57);
-            dataGridViewCellStyle1.ForeColor = Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(146, 90, 57);
-            dataGridViewCellStyle1.SelectionForeColor = Color.White;
-            productList.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle8.BackColor = Color.FromArgb(146, 90, 57);
+            dataGridViewCellStyle8.ForeColor = Color.White;
+            dataGridViewCellStyle8.SelectionBackColor = Color.FromArgb(146, 90, 57);
+            dataGridViewCellStyle8.SelectionForeColor = Color.White;
+            productList.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle8;
             productList.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             productList.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             productList.BackgroundColor = SystemColors.MenuBar;
             productList.BorderStyle = BorderStyle.None;
             productList.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
             productList.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = Color.FromArgb(146, 90, 57);
-            dataGridViewCellStyle2.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle2.ForeColor = SystemColors.Window;
-            dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(146, 90, 57);
-            dataGridViewCellStyle2.SelectionForeColor = SystemColors.Window;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
-            productList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle9.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle9.BackColor = Color.FromArgb(146, 90, 57);
+            dataGridViewCellStyle9.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle9.ForeColor = SystemColors.Window;
+            dataGridViewCellStyle9.SelectionBackColor = Color.FromArgb(146, 90, 57);
+            dataGridViewCellStyle9.SelectionForeColor = SystemColors.Window;
+            dataGridViewCellStyle9.WrapMode = DataGridViewTriState.True;
+            productList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle9;
             productList.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            productList.Columns.AddRange(new DataGridViewColumn[] { Id, Nombre, Precio, Stock, Tipo, Categoria, Estado, Accion });
-            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = Color.FromArgb(146, 90, 57);
-            dataGridViewCellStyle5.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle5.ForeColor = SystemColors.ControlLightLight;
-            dataGridViewCellStyle5.SelectionBackColor = Color.FromArgb(146, 90, 57);
-            dataGridViewCellStyle5.SelectionForeColor = Color.White;
-            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.False;
-            productList.DefaultCellStyle = dataGridViewCellStyle5;
+            productList.Columns.AddRange(new DataGridViewColumn[] { Id, Nombre, Precio, Stock, Tipo, Categoria, Estado });
+            dataGridViewCellStyle12.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle12.BackColor = Color.FromArgb(146, 90, 57);
+            dataGridViewCellStyle12.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle12.ForeColor = SystemColors.ControlLightLight;
+            dataGridViewCellStyle12.SelectionBackColor = Color.FromArgb(146, 90, 57);
+            dataGridViewCellStyle12.SelectionForeColor = Color.White;
+            dataGridViewCellStyle12.WrapMode = DataGridViewTriState.False;
+            productList.DefaultCellStyle = dataGridViewCellStyle12;
             productList.GridColor = SystemColors.WindowText;
             productList.Location = new Point(12, 132);
             productList.MultiSelect = false;
             productList.Name = "productList";
             productList.ReadOnly = true;
-            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = Color.IndianRed;
-            dataGridViewCellStyle6.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle6.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle6.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.True;
-            productList.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle13.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle13.BackColor = Color.IndianRed;
+            dataGridViewCellStyle13.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle13.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle13.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle13.SelectionForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle13.WrapMode = DataGridViewTriState.True;
+            productList.RowHeadersDefaultCellStyle = dataGridViewCellStyle13;
             productList.RowHeadersVisible = false;
             productList.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToFirstHeader;
-            dataGridViewCellStyle7.BackColor = Color.FromArgb(146, 90, 57);
-            dataGridViewCellStyle7.ForeColor = Color.White;
-            dataGridViewCellStyle7.SelectionBackColor = Color.FromArgb(146, 90, 57);
-            dataGridViewCellStyle7.SelectionForeColor = Color.White;
-            productList.RowsDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle14.BackColor = Color.FromArgb(146, 90, 57);
+            dataGridViewCellStyle14.ForeColor = Color.White;
+            dataGridViewCellStyle14.SelectionBackColor = Color.FromArgb(146, 90, 57);
+            dataGridViewCellStyle14.SelectionForeColor = Color.White;
+            productList.RowsDefaultCellStyle = dataGridViewCellStyle14;
             productList.RowTemplate.DefaultCellStyle.BackColor = SystemColors.Menu;
             productList.RowTemplate.DefaultCellStyle.ForeColor = Color.Black;
             productList.RowTemplate.DefaultCellStyle.SelectionBackColor = Color.FromArgb(255, 219, 197);
@@ -122,17 +113,18 @@
             productList.RowTemplate.Height = 35;
             productList.RowTemplate.Resizable = DataGridViewTriState.False;
             productList.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            productList.Size = new Size(1164, 519);
+            productList.Size = new Size(773, 519);
             productList.TabIndex = 0;
             // 
             // Id
             // 
             Id.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle3.BackColor = Color.FromArgb(146, 90, 57);
-            dataGridViewCellStyle3.ForeColor = Color.White;
-            dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(146, 90, 57);
-            dataGridViewCellStyle3.SelectionForeColor = Color.White;
-            Id.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle10.BackColor = Color.FromArgb(146, 90, 57);
+            dataGridViewCellStyle10.ForeColor = Color.White;
+            dataGridViewCellStyle10.SelectionBackColor = Color.FromArgb(146, 90, 57);
+            dataGridViewCellStyle10.SelectionForeColor = Color.White;
+            Id.DefaultCellStyle = dataGridViewCellStyle10;
+            Id.FillWeight = 50F;
             Id.HeaderText = "Id";
             Id.Name = "Id";
             Id.ReadOnly = true;
@@ -148,12 +140,17 @@
             // Precio
             // 
             Precio.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dataGridViewCellStyle11.Format = "C2";
+            dataGridViewCellStyle11.NullValue = null;
+            Precio.DefaultCellStyle = dataGridViewCellStyle11;
+            Precio.FillWeight = 80F;
             Precio.HeaderText = "Precio";
             Precio.Name = "Precio";
             Precio.ReadOnly = true;
             // 
             // Stock
             // 
+            Stock.FillWeight = 50F;
             Stock.HeaderText = "Stock";
             Stock.Name = "Stock";
             Stock.ReadOnly = true;
@@ -176,118 +173,65 @@
             Estado.Name = "Estado";
             Estado.ReadOnly = true;
             // 
-            // Accion
+            // IcSearch
             // 
-            Accion.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.BackColor = SystemColors.Menu;
-            dataGridViewCellStyle4.ForeColor = Color.Black;
-            dataGridViewCellStyle4.SelectionBackColor = SystemColors.Menu;
-            dataGridViewCellStyle4.SelectionForeColor = Color.Black;
-            Accion.DefaultCellStyle = dataGridViewCellStyle4;
-            Accion.HeaderText = "Acción";
-            Accion.Name = "Accion";
-            Accion.ReadOnly = true;
-            Accion.Text = "Editar";
-            Accion.ToolTipText = "Editar";
-            Accion.UseColumnTextForButtonValue = true;
+            IcSearch.BackColor = Color.FromArgb(255, 219, 197);
+            IcSearch.Image = (Image)resources.GetObject("IcSearch.Image");
+            IcSearch.Location = new Point(217, 72);
+            IcSearch.Name = "IcSearch";
+            IcSearch.Size = new Size(25, 24);
+            IcSearch.SizeMode = PictureBoxSizeMode.StretchImage;
+            IcSearch.TabIndex = 2;
+            IcSearch.TabStop = false;
             // 
-            // textBox1
+            // ipSearch
             // 
-            textBox1.BackColor = SystemColors.ButtonFace;
-            textBox1.BorderStyle = BorderStyle.FixedSingle;
-            textBox1.Font = new Font("Arial", 8.25F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
-            textBox1.Location = new Point(43, 45);
-            textBox1.MaximumSize = new Size(220, 35);
-            textBox1.MinimumSize = new Size(220, 35);
-            textBox1.Name = "textBox1";
-            textBox1.PlaceholderText = "Buscar por Id o Nombre";
-            textBox1.Size = new Size(220, 35);
-            textBox1.TabIndex = 1;
-            textBox1.TextChanged += textBox1_TextChanged;
+            ipSearch.BackColor = Color.FromArgb(255, 219, 197);
+            ipSearch.BorderColor = Color.FromArgb(255, 219, 197);
+            ipSearch.BorderFocusColor = Color.FromArgb(146, 90, 57);
+            ipSearch.BorderRadius = 5;
+            ipSearch.BorderSize = 2;
+            ipSearch.Cursor = Cursors.Hand;
+            ipSearch.Font = new Font("Poppins Light", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            ipSearch.Location = new Point(12, 65);
+            ipSearch.Multiline = false;
+            ipSearch.Name = "ipSearch";
+            ipSearch.Padding = new Padding(8, 6, 4, 4);
+            ipSearch.PasswordChar = false;
+            ipSearch.PlaceholderColor = Color.FromArgb(146, 90, 57);
+            ipSearch.PlaceholderText = "Buscar...";
+            ipSearch.Size = new Size(243, 37);
+            ipSearch.TabIndex = 12;
+            ipSearch.Texts = "";
+            ipSearch.UnderlinedStyle = false;
             // 
-            // pictureBox1
+            // selectCategory
             // 
-            pictureBox1.Image = Properties.Resources.search;
-            pictureBox1.Location = new Point(12, 48);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(25, 24);
-            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox1.TabIndex = 2;
-            pictureBox1.TabStop = false;
-            // 
-            // pictureBox2
-            // 
-            pictureBox2.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            pictureBox2.BackColor = Color.Transparent;
-            pictureBox2.BackgroundImage = Properties.Resources.close_m;
-            pictureBox2.BackgroundImageLayout = ImageLayout.Zoom;
-            pictureBox2.Location = new Point(1153, 10);
-            pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(23, 23);
-            pictureBox2.TabIndex = 4;
-            pictureBox2.TabStop = false;
-            pictureBox2.Click += pictureBox2_Click;
-            // 
-            // pictureBox3
-            // 
-            pictureBox3.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            pictureBox3.BackColor = Color.Transparent;
-            pictureBox3.BackgroundImage = Properties.Resources.max;
-            pictureBox3.BackgroundImageLayout = ImageLayout.Zoom;
-            pictureBox3.Location = new Point(1117, 12);
-            pictureBox3.Name = "pictureBox3";
-            pictureBox3.Size = new Size(18, 18);
-            pictureBox3.TabIndex = 5;
-            pictureBox3.TabStop = false;
-            pictureBox3.Click += pictureBox3_Click;
-            // 
-            // pictureBox4
-            // 
-            pictureBox4.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            pictureBox4.BackColor = Color.Transparent;
-            pictureBox4.BackgroundImage = (Image)resources.GetObject("pictureBox4.BackgroundImage");
-            pictureBox4.BackgroundImageLayout = ImageLayout.Zoom;
-            pictureBox4.Location = new Point(1117, 12);
-            pictureBox4.Name = "pictureBox4";
-            pictureBox4.Size = new Size(18, 18);
-            pictureBox4.TabIndex = 6;
-            pictureBox4.TabStop = false;
-            pictureBox4.Click += pictureBox4_Click;
-            // 
-            // pictureBox5
-            // 
-            pictureBox5.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            pictureBox5.BackColor = Color.Transparent;
-            pictureBox5.BackgroundImage = (Image)resources.GetObject("pictureBox5.BackgroundImage");
-            pictureBox5.BackgroundImageLayout = ImageLayout.Zoom;
-            pictureBox5.Location = new Point(1078, 12);
-            pictureBox5.Name = "pictureBox5";
-            pictureBox5.Size = new Size(18, 18);
-            pictureBox5.TabIndex = 7;
-            pictureBox5.TabStop = false;
-            pictureBox5.Click += pictureBox5_Click;
-            // 
-            // comboBox1
-            // 
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(458, 65);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(121, 23);
-            comboBox1.TabIndex = 8;
+            selectCategory.BackColor = Color.FromArgb(255, 219, 197);
+            selectCategory.BorderColor = Color.FromArgb(145, 90, 57);
+            selectCategory.BorderRadius = 5;
+            selectCategory.BorderSize = 0;
+            selectCategory.DropDownStyle = ComboBoxStyle.DropDown;
+            selectCategory.Font = new Font("Poppins Light", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            selectCategory.ForeColor = Color.FromArgb(145, 90, 57);
+            selectCategory.IconColor = Color.FromArgb(145, 90, 57);
+            selectCategory.ListBackColor = Color.FromArgb(230, 228, 245);
+            selectCategory.ListTextColor = Color.FromArgb(145, 90, 57);
+            selectCategory.Location = new Point(276, 65);
+            selectCategory.MinimumSize = new Size(200, 30);
+            selectCategory.Name = "selectCategory";
+            selectCategory.Size = new Size(200, 37);
+            selectCategory.TabIndex = 13;
+            selectCategory.Texts = "Categorias";
             // 
             // Products
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1188, 663);
-            Controls.Add(comboBox1);
-            Controls.Add(pictureBox5);
-            Controls.Add(pictureBox4);
-            Controls.Add(pictureBox3);
-            Controls.Add(pictureBox2);
-            Controls.Add(pictureBox1);
-            Controls.Add(textBox1);
+            ClientSize = new Size(797, 663);
+            Controls.Add(selectCategory);
+            Controls.Add(IcSearch);
+            Controls.Add(ipSearch);
             Controls.Add(productList);
             Cursor = Cursors.Hand;
             Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point);
@@ -295,15 +239,9 @@
             Name = "Products";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Products";
-            Load += Products_Load;
             ((System.ComponentModel.ISupportInitialize)productList).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox5).EndInit();
+            ((System.ComponentModel.ISupportInitialize)IcSearch).EndInit();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
@@ -315,6 +253,9 @@
         private PictureBox pictureBox3;
         private PictureBox pictureBox4;
         private PictureBox pictureBox5;
+        private DataGridViewButtonColumn Accion;
+        private utils.Custom.TextBox.TextBoxCustom ipSearch;
+        private PictureBox IcSearch;
         private DataGridViewTextBoxColumn Id;
         private DataGridViewTextBoxColumn Nombre;
         private DataGridViewTextBoxColumn Precio;
@@ -322,7 +263,6 @@
         private DataGridViewTextBoxColumn Tipo;
         private DataGridViewTextBoxColumn Categoria;
         private DataGridViewTextBoxColumn Estado;
-        private DataGridViewButtonColumn Accion;
-        private ComboBox comboBox1;
+        private ComboBoxCustom selectCategory;
     }
 }
