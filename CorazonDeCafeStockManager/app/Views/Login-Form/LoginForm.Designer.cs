@@ -60,7 +60,7 @@
             lblSubtitle.AutoSize = true;
             lblSubtitle.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             lblSubtitle.ForeColor = Color.FromArgb(0, 0, 0, 0);
-            lblSubtitle.Location = new Point(30, 60);
+            lblSubtitle.Location = new Point(30, 67);
             lblSubtitle.Margin = new Padding(4, 0, 4, 0);
             lblSubtitle.Name = "lblSubtitle";
             lblSubtitle.Size = new Size(209, 21);
@@ -71,6 +71,7 @@
             // 
             panel1.BackColor = Color.FromArgb(147, 90, 57);
             panel1.BackgroundImage = Properties.Resources.CORAZÓN_DE_CAFÉ2;
+            panel1.BackgroundImageLayout = ImageLayout.Center;
             panel1.Controls.Add(closeBtn);
             panel1.Location = new Point(326, -40);
             panel1.Name = "panel1";
@@ -112,9 +113,9 @@
             btnLogin.ForeColor = Color.FromArgb(147, 90, 57);
             btnLogin.Location = new Point(34, 354);
             btnLogin.Name = "btnLogin";
-            btnLogin.Size = new Size(254, 48);
+            btnLogin.Size = new Size(254, 41);
             btnLogin.TabIndex = 10;
-            btnLogin.Text = "Iniciar Sesion";
+            btnLogin.Text = "INICIAR SESIÓN";
             btnLogin.TextColor = Color.FromArgb(147, 90, 57);
             btnLogin.UseVisualStyleBackColor = false;
             // 
@@ -126,14 +127,15 @@
             ipUser.BorderRadius = 5;
             ipUser.BorderSize = 2;
             ipUser.Cursor = Cursors.Hand;
+            ipUser.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Point);
             ipUser.Location = new Point(34, 194);
             ipUser.Multiline = false;
             ipUser.Name = "ipUser";
-            ipUser.Padding = new Padding(10, 7, 10, 7);
+            ipUser.Padding = new Padding(8, 7, 8, 7);
             ipUser.PasswordChar = false;
             ipUser.PlaceholderColor = Color.FromArgb(146, 90, 57);
             ipUser.PlaceholderText = "USUARIO";
-            ipUser.Size = new Size(254, 30);
+            ipUser.Size = new Size(254, 35);
             ipUser.TabIndex = 11;
             ipUser.Texts = "";
             ipUser.UnderlinedStyle = false;
@@ -146,14 +148,15 @@
             ipPassword.BorderRadius = 5;
             ipPassword.BorderSize = 2;
             ipPassword.Cursor = Cursors.Hand;
+            ipPassword.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Point);
             ipPassword.Location = new Point(34, 269);
             ipPassword.Multiline = false;
             ipPassword.Name = "ipPassword";
-            ipPassword.Padding = new Padding(10, 7, 10, 7);
+            ipPassword.Padding = new Padding(8, 7, 8, 7);
             ipPassword.PasswordChar = true;
             ipPassword.PlaceholderColor = Color.FromArgb(146, 90, 57);
             ipPassword.PlaceholderText = "CONTRASEÑA";
-            ipPassword.Size = new Size(254, 30);
+            ipPassword.Size = new Size(254, 35);
             ipPassword.TabIndex = 12;
             ipPassword.Texts = "";
             ipPassword.UnderlinedStyle = false;

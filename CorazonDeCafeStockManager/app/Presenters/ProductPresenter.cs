@@ -1,18 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using CorazonDeCafeStockManager.App.Models;
+﻿using CorazonDeCafeStockManager.App.Models;
 using CorazonDeCafeStockManager.App.Repositories;
-using CorazonDeCafeStockManager.App.Repositories._Repository;
 using CorazonDeCafeStockManager.App.Views.Login_Form;
+using System.Globalization;
+using Timer = System.Timers.Timer;
 
 namespace CorazonDeCafeStockManager.App.Presenters
 {
     public class ProductPresenter
     {
+        public static async Task CreatePresenter(IProductsView view, IProductRepository productRepository)
+        {
+            ProductPresenter presenter = new(view, productRepository);
+            await presenter.LoadAllProducts();
+            presenter.view.LoadProducts();
+            presenter.view.Show();
+        }
+
+        private readonly Timer SearchTimer = new(1500);
         private readonly IProductsView view;
         private readonly IProductRepository productRepository;
         private IEnumerable<Product>? products;
@@ -21,35 +25,33 @@ namespace CorazonDeCafeStockManager.App.Presenters
             this.view = view;
             this.productRepository = productRepository;
             this.view.SearchEvent += SearchEvent!;
+            SearchTimer.Elapsed += SearchProducts!;
         }
-
-        public static async Task CreateAsync(IProductsView view, IProductRepository productRepository)
-        {
-            ProductPresenter presenter = new(view, productRepository);
-            await presenter.LoadAllProducts();
-            presenter.view.LoadProducts();
-            presenter.view.Show();
-        }
-
         private async Task LoadAllProducts()
         {
             products = await productRepository.GetAllProducts();
             this.view.ProductsList = products;
         }
 
-        private void SearchEvent(object sender, EventArgs e)
+        private async void SearchProducts(object sender, EventArgs e)
         {
-            // SearchTimer.Stop();
-            if (view.Search != null)
+            SearchTimer.Stop();
+            if (!string.IsNullOrEmpty(view.Search))
             {
-                products = productRepository.GetAllProductsByFilter(view.Search);
-                // this.view.LoadProducts(products);
+                products = productRepository.GetAllProductsByFilter(view.Search.ToLowerInvariant());
             }
             else
             {
-                // products = productRepository.GetAllProducts();
-                // this.view.LoadProducts(products);
+                products = await productRepository.GetAllProducts();
             }
+            this.view.ProductsList = products;
+            this.view.LoadProducts();
+        }
+
+        private void SearchEvent(object sender, EventArgs e)
+        {
+            SearchTimer.Stop();
+            SearchTimer.Start();
         }
     }
 }

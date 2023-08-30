@@ -16,6 +16,9 @@
     <Compile Update="utils\Custom\Button\ButtonCustom.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Update="utils\Custom\ComboBox\ComboBoxCustom.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Update="utils\Custom\TextBox\TextBoxCustom.cs">
       <SubType>UserControl</SubType>
     </Compile>

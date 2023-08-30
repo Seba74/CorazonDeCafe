@@ -49,7 +49,7 @@ public class ProductRepository : IProductRepository
         }
         else
         {
-            products = _context.Products!.Where(p => p.Nombre.Contains(filter)).ToList();
+            products = _context.Products!.Where(p => p.Nombre.ToLower().Contains(filter) || p.Tipo.Nombre.ToLower().Contains(filter) || p.Categoria.Nombre.ToLower().Contains(filter)).ToList();
         }
 
         return products;

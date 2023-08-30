@@ -23,12 +23,10 @@ namespace CorazonDeCafeStockManager
             AssociateEvents();
 
             lblTitle.Font = new Font(FontsManager.PoppinsFont!.FontFamily, 16);
-
-            ipUser.Font = FontsManager.PoppinsLightFont;
-            ipPassword.Font = FontsManager.PoppinsLightFont;
-            lblSubtitle.Font = FontsManager.PoppinsLightFont;
-            btnLogin.Font = FontsManager.PoppinsLightFont;
-
+            ipUser.Font = new Font(FontsManager.PoppinsFont!.FontFamily, 12);
+            ipPassword.Font = new Font(FontsManager.PoppinsFont!.FontFamily, 12);
+            lblSubtitle.Font = new Font(FontsManager.PoppinsFont!.FontFamily, 12);
+            lblError.Font = new Font(FontsManager.PoppinsFont!.FontFamily, 10);
             closeBtn.BackColor = Color.Transparent;
 
         }

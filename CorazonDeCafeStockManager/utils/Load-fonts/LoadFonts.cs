@@ -25,8 +25,8 @@ namespace CorazonDeCafeStockManager
             privateFontCollection.AddFontFile(font1);
             privateFontCollection.AddFontFile(font2);
 
-            poppinsFont = new Font(privateFontCollection.Families[0], 12f);
-            poppinsLightFont = new Font(privateFontCollection.Families[1], 12f);
+            poppinsFont = new Font(privateFontCollection.Families[0], 10f);
+            poppinsLightFont = new Font(privateFontCollection.Families[1], 10f);
         }
     }   
 }
