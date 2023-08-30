@@ -30,6 +30,7 @@ namespace CorazonDeCafeStockManager
             InitializeEvents();
             loadFonts = new LoadFonts();
             ChangeDataGridViewFont(productList);
+            selectCategory.Font = loadFonts.poppinsFont;
 
         }
         private void InitializeEvents()
@@ -84,7 +85,7 @@ namespace CorazonDeCafeStockManager
             {
                 instance = new Products
                 {
-                    Dock = DockStyle.Fill,  
+                    Dock = DockStyle.Fill,
                     TopLevel = false,
                     FormBorderStyle = FormBorderStyle.None,
                 };
@@ -101,6 +102,11 @@ namespace CorazonDeCafeStockManager
                 instance.BringToFront();
             }
             return instance;
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
