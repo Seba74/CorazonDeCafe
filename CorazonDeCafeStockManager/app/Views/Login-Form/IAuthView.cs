@@ -10,6 +10,7 @@ namespace CorazonDeCafeStockManager.App.Views.Login_Form
     {
         string Username { get; set; }
         string Password { get; set; }
+        Control Loading { get; }
 
         event EventHandler<Tuple<string, string>>? LoginEvent;
 

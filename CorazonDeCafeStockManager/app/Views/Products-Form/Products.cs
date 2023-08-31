@@ -30,8 +30,10 @@ namespace CorazonDeCafeStockManager
             InitializeEvents();
             loadFonts = new LoadFonts();
             ChangeDataGridViewFont(productList);
-            selectCategory.Font = loadFonts.poppinsFont;
 
+            ipSearch.Font = loadFonts.poppinsFont;
+            selectCategory.Font = loadFonts.poppinsFont;
+            selectCategory.Font = new Font(loadFonts.poppinsFont!.FontFamily, 12);
         }
         private void InitializeEvents()
         {

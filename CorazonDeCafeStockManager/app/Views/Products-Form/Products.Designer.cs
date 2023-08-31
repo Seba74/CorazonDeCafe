@@ -44,10 +44,15 @@
             Tipo = new DataGridViewTextBoxColumn();
             Categoria = new DataGridViewTextBoxColumn();
             Estado = new DataGridViewTextBoxColumn();
-            IcSearch = new PictureBox();
             ipSearch = new utils.Custom.TextBox.TextBoxCustom();
+            panel1 = new Panel();
+            btnEdit = new ButtonCustom();
+            IcSearch = new PictureBox();
+            selectType = new ComboBoxCustom();
+            btnAdd = new ButtonCustom();
             selectCategory = new ComboBoxCustom();
             ((System.ComponentModel.ISupportInitialize)productList).BeginInit();
+            panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)IcSearch).BeginInit();
             SuspendLayout();
             // 
@@ -87,7 +92,7 @@
             dataGridViewCellStyle12.WrapMode = DataGridViewTriState.False;
             productList.DefaultCellStyle = dataGridViewCellStyle12;
             productList.GridColor = SystemColors.WindowText;
-            productList.Location = new Point(12, 132);
+            productList.Location = new Point(12, 146);
             productList.MultiSelect = false;
             productList.Name = "productList";
             productList.ReadOnly = true;
@@ -113,7 +118,7 @@
             productList.RowTemplate.Height = 35;
             productList.RowTemplate.Resizable = DataGridViewTriState.False;
             productList.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            productList.Size = new Size(773, 519);
+            productList.Size = new Size(918, 505);
             productList.TabIndex = 0;
             // 
             // Id
@@ -173,17 +178,6 @@
             Estado.Name = "Estado";
             Estado.ReadOnly = true;
             // 
-            // IcSearch
-            // 
-            IcSearch.BackColor = Color.FromArgb(255, 219, 197);
-            IcSearch.Image = (Image)resources.GetObject("IcSearch.Image");
-            IcSearch.Location = new Point(217, 72);
-            IcSearch.Name = "IcSearch";
-            IcSearch.Size = new Size(25, 24);
-            IcSearch.SizeMode = PictureBoxSizeMode.StretchImage;
-            IcSearch.TabIndex = 2;
-            IcSearch.TabStop = false;
-            // 
             // ipSearch
             // 
             ipSearch.BackColor = Color.FromArgb(255, 219, 197);
@@ -193,45 +187,145 @@
             ipSearch.BorderSize = 2;
             ipSearch.Cursor = Cursors.Hand;
             ipSearch.Font = new Font("Poppins Light", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-            ipSearch.Location = new Point(12, 65);
+            ipSearch.Location = new Point(0, 13);
+            ipSearch.MaximumSize = new Size(650, 37);
             ipSearch.Multiline = false;
             ipSearch.Name = "ipSearch";
             ipSearch.Padding = new Padding(8, 6, 4, 4);
             ipSearch.PasswordChar = false;
             ipSearch.PlaceholderColor = Color.FromArgb(146, 90, 57);
             ipSearch.PlaceholderText = "Buscar...";
-            ipSearch.Size = new Size(243, 37);
+            ipSearch.Size = new Size(257, 37);
             ipSearch.TabIndex = 12;
             ipSearch.Texts = "";
             ipSearch.UnderlinedStyle = false;
             // 
+            // panel1
+            // 
+            panel1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            panel1.BackColor = Color.Transparent;
+            panel1.Controls.Add(btnEdit);
+            panel1.Controls.Add(IcSearch);
+            panel1.Controls.Add(selectType);
+            panel1.Controls.Add(btnAdd);
+            panel1.Controls.Add(ipSearch);
+            panel1.Controls.Add(selectCategory);
+            panel1.Location = new Point(12, 42);
+            panel1.MaximumSize = new Size(1800, 65);
+            panel1.MinimumSize = new Size(0, 65);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(918, 65);
+            panel1.TabIndex = 17;
+            // 
+            // btnEdit
+            // 
+            btnEdit.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
+            btnEdit.BackColor = Color.Transparent;
+            btnEdit.BackgroundColor = Color.Transparent;
+            btnEdit.BorderColor = Color.FromArgb(145, 90, 57);
+            btnEdit.BorderRadius = 5;
+            btnEdit.BorderSize = 2;
+            btnEdit.FlatAppearance.BorderSize = 0;
+            btnEdit.FlatStyle = FlatStyle.Flat;
+            btnEdit.Font = new Font("Poppins Light", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            btnEdit.ForeColor = Color.FromArgb(145, 90, 57);
+            btnEdit.Image = (Image)resources.GetObject("btnEdit.Image");
+            btnEdit.ImageAlign = ContentAlignment.MiddleRight;
+            btnEdit.Location = new Point(763, 13);
+            btnEdit.MaximumSize = new Size(160, 37);
+            btnEdit.Name = "btnEdit";
+            btnEdit.Padding = new Padding(6, 0, 6, 0);
+            btnEdit.Size = new Size(133, 37);
+            btnEdit.TabIndex = 18;
+            btnEdit.Text = "Editar";
+            btnEdit.TextAlign = ContentAlignment.MiddleLeft;
+            btnEdit.TextColor = Color.FromArgb(145, 90, 57);
+            btnEdit.UseVisualStyleBackColor = false;
+            // 
+            // IcSearch
+            // 
+            IcSearch.BackColor = Color.FromArgb(255, 219, 197);
+            IcSearch.Image = (Image)resources.GetObject("IcSearch.Image");
+            IcSearch.Location = new Point(227, 21);
+            IcSearch.Name = "IcSearch";
+            IcSearch.Size = new Size(25, 24);
+            IcSearch.SizeMode = PictureBoxSizeMode.StretchImage;
+            IcSearch.TabIndex = 2;
+            IcSearch.TabStop = false;
+            // 
+            // selectType
+            // 
+            selectType.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
+            selectType.BackColor = Color.FromArgb(255, 219, 197);
+            selectType.BorderColor = Color.FromArgb(145, 90, 57);
+            selectType.BorderRadius = 5;
+            selectType.BorderSize = 0;
+            selectType.DropDownStyle = ComboBoxStyle.DropDown;
+            selectType.Font = new Font("Poppins Light", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            selectType.ForeColor = Color.FromArgb(145, 90, 57);
+            selectType.IconColor = Color.FromArgb(145, 90, 57);
+            selectType.ListBackColor = Color.FromArgb(230, 228, 245);
+            selectType.ListTextColor = Color.FromArgb(145, 90, 57);
+            selectType.Location = new Point(432, 13);
+            selectType.MaximumSize = new Size(200, 37);
+            selectType.MinimumSize = new Size(140, 37);
+            selectType.Name = "selectType";
+            selectType.Size = new Size(140, 37);
+            selectType.TabIndex = 14;
+            selectType.Texts = "Tipo";
+            // 
+            // btnAdd
+            // 
+            btnAdd.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
+            btnAdd.BackColor = Color.Transparent;
+            btnAdd.BackgroundColor = Color.Transparent;
+            btnAdd.BorderColor = Color.FromArgb(145, 90, 57);
+            btnAdd.BorderRadius = 5;
+            btnAdd.BorderSize = 2;
+            btnAdd.FlatAppearance.BorderSize = 0;
+            btnAdd.FlatStyle = FlatStyle.Flat;
+            btnAdd.Font = new Font("Poppins Light", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            btnAdd.ForeColor = Color.FromArgb(145, 90, 57);
+            btnAdd.Image = Properties.Resources.add1;
+            btnAdd.ImageAlign = ContentAlignment.MiddleRight;
+            btnAdd.Location = new Point(612, 13);
+            btnAdd.MaximumSize = new Size(160, 37);
+            btnAdd.Name = "btnAdd";
+            btnAdd.Padding = new Padding(6, 0, 6, 0);
+            btnAdd.Size = new Size(133, 37);
+            btnAdd.TabIndex = 17;
+            btnAdd.Text = "Agregar";
+            btnAdd.TextAlign = ContentAlignment.MiddleLeft;
+            btnAdd.TextColor = Color.FromArgb(145, 90, 57);
+            btnAdd.UseVisualStyleBackColor = false;
+            // 
             // selectCategory
             // 
+            selectCategory.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
             selectCategory.BackColor = Color.FromArgb(255, 219, 197);
             selectCategory.BorderColor = Color.FromArgb(145, 90, 57);
             selectCategory.BorderRadius = 5;
             selectCategory.BorderSize = 0;
             selectCategory.DropDownStyle = ComboBoxStyle.DropDown;
-            selectCategory.Font = new Font("Poppins Light", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            selectCategory.Font = new Font("Poppins Light", 12F, FontStyle.Regular, GraphicsUnit.Point);
             selectCategory.ForeColor = Color.FromArgb(145, 90, 57);
             selectCategory.IconColor = Color.FromArgb(145, 90, 57);
             selectCategory.ListBackColor = Color.FromArgb(230, 228, 245);
             selectCategory.ListTextColor = Color.FromArgb(145, 90, 57);
-            selectCategory.Location = new Point(276, 65);
-            selectCategory.MinimumSize = new Size(200, 30);
+            selectCategory.Location = new Point(277, 13);
+            selectCategory.MaximumSize = new Size(200, 37);
+            selectCategory.MinimumSize = new Size(140, 30);
             selectCategory.Name = "selectCategory";
-            selectCategory.Size = new Size(200, 37);
+            selectCategory.Size = new Size(140, 37);
             selectCategory.TabIndex = 13;
-            selectCategory.Texts = "Categorias";
+            selectCategory.Texts = "Categoría";
             // 
             // Products
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(797, 663);
-            Controls.Add(selectCategory);
-            Controls.Add(IcSearch);
-            Controls.Add(ipSearch);
+            ClientSize = new Size(942, 663);
+            Controls.Add(panel1);
             Controls.Add(productList);
             Cursor = Cursors.Hand;
             Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point);
@@ -240,6 +334,7 @@
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Products";
             ((System.ComponentModel.ISupportInitialize)productList).EndInit();
+            panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)IcSearch).EndInit();
             ResumeLayout(false);
         }
@@ -264,5 +359,9 @@
         private DataGridViewTextBoxColumn Categoria;
         private DataGridViewTextBoxColumn Estado;
         private ComboBoxCustom selectCategory;
+        private ComboBoxCustom selectType;
+        private Panel panel1;
+        private ButtonCustom btnAdd;
+        private ButtonCustom btnEdit;
     }
 }

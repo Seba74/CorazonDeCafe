@@ -139,6 +139,16 @@
     <value>True</value>
   </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="btnEdit.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABkAAAAZCAYAAADE6YVjAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
+        DQAACw0B7QfALAAAAPZJREFUSEvtlsERgjAQRSnBEizBi2PCyRK8OGNiE3agHSCJd+nEEiiBEihBszHB
+        jC4JhHjjzfwT7H+QwECWgmK3XQie3wWnT5Wm2K9X5lAaQCB5XhuBTZtM1CNIK1KCM1LuJl4Ed2CHS0Yq
+        pLyL5LTWQ2Nwlqi7ypBIDw4F2YOgqGT0qoeH4NnkXpFkeQ1zuiCER2DzI0otsPmIOLn8Q2DTFgeyNONh
+        IgRqk0llxsPMgiCzYBCCbU5YUV9GCwB4O7EyLFECAAaxwu9ECwB5pA+s1M0kAaAk3k2fLACwYpskAkC8
+        l6tVaWDpbur/Cb5m8NSZUyaSZS+7AEHk5jrfvwAAAABJRU5ErkJggg==
+</value>
+  </data>
   <data name="IcSearch.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABkAAAAdCAYAAABfeMd1AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL

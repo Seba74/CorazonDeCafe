@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "mzFLFPVxZ0QiGoOt8HlbkaZDkzDLIGKGHF/q1Ye7VE/Jw3lXdo9K0Kk1kkhRM2lz+wlfVWeqCtc30PWKwoALoQ==",
+  "dgSpecHash": "140R6PhySnq6VAe97Z/xDrjB4rBcMTTnKNfBPJ13ezo4G3FHLpRRA4WAtutMsCCN3eGrz24lMcsyb7wXYVE3hQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\HP\\Desktop\\stock-manager\\CorazonDeCafeStockManager\\CorazonDeCafeStockManager\\CorazonDeCafeStockManager.csproj",
   "expectedPackageFiles": [
@@ -82,6 +82,7 @@
     "C:\\Users\\HP\\.nuget\\packages\\system.threading.tasks\\4.3.0\\system.threading.tasks.4.3.0.nupkg.sha512",
     "C:\\Users\\HP\\.nuget\\packages\\system.threading.tasks.extensions\\4.5.4\\system.threading.tasks.extensions.4.5.4.nupkg.sha512",
     "C:\\Users\\HP\\.nuget\\packages\\system.windows.extensions\\5.0.0\\system.windows.extensions.5.0.0.nupkg.sha512",
+    "C:\\Users\\HP\\.nuget\\packages\\winforms.datavisualization\\1.8.0\\winforms.datavisualization.1.8.0.nupkg.sha512",
     "C:\\Users\\HP\\.nuget\\packages\\zstdsharp.port\\0.7.1\\zstdsharp.port.0.7.1.nupkg.sha512"
   ],
   "logs": []
