@@ -16,8 +16,9 @@ namespace CorazonDeCafeStockManager
             this.FlatStyle = FlatStyle.Flat;
             this.FlatAppearance.BorderSize = 0;
             this.Size = new Size(150, 40);
-            this.BackColor = Color.MediumSlateBlue;
-            this.ForeColor = Color.White;
+            this.BackColor = Color.FromArgb(255, 219, 197);
+            this.ForeColor = Color.FromArgb(255, 219, 197);
+            this.TextColor = Color.FromArgb(255, 219, 197);
             this.Resize += new EventHandler(Button_Resize!);
         }
         private void Button_Resize(object sender, EventArgs e)

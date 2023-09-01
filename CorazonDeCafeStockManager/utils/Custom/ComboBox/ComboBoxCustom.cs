@@ -51,7 +51,7 @@ namespace CorazonDeCafeStockManager
             lblText.BackColor = backColor;
             lblText.TextAlign = ContentAlignment.MiddleLeft;
             lblText.Padding = new Padding(8, 0, 0, 0);
-            lblText.Font = new Font(this.Font.Name, 10F);
+            lblText.Font = new Font(this.Font.FontFamily, 10F);
             //->Attach label events to user control event
             lblText.Click += new EventHandler(Surface_Click!);//Select combo box
             lblText.MouseEnter += new EventHandler(Surface_MouseEnter!);
@@ -60,11 +60,11 @@ namespace CorazonDeCafeStockManager
             this.Controls.Add(lblText);//2
             this.Controls.Add(btnIcon);//1
             this.Controls.Add(cmbList);//0
-            this.MinimumSize = new Size(200, 30);
-            this.Size = new Size(200, 30);
+            this.MinimumSize = new Size(180, 30);
+            this.Size = new Size(180, 30);
             this.ForeColor = Color.DimGray;
             this.Padding = new Padding(borderSize);//Border Size
-            this.Font = new Font(this.Font.Name, 10F);
+            this.Font = new Font(this.Font.FontFamily, 10F);
             base.BackColor = borderColor; //Border Color
             this.ResumeLayout();
             AdjustComboBoxDimensions();

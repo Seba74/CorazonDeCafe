@@ -28,6 +28,8 @@ namespace CorazonDeCafeStockManager.App.Presenters
 
         private async void LoginEvent(object? sender, Tuple<string, string> e)
         {
+            this.view.Loading.Visible = true;
+            await Task.Delay(600);
             bool logged = await this.repository!.Login(e.Item1, e.Item2);
             if (logged)
             {

@@ -38,9 +38,11 @@
             ipPassword = new utils.Custom.TextBox.TextBoxCustom();
             lblError = new Label();
             inError = new PictureBox();
+            loading = new PictureBox();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)closeBtn).BeginInit();
             ((System.ComponentModel.ISupportInitialize)inError).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)loading).BeginInit();
             SuspendLayout();
             // 
             // lblTitle
@@ -104,19 +106,20 @@
             // 
             btnLogin.BackColor = Color.Transparent;
             btnLogin.BackgroundColor = Color.Transparent;
-            btnLogin.BorderColor = Color.FromArgb(147, 90, 57);
+            btnLogin.BorderColor = Color.FromArgb(255, 219, 197);
             btnLogin.BorderRadius = 5;
             btnLogin.BorderSize = 2;
             btnLogin.Cursor = Cursors.Hand;
-            btnLogin.FlatAppearance.MouseDownBackColor = Color.FromArgb(147, 90, 57);
+            btnLogin.Enabled = false;
+            btnLogin.FlatAppearance.MouseDownBackColor = Color.FromArgb(147, 110, 77);
             btnLogin.FlatStyle = FlatStyle.Flat;
-            btnLogin.ForeColor = Color.FromArgb(147, 90, 57);
+            btnLogin.ForeColor = Color.FromArgb(255, 219, 197);
             btnLogin.Location = new Point(34, 354);
             btnLogin.Name = "btnLogin";
             btnLogin.Size = new Size(254, 41);
             btnLogin.TabIndex = 10;
             btnLogin.Text = "INICIAR SESIÓN";
-            btnLogin.TextColor = Color.FromArgb(147, 90, 57);
+            btnLogin.TextColor = Color.FromArgb(255, 219, 197);
             btnLogin.UseVisualStyleBackColor = false;
             // 
             // ipUser
@@ -187,12 +190,23 @@
             inError.TabStop = false;
             inError.Visible = false;
             // 
+            // loading
+            // 
+            loading.BackColor = Color.Transparent;
+            loading.Location = new Point(99, 194);
+            loading.Name = "loading";
+            loading.Size = new Size(106, 97);
+            loading.SizeMode = PictureBoxSizeMode.Zoom;
+            loading.TabIndex = 15;
+            loading.TabStop = false;
+            // 
             // LoginForm
             // 
             AutoScaleDimensions = new SizeF(9F, 21F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Window;
             ClientSize = new Size(977, 467);
+            Controls.Add(loading);
             Controls.Add(inError);
             Controls.Add(lblError);
             Controls.Add(ipPassword);
@@ -211,6 +225,7 @@
             panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)closeBtn).EndInit();
             ((System.ComponentModel.ISupportInitialize)inError).EndInit();
+            ((System.ComponentModel.ISupportInitialize)loading).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -231,5 +246,6 @@
         private utils.Custom.TextBox.TextBoxCustom ipPassword;
         private Label lblError;
         private PictureBox inError;
+        private PictureBox loading;
     }
 }
