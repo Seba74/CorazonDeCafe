@@ -49,6 +49,16 @@ namespace CorazonDeCafeStockManager
             this.btnMax.Visible = false;
         }
 
+        private void viewPanel_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void btnProducts_Click(object sender, EventArgs e)
+        {
+
+        }
+
         public event EventHandler? ShowProductsView;
         public event EventHandler? ShowProducView;
     }
