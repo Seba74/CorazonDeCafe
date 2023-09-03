@@ -24,12 +24,12 @@ namespace CorazonDeCafeStockManager
             FontsManager.Init();
             // Init Home View
             IHomeView homeView = new Home(); 
-            _ = new HomePresenter(homeView, dbContext);
+            HomePresenter homePresenter = new(homeView, dbContext);
 
             // First View Presentation  
             IAuthRepository authRepository = new AuthRepository(dbContext);
             IAuthView authLogin = new LoginForm();
-            _ = new AuthPresenter(authLogin, authRepository, homeView);
+            _ = new AuthPresenter(authLogin, authRepository, homePresenter);
 
             Application.Run();
         }
