@@ -46,6 +46,9 @@
             btnMax = new PictureBox();
             viewPanel = new Panel();
             panel3 = new Panel();
+            panel6 = new Panel();
+            iconHeader = new PictureBox();
+            titleHeader = new Label();
             pictureBox1 = new PictureBox();
             pictureBox2 = new PictureBox();
             pictureBox3 = new PictureBox();
@@ -59,6 +62,8 @@
             ((System.ComponentModel.ISupportInitialize)btnClose).BeginInit();
             ((System.ComponentModel.ISupportInitialize)btnMax).BeginInit();
             panel3.SuspendLayout();
+            panel6.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)iconHeader).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
@@ -106,7 +111,7 @@
             // 
             pictureBox5.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             pictureBox5.BackColor = Color.Transparent;
-            pictureBox5.BackgroundImage = Properties.Resources.logo1;
+            pictureBox5.BackgroundImage = (Image)resources.GetObject("pictureBox5.BackgroundImage");
             pictureBox5.BackgroundImageLayout = ImageLayout.Center;
             pictureBox5.Location = new Point(5, 33);
             pictureBox5.MaximumSize = new Size(177, 220);
@@ -146,11 +151,12 @@
             btnHome.BorderColor = Color.Transparent;
             btnHome.BorderRadius = 10;
             btnHome.BorderSize = 0;
+            btnHome.Cursor = Cursors.Hand;
             btnHome.FlatAppearance.BorderSize = 0;
             btnHome.FlatStyle = FlatStyle.Flat;
             btnHome.Font = new Font("Poppins Light", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
             btnHome.ForeColor = Color.Black;
-            btnHome.Image = Properties.Resources.home_bg;
+            btnHome.Image = (Image)resources.GetObject("btnHome.Image");
             btnHome.ImageAlign = ContentAlignment.MiddleLeft;
             btnHome.Location = new Point(0, 3);
             btnHome.Name = "btnHome";
@@ -161,7 +167,7 @@
             btnHome.TextAlign = ContentAlignment.MiddleLeft;
             btnHome.TextColor = Color.Black;
             btnHome.UseVisualStyleBackColor = false;
-            btnHome.Click += btnProducts_Click;
+            btnHome.Click += BtnHome_Click;
             // 
             // btnStats
             // 
@@ -171,6 +177,7 @@
             btnStats.BorderColor = Color.Transparent;
             btnStats.BorderRadius = 10;
             btnStats.BorderSize = 0;
+            btnStats.Cursor = Cursors.Hand;
             btnStats.FlatAppearance.BorderSize = 0;
             btnStats.FlatStyle = FlatStyle.Flat;
             btnStats.Font = new Font("Poppins Light", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
@@ -182,7 +189,7 @@
             btnStats.Padding = new Padding(5, 3, 0, 3);
             btnStats.Size = new Size(158, 45);
             btnStats.TabIndex = 5;
-            btnStats.Text = "        GRÁFICOS";
+            btnStats.Text = "        REPORTES";
             btnStats.TextColor = Color.Black;
             btnStats.UseVisualStyleBackColor = false;
             // 
@@ -194,6 +201,7 @@
             btnSales.BorderColor = Color.Transparent;
             btnSales.BorderRadius = 10;
             btnSales.BorderSize = 0;
+            btnSales.Cursor = Cursors.Hand;
             btnSales.FlatAppearance.BorderSize = 0;
             btnSales.FlatStyle = FlatStyle.Flat;
             btnSales.Font = new Font("Poppins Light", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
@@ -217,6 +225,7 @@
             btnProducts.BorderColor = Color.Transparent;
             btnProducts.BorderRadius = 10;
             btnProducts.BorderSize = 0;
+            btnProducts.Cursor = Cursors.Hand;
             btnProducts.FlatAppearance.BorderSize = 0;
             btnProducts.FlatStyle = FlatStyle.Flat;
             btnProducts.Font = new Font("Poppins Light", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
@@ -240,6 +249,7 @@
             btnUsers.BorderColor = Color.Transparent;
             btnUsers.BorderRadius = 10;
             btnUsers.BorderSize = 0;
+            btnUsers.Cursor = Cursors.Hand;
             btnUsers.FlatAppearance.BorderSize = 0;
             btnUsers.FlatStyle = FlatStyle.Flat;
             btnUsers.Font = new Font("Poppins Light", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
@@ -300,9 +310,10 @@
             // 
             btnClose.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             btnClose.BackColor = Color.Transparent;
-            btnClose.BackgroundImage = Properties.Resources.close_m;
+            btnClose.BackgroundImage = (Image)resources.GetObject("btnClose.BackgroundImage");
             btnClose.BackgroundImageLayout = ImageLayout.Zoom;
             btnClose.Cursor = Cursors.Hand;
+            btnClose.ErrorImage = null;
             btnClose.Location = new Point(911, 7);
             btnClose.Name = "btnClose";
             btnClose.Size = new Size(15, 15);
@@ -314,7 +325,7 @@
             // 
             btnMax.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             btnMax.BackColor = Color.Transparent;
-            btnMax.BackgroundImage = Properties.Resources.max;
+            btnMax.BackgroundImage = (Image)resources.GetObject("btnMax.BackgroundImage");
             btnMax.BackgroundImageLayout = ImageLayout.Zoom;
             btnMax.Cursor = Cursors.Hand;
             btnMax.Location = new Point(881, 7);
@@ -335,6 +346,7 @@
             // panel3
             // 
             panel3.BackColor = Color.FromArgb(145, 90, 57);
+            panel3.Controls.Add(panel6);
             panel3.Controls.Add(pictureBox1);
             panel3.Controls.Add(pictureBox2);
             panel3.Controls.Add(pictureBox3);
@@ -342,8 +354,39 @@
             panel3.Dock = DockStyle.Top;
             panel3.Location = new Point(191, 33);
             panel3.Name = "panel3";
-            panel3.Size = new Size(943, 41);
+            panel3.Size = new Size(943, 45);
             panel3.TabIndex = 22;
+            // 
+            // panel6
+            // 
+            panel6.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            panel6.Controls.Add(iconHeader);
+            panel6.Controls.Add(titleHeader);
+            panel6.Location = new Point(13, -1);
+            panel6.Name = "panel6";
+            panel6.Size = new Size(187, 46);
+            panel6.TabIndex = 22;
+            // 
+            // iconHeader
+            // 
+            iconHeader.BackgroundImage = Properties.Resources.home;
+            iconHeader.BackgroundImageLayout = ImageLayout.Center;
+            iconHeader.Location = new Point(0, 9);
+            iconHeader.Name = "iconHeader";
+            iconHeader.Size = new Size(28, 30);
+            iconHeader.TabIndex = 23;
+            iconHeader.TabStop = false;
+            // 
+            // titleHeader
+            // 
+            titleHeader.AutoSize = true;
+            titleHeader.Font = new Font("Poppins Light", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
+            titleHeader.ForeColor = Color.White;
+            titleHeader.Location = new Point(34, 6);
+            titleHeader.Name = "titleHeader";
+            titleHeader.Size = new Size(79, 37);
+            titleHeader.TabIndex = 0;
+            titleHeader.Text = "INICIO";
             // 
             // pictureBox1
             // 
@@ -376,7 +419,6 @@
             // 
             pictureBox3.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             pictureBox3.BackColor = Color.Transparent;
-            pictureBox3.BackgroundImage = Properties.Resources.close_m;
             pictureBox3.BackgroundImageLayout = ImageLayout.Zoom;
             pictureBox3.Cursor = Cursors.Hand;
             pictureBox3.Location = new Point(1682, 8);
@@ -389,7 +431,6 @@
             // 
             pictureBox4.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             pictureBox4.BackColor = Color.Transparent;
-            pictureBox4.BackgroundImage = Properties.Resources.max;
             pictureBox4.BackgroundImageLayout = ImageLayout.Zoom;
             pictureBox4.Cursor = Cursors.Hand;
             pictureBox4.Location = new Point(1646, 10);
@@ -424,6 +465,9 @@
             ((System.ComponentModel.ISupportInitialize)btnClose).EndInit();
             ((System.ComponentModel.ISupportInitialize)btnMax).EndInit();
             panel3.ResumeLayout(false);
+            panel6.ResumeLayout(false);
+            panel6.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)iconHeader).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
@@ -454,5 +498,8 @@
         private Panel panel5;
         private PictureBox pictureBox5;
         private ButtonCustom btnAdd;
+        private Panel panel6;
+        private Label titleHeader;
+        private PictureBox iconHeader;
     }
 }

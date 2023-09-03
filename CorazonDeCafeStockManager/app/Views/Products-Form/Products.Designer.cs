@@ -288,7 +288,7 @@
             btnAdd.FlatStyle = FlatStyle.Flat;
             btnAdd.Font = new Font("Poppins Light", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
             btnAdd.ForeColor = Color.FromArgb(145, 90, 57);
-            btnAdd.Image = Properties.Resources.add1;
+            btnAdd.Image = (Image)resources.GetObject("btnAdd.Image");
             btnAdd.ImageAlign = ContentAlignment.MiddleRight;
             btnAdd.Location = new Point(612, 13);
             btnAdd.MaximumSize = new Size(160, 37);
@@ -326,7 +326,7 @@
             // 
             btnGoBack.AccessibleDescription = "Volver Atrás";
             btnGoBack.AccessibleName = "Volver atrás";
-            btnGoBack.BackgroundImage = Properties.Resources.GoBack;
+            btnGoBack.BackgroundImage = (Image)resources.GetObject("btnGoBack.BackgroundImage");
             btnGoBack.BackgroundImageLayout = ImageLayout.Zoom;
             btnGoBack.Location = new Point(12, 55);
             btnGoBack.Name = "btnGoBack";

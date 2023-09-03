@@ -23,5 +23,6 @@ namespace CorazonDeCafeStockManager.App.Views.Login_Form
         void ShowError(string message);
         void LoadProducts();
         void Show();
+        void Close();
     }
 }
