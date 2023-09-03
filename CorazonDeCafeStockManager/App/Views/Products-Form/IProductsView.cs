@@ -12,9 +12,13 @@ namespace CorazonDeCafeStockManager.App.Views.Login_Form
 
         // Properties 
         string? Search { get; set; }
+        string? SelectCategory { get; set; }
+        string? SelectType { get; set; }
         IEnumerable<Product>? ProductsList { get; set; }
         // Events
         event EventHandler? SearchEvent;
+        event EventHandler? FilterEvent;
+        event EventHandler? ResetProductsEvent;
         event EventHandler? AddEvent;
         event EventHandler? EditEvent;
         event EventHandler? DeleteEvent;
