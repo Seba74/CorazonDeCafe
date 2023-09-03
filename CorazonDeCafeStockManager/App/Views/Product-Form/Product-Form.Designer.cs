@@ -28,11 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Product_Form));
-            btnMin = new PictureBox();
-            btnNormal = new PictureBox();
-            btnMax = new PictureBox();
-            btnClose = new PictureBox();
             lblTitle = new Label();
             selectType = new ComboBox();
             selectCategory = new ComboBox();
@@ -43,59 +38,7 @@
             btnSend = new Button();
             button1 = new Button();
             button2 = new Button();
-            ((System.ComponentModel.ISupportInitialize)btnMin).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)btnNormal).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)btnMax).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)btnClose).BeginInit();
             SuspendLayout();
-            // 
-            // btnMin
-            // 
-            btnMin.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            btnMin.BackColor = Color.Transparent;
-            btnMin.BackgroundImage = (Image)resources.GetObject("btnMin.BackgroundImage");
-            btnMin.BackgroundImageLayout = ImageLayout.Zoom;
-            btnMin.Location = new Point(690, 14);
-            btnMin.Name = "btnMin";
-            btnMin.Size = new Size(18, 18);
-            btnMin.TabIndex = 11;
-            btnMin.TabStop = false;
-            // 
-            // btnNormal
-            // 
-            btnNormal.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            btnNormal.BackColor = Color.Transparent;
-            btnNormal.BackgroundImage = (Image)resources.GetObject("btnNormal.BackgroundImage");
-            btnNormal.BackgroundImageLayout = ImageLayout.Zoom;
-            btnNormal.Location = new Point(729, 14);
-            btnNormal.Name = "btnNormal";
-            btnNormal.Size = new Size(18, 18);
-            btnNormal.TabIndex = 10;
-            btnNormal.TabStop = false;
-            // 
-            // btnMax
-            // 
-            btnMax.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            btnMax.BackColor = Color.Transparent;
-            btnMax.BackgroundImage = Properties.Resources.max;
-            btnMax.BackgroundImageLayout = ImageLayout.Zoom;
-            btnMax.Location = new Point(729, 14);
-            btnMax.Name = "btnMax";
-            btnMax.Size = new Size(18, 18);
-            btnMax.TabIndex = 9;
-            btnMax.TabStop = false;
-            // 
-            // btnClose
-            // 
-            btnClose.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            btnClose.BackColor = Color.Transparent;
-            btnClose.BackgroundImage = Properties.Resources.close_m;
-            btnClose.BackgroundImageLayout = ImageLayout.Zoom;
-            btnClose.Location = new Point(765, 12);
-            btnClose.Name = "btnClose";
-            btnClose.Size = new Size(23, 23);
-            btnClose.TabIndex = 8;
-            btnClose.TabStop = false;
             // 
             // lblTitle
             // 
@@ -206,28 +149,15 @@
             Controls.Add(selectCategory);
             Controls.Add(selectType);
             Controls.Add(lblTitle);
-            Controls.Add(btnMin);
-            Controls.Add(btnNormal);
-            Controls.Add(btnMax);
-            Controls.Add(btnClose);
             FormBorderStyle = FormBorderStyle.None;
             Name = "Product_Form";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Product_Form";
-            ((System.ComponentModel.ISupportInitialize)btnMin).EndInit();
-            ((System.ComponentModel.ISupportInitialize)btnNormal).EndInit();
-            ((System.ComponentModel.ISupportInitialize)btnMax).EndInit();
-            ((System.ComponentModel.ISupportInitialize)btnClose).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
-
-        private PictureBox btnMin;
-        private PictureBox btnNormal;
-        private PictureBox btnMax;
-        private PictureBox btnClose;
         private Label lblTitle;
         private ComboBox selectType;
         private ComboBox selectCategory;

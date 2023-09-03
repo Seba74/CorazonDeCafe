@@ -14,14 +14,13 @@ namespace CorazonDeCafeStockManager.App.Presenters
     {
         private readonly IAuthView view;
         private readonly IAuthRepository repository;
+        private readonly HomePresenter homePresenter;
 
-        private readonly IHomeView homeView;
-
-        public AuthPresenter(IAuthView view, IAuthRepository repository, IHomeView homeView)
+        public AuthPresenter(IAuthView view, IAuthRepository repository, HomePresenter homePresenter)
         {
             this.view = view;
             this.repository = repository;
-            this.homeView = homeView;
+            this.homePresenter = homePresenter;
             this.view.LoginEvent += LoginEvent;
             this.view.Show();
         }
@@ -30,11 +29,12 @@ namespace CorazonDeCafeStockManager.App.Presenters
         {
             this.view.Loading.Visible = true;
             await Task.Delay(600);
-            bool logged = await this.repository!.Login(e.Item1, e.Item2);
+            bool logged = await repository!.Login(e.Item1, e.Item2);
             if (logged)
             {
-                this.homeView.Show();
-                this.view.Close();
+                view.Close();
+                homePresenter.ShowHomeView();
+
             }
             else
             {

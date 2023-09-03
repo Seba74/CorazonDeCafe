@@ -13,21 +13,43 @@ namespace CorazonDeCafeStockManager.App.Presenters
 {
     public class HomePresenter
     {
-        private readonly IHomeView view;
         private readonly CorazonDeCafeContext dbContext;
+        private readonly IHomeView view;
+        private IProductsView? productsView;
 
         public HomePresenter(IHomeView view, CorazonDeCafeContext dbContext)
         {
             this.view = view;
             this.dbContext = dbContext;
             this.view.ShowProductsView += ShowProductsView;
+            this.view.CloseView += CloseView;
+
+        }
+
+        public void ShowHomeView()
+        {
+            ShowProductsView(this, EventArgs.Empty);
+            view.Show();
         }
 
         private async void ShowProductsView(object? sender, EventArgs e)
         {
-            IProductRepository productRepository = new ProductRepository(this.dbContext);
-            IProductsView productsView = Products.GetInstance(this.view.ControlPanel);
+            view.RemoveBackgroundBtns();
+            view.ProductButton.BackColor = Color.FromArgb(255, 219, 197);
+
+            view.IconHeader.BackgroundImage = Properties.Resources.coffee1;
+            view.TitleHeader.Text = "PRODUCTOS";
+
+            IProductRepository productRepository = new ProductRepository(dbContext);
+            productsView = Products.GetInstance(view.ControlPanel);
+
+
             await ProductPresenter.CreatePresenter(productsView, productRepository);
+        }
+
+        private void CloseView(object? sender, EventArgs e)
+        {
+            productsView?.Close();
         }
     }
 }

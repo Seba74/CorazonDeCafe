@@ -47,7 +47,7 @@ namespace CorazonDeCafeStockManager
             };
         }
 
-         private void OnInputChanged(object sender, EventArgs e)
+        private void OnInputChanged(object sender, EventArgs e)
         {
             bool isUsernameEmpty = string.IsNullOrWhiteSpace(ipUser.Texts);
             bool isPasswordEmpty = string.IsNullOrWhiteSpace(ipPassword.Texts);

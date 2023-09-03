@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LoginForm));
             lblTitle = new Label();
             lblSubtitle = new Label();
             panel1 = new Panel();
@@ -83,11 +84,10 @@
             // closeBtn
             // 
             closeBtn.BackColor = Color.Transparent;
-            closeBtn.BackgroundImage = Properties.Resources.close2;
+            closeBtn.BackgroundImage = (Image)resources.GetObject("closeBtn.BackgroundImage");
             closeBtn.BackgroundImageLayout = ImageLayout.Zoom;
             closeBtn.Cursor = Cursors.Hand;
-            closeBtn.ErrorImage = Properties.Resources.close1;
-            closeBtn.Image = Properties.Resources.close1;
+            closeBtn.ErrorImage = null;
             closeBtn.Location = new Point(617, 42);
             closeBtn.Name = "closeBtn";
             closeBtn.Size = new Size(34, 28);
@@ -180,7 +180,7 @@
             // inError
             // 
             inError.BackColor = Color.Transparent;
-            inError.BackgroundImage = Properties.Resources.adv1;
+            inError.BackgroundImage = (Image)resources.GetObject("inError.BackgroundImage");
             inError.BackgroundImageLayout = ImageLayout.Zoom;
             inError.ErrorImage = null;
             inError.Location = new Point(34, 135);
