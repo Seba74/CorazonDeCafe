@@ -21,7 +21,7 @@ namespace CorazonDeCafeStockManager
             string connectionString = ConfigurationManager.ConnectionStrings["CorazonDeCafeStockManager.App.SqlConnection"].ConnectionString;
             DbContextOptionsBuilder<CorazonDeCafeContext> optionsBuilder = new();
             CorazonDeCafeContext dbContext = new(optionsBuilder.UseSqlServer(connectionString).Options);
-            FontsManager.Init();
+            loadFonts.Init();
             // Init Home View
             IHomeView homeView = new Home(); 
             HomePresenter homePresenter = new(homeView, dbContext);

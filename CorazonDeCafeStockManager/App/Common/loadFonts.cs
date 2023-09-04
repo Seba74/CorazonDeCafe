@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CorazonDeCafeStockManager.App.Common
 {
-    public static class FontsManager
+    public static class loadFonts
     {
         public static Font? PoppinsFont { get; set; }
         public static Font? PoppinsLightFont { get; set; }
