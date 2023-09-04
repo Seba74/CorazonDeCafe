@@ -28,13 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle9 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle12 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle13 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle14 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle10 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle11 = new DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Products));
             productList = new DataGridView();
             Id = new DataGridViewTextBoxColumn();
@@ -46,6 +46,7 @@
             Estado = new DataGridViewTextBoxColumn();
             ipSearch = new utils.Custom.TextBox.TextBoxCustom();
             panel1 = new Panel();
+            reload = new ButtonCustom();
             btnEdit = new ButtonCustom();
             IcSearch = new PictureBox();
             selectType = new ComboBoxCustom();
@@ -64,55 +65,55 @@
             productList.AllowUserToDeleteRows = false;
             productList.AllowUserToResizeColumns = false;
             productList.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.BackColor = Color.FromArgb(146, 90, 57);
-            dataGridViewCellStyle1.ForeColor = Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(146, 90, 57);
-            dataGridViewCellStyle1.SelectionForeColor = Color.White;
-            productList.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle8.BackColor = Color.FromArgb(146, 90, 57);
+            dataGridViewCellStyle8.ForeColor = Color.White;
+            dataGridViewCellStyle8.SelectionBackColor = Color.FromArgb(146, 90, 57);
+            dataGridViewCellStyle8.SelectionForeColor = Color.White;
+            productList.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle8;
             productList.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             productList.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             productList.BackgroundColor = SystemColors.MenuBar;
             productList.BorderStyle = BorderStyle.None;
             productList.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
             productList.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = Color.FromArgb(146, 90, 57);
-            dataGridViewCellStyle2.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle2.ForeColor = SystemColors.Window;
-            dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(146, 90, 57);
-            dataGridViewCellStyle2.SelectionForeColor = SystemColors.Window;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
-            productList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle9.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle9.BackColor = Color.FromArgb(146, 90, 57);
+            dataGridViewCellStyle9.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle9.ForeColor = SystemColors.Window;
+            dataGridViewCellStyle9.SelectionBackColor = Color.FromArgb(146, 90, 57);
+            dataGridViewCellStyle9.SelectionForeColor = SystemColors.Window;
+            dataGridViewCellStyle9.WrapMode = DataGridViewTriState.True;
+            productList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle9;
             productList.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             productList.Columns.AddRange(new DataGridViewColumn[] { Id, Nombre, Precio, Stock, Tipo, Categoria, Estado });
-            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = Color.FromArgb(146, 90, 57);
-            dataGridViewCellStyle5.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle5.ForeColor = SystemColors.ControlLightLight;
-            dataGridViewCellStyle5.SelectionBackColor = Color.FromArgb(146, 90, 57);
-            dataGridViewCellStyle5.SelectionForeColor = Color.White;
-            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.False;
-            productList.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle12.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle12.BackColor = Color.FromArgb(146, 90, 57);
+            dataGridViewCellStyle12.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle12.ForeColor = SystemColors.ControlLightLight;
+            dataGridViewCellStyle12.SelectionBackColor = Color.FromArgb(146, 90, 57);
+            dataGridViewCellStyle12.SelectionForeColor = Color.White;
+            dataGridViewCellStyle12.WrapMode = DataGridViewTriState.False;
+            productList.DefaultCellStyle = dataGridViewCellStyle12;
             productList.GridColor = SystemColors.WindowText;
             productList.Location = new Point(12, 153);
             productList.MultiSelect = false;
             productList.Name = "productList";
             productList.ReadOnly = true;
-            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = Color.IndianRed;
-            dataGridViewCellStyle6.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle6.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle6.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.True;
-            productList.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle13.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle13.BackColor = Color.IndianRed;
+            dataGridViewCellStyle13.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle13.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle13.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle13.SelectionForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle13.WrapMode = DataGridViewTriState.True;
+            productList.RowHeadersDefaultCellStyle = dataGridViewCellStyle13;
             productList.RowHeadersVisible = false;
             productList.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToFirstHeader;
-            dataGridViewCellStyle7.BackColor = Color.FromArgb(146, 90, 57);
-            dataGridViewCellStyle7.ForeColor = Color.White;
-            dataGridViewCellStyle7.SelectionBackColor = Color.FromArgb(146, 90, 57);
-            dataGridViewCellStyle7.SelectionForeColor = Color.White;
-            productList.RowsDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle14.BackColor = Color.FromArgb(146, 90, 57);
+            dataGridViewCellStyle14.ForeColor = Color.White;
+            dataGridViewCellStyle14.SelectionBackColor = Color.FromArgb(146, 90, 57);
+            dataGridViewCellStyle14.SelectionForeColor = Color.White;
+            productList.RowsDefaultCellStyle = dataGridViewCellStyle14;
             productList.RowTemplate.DefaultCellStyle.BackColor = SystemColors.Menu;
             productList.RowTemplate.DefaultCellStyle.ForeColor = Color.Black;
             productList.RowTemplate.DefaultCellStyle.SelectionBackColor = Color.FromArgb(255, 219, 197);
@@ -126,11 +127,11 @@
             // Id
             // 
             Id.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle3.BackColor = Color.FromArgb(146, 90, 57);
-            dataGridViewCellStyle3.ForeColor = Color.White;
-            dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(146, 90, 57);
-            dataGridViewCellStyle3.SelectionForeColor = Color.White;
-            Id.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle10.BackColor = Color.FromArgb(146, 90, 57);
+            dataGridViewCellStyle10.ForeColor = Color.White;
+            dataGridViewCellStyle10.SelectionBackColor = Color.FromArgb(146, 90, 57);
+            dataGridViewCellStyle10.SelectionForeColor = Color.White;
+            Id.DefaultCellStyle = dataGridViewCellStyle10;
             Id.FillWeight = 50F;
             Id.HeaderText = "Id";
             Id.Name = "Id";
@@ -147,9 +148,9 @@
             // Precio
             // 
             Precio.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle4.Format = "C2";
-            dataGridViewCellStyle4.NullValue = null;
-            Precio.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle11.Format = "C2";
+            dataGridViewCellStyle11.NullValue = null;
+            Precio.DefaultCellStyle = dataGridViewCellStyle11;
             Precio.FillWeight = 80F;
             Precio.HeaderText = "Precio";
             Precio.Name = "Precio";
@@ -193,11 +194,11 @@
             ipSearch.MaximumSize = new Size(650, 37);
             ipSearch.Multiline = false;
             ipSearch.Name = "ipSearch";
-            ipSearch.Padding = new Padding(8, 6, 4, 4);
+            ipSearch.Padding = new Padding(8, 6, 4, 2);
             ipSearch.PasswordChar = false;
             ipSearch.PlaceholderColor = Color.FromArgb(146, 90, 57);
             ipSearch.PlaceholderText = "Buscar...";
-            ipSearch.Size = new Size(257, 37);
+            ipSearch.Size = new Size(257, 35);
             ipSearch.TabIndex = 12;
             ipSearch.Texts = "";
             ipSearch.UnderlinedStyle = false;
@@ -206,6 +207,7 @@
             // 
             panel1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             panel1.BackColor = Color.Transparent;
+            panel1.Controls.Add(reload);
             panel1.Controls.Add(btnEdit);
             panel1.Controls.Add(IcSearch);
             panel1.Controls.Add(selectType);
@@ -218,6 +220,30 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(918, 65);
             panel1.TabIndex = 17;
+            // 
+            // reload
+            // 
+            reload.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
+            reload.BackColor = Color.Transparent;
+            reload.BackgroundColor = Color.Transparent;
+            reload.BackgroundImageLayout = ImageLayout.Zoom;
+            reload.BorderColor = Color.FromArgb(145, 90, 57);
+            reload.BorderRadius = 5;
+            reload.BorderSize = 2;
+            reload.FlatAppearance.BorderSize = 0;
+            reload.FlatStyle = FlatStyle.Flat;
+            reload.Font = new Font("Poppins Light", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            reload.ForeColor = Color.FromArgb(145, 90, 57);
+            reload.Image = Properties.Resources.reload1;
+            reload.Location = new Point(850, 13);
+            reload.MaximumSize = new Size(80, 37);
+            reload.Name = "reload";
+            reload.Padding = new Padding(6, 0, 6, 0);
+            reload.Size = new Size(50, 37);
+            reload.TabIndex = 19;
+            reload.TextAlign = ContentAlignment.MiddleLeft;
+            reload.TextColor = Color.FromArgb(145, 90, 57);
+            reload.UseVisualStyleBackColor = false;
             // 
             // btnEdit
             // 
@@ -233,11 +259,11 @@
             btnEdit.ForeColor = Color.FromArgb(145, 90, 57);
             btnEdit.Image = (Image)resources.GetObject("btnEdit.Image");
             btnEdit.ImageAlign = ContentAlignment.MiddleRight;
-            btnEdit.Location = new Point(763, 13);
+            btnEdit.Location = new Point(734, 13);
             btnEdit.MaximumSize = new Size(160, 37);
             btnEdit.Name = "btnEdit";
             btnEdit.Padding = new Padding(6, 0, 6, 0);
-            btnEdit.Size = new Size(133, 37);
+            btnEdit.Size = new Size(107, 37);
             btnEdit.TabIndex = 18;
             btnEdit.Text = "Editar";
             btnEdit.TextAlign = ContentAlignment.MiddleLeft;
@@ -266,13 +292,15 @@
             selectType.Font = new Font("Poppins Light", 12F, FontStyle.Regular, GraphicsUnit.Point);
             selectType.ForeColor = Color.FromArgb(145, 90, 57);
             selectType.IconColor = Color.FromArgb(145, 90, 57);
+            selectType.Items.AddRange(new object[] { "Origen", "Sostenible", "Premium" });
             selectType.ListBackColor = Color.FromArgb(230, 228, 245);
             selectType.ListTextColor = Color.FromArgb(145, 90, 57);
-            selectType.Location = new Point(432, 13);
+            selectType.Location = new Point(268, 13);
             selectType.MaximumSize = new Size(200, 37);
-            selectType.MinimumSize = new Size(140, 37);
+            selectType.MinimumSize = new Size(110, 37);
             selectType.Name = "selectType";
-            selectType.Size = new Size(140, 37);
+            selectType.Padding = new Padding(0, 0, 0, 2);
+            selectType.Size = new Size(110, 37);
             selectType.TabIndex = 14;
             selectType.Texts = "Tipo";
             // 
@@ -290,11 +318,11 @@
             btnAdd.ForeColor = Color.FromArgb(145, 90, 57);
             btnAdd.Image = (Image)resources.GetObject("btnAdd.Image");
             btnAdd.ImageAlign = ContentAlignment.MiddleRight;
-            btnAdd.Location = new Point(612, 13);
+            btnAdd.Location = new Point(602, 13);
             btnAdd.MaximumSize = new Size(160, 37);
             btnAdd.Name = "btnAdd";
             btnAdd.Padding = new Padding(6, 0, 6, 0);
-            btnAdd.Size = new Size(133, 37);
+            btnAdd.Size = new Size(123, 37);
             btnAdd.TabIndex = 17;
             btnAdd.Text = "Agregar";
             btnAdd.TextAlign = ContentAlignment.MiddleLeft;
@@ -312,13 +340,15 @@
             selectCategory.Font = new Font("Poppins Light", 12F, FontStyle.Regular, GraphicsUnit.Point);
             selectCategory.ForeColor = Color.FromArgb(145, 90, 57);
             selectCategory.IconColor = Color.FromArgb(145, 90, 57);
+            selectCategory.Items.AddRange(new object[] { "Soluble", "Molido", "Grano" });
             selectCategory.ListBackColor = Color.FromArgb(230, 228, 245);
             selectCategory.ListTextColor = Color.FromArgb(145, 90, 57);
-            selectCategory.Location = new Point(277, 13);
+            selectCategory.Location = new Point(392, 13);
             selectCategory.MaximumSize = new Size(200, 37);
-            selectCategory.MinimumSize = new Size(140, 30);
+            selectCategory.MinimumSize = new Size(110, 30);
             selectCategory.Name = "selectCategory";
-            selectCategory.Size = new Size(140, 37);
+            selectCategory.Padding = new Padding(0, 0, 0, 2);
+            selectCategory.Size = new Size(110, 37);
             selectCategory.TabIndex = 13;
             selectCategory.Texts = "Categoría";
             // 
@@ -381,5 +411,6 @@
         private ButtonCustom btnEdit;
         private PictureBox pictureBox6;
         private PictureBox btnGoBack;
+        private ButtonCustom reload;
     }
 }

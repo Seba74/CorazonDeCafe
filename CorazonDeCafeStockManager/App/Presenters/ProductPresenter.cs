@@ -1,7 +1,6 @@
 ﻿using CorazonDeCafeStockManager.App.Models;
 using CorazonDeCafeStockManager.App.Repositories;
 using CorazonDeCafeStockManager.App.Views.Login_Form;
-using System.Globalization;
 using Timer = System.Timers.Timer;
 
 namespace CorazonDeCafeStockManager.App.Presenters
@@ -20,38 +19,79 @@ namespace CorazonDeCafeStockManager.App.Presenters
         private readonly IProductsView view;
         private readonly IProductRepository productRepository;
         private IEnumerable<Product>? products;
+        private IEnumerable<Product>? productsBackUp;
+        private string previousSearchText = string.Empty;
         public ProductPresenter(IProductsView view, IProductRepository productRepository)
         {
             this.view = view;
             this.productRepository = productRepository;
             this.view.SearchEvent += SearchEvent!;
+            this.view.FilterEvent += FilterEvent!;
+            this.view.ResetProductsEvent += ResetProductsEvent!;
             SearchTimer.Elapsed += SearchProducts!;
         }
         private async Task LoadAllProducts()
         {
             products = await productRepository.GetAllProducts();
-            this.view.ProductsList = products;
+            productsBackUp = products;
+            view.ProductsList = products;
         }
 
-        private async void SearchProducts(object sender, EventArgs e)
+        private void SearchProducts(object sender, EventArgs e)
         {
             SearchTimer.Stop();
             if (!string.IsNullOrEmpty(view.Search))
             {
-                products = productRepository.GetAllProductsByFilter(view.Search.ToLowerInvariant());
+                products = products?.Where(p => p.Nombre.ToLowerInvariant().Contains(view.Search!.ToLowerInvariant()));
             }
             else
             {
-                products = await productRepository.GetAllProducts();
+                products = view.ProductsList;
             }
-            this.view.ProductsList = products;
-            this.view.LoadProducts();
+            view.ProductsList = products;
+            view.LoadProducts();
+        }
+
+
+
+        private void ResetProductsEvent(object sender, EventArgs e)
+        {
+            view.Search = string.Empty;
+            view.SelectCategory = "Categoría";
+            view.SelectType = "Tipo";
+
+            products = productsBackUp;
+            view.ProductsList = products;
+            view.LoadProducts();
         }
 
         private void SearchEvent(object sender, EventArgs e)
         {
             SearchTimer.Stop();
-            SearchTimer.Start();
+
+            if (view.Search != previousSearchText)
+            {
+                previousSearchText = view.Search!;
+                SearchTimer.Start();
+            }
+        }
+
+        private void FilterEvent(object sender, EventArgs e)
+        {
+            IEnumerable<Product>? productsToFilter = productsBackUp;
+            view.Search = string.Empty;
+            if (view.SelectCategory != "Categoría")
+            {
+                productsToFilter = productsToFilter?.Where(p => p.Categoria.Nombre == view.SelectCategory);
+            }
+
+            if (view.SelectType != "Tipo")
+            {
+                productsToFilter = productsToFilter?.Where(p => p.Tipo.Nombre == view.SelectType);
+            }
+
+            view.ProductsList = productsToFilter;
+            view.LoadProducts();
         }
     }
 }

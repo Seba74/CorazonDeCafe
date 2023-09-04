@@ -35,10 +35,10 @@
             panel5 = new Panel();
             panel4 = new Panel();
             btnHome = new ButtonCustom();
-            btnStats = new ButtonCustom();
-            btnSales = new ButtonCustom();
             btnProducts = new ButtonCustom();
+            btnSales = new ButtonCustom();
             btnUsers = new ButtonCustom();
+            btnStats = new ButtonCustom();
             panel2 = new Panel();
             btnMin = new PictureBox();
             btnNormal = new PictureBox();
@@ -132,20 +132,18 @@
             // 
             // panel4
             // 
-            panel4.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             panel4.Controls.Add(btnHome);
-            panel4.Controls.Add(btnStats);
-            panel4.Controls.Add(btnSales);
             panel4.Controls.Add(btnProducts);
+            panel4.Controls.Add(btnSales);
             panel4.Controls.Add(btnUsers);
-            panel4.Location = new Point(12, 183);
+            panel4.Controls.Add(btnStats);
+            panel4.Location = new Point(0, 200);
             panel4.Name = "panel4";
-            panel4.Size = new Size(158, 326);
+            panel4.Size = new Size(189, 283);
             panel4.TabIndex = 0;
             // 
             // btnHome
             // 
-            btnHome.Anchor = AnchorStyles.None;
             btnHome.BackColor = Color.FromArgb(255, 219, 197);
             btnHome.BackgroundColor = Color.FromArgb(255, 219, 197);
             btnHome.BorderColor = Color.Transparent;
@@ -158,10 +156,10 @@
             btnHome.ForeColor = Color.Black;
             btnHome.Image = (Image)resources.GetObject("btnHome.Image");
             btnHome.ImageAlign = ContentAlignment.MiddleLeft;
-            btnHome.Location = new Point(0, 3);
+            btnHome.Location = new Point(12, 0);
             btnHome.Name = "btnHome";
             btnHome.Padding = new Padding(5, 3, 0, 3);
-            btnHome.Size = new Size(158, 45);
+            btnHome.Size = new Size(165, 44);
             btnHome.TabIndex = 1;
             btnHome.Text = "          INICIO";
             btnHome.TextAlign = ContentAlignment.MiddleLeft;
@@ -169,57 +167,8 @@
             btnHome.UseVisualStyleBackColor = false;
             btnHome.Click += BtnHome_Click;
             // 
-            // btnStats
-            // 
-            btnStats.Anchor = AnchorStyles.None;
-            btnStats.BackColor = Color.Transparent;
-            btnStats.BackgroundColor = Color.Transparent;
-            btnStats.BorderColor = Color.Transparent;
-            btnStats.BorderRadius = 10;
-            btnStats.BorderSize = 0;
-            btnStats.Cursor = Cursors.Hand;
-            btnStats.FlatAppearance.BorderSize = 0;
-            btnStats.FlatStyle = FlatStyle.Flat;
-            btnStats.Font = new Font("Poppins Light", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-            btnStats.ForeColor = Color.Black;
-            btnStats.Image = (Image)resources.GetObject("btnStats.Image");
-            btnStats.ImageAlign = ContentAlignment.MiddleLeft;
-            btnStats.Location = new Point(0, 278);
-            btnStats.Name = "btnStats";
-            btnStats.Padding = new Padding(5, 3, 0, 3);
-            btnStats.Size = new Size(158, 45);
-            btnStats.TabIndex = 5;
-            btnStats.Text = "        REPORTES";
-            btnStats.TextColor = Color.Black;
-            btnStats.UseVisualStyleBackColor = false;
-            // 
-            // btnSales
-            // 
-            btnSales.Anchor = AnchorStyles.None;
-            btnSales.BackColor = Color.Transparent;
-            btnSales.BackgroundColor = Color.Transparent;
-            btnSales.BorderColor = Color.Transparent;
-            btnSales.BorderRadius = 10;
-            btnSales.BorderSize = 0;
-            btnSales.Cursor = Cursors.Hand;
-            btnSales.FlatAppearance.BorderSize = 0;
-            btnSales.FlatStyle = FlatStyle.Flat;
-            btnSales.Font = new Font("Poppins Light", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-            btnSales.ForeColor = Color.Black;
-            btnSales.Image = (Image)resources.GetObject("btnSales.Image");
-            btnSales.ImageAlign = ContentAlignment.MiddleLeft;
-            btnSales.Location = new Point(0, 208);
-            btnSales.Name = "btnSales";
-            btnSales.Padding = new Padding(5, 3, 0, 3);
-            btnSales.Size = new Size(158, 45);
-            btnSales.TabIndex = 4;
-            btnSales.Text = "   VENTAS";
-            btnSales.TextColor = Color.Black;
-            btnSales.UseVisualStyleBackColor = false;
-            // 
             // btnProducts
             // 
-            btnProducts.Anchor = AnchorStyles.None;
             btnProducts.BackColor = Color.Transparent;
             btnProducts.BackgroundColor = Color.Transparent;
             btnProducts.BorderColor = Color.Transparent;
@@ -232,18 +181,40 @@
             btnProducts.ForeColor = Color.Black;
             btnProducts.Image = (Image)resources.GetObject("btnProducts.Image");
             btnProducts.ImageAlign = ContentAlignment.MiddleLeft;
-            btnProducts.Location = new Point(0, 67);
+            btnProducts.Location = new Point(11, 50);
             btnProducts.Name = "btnProducts";
             btnProducts.Padding = new Padding(5, 3, 0, 3);
-            btnProducts.Size = new Size(158, 45);
+            btnProducts.Size = new Size(165, 44);
             btnProducts.TabIndex = 2;
             btnProducts.Text = "          PRODUCTOS";
             btnProducts.TextColor = Color.Black;
             btnProducts.UseVisualStyleBackColor = false;
             // 
+            // btnSales
+            // 
+            btnSales.BackColor = Color.Transparent;
+            btnSales.BackgroundColor = Color.Transparent;
+            btnSales.BorderColor = Color.Transparent;
+            btnSales.BorderRadius = 10;
+            btnSales.BorderSize = 0;
+            btnSales.Cursor = Cursors.Hand;
+            btnSales.FlatAppearance.BorderSize = 0;
+            btnSales.FlatStyle = FlatStyle.Flat;
+            btnSales.Font = new Font("Poppins Light", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            btnSales.ForeColor = Color.Black;
+            btnSales.Image = (Image)resources.GetObject("btnSales.Image");
+            btnSales.ImageAlign = ContentAlignment.MiddleLeft;
+            btnSales.Location = new Point(12, 100);
+            btnSales.Name = "btnSales";
+            btnSales.Padding = new Padding(5, 3, 0, 3);
+            btnSales.Size = new Size(165, 44);
+            btnSales.TabIndex = 4;
+            btnSales.Text = "   VENTAS";
+            btnSales.TextColor = Color.Black;
+            btnSales.UseVisualStyleBackColor = false;
+            // 
             // btnUsers
             // 
-            btnUsers.Anchor = AnchorStyles.None;
             btnUsers.BackColor = Color.Transparent;
             btnUsers.BackgroundColor = Color.Transparent;
             btnUsers.BorderColor = Color.Transparent;
@@ -256,14 +227,37 @@
             btnUsers.ForeColor = Color.Black;
             btnUsers.Image = (Image)resources.GetObject("btnUsers.Image");
             btnUsers.ImageAlign = ContentAlignment.MiddleLeft;
-            btnUsers.Location = new Point(0, 137);
+            btnUsers.Location = new Point(12, 150);
             btnUsers.Name = "btnUsers";
             btnUsers.Padding = new Padding(5, 3, 0, 3);
-            btnUsers.Size = new Size(158, 45);
+            btnUsers.Size = new Size(165, 44);
             btnUsers.TabIndex = 3;
             btnUsers.Text = "      USUARIOS";
             btnUsers.TextColor = Color.Black;
             btnUsers.UseVisualStyleBackColor = false;
+            // 
+            // btnStats
+            // 
+            btnStats.BackColor = Color.Transparent;
+            btnStats.BackgroundColor = Color.Transparent;
+            btnStats.BorderColor = Color.Transparent;
+            btnStats.BorderRadius = 10;
+            btnStats.BorderSize = 0;
+            btnStats.Cursor = Cursors.Hand;
+            btnStats.FlatAppearance.BorderSize = 0;
+            btnStats.FlatStyle = FlatStyle.Flat;
+            btnStats.Font = new Font("Poppins Light", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            btnStats.ForeColor = Color.Black;
+            btnStats.Image = (Image)resources.GetObject("btnStats.Image");
+            btnStats.ImageAlign = ContentAlignment.MiddleLeft;
+            btnStats.Location = new Point(11, 200);
+            btnStats.Name = "btnStats";
+            btnStats.Padding = new Padding(5, 3, 0, 3);
+            btnStats.Size = new Size(164, 44);
+            btnStats.TabIndex = 5;
+            btnStats.Text = "        REPORTES";
+            btnStats.TextColor = Color.Black;
+            btnStats.UseVisualStyleBackColor = false;
             // 
             // panel2
             // 
@@ -489,17 +483,17 @@
         private PictureBox pictureBox2;
         private PictureBox pictureBox3;
         private PictureBox pictureBox4;
-        private Panel panel4;
-        private ButtonCustom btnHome;
-        private ButtonCustom btnStats;
-        private ButtonCustom btnSales;
-        private ButtonCustom btnProducts;
-        private ButtonCustom btnUsers;
         private Panel panel5;
         private PictureBox pictureBox5;
         private ButtonCustom btnAdd;
         private Panel panel6;
         private Label titleHeader;
         private PictureBox iconHeader;
+        private Panel panel4;
+        private ButtonCustom btnSales;
+        private ButtonCustom btnUsers;
+        private ButtonCustom btnStats;
+        private ButtonCustom btnHome;
+        private ButtonCustom btnProducts;
     }
 }

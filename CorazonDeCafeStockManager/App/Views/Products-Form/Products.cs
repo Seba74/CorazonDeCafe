@@ -8,8 +8,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using CorazonDeCafeStockManager.App.Common;
 using CorazonDeCafeStockManager.App.Models;
-using CorazonDeCafeStockManager.App.Views.Login_Form;
+using CorazonDeCafeStockManager.App.Views.Products_Form;
 
 namespace CorazonDeCafeStockManager
 {
@@ -21,6 +22,17 @@ namespace CorazonDeCafeStockManager
             get { return ipSearch.Texts; }
             set { ipSearch.Texts = value!; }
         }
+        public string? SelectType
+        {
+            get { return selectType.Texts; }
+            set { selectType.Texts = value!; }
+        }
+
+        public string? SelectCategory
+        {
+            get { return selectCategory.Texts; }
+            set { selectCategory.Texts = value!; }
+        }
 
         public IEnumerable<Product>? ProductsList { get; set; }
 
@@ -28,6 +40,7 @@ namespace CorazonDeCafeStockManager
         {
             InitializeComponent();
             InitializeEvents();
+
             loadFonts = new LoadFonts();
             ChangeDataGridViewFont(productList);
 
@@ -38,9 +51,14 @@ namespace CorazonDeCafeStockManager
         private void InitializeEvents()
         {
             ipSearch._TextChanged += delegate { SearchEvent?.Invoke(this, EventArgs.Empty); };
+            selectCategory.OnSelectedIndexChanged += delegate { FilterEvent?.Invoke(this, EventArgs.Empty); };
+            selectType.OnSelectedIndexChanged += delegate { FilterEvent?.Invoke(this, EventArgs.Empty); };
+            reload.Click += delegate { ResetProductsEvent?.Invoke(this, EventArgs.Empty); };
         }
 
         public event EventHandler? SearchEvent;
+        public event EventHandler? FilterEvent;
+        public event EventHandler? ResetProductsEvent;
         public event EventHandler? AddEvent;
         public event EventHandler? EditEvent;
         public event EventHandler? DeleteEvent;
@@ -51,19 +69,28 @@ namespace CorazonDeCafeStockManager
             {
                 productList.Invoke(new MethodInvoker(delegate
                 {
-                    LoadProducts();
+                    productList.Rows.Clear();
+                    productList.Refresh();
+
+                    foreach (Product product in ProductsList!)
+                    {
+                        product.Estado = product.Estado == "SI" ? "Activo" : "Inactivo";
+
+                        productList.Rows.Add(product.Id, product.Nombre, product.Precio, product.Stock, product.Tipo.Nombre, product.Categoria.Nombre, product.Estado);
+                    }
                 }));
-                return;
             }
-
-            productList.Rows.Clear();
-            productList.Refresh();
-
-            foreach (Product product in ProductsList!)
+            else
             {
-                product.Estado = product.Estado == "SI" ? "Activo" : "Inactivo";
+                productList.Rows.Clear();
+                productList.Refresh();
 
-                productList.Rows.Add(product.Id, product.Nombre, product.Precio, product.Stock, product.Tipo.Nombre, product.Categoria.Nombre, product.Estado);
+                foreach (Product product in ProductsList!)
+                {
+                    product.Estado = product.Estado == "SI" ? "Activo" : "Inactivo";
+
+                    productList.Rows.Add(product.Id, product.Nombre, product.Precio, product.Stock, product.Tipo.Nombre, product.Categoria.Nombre, product.Estado);
+                }
             }
         }
 
@@ -104,11 +131,6 @@ namespace CorazonDeCafeStockManager
                 instance.BringToFront();
             }
             return instance;
-        }
-
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }
