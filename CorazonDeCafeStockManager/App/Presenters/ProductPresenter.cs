@@ -1,8 +1,6 @@
 ﻿using CorazonDeCafeStockManager.App.Models;
 using CorazonDeCafeStockManager.App.Repositories;
 using CorazonDeCafeStockManager.App.Views.Login_Form;
-using Microsoft.IdentityModel.Tokens;
-using System.Globalization;
 using Timer = System.Timers.Timer;
 
 namespace CorazonDeCafeStockManager.App.Presenters
@@ -44,7 +42,7 @@ namespace CorazonDeCafeStockManager.App.Presenters
             SearchTimer.Stop();
             if (!string.IsNullOrEmpty(view.Search))
             {
-                products = view.ProductsList?.Where(p => p.Nombre.ToLowerInvariant().Contains(view.Search.ToLowerInvariant()));
+                products = products?.Where(p => p.Nombre.ToLowerInvariant().Contains(view.Search!.ToLowerInvariant()));
             }
             else
             {
@@ -53,6 +51,8 @@ namespace CorazonDeCafeStockManager.App.Presenters
             view.ProductsList = products;
             view.LoadProducts();
         }
+
+
 
         private void ResetProductsEvent(object sender, EventArgs e)
         {
@@ -93,6 +93,5 @@ namespace CorazonDeCafeStockManager.App.Presenters
             view.ProductsList = productsToFilter;
             view.LoadProducts();
         }
-
     }
 }

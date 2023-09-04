@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using CorazonDeCafeStockManager.App.Models;
 
-namespace CorazonDeCafeStockManager.App.Views.Login_Form
+namespace CorazonDeCafeStockManager.App.Views.Products_Form
 {
     public interface IProductsView
     {

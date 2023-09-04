@@ -8,8 +8,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using CorazonDeCafeStockManager.App.Common;
 using CorazonDeCafeStockManager.App.Models;
-using CorazonDeCafeStockManager.App.Views.Login_Form;
+using CorazonDeCafeStockManager.App.Views.Products_Form;
 
 namespace CorazonDeCafeStockManager
 {
@@ -39,6 +40,7 @@ namespace CorazonDeCafeStockManager
         {
             InitializeComponent();
             InitializeEvents();
+
             loadFonts = new LoadFonts();
             ChangeDataGridViewFont(productList);
 
