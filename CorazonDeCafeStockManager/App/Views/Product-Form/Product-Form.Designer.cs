@@ -35,9 +35,10 @@
             iEstado = new TextBox();
             iPrice = new TextBox();
             iStock = new TextBox();
-            btnSend = new Button();
             button1 = new Button();
             button2 = new Button();
+            btnSave = new ButtonCustom();
+            btnCancel = new ButtonCustom();
             SuspendLayout();
             // 
             // lblTitle
@@ -101,17 +102,6 @@
             iStock.Size = new Size(100, 23);
             iStock.TabIndex = 18;
             // 
-            // btnSend
-            // 
-            btnSend.Anchor = AnchorStyles.None;
-            btnSend.FlatStyle = FlatStyle.Flat;
-            btnSend.Location = new Point(586, 372);
-            btnSend.Name = "btnSend";
-            btnSend.Size = new Size(100, 39);
-            btnSend.TabIndex = 19;
-            btnSend.Text = "Guardar";
-            btnSend.UseVisualStyleBackColor = true;
-            // 
             // button1
             // 
             button1.Anchor = AnchorStyles.None;
@@ -134,14 +124,52 @@
             button2.Text = "Eliminar";
             button2.UseVisualStyleBackColor = true;
             // 
+            // btnSave
+            // 
+            btnSave.BackColor = Color.FromArgb(255, 219, 197);
+            btnSave.BackgroundColor = Color.FromArgb(255, 219, 197);
+            btnSave.BorderColor = Color.PaleVioletRed;
+            btnSave.BorderRadius = 20;
+            btnSave.BorderSize = 0;
+            btnSave.FlatAppearance.BorderSize = 0;
+            btnSave.FlatStyle = FlatStyle.Flat;
+            btnSave.ForeColor = Color.FromArgb(64, 0, 64);
+            btnSave.Location = new Point(611, 367);
+            btnSave.Name = "btnSave";
+            btnSave.Size = new Size(150, 40);
+            btnSave.TabIndex = 22;
+            btnSave.Text = "Guardar";
+            btnSave.TextColor = Color.FromArgb(64, 0, 64);
+            btnSave.UseVisualStyleBackColor = false;
+            // 
+            // btnCancel
+            // 
+            btnCancel.BackColor = Color.FromArgb(255, 219, 197);
+            btnCancel.BackgroundColor = Color.FromArgb(255, 219, 197);
+            btnCancel.BorderColor = Color.PaleVioletRed;
+            btnCancel.BorderRadius = 20;
+            btnCancel.BorderSize = 0;
+            btnCancel.FlatAppearance.BorderSize = 0;
+            btnCancel.FlatStyle = FlatStyle.Flat;
+            btnCancel.ForeColor = Color.FromArgb(64, 0, 64);
+            btnCancel.Location = new Point(322, 367);
+            btnCancel.Name = "btnCancel";
+            btnCancel.Size = new Size(150, 40);
+            btnCancel.TabIndex = 23;
+            btnCancel.Text = "Cancelar";
+            btnCancel.TextColor = Color.FromArgb(64, 0, 64);
+            btnCancel.UseVisualStyleBackColor = false;
+            btnCancel.Click += buttonCustom1_Click;
+            // 
             // Product_Form
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(btnCancel);
+            Controls.Add(btnSave);
             Controls.Add(button2);
             Controls.Add(button1);
-            Controls.Add(btnSend);
             Controls.Add(iStock);
             Controls.Add(iPrice);
             Controls.Add(iEstado);
@@ -165,8 +193,9 @@
         private TextBox iEstado;
         private TextBox iPrice;
         private TextBox iStock;
-        private Button btnSend;
         private Button button1;
         private Button button2;
+        private ButtonCustom btnSave;
+        private ButtonCustom btnCancel;
     }
 }

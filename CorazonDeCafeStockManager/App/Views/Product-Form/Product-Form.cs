@@ -16,7 +16,16 @@ namespace CorazonDeCafeStockManager
         public Product_Form()
         {
             InitializeComponent();
+            AssociateEvents();
             LoadFonts loadFonts = new();
+        }
+        private void AssociateEvents()
+        {
+            btnSave.Click += delegate {SaveEvent?.Invoke(this, EventArgs.Empty);
+            };
+            btnCancel.Click += delegate {CancelEvent?.Invoke(this, EventArgs.Empty);
+            };
+
         }
 
         public string? Nombre { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
@@ -33,6 +42,11 @@ namespace CorazonDeCafeStockManager
         public void ShowError(string message)
         {
             throw new NotImplementedException();
+        }
+
+        private void buttonCustom1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

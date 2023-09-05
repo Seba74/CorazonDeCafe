@@ -44,7 +44,7 @@ namespace CorazonDeCafeStockManager.App.Presenters
             productsView = Products.GetInstance(view.ControlPanel);
 
 
-            await ProductPresenter.CreatePresenter(productsView, productRepository);
+            await ProductsPresenter.CreatePresenter(productsView, productRepository);
         }
 
         private void CloseView(object? sender, EventArgs e)

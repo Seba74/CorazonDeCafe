@@ -54,6 +54,7 @@ namespace CorazonDeCafeStockManager
             selectCategory.OnSelectedIndexChanged += delegate { FilterEvent?.Invoke(this, EventArgs.Empty); };
             selectType.OnSelectedIndexChanged += delegate { FilterEvent?.Invoke(this, EventArgs.Empty); };
             reload.Click += delegate { ResetProductsEvent?.Invoke(this, EventArgs.Empty); };
+            btnAdd.Click += delegate { AddEvent?.Invoke(this, EventArgs.Empty); };
         }
 
         public event EventHandler? SearchEvent;
