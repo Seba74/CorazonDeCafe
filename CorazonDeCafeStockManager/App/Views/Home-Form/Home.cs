@@ -78,7 +78,7 @@ namespace CorazonDeCafeStockManager
         }
 
         public event EventHandler? ShowProductsView;
-        public event EventHandler? ShowProducView;
+        public event EventHandler? ShowProductView;
         public event EventHandler? CloseView;
     }
 }

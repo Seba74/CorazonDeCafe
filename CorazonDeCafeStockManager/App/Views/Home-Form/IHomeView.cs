@@ -20,7 +20,6 @@ namespace CorazonDeCafeStockManager.App.Views.Home_Form
 
         event EventHandler? ShowProductsView;
         event EventHandler? CloseView;
-        event EventHandler? ShowProducView;
 
         void RemoveBackgroundBtns();
         void Show();

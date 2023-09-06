@@ -48,5 +48,31 @@ namespace CorazonDeCafeStockManager
         {
 
         }
+
+        private static Product_Form? instance;
+        public static Product_Form GetInstance(Control controlParent)
+        {
+            if (instance == null || instance.IsDisposed)
+            {
+                instance = new Product_Form
+                {
+                    Dock = DockStyle.Fill,
+                    TopLevel = false,
+                    FormBorderStyle = FormBorderStyle.None,
+                };
+                controlParent.Controls.Clear();
+                controlParent.Controls.Add(instance);
+                instance.Show();
+            }
+            else
+            {
+                if (instance.WindowState == FormWindowState.Minimized)
+                {
+                    instance.WindowState = FormWindowState.Normal;
+                }
+                instance.BringToFront();
+            }
+            return instance;
+        }
     }
 }

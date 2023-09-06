@@ -18,7 +18,8 @@ namespace CorazonDeCafeStockManager.App.Views.Product_Form
         string? TipoId { get; set; } 
         int? Stock { get; set; }
         string? Estado { get; set; }
-        
+        Size Size { get; set; }
+
         // Events
         event EventHandler? CancelEvent;
         event EventHandler? SaveEvent;

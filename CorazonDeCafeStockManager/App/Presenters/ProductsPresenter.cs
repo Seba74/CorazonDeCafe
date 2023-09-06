@@ -1,6 +1,5 @@
 ﻿using CorazonDeCafeStockManager.App.Models;
 using CorazonDeCafeStockManager.App.Repositories;
-using CorazonDeCafeStockManager.App.Views.Product_Form;
 using CorazonDeCafeStockManager.App.Views.Products_Form;
 using Timer = System.Timers.Timer;
 
@@ -8,9 +7,9 @@ namespace CorazonDeCafeStockManager.App.Presenters
 {
     public class ProductsPresenter
     {
-        public static async Task CreatePresenter(IProductsView view, IProductRepository productRepository)
+        public static async Task CreatePresenter(IProductsView view, IProductRepository productRepository, HomePresenter homePresenter)
         {
-            ProductsPresenter presenter = new(view, productRepository);
+            ProductsPresenter presenter = new(view, productRepository, homePresenter);
             await presenter.LoadAllProducts();
             presenter.view.LoadProducts();
             presenter.view.Show();
@@ -18,13 +17,15 @@ namespace CorazonDeCafeStockManager.App.Presenters
 
         private readonly Timer SearchTimer = new(1500);
         private readonly IProductsView view;
+        private readonly HomePresenter homePresenter;
         private readonly IProductRepository productRepository;
         private IEnumerable<Product>? products;
         private IEnumerable<Product>? productsBackUp;
         private string previousSearchText = string.Empty;
-        public ProductsPresenter(IProductsView view, IProductRepository productRepository)
+        public ProductsPresenter(IProductsView view, IProductRepository productRepository, HomePresenter homePresenter)
         {
             this.view = view;
+            this.homePresenter = homePresenter;
             this.productRepository = productRepository;
             this.view.SearchEvent += SearchEvent!;
             this.view.FilterEvent += FilterEvent!;
@@ -98,8 +99,8 @@ namespace CorazonDeCafeStockManager.App.Presenters
         }
         private void AddEvent(object sender, EventArgs e)
         {
-            IProductView productView = new Product_Form();
-            ProductPresenter.CreatePresenter(productView, productRepository);
+            this.view.Close();
+            this.homePresenter.ShowProductView();
         }
 
 
