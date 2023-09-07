@@ -33,7 +33,6 @@
             lblSubtitle = new Label();
             panel1 = new Panel();
             closeBtn = new PictureBox();
-            mySqlCommand1 = new MySql.Data.MySqlClient.MySqlCommand();
             btnLogin = new ButtonCustom();
             ipUser = new utils.Custom.TextBox.TextBoxCustom();
             ipPassword = new utils.Custom.TextBox.TextBoxCustom();
@@ -93,14 +92,6 @@
             closeBtn.Size = new Size(34, 28);
             closeBtn.TabIndex = 0;
             closeBtn.TabStop = false;
-            closeBtn.Click += CloseBtn_Click;
-            // 
-            // mySqlCommand1
-            // 
-            mySqlCommand1.CacheAge = 0;
-            mySqlCommand1.Connection = null;
-            mySqlCommand1.EnableCaching = false;
-            mySqlCommand1.Transaction = null;
             // 
             // btnLogin
             // 
@@ -235,9 +226,6 @@
         private Label lblTitle;
         private Label lblSubtitle;
         private Panel panel1;
-        private Panel panel2;
-        private MySql.Data.MySqlClient.MySqlCommand mySqlCommand1;
-        private Panel panel3;
         private PictureBox closeBtn;
         private ButtonCustom btnLogin;
 

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace CorazonDeCafeStockManager.App.Views.Home_Form
+﻿namespace CorazonDeCafeStockManager.App.Views.Home_Form
 {
     public interface IHomeView
     {
@@ -20,7 +14,6 @@ namespace CorazonDeCafeStockManager.App.Views.Home_Form
 
         event EventHandler? ShowProductsView;
         event EventHandler? CloseView;
-        event EventHandler? ShowProducView;
 
         void RemoveBackgroundBtns();
         void Show();

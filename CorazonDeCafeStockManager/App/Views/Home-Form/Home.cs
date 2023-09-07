@@ -1,15 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using CorazonDeCafeStockManager.App.Common;
-using CorazonDeCafeStockManager.App.Views.Home_Form;
-using MySqlX.XDevAPI;
+﻿using CorazonDeCafeStockManager.App.Views.Home_Form;
 
 namespace CorazonDeCafeStockManager
 {
@@ -34,11 +23,30 @@ namespace CorazonDeCafeStockManager
         {
             btnProducts.Click += delegate { ShowProductsView?.Invoke(this, EventArgs.Empty); };
             btnHome.Click += delegate { CloseView?.Invoke(this, EventArgs.Empty); };
-        }
 
-        private void BtnClose_Click(object sender, EventArgs e)
-        {
-            Close();
+            btnClose.Click += delegate { Close(); };
+            btnMin.Click += delegate { WindowState = FormWindowState.Minimized; };
+            btnNormal.Click += delegate
+            {
+                WindowState = FormWindowState.Normal;
+                btnNormal.Visible = false;
+                btnMax.Visible = true;
+            };
+            btnMax.Click += delegate
+            {
+                WindowState = FormWindowState.Maximized;
+                btnNormal.Visible = true;
+                btnMax.Visible = false;
+            };
+
+            btnHome.Click += delegate
+            {
+                RemoveBackgroundBtns();
+                btnHome.BackColor = Color.FromArgb(255, 219, 197);
+
+                IconHeader.BackgroundImage = Properties.Resources.home;
+                TitleHeader.Text = "INICIO";
+            };
         }
 
         public void RemoveBackgroundBtns()
@@ -50,35 +58,7 @@ namespace CorazonDeCafeStockManager
             btnStats.BackColor = Color.Transparent;
         }
 
-        private void BtnMin_Click(object sender, EventArgs e)
-        {
-            WindowState = FormWindowState.Minimized;
-        }
-
-        private void BtnNormal_Click(object sender, EventArgs e)
-        {
-            WindowState = FormWindowState.Normal;
-            btnNormal.Visible = false;
-            btnMax.Visible = true;
-        }
-        private void BtnMax_Click(object sender, EventArgs e)
-        {
-            WindowState = FormWindowState.Maximized;
-            btnNormal.Visible = true;
-            btnMax.Visible = false;
-        }
-
-        private void BtnHome_Click(object sender, EventArgs e)
-        {
-            RemoveBackgroundBtns();
-            HomeButton.BackColor = Color.FromArgb(255, 219, 197);
-
-            IconHeader.BackgroundImage = Properties.Resources.home;
-            TitleHeader.Text = "INICIO";
-        }
-
         public event EventHandler? ShowProductsView;
-        public event EventHandler? ShowProducView;
         public event EventHandler? CloseView;
     }
 }

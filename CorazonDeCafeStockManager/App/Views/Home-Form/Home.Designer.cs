@@ -165,7 +165,6 @@
             btnHome.TextAlign = ContentAlignment.MiddleLeft;
             btnHome.TextColor = Color.Black;
             btnHome.UseVisualStyleBackColor = false;
-            btnHome.Click += BtnHome_Click;
             // 
             // btnProducts
             // 
@@ -283,7 +282,6 @@
             btnMin.Size = new Size(15, 15);
             btnMin.TabIndex = 21;
             btnMin.TabStop = false;
-            btnMin.Click += BtnMin_Click;
             // 
             // btnNormal
             // 
@@ -298,7 +296,6 @@
             btnNormal.TabIndex = 20;
             btnNormal.TabStop = false;
             btnNormal.Visible = false;
-            btnNormal.Click += BtnNormal_Click;
             // 
             // btnClose
             // 
@@ -313,7 +310,6 @@
             btnClose.Size = new Size(15, 15);
             btnClose.TabIndex = 18;
             btnClose.TabStop = false;
-            btnClose.Click += BtnClose_Click;
             // 
             // btnMax
             // 
@@ -327,7 +323,6 @@
             btnMax.Size = new Size(14, 14);
             btnMax.TabIndex = 19;
             btnMax.TabStop = false;
-            btnMax.Click += BtnMax_Click;
             // 
             // viewPanel
             // 

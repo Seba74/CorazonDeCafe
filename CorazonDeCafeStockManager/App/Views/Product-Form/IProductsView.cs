@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using CorazonDeCafeStockManager.App.Models;
-
-namespace CorazonDeCafeStockManager.App.Views.Product_Form
+﻿namespace CorazonDeCafeStockManager.App.Views.Product_Form
 {
     public interface IProductView
     {
@@ -14,15 +7,20 @@ namespace CorazonDeCafeStockManager.App.Views.Product_Form
         string? Nombre { get; set; }
         string? Imagen { get; set; }
         float Precio { get; set; }
-        string? CategoriaId { get; set; }
-        string? TipoId { get; set; } 
+        string? Categoria { get; set; }
+        string? Tipo { get; set; } 
         int? Stock { get; set; }
         string? Estado { get; set; }
+        PictureBox? ShowImage { get; set; }
+        PictureBox? BgImagen { get; set; }
+        ButtonCustom? BtnAddImage { get; set; }
         
         // Events
         event EventHandler? CancelEvent;
+        event EventHandler? AddImageEvent;
+        event KeyPressEventHandler? ValidateEvent;
         event EventHandler? SaveEvent;
-
+        
         // Methods
         void ShowError(string message);
         void Show();

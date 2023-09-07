@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using CorazonDeCafeStockManager.App.Repositories;
-using CorazonDeCafeStockManager.App.Common;
-using CorazonDeCafeStockManager.App.Views.Home_Form;
+﻿using CorazonDeCafeStockManager.App.Repositories;
 using CorazonDeCafeStockManager.App.Views.Login_Form;
 
 namespace CorazonDeCafeStockManager.App.Presenters

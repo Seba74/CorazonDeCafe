@@ -388,7 +388,6 @@
         #endregion
 
         private DataGridView productList;
-        private TextBox textBox1;
         private PictureBox pictureBox1;
         private PictureBox pictureBox2;
         private PictureBox pictureBox3;
