@@ -4,17 +4,16 @@
     {
 
         // Properties 
-        string? Nombre { get; set; }
-        string? Imagen { get; set; }
-        float Precio { get; set; }
-        string? Categoria { get; set; }
-        string? Tipo { get; set; } 
-        int? Stock { get; set; }
-        string? Estado { get; set; }
+        string? ProductName { get; set; }
+        string? ProductImagen { get; set; }
+        float ProductPrice { get; set; }
+        string? ProductCategory { get; set; }
+        string? ProductType { get; set; } 
+        int ProductStock { get; set; }
+        string? ProductActive { get; set; }
         PictureBox? ShowImage { get; set; }
         PictureBox? BgImagen { get; set; }
         ButtonCustom? BtnAddImage { get; set; }
-        
         // Events
         event EventHandler? CancelEvent;
         event EventHandler? AddImageEvent;

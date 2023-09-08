@@ -1,36 +1,72 @@
-﻿using CorazonDeCafeStockManager.App.Models;
+﻿using CorazonDeCafeStockManager.App.Common;
+using CorazonDeCafeStockManager.App.Models;
 using CorazonDeCafeStockManager.App.Repositories;
 using CorazonDeCafeStockManager.App.Views.Product_Form;
 using CorazonDeCafeStockManager.utils.Custom.TextBox;
+using System.Windows.Forms;
+using Type = CorazonDeCafeStockManager.App.Models.Type;
 
 namespace CorazonDeCafeStockManager.App.Presenters
 {
     public class ProductPresenter
     {
-        public static void CreatePresenter(IProductView view, IProductRepository productRepository)
+        public static void CreatePresenter(IProductView view, ProductsPresenter productsPresenter, IProductRepository productRepository)
         {
-            ProductPresenter presenter = new(view, productRepository);
+            ProductPresenter presenter = new(view, productsPresenter, productRepository);
             presenter.view.Show();
         }
 
         private readonly IProductView view;
+        private readonly ProductsPresenter productsPresenter;
         private readonly IProductRepository productRepository;
-        private readonly IEnumerable<Categoria>? categorias;
+        private readonly IEnumerable<Category>? categories;
+        private readonly IEnumerable<Type>? types;
+        private string? imageName;
+        private string? filePath;
+        private string? fileSavePath;
 
-        public ProductPresenter(IProductView view, IProductRepository productRepository)
+        public ProductPresenter(IProductView view, ProductsPresenter productsPresenter,IProductRepository productRepository)
         {
             this.view = view;
+            this.productsPresenter = productsPresenter;
             this.productRepository = productRepository;
+
             this.view.ValidateEvent += ValidateEvent!;
             this.view.AddImageEvent += AddImageEvent!;
             this.view.SaveEvent += SaveEvent!;
+
+            types = LocalStorage.Types;
+            categories = LocalStorage.Categories;
+
         }
-        private void SaveEvent(object sender, EventArgs e)
+        private async void SaveEvent(object sender, EventArgs e)
         {
-            if (!ValidateData()) {
+            if (!ValidateData())
+            {
                 return;
             }
 
+            int categoryId = categories!.First(c => c.Name == view.ProductCategory).Id;
+            int typeId = types!.First(t => t.Name == view.ProductType).Id;
+            int active = view.ProductActive == "Activo" ? 1 : 0;
+
+            Product product = new()
+            {
+                Name = view.ProductName!,
+                Price = view.ProductPrice,
+                Stock = view.ProductStock,
+                CategoryId = categoryId,
+                TypeId = typeId,
+                Active = active,
+                Status = 1,
+                Imagen = imageName!
+            };
+            await productRepository.AddProduct(product);
+
+            File.Copy(filePath!, fileSavePath!);
+            await productsPresenter.LoadAllProducts();
+            productsPresenter.ShowView();
+            view.Close();
         }
 
         private bool ValidateData()
@@ -38,41 +74,41 @@ namespace CorazonDeCafeStockManager.App.Presenters
             bool isValid = true;
 
             if ((string.IsNullOrWhiteSpace(view.BtnAddImage?.Text) || view.BtnAddImage.Text == "Seleccione una imagen") &&
-                string.IsNullOrWhiteSpace(view.Nombre) &&
-                view.Precio == 0 &&
-                view.Stock < 0 &&
-                view.Categoria == "Categoría" &&
-                view.Tipo == "Tipo")
+                string.IsNullOrWhiteSpace(view.ProductName) &&
+                view.ProductPrice == 0 &&
+                view.ProductStock < 0 &&
+                view.ProductCategory == "Categoría" &&
+                view.ProductType == "Tipo")
             {
                 view.ShowError("Debe completar todos los campos");
                 return isValid = false;
             }
 
-            if (string.IsNullOrWhiteSpace(view.Nombre))
+            if (string.IsNullOrWhiteSpace(view.ProductName))
             {
                 view.ShowError("Debe ingresar un nombre");
                 return isValid = false;
             }
 
-            if (view.Precio == 0)
+            if (view.ProductPrice == 0)
             {
                 view.ShowError("Debe ingresar un precio");
                 return isValid = false;
             }
 
-            if (view.Categoria == "Categoría")
+            if (view.ProductCategory == "Categoría")
             {
                 view.ShowError("Debe ingresar una categoría");
                 return isValid = false;
             }
 
-            if (view.Tipo == "Tipo")
+            if (view.ProductType == "Tipo")
             {
                 view.ShowError("Debe ingresar un tipo");
                 return isValid = false;
             }
 
-            if (view.Stock < 0)
+            if (view.ProductStock < 0)
             {
                 view.ShowError("Debe ingresar un stock válido");
                 return isValid = false;
@@ -143,26 +179,18 @@ namespace CorazonDeCafeStockManager.App.Presenters
 
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
-                // get the path of the selected file
-                string filePath = openFileDialog.FileName;
-                // get the file name
+                string randomFileName = Guid.NewGuid().ToString() + ".png";
+                string fileSavePath = Path.Combine("..", "..", "..", "products", randomFileName);
                 string fileName = openFileDialog.SafeFileName;
-                // get the file extension
-                string fileExtension = openFileDialog.SafeFileName.Split('.').Last();
-                // get the file size
-                long fileSize = new System.IO.FileInfo(filePath).Length;
-                // get the file bytes
-                byte[] fileBytes = System.IO.File.ReadAllBytes(filePath);
-                // get the file base64 string
-                string fileBase64 = Convert.ToBase64String(fileBytes);
-                // get the file base64 string with the data url format
-                string fileBase64DataUrl = $"data:image/{fileExtension};base64,{fileBase64}";
-                // set the image
+                this.fileSavePath = fileSavePath;
+                this.filePath = openFileDialog.FileName;
+            
+                imageName = randomFileName;
+
                 view.BgImagen!.Visible = true;
                 view.ShowImage!.Image = Image.FromFile(filePath);
                 view.BtnAddImage!.Text = $"Image: {fileName}";
             }
-
         }
     }
 }

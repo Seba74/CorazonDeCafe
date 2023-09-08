@@ -7,11 +7,9 @@ public partial class Role
 {
     public int Id { get; set; }
 
-    public string Nombre { get; set; } = null!;
+    public string Name { get; set; } = null!;
 
-    public string Descripcion { get; set; } = null!;
+    public int Status { get; set; }
 
-    public string Activo { get; set; } = null!;
-
-    public virtual ICollection<Usuario> Usuarios { get; set; } = new List<Usuario>();
+    public virtual ICollection<User> Users { get; set; } = new List<User>();
 }

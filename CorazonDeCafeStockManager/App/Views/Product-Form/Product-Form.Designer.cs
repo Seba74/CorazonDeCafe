@@ -36,8 +36,8 @@
             btnDelete = new ButtonCustom();
             barHPanel = new Panel();
             ipName = new utils.Custom.TextBox.TextBoxCustom();
-            ipStock = new utils.Custom.TextBox.TextBoxCustom();
             ipPrice = new utils.Custom.TextBox.TextBoxCustom();
+            ipStock = new utils.Custom.TextBox.TextBoxCustom();
             ipCategory = new ComboBoxCustom();
             ipType = new ComboBoxCustom();
             btnAddImage = new ButtonCustom();
@@ -187,6 +187,29 @@
             ipName.Texts = "";
             ipName.UnderlinedStyle = false;
             // 
+            // ipPrice
+            // 
+            ipPrice.BackColor = Color.FromArgb(255, 219, 197);
+            ipPrice.BorderColor = Color.FromArgb(255, 219, 197);
+            ipPrice.BorderFocusColor = Color.FromArgb(146, 90, 57);
+            ipPrice.BorderRadius = 5;
+            ipPrice.BorderSize = 2;
+            ipPrice.Cursor = Cursors.Hand;
+            ipPrice.Font = new Font("Poppins Light", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            ipPrice.Location = new Point(294, 250);
+            ipPrice.MaximumSize = new Size(650, 37);
+            ipPrice.MinimumSize = new Size(100, 34);
+            ipPrice.Multiline = false;
+            ipPrice.Name = "ipPrice";
+            ipPrice.Padding = new Padding(10, 6, 4, 2);
+            ipPrice.PasswordChar = false;
+            ipPrice.PlaceholderColor = Color.FromArgb(146, 90, 57);
+            ipPrice.PlaceholderText = "3333.33";
+            ipPrice.Size = new Size(160, 34);
+            ipPrice.TabIndex = 28;
+            ipPrice.Texts = "";
+            ipPrice.UnderlinedStyle = false;
+            // 
             // ipStock
             // 
             ipStock.BackColor = Color.FromArgb(255, 219, 197);
@@ -205,33 +228,10 @@
             ipStock.PasswordChar = false;
             ipStock.PlaceholderColor = Color.FromArgb(146, 90, 57);
             ipStock.PlaceholderText = "5";
-            ipStock.Size = new Size(121, 34);
-            ipStock.TabIndex = 28;
+            ipStock.Size = new Size(122, 34);
+            ipStock.TabIndex = 33;
             ipStock.Texts = "";
             ipStock.UnderlinedStyle = false;
-            // 
-            // ipPrice
-            // 
-            ipPrice.BackColor = Color.FromArgb(255, 219, 197);
-            ipPrice.BorderColor = Color.FromArgb(255, 219, 197);
-            ipPrice.BorderFocusColor = Color.FromArgb(146, 90, 57);
-            ipPrice.BorderRadius = 5;
-            ipPrice.BorderSize = 2;
-            ipPrice.Cursor = Cursors.Hand;
-            ipPrice.Font = new Font("Poppins Light", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            ipPrice.Location = new Point(294, 248);
-            ipPrice.MaximumSize = new Size(650, 37);
-            ipPrice.MinimumSize = new Size(100, 34);
-            ipPrice.Multiline = false;
-            ipPrice.Name = "ipPrice";
-            ipPrice.Padding = new Padding(10, 6, 4, 2);
-            ipPrice.PasswordChar = false;
-            ipPrice.PlaceholderColor = Color.FromArgb(146, 90, 57);
-            ipPrice.PlaceholderText = "3333.33";
-            ipPrice.Size = new Size(160, 34);
-            ipPrice.TabIndex = 33;
-            ipPrice.Texts = "";
-            ipPrice.UnderlinedStyle = false;
             // 
             // ipCategory
             // 
@@ -450,8 +450,8 @@
             Controls.Add(btnAddImage);
             Controls.Add(ipType);
             Controls.Add(ipCategory);
-            Controls.Add(ipPrice);
             Controls.Add(ipStock);
+            Controls.Add(ipPrice);
             Controls.Add(ipName);
             Controls.Add(barHPanel);
             Controls.Add(btnDelete);
@@ -478,8 +478,8 @@
         private ButtonCustom btnDelete;
         private Panel barHPanel;
         private utils.Custom.TextBox.TextBoxCustom ipName;
-        private utils.Custom.TextBox.TextBoxCustom ipStock;
         private utils.Custom.TextBox.TextBoxCustom ipPrice;
+        private utils.Custom.TextBox.TextBoxCustom ipStock;
         private ComboBoxCustom ipCategory;
         private ComboBoxCustom ipType;
         private ButtonCustom btnAddImage;

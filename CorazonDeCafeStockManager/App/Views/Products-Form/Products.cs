@@ -75,9 +75,9 @@ namespace CorazonDeCafeStockManager
 
                     foreach (Product product in ProductsList!)
                     {
-                        product.Estado = product.Estado == "SI" ? "Activo" : "Inactivo";
+                        string active = product.Active == 1 ? "Activo" : "Inactivo";
 
-                        productList.Rows.Add(product.Id, product.Nombre, product.Precio, product.Stock, product.Tipo.Nombre, product.Categoria.Nombre, product.Estado);
+                        productList.Rows.Add(product.Id, product.Name, product.Price, product.Stock, product.Type.Name, product.Category.Name, active);
                     }
                 }));
             }
@@ -88,9 +88,9 @@ namespace CorazonDeCafeStockManager
 
                 foreach (Product product in ProductsList!)
                 {
-                    product.Estado = product.Estado == "SI" ? "Activo" : "Inactivo";
+                    string active = product.Active == 1 ? "Activo" : "Inactivo";
 
-                    productList.Rows.Add(product.Id, product.Nombre, product.Precio, product.Stock, product.Tipo.Nombre, product.Categoria.Nombre, product.Estado);
+                    productList.Rows.Add(product.Id, product.Name, product.Price, product.Stock, product.Type.Name, product.Category.Name, active);
                 }
             }
         }

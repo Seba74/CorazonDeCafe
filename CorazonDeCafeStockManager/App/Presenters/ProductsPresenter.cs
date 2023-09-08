@@ -33,11 +33,17 @@ namespace CorazonDeCafeStockManager.App.Presenters
 
             SearchTimer.Elapsed += SearchProducts!;
         }
-        private async Task LoadAllProducts()
+        public async Task LoadAllProducts()
         {
             products = await productRepository.GetAllProducts();
             productsBackUp = products;
             view.ProductsList = products;
+            view.LoadProducts();
+        }
+
+        public void ShowView()
+        {
+            view!.Show();
         }
 
         private void SearchProducts(object sender, EventArgs e)
@@ -45,7 +51,7 @@ namespace CorazonDeCafeStockManager.App.Presenters
             SearchTimer.Stop();
             if (!string.IsNullOrEmpty(view.Search))
             {
-                products = products?.Where(p => p.Nombre.ToLowerInvariant().Contains(view.Search!.ToLowerInvariant()));
+                products = products?.Where(p => p.Name.ToLowerInvariant().Contains(view.Search!.ToLowerInvariant()));
             }
             else
             {
@@ -85,12 +91,12 @@ namespace CorazonDeCafeStockManager.App.Presenters
             view.Search = string.Empty;
             if (view.SelectCategory != "Categoría")
             {
-                productsToFilter = productsToFilter?.Where(p => p.Categoria.Nombre == view.SelectCategory);
+                productsToFilter = productsToFilter?.Where(p => p.Category.Name == view.SelectCategory);
             }
 
             if (view.SelectType != "Tipo")
             {
-                productsToFilter = productsToFilter?.Where(p => p.Tipo.Nombre == view.SelectType);
+                productsToFilter = productsToFilter?.Where(p => p.Type.Name == view.SelectType);
             }
 
             view.ProductsList = productsToFilter;
@@ -99,12 +105,7 @@ namespace CorazonDeCafeStockManager.App.Presenters
         private void AddEvent(object sender, EventArgs e)
         {
             IProductView productView = new Product_Form();
-            ProductPresenter.CreatePresenter(productView, productRepository);
+            ProductPresenter.CreatePresenter(productView, this, productRepository);
         }
-
-
-
-
-
     }
 }

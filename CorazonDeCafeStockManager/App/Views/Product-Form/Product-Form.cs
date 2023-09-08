@@ -4,38 +4,38 @@ namespace CorazonDeCafeStockManager
 {
     public partial class Product_Form : Form, IProductView
     {
-        public string? Nombre
-        {
+
+        public new string? ProductName {
             get => ipName.Texts;
             set => ipName.Texts = value!;
         }
-        public string? Imagen { get; set; }
-        public float Precio
+        public string? ProductImagen { get; set; }
+        public float ProductPrice
         {
             get
             {
-                if (float.TryParse(ipPrice.Texts, out float precio))
-                    return precio;
+                if (float.TryParse(ipPrice.Texts, out float price))
+                    return price;
                 return 0; // Valor predeterminado en caso de entrada no válida.
             }
             set => ipPrice.Texts = value.ToString();
         }
-        public string? Estado
+        public string? ProductActive
         {
             get => ipState.Texts;
             set => ipState.Texts = value!;
         }
-        public string? Categoria
+        public string? ProductCategory
         {
             get => ipCategory.Texts;
             set => ipCategory.Texts = value!;
         }
-        public string? Tipo
+        public string? ProductType
         {
             get => ipType.Texts;
             set => ipType.Texts = value!;
         }
-        public int? Stock
+        public int ProductStock
         {
             get
             {
@@ -43,7 +43,7 @@ namespace CorazonDeCafeStockManager
                     return stock;
                 return -1; // Valor predeterminado en caso de entrada no válida.
             }
-            set => ipStock.Texts = value.ToString()!;
+            set => ipStock.Texts = value.ToString();
         }
 
         public PictureBox? ShowImage { get => showImage; set => showImage = value!; }
@@ -68,8 +68,8 @@ namespace CorazonDeCafeStockManager
             ipCategory.OnSelectedIndexChanged += delegate { ipCategory.ForeColor = Color.Black; };
             ipType.OnSelectedIndexChanged += delegate { ipType.ForeColor = Color.Black; };
             ipName.KeyPress += (sender, e) => ValidateEvent?.Invoke(sender, e);
-            ipPrice.KeyPress += (sender, e) => ValidateEvent?.Invoke(sender, e);
             ipStock.KeyPress += (sender, e) => ValidateEvent?.Invoke(sender, e);
+            ipPrice.KeyPress += (sender, e) => ValidateEvent?.Invoke(sender, e);
         }
         public event KeyPressEventHandler? ValidateEvent;
         public event EventHandler? CancelEvent;
