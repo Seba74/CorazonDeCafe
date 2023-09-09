@@ -1,29 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using CorazonDeCafeStockManager.App.Models;
-
-namespace CorazonDeCafeStockManager.App.Views.Product_Form
+﻿namespace CorazonDeCafeStockManager.App.Views.Product_Form
 {
     public interface IProductView
     {
 
         // Properties 
-        string? Nombre { get; set; }
-        string? Imagen { get; set; }
-        float Precio { get; set; }
-        string? CategoriaId { get; set; }
-        string? TipoId { get; set; } 
-        int? Stock { get; set; }
-        string? Estado { get; set; }
-        Size Size { get; set; }
-
+        int? ProductId { get; set; }
+        string? ProductName { get; set; }
+        string? ProductImagen { get; set; }
+        double ProductPrice { get; set; }
+        string? ProductCategory { get; set; }
+        string? ProductType { get; set; } 
+        int ProductStock { get; set; }
+        string? ProductActive { get; set; }
+        PictureBox? ShowImage { get; set; }
+        PictureBox? BgImagen { get; set; }
+        ButtonCustom? BtnAddImage { get; set; }
         // Events
         event EventHandler? CancelEvent;
+        event EventHandler? AddImageEvent;
+        event KeyPressEventHandler? ValidateEvent;
         event EventHandler? SaveEvent;
-
+        
         // Methods
         void ShowError(string message);
         void Show();

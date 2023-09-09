@@ -1,6 +1,6 @@
 using CorazonDeCafeStockManager.App.Models;
 using Microsoft.EntityFrameworkCore;
-using System.Text;
+using Type = CorazonDeCafeStockManager.App.Models.Type;
 
 namespace CorazonDeCafeStockManager.App.Repositories._Repository;
 
@@ -14,51 +14,51 @@ public class TypeRepository : ITypeRepository
         _context = context;
     }
 
-    public void AddType(Tipo type)
+    public void AddType(Type type)
     {
-        _context.Tipos!.Add(type);
+        _context.Types!.Add(type);
     }
 
-    public void AddTypey(Tipo type)
+    public void AddTypey(Type type)
     {
         throw new NotImplementedException();
     }
 
-    public async void DeleteType(Tipo type)
+    public async void DeleteType(Type type)
     {
-        type.Activo = "NO";
-        _context.Tipos!.Update(type);
+        type.Status = 0;
+        _context.Types!.Update(type);
         await _context.SaveChangesAsync();
     }
 
-    public void DeleteTypey(Tipo type)
+    public void DeleteTypey(Type type)
     {
         throw new NotImplementedException();
     }
 
-    public async Task<IEnumerable<Tipo>> GetAllTypes()
+    public async Task<IEnumerable<Type>> GetAllTypes()
     {
-        IEnumerable<Tipo> categories = await _context.Tipos!.ToListAsync();
+        IEnumerable<Type> categories = await _context.Types!.ToListAsync();
         return categories;
     }
 
-    public Tipo GetTypeById(int id)
+    public Type GetTypeById(int id)
     {
-        return _context.Tipos!.First(c => c.Id == id);
+        return _context.Types!.First(c => c.Id == id);
     }
 
-    public Tipo GetTypeyById(int id)
+    public Type GetTypeyById(int id)
     {
         throw new NotImplementedException();
     }
 
-    public async void UpdateType(Tipo type)
+    public async void UpdateType(Type type)
     {
-        _context.Tipos!.Update(type);
+        _context.Types!.Update(type);
         await _context.SaveChangesAsync();
     }
 
-    public void UpdateTypey(Tipo type)
+    public void UpdateTypey(Type type)
     {
         throw new NotImplementedException();
     }

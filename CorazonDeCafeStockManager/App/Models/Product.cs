@@ -7,23 +7,25 @@ public partial class Product
 {
     public int Id { get; set; }
 
-    public string Nombre { get; set; } = null!;
+    public string Name { get; set; } = null!;
 
-    public float Precio { get; set; }
+    public double Price { get; set; }
 
     public string Imagen { get; set; } = null!;
 
-    public int CategoriaId { get; set; }
+    public int Stock { get; set; }
 
-    public int TipoId { get; set; }
+    public int CategoryId { get; set; }
 
-    public string Estado { get; set; } = null!;
+    public int TypeId { get; set; }
 
-    public int? Stock { get; set; }
+    public int Status { get; set; }
 
-    public virtual ICollection<CartProducto> CartProductos { get; set; } = new List<CartProducto>();
+    public int Active { get; set; }
 
-    public virtual Categoria Categoria { get; set; } = null!;
+    public virtual Category Category { get; set; } = null!;
 
-    public virtual Tipo Tipo { get; set; } = null!;
+    public virtual ICollection<OrderProduct> OrderProducts { get; set; } = new List<OrderProduct>();
+
+    public virtual Type Type { get; set; } = null!;
 }

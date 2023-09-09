@@ -1,52 +1,86 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using CorazonDeCafeStockManager.App.Views.Product_Form;
+﻿using CorazonDeCafeStockManager.App.Views.Product_Form;
 
 namespace CorazonDeCafeStockManager
 {
     public partial class Product_Form : Form, IProductView
     {
+        public int? ProductId { get; set; }
+        public new string? ProductName
+        {
+            get => ipName.Texts;
+            set => ipName.Texts = value!;
+        }
+        public string? ProductImagen { get; set; }
+        public double ProductPrice
+        {
+            get
+            {
+                if (double.TryParse(ipPrice.Texts, out double price))
+                    return price;
+                return 0;
+            }
+            set => ipPrice.Texts = value.ToString();
+        }
+        public string? ProductActive
+        {
+            get => ipState.Texts;
+            set => ipState.Texts = value!;
+        }
+        public string? ProductCategory
+        {
+            get => ipCategory.Texts;
+            set => ipCategory.Texts = value!;
+        }
+        public string? ProductType
+        {
+            get => ipType.Texts;
+            set => ipType.Texts = value!;
+        }
+        public int ProductStock
+        {
+            get
+            {
+                if (int.TryParse(ipStock.Texts, out int stock))
+                    return stock;
+                return -1;
+            }
+            set => ipStock.Texts = value.ToString();
+        }
+
+        public PictureBox? ShowImage { get => showImage; set => showImage = value!; }
+        public PictureBox? BgImagen { get => bgImagen; set => bgImagen = value!; }
+        public ButtonCustom? BtnAddImage { get => btnAddImage; set => BtnAddImage = value!; }
+
         public Product_Form()
         {
             InitializeComponent();
             AssociateEvents();
-            LoadFonts loadFonts = new();
+
+            bgImagen.Controls.Add(showImage);
+            showImage.Location = new Point(0, 0);
+            showImage.BackColor = Color.Transparent;
         }
+
         private void AssociateEvents()
         {
-            btnSave.Click += delegate {SaveEvent?.Invoke(this, EventArgs.Empty);
-            };
-            btnCancel.Click += delegate {CancelEvent?.Invoke(this, EventArgs.Empty);
-            };
-
+            btnSave.Click += delegate { SaveEvent?.Invoke(this, EventArgs.Empty); };
+            btnCancel.Click += delegate { CancelEvent?.Invoke(this, EventArgs.Empty); };
+            btnGoBack.Click += delegate { CancelEvent?.Invoke(this, EventArgs.Empty); };
+            btnAddImage.Click += delegate { AddImageEvent?.Invoke(this, EventArgs.Empty); };
+            ipCategory.OnSelectedIndexChanged += delegate { ipCategory.ForeColor = Color.Black; };
+            ipType.OnSelectedIndexChanged += delegate { ipType.ForeColor = Color.Black; };
+            ipName.KeyPress += (sender, e) => ValidateEvent?.Invoke(sender, e);
+            ipStock.KeyPress += (sender, e) => ValidateEvent?.Invoke(sender, e);
+            ipPrice.KeyPress += (sender, e) => ValidateEvent?.Invoke(sender, e);
         }
-
-        public string? Nombre { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public string? Imagen { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public float Precio { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public string? CategoriaId { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public string? TipoId { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public int? Stock { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public string? Estado { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-
+        public event KeyPressEventHandler? ValidateEvent;
         public event EventHandler? CancelEvent;
+        public event EventHandler? AddImageEvent;
         public event EventHandler? SaveEvent;
 
         public void ShowError(string message)
         {
-            throw new NotImplementedException();
-        }
-
-        private void buttonCustom1_Click(object sender, EventArgs e)
-        {
-
+            MessageBox.Show(message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
         private static Product_Form? instance;

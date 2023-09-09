@@ -3,15 +3,13 @@ using System.Collections.Generic;
 
 namespace CorazonDeCafeStockManager.App.Models;
 
-public partial class Tipo
+public partial class Category
 {
     public int Id { get; set; }
 
-    public string Nombre { get; set; } = null!;
+    public string Name { get; set; } = null!;
 
-    public string Descripcion { get; set; } = null!;
-
-    public string Activo { get; set; } = null!;
+    public int Status { get; set; }
 
     public virtual ICollection<Product> Products { get; set; } = new List<Product>();
 }

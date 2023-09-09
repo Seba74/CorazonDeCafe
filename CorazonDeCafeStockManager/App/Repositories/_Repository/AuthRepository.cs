@@ -1,7 +1,6 @@
 using CorazonDeCafeStockManager.App.Models;
 using CorazonDeCafeStockManager.App.Common;
 using Microsoft.EntityFrameworkCore;
-using System.Text;
 
 namespace CorazonDeCafeStockManager.App.Repositories._Repository;
 
@@ -14,25 +13,25 @@ public class AuthRepository : IAuthRepository
         _context = context;
     }
 
-    public async Task<bool> Login(string user, string password)
+    public async Task<bool> Login(string username, string password)
     {
         // get user from database
-        Usuario? userFromDb = await _context.Usuarios!.FirstOrDefaultAsync(u => u.Usuario1 == user);
+        User? user = await _context.Users!.FirstOrDefaultAsync(u => u.Username == username);
 
-        if (userFromDb == null)
+        if (user == null)
         {
             return false;
         }
         else
         {
             // check password
-            if (userFromDb.Pass == password)
+            if (user.Pass == password)
             {
-                SessionManager.Name = userFromDb.Nombre;
-                SessionManager.RoleId = userFromDb.RoleId;
-                SessionManager.Username = userFromDb.Usuario1;
+                SessionManager.Name = user.Name;
+                SessionManager.RoleId = user.RoleId;
+                SessionManager.Username = user.Username;
                 SessionManager.IsLoggedIn = true;
-                
+
                 return true;
             }
             else

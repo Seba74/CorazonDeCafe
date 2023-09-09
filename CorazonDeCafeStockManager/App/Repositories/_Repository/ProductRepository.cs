@@ -1,3 +1,4 @@
+using CorazonDeCafeStockManager.App.Common;
 using CorazonDeCafeStockManager.App.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Text;
@@ -16,18 +17,24 @@ public class ProductRepository : IProductRepository
 
     private async Task LoadCategoriesAndTypes()
     {
-        await _context.Categorias!.LoadAsync();
-        await _context.Tipos!.LoadAsync();
+        await _context.Categories!.LoadAsync();
+        await _context.Types!.LoadAsync();
+
+        LocalStorage.Categories = await _context.Categories!.ToListAsync();
+        LocalStorage.Types = await _context.Types!.ToListAsync();
     }
 
-    public void AddProduct(Product product)
+    public async Task AddProduct(Product product)
     {
-        _context.Products!.Add(product);
+        await _context.Products!.AddAsync(product);
+        await _context.SaveChangesAsync();
+
+        LocalStorage.Products!.Add(product);
     }
 
     public async void DeleteProduct(Product product)
     {
-        product.Estado = "NO";
+        product.Status = 0;
         _context.Products!.Update(product);
         await _context.SaveChangesAsync();
     }
@@ -35,26 +42,11 @@ public class ProductRepository : IProductRepository
     // Get All Products
     public async Task<IEnumerable<Product>> GetAllProducts()
     {
-        await LoadCategoriesAndTypes();
-        IEnumerable<Product> products = await _context.Products!.ToListAsync();
-        return products;
+        if (LocalStorage.Categories == null || LocalStorage.Types == null)
+            await LoadCategoriesAndTypes();
+        LocalStorage.Products ??= await _context.Products!.ToListAsync();
+        return LocalStorage.Products;
     }
-
-    public IEnumerable<Product> GetAllProductsByFilter(string filter)
-    {
-        IEnumerable<Product> products = new List<Product>();
-        if (int.TryParse(filter, out int id))
-        {
-            products = _context.Products!.Where(p => p.Id == id).ToList();
-        }
-        else
-        {
-            products = _context.Products!.Where(p => p.Nombre.ToLower().Contains(filter) || p.Tipo.Nombre.ToLower().Contains(filter) || p.Categoria.Nombre.ToLower().Contains(filter)).ToList();
-        }
-
-        return products;
-    }
-
     public Product GetProductById(int id)
     {
         return _context.Products!.First(p => p.Id == id);
@@ -62,12 +54,12 @@ public class ProductRepository : IProductRepository
 
     public IEnumerable<Product> GetProductsByCategory(int categoryId)
     {
-        return _context.Products!.Where(p => p.CategoriaId == categoryId).ToList();
+        return _context.Products!.Where(p => p.CategoryId == categoryId).ToList();
     }
 
     public IEnumerable<Product> GetProductsByType(int typeId)
     {
-        return _context.Products!.Where(p => p.TipoId == typeId).ToList();
+        return _context.Products!.Where(p => p.TypeId == typeId).ToList();
     }
 
     public async void UpdateProduct(Product product)

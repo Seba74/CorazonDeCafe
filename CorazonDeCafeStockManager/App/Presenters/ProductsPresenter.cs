@@ -31,14 +31,21 @@ namespace CorazonDeCafeStockManager.App.Presenters
             this.view.FilterEvent += FilterEvent!;
             this.view.ResetProductsEvent += ResetProductsEvent!;
             this.view.AddEvent += AddEvent!;
+            this.view.EditEvent += EditEvent!;
 
             SearchTimer.Elapsed += SearchProducts!;
         }
-        private async Task LoadAllProducts()
+        public async Task LoadAllProducts()
         {
             products = await productRepository.GetAllProducts();
             productsBackUp = products;
             view.ProductsList = products;
+            view.LoadProducts();
+        }
+
+        public void ShowView()
+        {
+            view!.Show();
         }
 
         private void SearchProducts(object sender, EventArgs e)
@@ -46,7 +53,7 @@ namespace CorazonDeCafeStockManager.App.Presenters
             SearchTimer.Stop();
             if (!string.IsNullOrEmpty(view.Search))
             {
-                products = products?.Where(p => p.Nombre.ToLowerInvariant().Contains(view.Search!.ToLowerInvariant()));
+                products = products?.Where(p => p.Name.ToLowerInvariant().Contains(view.Search!.ToLowerInvariant()));
             }
             else
             {
@@ -86,26 +93,36 @@ namespace CorazonDeCafeStockManager.App.Presenters
             view.Search = string.Empty;
             if (view.SelectCategory != "Categoría")
             {
-                productsToFilter = productsToFilter?.Where(p => p.Categoria.Nombre == view.SelectCategory);
+                productsToFilter = productsToFilter?.Where(p => p.Category.Name == view.SelectCategory);
             }
 
             if (view.SelectType != "Tipo")
             {
-                productsToFilter = productsToFilter?.Where(p => p.Tipo.Nombre == view.SelectType);
+                productsToFilter = productsToFilter?.Where(p => p.Type.Name == view.SelectType);
             }
 
             view.ProductsList = productsToFilter;
             view.LoadProducts();
         }
+      
         private void AddEvent(object sender, EventArgs e)
         {
             this.view.Close();
             this.homePresenter.ShowProductView();
         }
-
-
-
-
-
+      
+        private void EditEvent(object sender, EventArgs e)
+        {
+            Product product = (Product)sender!;
+            IProductView productView = new Product_Form();
+            productView.ProductName = product.Name;
+            productView.ProductCategory = product.Category.Name;
+            productView.ProductType = product.Type.Name;
+            productView.ProductPrice = product.Price;
+            productView.ProductStock = product.Stock;
+            productView.ProductActive = product.Active == 1 ? "Activo" : "Inactivo";
+            productView.ProductId = product.Id;
+            ProductPresenter.CreatePresenter(productView, this, productRepository);
+        }
     }
 }

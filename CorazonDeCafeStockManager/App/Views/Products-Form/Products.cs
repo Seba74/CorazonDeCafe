@@ -1,15 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Drawing.Text;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using CorazonDeCafeStockManager.App.Common;
-using CorazonDeCafeStockManager.App.Models;
+﻿using CorazonDeCafeStockManager.App.Models;
 using CorazonDeCafeStockManager.App.Views.Products_Form;
 
 namespace CorazonDeCafeStockManager
@@ -55,6 +44,16 @@ namespace CorazonDeCafeStockManager
             selectType.OnSelectedIndexChanged += delegate { FilterEvent?.Invoke(this, EventArgs.Empty); };
             reload.Click += delegate { ResetProductsEvent?.Invoke(this, EventArgs.Empty); };
             btnAdd.Click += delegate { AddEvent?.Invoke(this, EventArgs.Empty); };
+            // btnEdit send the selected product to the edit form
+            btnEdit.Click += delegate
+            {
+                if (productList.SelectedRows.Count > 0)
+                {
+                    int id = Convert.ToInt32(productList.SelectedRows[0].Cells[0].Value);
+                    Product product = ProductsList!.Where(p => p.Id == id).FirstOrDefault()!;
+                    EditEvent?.Invoke(product, EventArgs.Empty);
+                }
+            };
         }
 
         public event EventHandler? SearchEvent;
@@ -75,9 +74,9 @@ namespace CorazonDeCafeStockManager
 
                     foreach (Product product in ProductsList!)
                     {
-                        product.Estado = product.Estado == "SI" ? "Activo" : "Inactivo";
+                        string active = product.Active == 1 ? "Activo" : "Inactivo";
 
-                        productList.Rows.Add(product.Id, product.Nombre, product.Precio, product.Stock, product.Tipo.Nombre, product.Categoria.Nombre, product.Estado);
+                        productList.Rows.Add(product.Id, product.Name, product.Price, product.Stock, product.Type.Name, product.Category.Name, active);
                     }
                 }));
             }
@@ -88,9 +87,9 @@ namespace CorazonDeCafeStockManager
 
                 foreach (Product product in ProductsList!)
                 {
-                    product.Estado = product.Estado == "SI" ? "Activo" : "Inactivo";
+                    string active = product.Active == 1 ? "Activo" : "Inactivo";
 
-                    productList.Rows.Add(product.Id, product.Nombre, product.Precio, product.Stock, product.Tipo.Nombre, product.Categoria.Nombre, product.Estado);
+                    productList.Rows.Add(product.Id, product.Name, product.Price, product.Stock, product.Type.Name, product.Category.Name, active);
                 }
             }
         }

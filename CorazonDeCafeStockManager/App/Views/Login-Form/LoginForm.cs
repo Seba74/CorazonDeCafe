@@ -1,5 +1,3 @@
-using System.Drawing.Text;
-using CorazonDeCafeStockManager.App.Common;
 using CorazonDeCafeStockManager.App.Views.Login_Form;
 
 namespace CorazonDeCafeStockManager
@@ -17,7 +15,7 @@ namespace CorazonDeCafeStockManager
             set { ipPassword.Texts = value; }
         }
 
-        public Control Loading { get { return this.loading; } }
+        public Control Loading { get { return loading; } }
 
         public LoginForm()
         {
@@ -26,7 +24,7 @@ namespace CorazonDeCafeStockManager
             AssociateEvents();
             UpdateButtonStyle();
 
-            LoadFonts loadFonts = new LoadFonts();
+            LoadFonts loadFonts = new();
 
             lblTitle.Font = new Font(loadFonts.poppinsFont!.FontFamily, 16);
             ipUser.Font = new Font(loadFonts.poppinsFont!.FontFamily, 12);
@@ -35,13 +33,12 @@ namespace CorazonDeCafeStockManager
             lblError.Font = new Font(loadFonts.poppinsFont!.FontFamily, 10);
             closeBtn.BackColor = Color.Transparent;
         }
-
         public event EventHandler<Tuple<string, string>>? LoginEvent;
-
         private void AssociateEvents()
         {
             ipUser._TextChanged += OnInputChanged!;
             ipPassword._TextChanged += OnInputChanged!;
+            closeBtn.Click += delegate (object? sender, EventArgs e) { Close(); };
             btnLogin.Click += delegate (object? sender, EventArgs e)
             {
                 HideInputs(false);
@@ -63,13 +60,11 @@ namespace CorazonDeCafeStockManager
         {
             if (btnLogin.Enabled)
             {
-                // Botón habilitado: establecer un color de fondo diferente
                 btnLogin.BorderColor = Color.FromArgb(146, 90, 57);
                 btnLogin.ForeColor = Color.FromArgb(146, 90, 57);
             }
             else
             {
-                // Botón deshabilitado: establecer otro color de fondo
                 btnLogin.BorderColor = Color.Gray;
                 btnLogin.TextColor = Color.FromArgb(255, 219, 197);
                 btnLogin.ForeColor = Color.Black;
@@ -77,12 +72,7 @@ namespace CorazonDeCafeStockManager
         }
         private void LoginForm_Load(object sender, EventArgs e)
         {
-            this.ActiveControl = lblTitle;
-        }
-
-        private void CloseBtn_Click(object sender, EventArgs e)
-        {
-            this.Close();
+            ActiveControl = lblTitle;
         }
         private void HideInputs(bool visible)
         {
@@ -109,8 +99,7 @@ namespace CorazonDeCafeStockManager
         {
             loading.Visible = false;
             loading.BackColor = Color.Transparent;
-            string loaderPath = Path.Combine(Application.StartupPath, "utils/Assets", "loader.gif");
-            loaderPath = loaderPath.Replace("bin\\Debug\\net7.0-windows\\", "");
+            string loaderPath = Path.Combine(Application.StartupPath, "..", "..", "..", "utils/Assets", "loader.gif");
             loading.Image = Image.FromFile(loaderPath);
             loading.SizeMode = PictureBoxSizeMode.StretchImage;
         }
