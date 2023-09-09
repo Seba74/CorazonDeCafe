@@ -14,6 +14,8 @@ namespace CorazonDeCafeStockManager.App.Views.Products_Form
         string? Search { get; set; }
         string? SelectCategory { get; set; }
         string? SelectType { get; set; }
+
+        Size Size { get; set; }
         IEnumerable<Product>? ProductsList { get; set; }
         // Events
         event EventHandler? SearchEvent;

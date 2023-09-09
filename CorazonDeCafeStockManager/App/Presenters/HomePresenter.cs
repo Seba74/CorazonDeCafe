@@ -2,6 +2,7 @@
 using CorazonDeCafeStockManager.App.Repositories;
 using CorazonDeCafeStockManager.App.Repositories._Repository;
 using CorazonDeCafeStockManager.App.Views.Home_Form;
+using CorazonDeCafeStockManager.App.Views.Product_Form;
 using CorazonDeCafeStockManager.App.Views.Products_Form;
 
 namespace CorazonDeCafeStockManager.App.Presenters
@@ -11,6 +12,7 @@ namespace CorazonDeCafeStockManager.App.Presenters
         private readonly CorazonDeCafeContext dbContext;
         private readonly IHomeView view;
         private IProductsView? productsView;
+        private IProductView? productView;
 
         public HomePresenter(IHomeView view, CorazonDeCafeContext dbContext)
         {
@@ -39,12 +41,21 @@ namespace CorazonDeCafeStockManager.App.Presenters
             productsView = Products.GetInstance(view.ControlPanel);
 
 
-            await ProductsPresenter.CreatePresenter(productsView, productRepository);
+            await ProductsPresenter.CreatePresenter(productsView, productRepository, this);
+        }
+
+        public void ShowProductView()
+        {
+            IProductRepository productRepository = new ProductRepository(dbContext);
+            productView = Product_Form.GetInstance(view.ControlPanel);
+
+            ProductPresenter.CreatePresenter(productView, productRepository);
         }
 
         private void CloseView(object? sender, EventArgs e)
         {
             productsView?.Close();
+            productView?.Close(); 
         }
     }
 }
