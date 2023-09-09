@@ -4,9 +4,10 @@
     {
 
         // Properties 
+        int? ProductId { get; set; }
         string? ProductName { get; set; }
         string? ProductImagen { get; set; }
-        float ProductPrice { get; set; }
+        double ProductPrice { get; set; }
         string? ProductCategory { get; set; }
         string? ProductType { get; set; } 
         int ProductStock { get; set; }

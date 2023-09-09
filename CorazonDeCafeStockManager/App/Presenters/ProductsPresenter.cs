@@ -30,6 +30,7 @@ namespace CorazonDeCafeStockManager.App.Presenters
             this.view.FilterEvent += FilterEvent!;
             this.view.ResetProductsEvent += ResetProductsEvent!;
             this.view.AddEvent += AddEvent!;
+            this.view.EditEvent += EditEvent!;
 
             SearchTimer.Elapsed += SearchProducts!;
         }
@@ -105,6 +106,19 @@ namespace CorazonDeCafeStockManager.App.Presenters
         private void AddEvent(object sender, EventArgs e)
         {
             IProductView productView = new Product_Form();
+            ProductPresenter.CreatePresenter(productView, this, productRepository);
+        }
+        private void EditEvent(object sender, EventArgs e)
+        {
+            Product product = (Product)sender!;
+            IProductView productView = new Product_Form();
+            productView.ProductName = product.Name;
+            productView.ProductCategory = product.Category.Name;
+            productView.ProductType = product.Type.Name;
+            productView.ProductPrice = product.Price;
+            productView.ProductStock = product.Stock;
+            productView.ProductActive = product.Active == 1 ? "Activo" : "Inactivo";
+            productView.ProductId = product.Id;
             ProductPresenter.CreatePresenter(productView, this, productRepository);
         }
     }

@@ -25,7 +25,7 @@ namespace CorazonDeCafeStockManager.App.Presenters
         private string? filePath;
         private string? fileSavePath;
 
-        public ProductPresenter(IProductView view, ProductsPresenter productsPresenter,IProductRepository productRepository)
+        public ProductPresenter(IProductView view, ProductsPresenter productsPresenter, IProductRepository productRepository)
         {
             this.view = view;
             this.productsPresenter = productsPresenter;
@@ -34,6 +34,7 @@ namespace CorazonDeCafeStockManager.App.Presenters
             this.view.ValidateEvent += ValidateEvent!;
             this.view.AddImageEvent += AddImageEvent!;
             this.view.SaveEvent += SaveEvent!;
+            this.view.CancelEvent += CancelEvent!;
 
             types = LocalStorage.Types;
             categories = LocalStorage.Categories;
@@ -65,6 +66,33 @@ namespace CorazonDeCafeStockManager.App.Presenters
 
             File.Copy(filePath!, fileSavePath!);
             await productsPresenter.LoadAllProducts();
+            productsPresenter.ShowView();
+            view.Close();
+        }
+
+        private void CancelEvent(object sender, EventArgs e)
+        {
+            if(view.ProductId != null)
+            {
+                productsPresenter.ShowView();
+                view.Close();
+                return;
+            }
+
+            if (!string.IsNullOrWhiteSpace(view.ProductName) ||
+                view.ProductPrice != 0 ||
+                view.ProductCategory != "Categoría" ||
+                view.ProductType != "Tipo" ||
+                view.ProductStock != -1 ||
+                view.BtnAddImage!.Text != "Seleccione una imagen")
+            {
+                DialogResult dialogResult = MessageBox.Show("Hay cambios sin guardar, ¿Desea cancelar?", "Cancelar", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (dialogResult == DialogResult.No)
+                {
+                    return;
+                }
+            }
+
             productsPresenter.ShowView();
             view.Close();
         }
@@ -138,7 +166,7 @@ namespace CorazonDeCafeStockManager.App.Presenters
             switch (textBox.Name)
             {
                 case "ipName":
-                    return char.IsLetter(inputChar) || char.IsWhiteSpace(inputChar);
+                    return char.IsLetterOrDigit(inputChar) || char.IsWhiteSpace(inputChar);
 
                 case "ipPrice":
                     return char.IsDigit(inputChar) || IsDecimalSeparator(inputChar);
@@ -184,7 +212,7 @@ namespace CorazonDeCafeStockManager.App.Presenters
                 string fileName = openFileDialog.SafeFileName;
                 this.fileSavePath = fileSavePath;
                 this.filePath = openFileDialog.FileName;
-            
+
                 imageName = randomFileName;
 
                 view.BgImagen!.Visible = true;

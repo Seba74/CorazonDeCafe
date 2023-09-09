@@ -4,19 +4,20 @@ namespace CorazonDeCafeStockManager
 {
     public partial class Product_Form : Form, IProductView
     {
-
-        public new string? ProductName {
+        public int? ProductId { get; set; }
+        public new string? ProductName
+        {
             get => ipName.Texts;
             set => ipName.Texts = value!;
         }
         public string? ProductImagen { get; set; }
-        public float ProductPrice
+        public double ProductPrice
         {
             get
             {
-                if (float.TryParse(ipPrice.Texts, out float price))
+                if (double.TryParse(ipPrice.Texts, out double price))
                     return price;
-                return 0; // Valor predeterminado en caso de entrada no válida.
+                return 0;
             }
             set => ipPrice.Texts = value.ToString();
         }
@@ -41,7 +42,7 @@ namespace CorazonDeCafeStockManager
             {
                 if (int.TryParse(ipStock.Texts, out int stock))
                     return stock;
-                return -1; // Valor predeterminado en caso de entrada no válida.
+                return -1;
             }
             set => ipStock.Texts = value.ToString();
         }
@@ -64,6 +65,7 @@ namespace CorazonDeCafeStockManager
         {
             btnSave.Click += delegate { SaveEvent?.Invoke(this, EventArgs.Empty); };
             btnCancel.Click += delegate { CancelEvent?.Invoke(this, EventArgs.Empty); };
+            btnGoBack.Click += delegate { CancelEvent?.Invoke(this, EventArgs.Empty); };
             btnAddImage.Click += delegate { AddImageEvent?.Invoke(this, EventArgs.Empty); };
             ipCategory.OnSelectedIndexChanged += delegate { ipCategory.ForeColor = Color.Black; };
             ipType.OnSelectedIndexChanged += delegate { ipType.ForeColor = Color.Black; };

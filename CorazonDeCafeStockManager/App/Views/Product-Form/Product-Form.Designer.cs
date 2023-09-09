@@ -71,7 +71,8 @@
             btnGoBack.AccessibleName = "Volver atrás";
             btnGoBack.BackgroundImage = (Image)resources.GetObject("btnGoBack.BackgroundImage");
             btnGoBack.BackgroundImageLayout = ImageLayout.Zoom;
-            btnGoBack.Location = new Point(12, 55);
+            btnGoBack.Cursor = Cursors.Hand;
+            btnGoBack.Location = new Point(15, 55);
             btnGoBack.Name = "btnGoBack";
             btnGoBack.Size = new Size(24, 28);
             btnGoBack.TabIndex = 24;
