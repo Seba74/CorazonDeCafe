@@ -11,8 +11,11 @@ namespace CorazonDeCafeStockManager.App.Presenters
     {
         private readonly CorazonDeCafeContext dbContext;
         private readonly IHomeView view;
-        private ProductsPresenter? productsPresenter;
-        private ProductPresenter? productPresenter;
+        private IProductsView? productsView;
+        private IProductView? productView;
+
+        private ProductsPresenter? productsPresenter { get; set; }
+        private ProductPresenter? productPresenter { get; set; }
 
         public HomePresenter(IHomeView view, CorazonDeCafeContext dbContext)
         {
@@ -20,7 +23,6 @@ namespace CorazonDeCafeStockManager.App.Presenters
             this.dbContext = dbContext;
             this.view.ShowProductsView += ShowProductsView;
             this.view.CloseView += CloseView;
-
         }
 
         public void ShowHomeView()
@@ -29,7 +31,7 @@ namespace CorazonDeCafeStockManager.App.Presenters
             view.Show();
         }
 
-        private void ShowProductsView(object? sender, EventArgs e)
+        public void ShowProductsView(object? sender, EventArgs e)
         {
             view.RemoveBackgroundBtns();
             view.ProductButton.BackColor = Color.FromArgb(255, 219, 197);
@@ -38,14 +40,20 @@ namespace CorazonDeCafeStockManager.App.Presenters
             view.TitleHeader.Text = "PRODUCTOS";
 
             IProductRepository productRepository = new ProductRepository(dbContext);
-            IProductsView productsView = Products.GetInstance(view.ControlPanel);
+            productsView = Products.GetInstance(view.ControlPanel);
             productsPresenter = new(productsView, productRepository, this);
         }
 
-        public void ShowProductView(Product? product)
+        public void ShowProductView(object? sender, EventArgs e)
         {
+            Product? product = null;
+            if(sender != null)
+            {
+                product = (Product)sender;
+            }
+
             IProductRepository productRepository = new ProductRepository(dbContext);
-            IProductView productView = Product_Form.GetInstance(view.ControlPanel);
+            productView = Product_Form.GetInstance(view.ControlPanel);
 
             if (product != null)
             {
@@ -57,14 +65,14 @@ namespace CorazonDeCafeStockManager.App.Presenters
                 productView.ProductActive = product.Active == 1 ? "Activo" : "Inactivo";
                 productView.ProductId = product.Id;
             }
-            productsPresenter!.CloseView();
-            productPresenter = new(productView, productsPresenter!, productRepository);
+
+            productPresenter = new(productView, productRepository, this);
         }
 
         private void CloseView(object? sender, EventArgs e)
         {
-            productsPresenter?.CloseView();
             productPresenter?.CloseView();
+            productsPresenter?.CloseView();
         }
     }
 }

@@ -10,8 +10,8 @@ namespace CorazonDeCafeStockManager.App.Presenters
 {
     public class ProductPresenter
     {
+        private readonly HomePresenter homePresenter;
         private readonly IProductView view;
-        private readonly ProductsPresenter productsPresenter;
         private readonly IProductRepository productRepository;
         private readonly IEnumerable<Category>? categories;
         private readonly IEnumerable<Type>? types;
@@ -19,12 +19,11 @@ namespace CorazonDeCafeStockManager.App.Presenters
         private string? filePath;
         private string? fileSavePath;
 
-        public ProductPresenter(IProductView view, ProductsPresenter productsPresenter, IProductRepository productRepository)
+        public ProductPresenter(IProductView view, IProductRepository productRepository, HomePresenter homePresenter)
         {
             this.view = view;
-            this.productsPresenter = productsPresenter;
+            this.homePresenter = homePresenter;
             this.productRepository = productRepository;
-
             this.view.ValidateEvent += ValidateEvent!;
             this.view.AddImageEvent += AddImageEvent!;
             this.view.SaveEvent += SaveEvent!;
@@ -69,17 +68,16 @@ namespace CorazonDeCafeStockManager.App.Presenters
             await productRepository.AddProduct(product);
 
             File.Copy(filePath!, fileSavePath!);
-            await productsPresenter.LoadAllProducts();
+            homePresenter.ShowProductsView(this, EventArgs.Empty);
             view.Close();
-            productsPresenter.ShowView();
         }
 
         private void CancelEvent(object sender, EventArgs e)
         {
             if(view.ProductId != null)
             {
+                homePresenter.ShowProductsView(this, EventArgs.Empty);
                 view.Close();
-                productsPresenter.ShowView();
                 return;
             }
 
@@ -97,8 +95,8 @@ namespace CorazonDeCafeStockManager.App.Presenters
                 }
             }
 
+            homePresenter.ShowProductsView(this, EventArgs.Empty);
             view.Close();
-            productsPresenter.ShowView();
         }
 
         private bool ValidateData()

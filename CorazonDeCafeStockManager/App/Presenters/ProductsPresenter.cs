@@ -64,7 +64,6 @@ namespace CorazonDeCafeStockManager.App.Presenters
         }
 
 
-
         private void ResetProductsEvent(object sender, EventArgs e)
         {
             view.Search = string.Empty;
@@ -108,14 +107,14 @@ namespace CorazonDeCafeStockManager.App.Presenters
         private void AddEvent(object sender, EventArgs e)
         {
             this.view.Close();
-            this.homePresenter.ShowProductView(null);
+            this.homePresenter.ShowProductView(null, e);
         }
       
         private void EditEvent(object sender, EventArgs e)
         {
             Product product = (Product)sender;
             this.view.Close();
-            this.homePresenter.ShowProductView(product);
+            this.homePresenter.ShowProductView(product, e);
         }
     }
 }

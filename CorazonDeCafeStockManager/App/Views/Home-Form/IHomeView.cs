@@ -17,5 +17,7 @@
 
         void RemoveBackgroundBtns();
         void Show();
+
+        void Close();
     }
 }
