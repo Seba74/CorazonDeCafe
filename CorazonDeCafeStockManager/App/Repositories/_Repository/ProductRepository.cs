@@ -62,10 +62,21 @@ public class ProductRepository : IProductRepository
         return _context.Products!.Where(p => p.TypeId == typeId).ToList();
     }
 
-    public async void UpdateProduct(Product product)
+    public async Task<bool> UpdateProduct(Product product)
     {
-        _context.Products!.Update(product);
-        await _context.SaveChangesAsync();
+        Product? productToUpdate = await _context.Products!.FirstOrDefaultAsync(p => p.Id == product.Id);
+
+        productToUpdate!.Name = product.Name;
+        productToUpdate.Price = product.Price;
+        productToUpdate.CategoryId = product.CategoryId;
+        productToUpdate.TypeId = product.TypeId;
+        productToUpdate.Stock = product.Stock;
+        productToUpdate.Status = product.Status;
+        productToUpdate.Imagen = product.Imagen;
+        productToUpdate.Active = product.Active;
+
+        int fieldAct = await _context.SaveChangesAsync();
+        return fieldAct > 0;
     }
 }
 

@@ -1,4 +1,6 @@
-﻿using CorazonDeCafeStockManager.App.Views.Product_Form;
+﻿using CorazonDeCafeStockManager.App.Common;
+using CorazonDeCafeStockManager.App.Models;
+using CorazonDeCafeStockManager.App.Views.Product_Form;
 
 namespace CorazonDeCafeStockManager
 {
@@ -8,8 +10,14 @@ namespace CorazonDeCafeStockManager
         public new string? ProductName
         {
             get => ipName.Texts;
-            set => ipName.Texts = value!;
+            set
+            {
+                ipName.ForeColor = Color.Black;
+                ipName.Texts = value!;
+                title.Text = value!;
+            }
         }
+        public string? Title { get => title.Text; set => title.Text = value; }
         public string? ProductImagen { get; set; }
         public double ProductPrice
         {
@@ -19,22 +27,38 @@ namespace CorazonDeCafeStockManager
                     return price;
                 return 0;
             }
-            set => ipPrice.Texts = value.ToString();
+            set
+            {
+                ipPrice.ForeColor = Color.Black;
+                ipPrice.Texts = value.ToString();
+            }
         }
         public string? ProductActive
         {
             get => ipState.Texts;
-            set => ipState.Texts = value!;
+            set
+            {
+                ipState.ForeColor = Color.Black;
+                ipState.Texts = value!;
+            }
         }
         public string? ProductCategory
         {
             get => ipCategory.Texts;
-            set => ipCategory.Texts = value!;
+            set
+            {
+                ipCategory.ForeColor = Color.Black;
+                ipCategory.Texts = value!;
+            }
         }
         public string? ProductType
         {
             get => ipType.Texts;
-            set => ipType.Texts = value!;
+            set
+            {
+                ipType.ForeColor = Color.Black;
+                ipType.Texts = value!;
+            }
         }
         public int ProductStock
         {
@@ -44,12 +68,16 @@ namespace CorazonDeCafeStockManager
                     return stock;
                 return -1;
             }
-            set => ipStock.Texts = value.ToString();
+            set
+            {
+                ipStock.ForeColor = Color.Black;
+                ipStock.Texts = value.ToString();
+            }
         }
 
-        public PictureBox? ShowImage { get => showImage; set => showImage = value!; }
+        public PictureBox? ShowImage { get => showImage; set => showImage = value!;}
         public PictureBox? BgImagen { get => bgImagen; set => bgImagen = value!; }
-        public ButtonCustom? BtnAddImage { get => btnAddImage; set => BtnAddImage = value!; }
+        public ButtonCustom? BtnAddImage { get => btnAddImage; set => btnAddImage = value!; }
 
         public Product_Form()
         {
@@ -58,7 +86,7 @@ namespace CorazonDeCafeStockManager
 
             bgImagen.Controls.Add(showImage);
             showImage.Location = new Point(0, -28);
-            showImage.BackColor = Color.Transparent;
+            showImage.BackColor = Color.Transparent;       
         }
 
         private void AssociateEvents()

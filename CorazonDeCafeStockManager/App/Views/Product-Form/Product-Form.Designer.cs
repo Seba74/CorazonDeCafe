@@ -51,7 +51,7 @@
             lblType = new Label();
             lblStock = new Label();
             lblSelectImage = new Label();
-            label8 = new Label();
+            title = new Label();
             panel1 = new Panel();
             panel2 = new Panel();
             panel3 = new Panel();
@@ -449,17 +449,17 @@
             lblSelectImage.TabIndex = 46;
             lblSelectImage.Text = "Imagen";
             // 
-            // label8
+            // title
             // 
-            label8.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
-            label8.AutoSize = true;
-            label8.Font = new Font("Poppins Light", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
-            label8.ForeColor = Color.FromArgb(146, 90, 57);
-            label8.Location = new Point(60, 7);
-            label8.Name = "label8";
-            label8.Size = new Size(180, 37);
-            label8.TabIndex = 47;
-            label8.Text = "Nuevo Producto";
+            title.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
+            title.AutoSize = true;
+            title.Font = new Font("Poppins Light", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
+            title.ForeColor = Color.FromArgb(146, 90, 57);
+            title.Location = new Point(60, 7);
+            title.Name = "title";
+            title.Size = new Size(180, 37);
+            title.TabIndex = 47;
+            title.Text = "Nuevo Producto";
             // 
             // panel1
             // 
@@ -517,7 +517,7 @@
             // panel4
             // 
             panel4.Anchor = AnchorStyles.None;
-            panel4.Controls.Add(label8);
+            panel4.Controls.Add(title);
             panel4.Controls.Add(btnGoBack);
             panel4.Location = new Point(-3, 61);
             panel4.Name = "panel4";
@@ -575,7 +575,7 @@
         private Label lblType;
         private Label lblStock;
         private Label lblSelectImage;
-        private Label label8;
+        private Label title;
         private Panel panel1;
         private Panel panel2;
         private Panel panel3;

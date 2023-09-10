@@ -9,7 +9,7 @@ public interface IProductRepository
     IEnumerable<Product> GetProductsByType(int typeId);
     Product GetProductById(int id);
     Task AddProduct(Product product);
-    void UpdateProduct(Product product);
+    Task<bool> UpdateProduct(Product product);
     void DeleteProduct(Product product);
 
 }

@@ -54,19 +54,8 @@ namespace CorazonDeCafeStockManager.App.Presenters
 
             IProductRepository productRepository = new ProductRepository(dbContext);
             productView = Product_Form.GetInstance(view.ControlPanel);
-
-            if (product != null)
-            {
-                productView.ProductName = product.Name;
-                productView.ProductCategory = product.Category.Name;
-                productView.ProductType = product.Type.Name;
-                productView.ProductPrice = product.Price;
-                productView.ProductStock = product.Stock;
-                productView.ProductActive = product.Active == 1 ? "Activo" : "Inactivo";
-                productView.ProductId = product.Id;
-            }
-
-            productPresenter = new(productView, productRepository, this);
+      
+            productPresenter = new(productView, productRepository, product!, this);
         }
 
         private void CloseView(object? sender, EventArgs e)

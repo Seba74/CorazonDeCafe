@@ -388,12 +388,6 @@
         #endregion
 
         private DataGridView productList;
-        private PictureBox pictureBox1;
-        private PictureBox pictureBox2;
-        private PictureBox pictureBox3;
-        private PictureBox pictureBox4;
-        private PictureBox pictureBox5;
-        private DataGridViewButtonColumn Accion;
         private utils.Custom.TextBox.TextBoxCustom ipSearch;
         private PictureBox IcSearch;
         private DataGridViewTextBoxColumn Id;
@@ -408,7 +402,6 @@
         private Panel panel1;
         private ButtonCustom btnAdd;
         private ButtonCustom btnEdit;
-        private PictureBox pictureBox6;
         private PictureBox btnGoBack;
         private ButtonCustom reload;
     }

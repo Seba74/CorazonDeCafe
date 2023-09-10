@@ -3,7 +3,6 @@ using CorazonDeCafeStockManager.App.Models;
 using CorazonDeCafeStockManager.App.Repositories;
 using CorazonDeCafeStockManager.App.Views.Product_Form;
 using CorazonDeCafeStockManager.utils.Custom.TextBox;
-using System.Windows.Forms;
 using Type = CorazonDeCafeStockManager.App.Models.Type;
 
 namespace CorazonDeCafeStockManager.App.Presenters
@@ -19,7 +18,7 @@ namespace CorazonDeCafeStockManager.App.Presenters
         private string? filePath;
         private string? fileSavePath;
 
-        public ProductPresenter(IProductView view, IProductRepository productRepository, HomePresenter homePresenter)
+        public ProductPresenter(IProductView view, IProductRepository productRepository, Product product, HomePresenter homePresenter)
         {
             this.view = view;
             this.homePresenter = homePresenter;
@@ -31,6 +30,30 @@ namespace CorazonDeCafeStockManager.App.Presenters
 
             types = LocalStorage.Types;
             categories = LocalStorage.Categories;
+
+            if (product != null) {
+                SetProductToView(product);
+            }
+        }
+
+        private void SetProductToView(Product product)
+        {
+            view.ProductName = product.Name;
+            view.ProductCategory = product.Category.Name;
+            view.ProductType = product.Type.Name;
+            view.ProductPrice = product.Price;
+            view.ProductStock = product.Stock;
+            view.ProductImagen = product.Imagen;
+            view.ProductActive = product.Active == 1 ? "Activo" : "Inactivo";
+            view.ProductId = product.Id;
+            imageName = product.Imagen;
+
+            view.Title = product.Name;
+            
+            string path = Path.Combine("..", "..", "..", "products", view.ProductImagen);
+            view.ShowImage!.Image = Image.FromFile(path);
+            view.BgImagen!.Visible = true;
+            view.BtnAddImage!.Text = $"Image: {view.ProductId}";
 
         }
 
@@ -54,7 +77,7 @@ namespace CorazonDeCafeStockManager.App.Presenters
             int typeId = types!.First(t => t.Name == view.ProductType).Id;
             int active = view.ProductActive == "Activo" ? 1 : 0;
 
-            Product product = new()
+            Product productToUpdate = new()
             {
                 Name = view.ProductName!,
                 Price = view.ProductPrice,
@@ -65,9 +88,24 @@ namespace CorazonDeCafeStockManager.App.Presenters
                 Status = 1,
                 Imagen = imageName!
             };
-            await productRepository.AddProduct(product);
 
-            File.Copy(filePath!, fileSavePath!);
+            if(view.ProductId != null)
+            {
+                productToUpdate.Id = (int)view.ProductId;
+                bool isUpdated = await productRepository.UpdateProduct(productToUpdate);
+                if(filePath != null && fileSavePath != null)
+                {
+                    GC.Collect();
+                    GC.WaitForPendingFinalizers();
+                    File.Copy(filePath!, fileSavePath!, true);
+                }
+            }
+            else
+            {
+                await productRepository.AddProduct(productToUpdate);
+                File.Copy(filePath!, fileSavePath!, true);
+            }
+
             homePresenter.ShowProductsView(this, EventArgs.Empty);
             view.Close();
         }
@@ -76,6 +114,24 @@ namespace CorazonDeCafeStockManager.App.Presenters
         {
             if(view.ProductId != null)
             {
+                int id = (int)view.ProductId;
+                Product product = productRepository.GetProductById(id);
+                
+                if(product.Name != view.ProductName ||
+                   product.Price != view.ProductPrice ||
+                   product.Stock != view.ProductStock ||
+                   product.Category.Name != view.ProductCategory ||
+                   product.Type.Name != view.ProductType ||
+                   product.Active != (view.ProductActive == "Activo" ? 1 : 0) ||
+                   product.Imagen != view.ProductImagen)
+                {
+                    DialogResult dialogResult = MessageBox.Show("Hay cambios sin guardar, ¿Desea cancelar?", "Cancelar", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (dialogResult == DialogResult.No)
+                    {
+                        return;
+                    }
+                }
+
                 homePresenter.ShowProductsView(this, EventArgs.Empty);
                 view.Close();
                 return;
@@ -209,13 +265,17 @@ namespace CorazonDeCafeStockManager.App.Presenters
 
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
-                string randomFileName = Guid.NewGuid().ToString() + ".png";
-                string fileSavePath = Path.Combine("..", "..", "..", "products", randomFileName);
+                imageName = Guid.NewGuid().ToString() + ".png";
+                if(view.ProductId != null)
+                {
+                    imageName = view.ProductImagen;
+                }
+
+                string fileSavePath = Path.Combine("..", "..", "..", "products", imageName!);
                 string fileName = openFileDialog.SafeFileName;
                 this.fileSavePath = fileSavePath;
                 this.filePath = openFileDialog.FileName;
 
-                imageName = randomFileName;
 
                 view.BgImagen!.Visible = true;
                 view.ShowImage!.Image = Image.FromFile(filePath);

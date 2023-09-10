@@ -12,6 +12,8 @@
         string? ProductType { get; set; } 
         int ProductStock { get; set; }
         string? ProductActive { get; set; }
+
+        string? Title { get; set; }
         PictureBox? ShowImage { get; set; }
         PictureBox? BgImagen { get; set; }
         ButtonCustom? BtnAddImage { get; set; }

@@ -31,7 +31,7 @@ namespace CorazonDeCafeStockManager.utils.Custom.TextBox
 
         private void SetPlaceholder()
         {
-            if (string.IsNullOrWhiteSpace(textBox1.Text) && placeholderText != "")
+            if (string.IsNullOrEmpty(textBox1.Text) && placeholderText != "")
             {
                 isPlaceholder = true;
                 textBox1.Text = placeholderText;
@@ -42,7 +42,7 @@ namespace CorazonDeCafeStockManager.utils.Custom.TextBox
         }
         private void RemovePlaceholder()
         {
-            if (isPlaceholder && placeholderText != "")
+            if (isPlaceholder && placeholderText != "" && textBox1.Text == placeholderText)
             {
                 isPlaceholder = false;
                 textBox1.Text = "";
@@ -171,8 +171,7 @@ namespace CorazonDeCafeStockManager.utils.Custom.TextBox
         {
             get
             {
-                if (isPlaceholder) return "";
-                else return textBox1.Text;
+                return textBox1.Text;
             }
             set
             {
@@ -306,6 +305,7 @@ namespace CorazonDeCafeStockManager.utils.Custom.TextBox
         private void textBox1_Click(object sender, EventArgs e)
         {
             this.OnClick(e);
+            RemovePlaceholder();
         }
         private void textBox1_MouseEnter(object sender, EventArgs e)
         {
