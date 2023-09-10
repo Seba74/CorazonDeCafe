@@ -57,7 +57,7 @@ namespace CorazonDeCafeStockManager
             AssociateEvents();
 
             bgImagen.Controls.Add(showImage);
-            showImage.Location = new Point(0, 0);
+            showImage.Location = new Point(0, -28);
             showImage.BackColor = Color.Transparent;
         }
 

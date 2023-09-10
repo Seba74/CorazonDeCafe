@@ -65,6 +65,11 @@ namespace CorazonDeCafeStockManager
 
         public void LoadProducts()
         {
+            if(ProductsList == null)
+            {
+                return;
+            }
+
             if (productList.InvokeRequired)
             {
                 productList.Invoke(new MethodInvoker(delegate

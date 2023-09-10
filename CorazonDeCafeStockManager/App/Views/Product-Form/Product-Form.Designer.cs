@@ -52,15 +52,25 @@
             lblStock = new Label();
             lblSelectImage = new Label();
             label8 = new Label();
+            panel1 = new Panel();
+            panel2 = new Panel();
+            panel3 = new Panel();
+            panel5 = new Panel();
+            panel4 = new Panel();
             ((System.ComponentModel.ISupportInitialize)btnGoBack).BeginInit();
             ((System.ComponentModel.ISupportInitialize)bgImagen).BeginInit();
             ((System.ComponentModel.ISupportInitialize)showImage).BeginInit();
+            panel1.SuspendLayout();
+            panel2.SuspendLayout();
+            panel3.SuspendLayout();
+            panel5.SuspendLayout();
+            panel4.SuspendLayout();
             SuspendLayout();
             // 
             // lblTitle
             // 
             lblTitle.AutoSize = true;
-            lblTitle.Location = new Point(24, 33);
+            lblTitle.Location = new Point(24, 41);
             lblTitle.Name = "lblTitle";
             lblTitle.Size = new Size(0, 15);
             lblTitle.TabIndex = 12;
@@ -72,14 +82,16 @@
             btnGoBack.BackgroundImage = (Image)resources.GetObject("btnGoBack.BackgroundImage");
             btnGoBack.BackgroundImageLayout = ImageLayout.Zoom;
             btnGoBack.Cursor = Cursors.Hand;
-            btnGoBack.Location = new Point(15, 55);
+            btnGoBack.Dock = DockStyle.Left;
+            btnGoBack.Location = new Point(0, 0);
             btnGoBack.Name = "btnGoBack";
-            btnGoBack.Size = new Size(24, 28);
+            btnGoBack.Size = new Size(24, 48);
             btnGoBack.TabIndex = 24;
             btnGoBack.TabStop = false;
             // 
             // btnSave
             // 
+            btnSave.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
             btnSave.BackColor = Color.Transparent;
             btnSave.BackgroundColor = Color.Transparent;
             btnSave.BorderColor = Color.FromArgb(79, 167, 135);
@@ -94,7 +106,7 @@
             btnSave.ForeColor = Color.FromArgb(79, 167, 135);
             btnSave.Image = Properties.Resources.save;
             btnSave.ImageAlign = ContentAlignment.MiddleRight;
-            btnSave.Location = new Point(765, 587);
+            btnSave.Location = new Point(868, 7);
             btnSave.Name = "btnSave";
             btnSave.Padding = new Padding(6, 0, 5, 0);
             btnSave.Size = new Size(120, 45);
@@ -106,6 +118,7 @@
             // 
             // btnCancel
             // 
+            btnCancel.Anchor = AnchorStyles.Top | AnchorStyles.Bottom;
             btnCancel.BackColor = Color.Transparent;
             btnCancel.BackgroundColor = Color.Transparent;
             btnCancel.BorderColor = Color.FromArgb(96, 96, 96);
@@ -120,7 +133,7 @@
             btnCancel.ForeColor = Color.FromArgb(96, 96, 96);
             btnCancel.Image = Properties.Resources.cancel;
             btnCancel.ImageAlign = ContentAlignment.MiddleRight;
-            btnCancel.Location = new Point(611, 587);
+            btnCancel.Location = new Point(718, 7);
             btnCancel.Name = "btnCancel";
             btnCancel.Padding = new Padding(6, 0, 2, 0);
             btnCancel.Size = new Size(120, 45);
@@ -132,6 +145,7 @@
             // 
             // btnDelete
             // 
+            btnDelete.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
             btnDelete.BackColor = Color.Transparent;
             btnDelete.BackgroundColor = Color.Transparent;
             btnDelete.BorderColor = Color.FromArgb(255, 95, 95);
@@ -146,7 +160,7 @@
             btnDelete.ForeColor = Color.FromArgb(255, 95, 95);
             btnDelete.Image = Properties.Resources.delete;
             btnDelete.ImageAlign = ContentAlignment.MiddleRight;
-            btnDelete.Location = new Point(46, 587);
+            btnDelete.Location = new Point(15, 7);
             btnDelete.Name = "btnDelete";
             btnDelete.Padding = new Padding(8, 0, 0, 0);
             btnDelete.Size = new Size(115, 45);
@@ -158,15 +172,17 @@
             // 
             // barHPanel
             // 
-            barHPanel.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            barHPanel.Anchor = AnchorStyles.None;
             barHPanel.BackColor = Color.FromArgb(145, 90, 57);
-            barHPanel.Location = new Point(0, 556);
+            barHPanel.Location = new Point(-3, 520);
+            barHPanel.MaximumSize = new Size(3400, 4);
             barHPanel.Name = "barHPanel";
-            barHPanel.Size = new Size(942, 5);
+            barHPanel.Size = new Size(999, 4);
             barHPanel.TabIndex = 26;
             // 
             // ipName
             // 
+            ipName.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             ipName.BackColor = Color.FromArgb(255, 219, 197);
             ipName.BorderColor = Color.FromArgb(255, 219, 197);
             ipName.BorderFocusColor = Color.FromArgb(146, 90, 57);
@@ -174,7 +190,7 @@
             ipName.BorderSize = 2;
             ipName.Cursor = Cursors.Hand;
             ipName.Font = new Font("Poppins Light", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            ipName.Location = new Point(100, 166);
+            ipName.Location = new Point(18, 46);
             ipName.MaximumSize = new Size(650, 37);
             ipName.MinimumSize = new Size(250, 34);
             ipName.Multiline = false;
@@ -190,6 +206,7 @@
             // 
             // ipPrice
             // 
+            ipPrice.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             ipPrice.BackColor = Color.FromArgb(255, 219, 197);
             ipPrice.BorderColor = Color.FromArgb(255, 219, 197);
             ipPrice.BorderFocusColor = Color.FromArgb(146, 90, 57);
@@ -197,7 +214,7 @@
             ipPrice.BorderSize = 2;
             ipPrice.Cursor = Cursors.Hand;
             ipPrice.Font = new Font("Poppins Light", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            ipPrice.Location = new Point(294, 250);
+            ipPrice.Location = new Point(212, 130);
             ipPrice.MaximumSize = new Size(650, 37);
             ipPrice.MinimumSize = new Size(100, 34);
             ipPrice.Multiline = false;
@@ -213,6 +230,7 @@
             // 
             // ipStock
             // 
+            ipStock.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             ipStock.BackColor = Color.FromArgb(255, 219, 197);
             ipStock.BorderColor = Color.FromArgb(255, 219, 197);
             ipStock.BorderFocusColor = Color.FromArgb(146, 90, 57);
@@ -220,7 +238,7 @@
             ipStock.BorderSize = 2;
             ipStock.Cursor = Cursors.Hand;
             ipStock.Font = new Font("Poppins Light", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            ipStock.Location = new Point(101, 422);
+            ipStock.Location = new Point(19, 302);
             ipStock.MaximumSize = new Size(650, 37);
             ipStock.MinimumSize = new Size(100, 34);
             ipStock.Multiline = false;
@@ -236,7 +254,7 @@
             // 
             // ipCategory
             // 
-            ipCategory.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
+            ipCategory.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             ipCategory.BackColor = Color.FromArgb(255, 219, 197);
             ipCategory.BorderColor = Color.FromArgb(145, 90, 57);
             ipCategory.BorderRadius = 5;
@@ -248,7 +266,7 @@
             ipCategory.Items.AddRange(new object[] { "Grano", "Molido", "Soluble" });
             ipCategory.ListBackColor = Color.FromArgb(230, 228, 245);
             ipCategory.ListTextColor = Color.Black;
-            ipCategory.Location = new Point(100, 341);
+            ipCategory.Location = new Point(18, 221);
             ipCategory.MaximumSize = new Size(200, 37);
             ipCategory.MinimumSize = new Size(110, 32);
             ipCategory.Name = "ipCategory";
@@ -258,7 +276,7 @@
             // 
             // ipType
             // 
-            ipType.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
+            ipType.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             ipType.BackColor = Color.FromArgb(255, 219, 197);
             ipType.BorderColor = Color.FromArgb(145, 90, 57);
             ipType.BorderRadius = 5;
@@ -270,7 +288,7 @@
             ipType.Items.AddRange(new object[] { "Origen", "Sostenible", "Premium" });
             ipType.ListBackColor = Color.FromArgb(230, 228, 245);
             ipType.ListTextColor = Color.Black;
-            ipType.Location = new Point(294, 341);
+            ipType.Location = new Point(212, 221);
             ipType.MaximumSize = new Size(200, 37);
             ipType.MinimumSize = new Size(110, 32);
             ipType.Name = "ipType";
@@ -280,6 +298,7 @@
             // 
             // btnAddImage
             // 
+            btnAddImage.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             btnAddImage.BackColor = Color.FromArgb(255, 219, 197);
             btnAddImage.BackgroundColor = Color.FromArgb(255, 219, 197);
             btnAddImage.BorderColor = Color.PaleVioletRed;
@@ -290,7 +309,7 @@
             btnAddImage.FlatStyle = FlatStyle.Flat;
             btnAddImage.Font = new Font("Poppins Light", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             btnAddImage.ForeColor = Color.FromArgb(146, 90, 57);
-            btnAddImage.Location = new Point(239, 422);
+            btnAddImage.Location = new Point(157, 302);
             btnAddImage.Name = "btnAddImage";
             btnAddImage.Padding = new Padding(8, 0, 0, 0);
             btnAddImage.Size = new Size(215, 34);
@@ -302,32 +321,35 @@
             // 
             // bgImagen
             // 
+            bgImagen.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             bgImagen.BackColor = Color.Transparent;
             bgImagen.Image = (Image)resources.GetObject("bgImagen.Image");
-            bgImagen.Location = new Point(564, 157);
+            bgImagen.Location = new Point(12, 11);
             bgImagen.Name = "bgImagen";
-            bgImagen.Size = new Size(239, 327);
+            bgImagen.Size = new Size(239, 355);
             bgImagen.TabIndex = 38;
             bgImagen.TabStop = false;
             bgImagen.Visible = false;
             // 
             // showImage
             // 
+            showImage.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             showImage.BackColor = Color.Transparent;
             showImage.BackgroundImageLayout = ImageLayout.Zoom;
-            showImage.Location = new Point(564, 157);
+            showImage.Location = new Point(12, 13);
             showImage.Name = "showImage";
-            showImage.Size = new Size(239, 304);
+            showImage.Size = new Size(239, 332);
             showImage.SizeMode = PictureBoxSizeMode.Zoom;
             showImage.TabIndex = 37;
             showImage.TabStop = false;
             // 
             // lblName
             // 
+            lblName.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             lblName.AutoSize = true;
             lblName.Font = new Font("Poppins Light", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
             lblName.ForeColor = Color.FromArgb(146, 90, 57);
-            lblName.Location = new Point(101, 137);
+            lblName.Location = new Point(19, 17);
             lblName.Name = "lblName";
             lblName.Size = new Size(71, 26);
             lblName.TabIndex = 39;
@@ -335,10 +357,11 @@
             // 
             // lblState
             // 
+            lblState.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             lblState.AutoSize = true;
             lblState.Font = new Font("Poppins Light", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
             lblState.ForeColor = Color.FromArgb(146, 90, 57);
-            lblState.Location = new Point(101, 219);
+            lblState.Location = new Point(19, 99);
             lblState.Name = "lblState";
             lblState.Size = new Size(63, 26);
             lblState.TabIndex = 40;
@@ -346,7 +369,7 @@
             // 
             // ipState
             // 
-            ipState.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
+            ipState.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             ipState.BackColor = Color.FromArgb(255, 219, 197);
             ipState.BorderColor = Color.FromArgb(145, 90, 57);
             ipState.BorderRadius = 5;
@@ -358,7 +381,7 @@
             ipState.Items.AddRange(new object[] { "Activo", "Inactivo" });
             ipState.ListBackColor = Color.FromArgb(230, 228, 245);
             ipState.ListTextColor = Color.Black;
-            ipState.Location = new Point(101, 250);
+            ipState.Location = new Point(19, 130);
             ipState.MaximumSize = new Size(200, 37);
             ipState.MinimumSize = new Size(110, 32);
             ipState.Name = "ipState";
@@ -368,10 +391,11 @@
             // 
             // lblPrice
             // 
+            lblPrice.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             lblPrice.AutoSize = true;
             lblPrice.Font = new Font("Poppins Light", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
             lblPrice.ForeColor = Color.FromArgb(146, 90, 57);
-            lblPrice.Location = new Point(294, 219);
+            lblPrice.Location = new Point(212, 99);
             lblPrice.Name = "lblPrice";
             lblPrice.Size = new Size(56, 26);
             lblPrice.TabIndex = 42;
@@ -379,10 +403,11 @@
             // 
             // lblCategory
             // 
+            lblCategory.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             lblCategory.AutoSize = true;
             lblCategory.Font = new Font("Poppins Light", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
             lblCategory.ForeColor = Color.FromArgb(146, 90, 57);
-            lblCategory.Location = new Point(101, 312);
+            lblCategory.Location = new Point(19, 192);
             lblCategory.Name = "lblCategory";
             lblCategory.Size = new Size(86, 26);
             lblCategory.TabIndex = 43;
@@ -390,10 +415,11 @@
             // 
             // lblType
             // 
+            lblType.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             lblType.AutoSize = true;
             lblType.Font = new Font("Poppins Light", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
             lblType.ForeColor = Color.FromArgb(146, 90, 57);
-            lblType.Location = new Point(294, 312);
+            lblType.Location = new Point(212, 192);
             lblType.Name = "lblType";
             lblType.Size = new Size(43, 26);
             lblType.TabIndex = 44;
@@ -401,10 +427,11 @@
             // 
             // lblStock
             // 
+            lblStock.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             lblStock.AutoSize = true;
             lblStock.Font = new Font("Poppins Light", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
             lblStock.ForeColor = Color.FromArgb(146, 90, 57);
-            lblStock.Location = new Point(101, 393);
+            lblStock.Location = new Point(19, 273);
             lblStock.Name = "lblStock";
             lblStock.Size = new Size(52, 26);
             lblStock.TabIndex = 45;
@@ -412,10 +439,11 @@
             // 
             // lblSelectImage
             // 
+            lblSelectImage.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             lblSelectImage.AutoSize = true;
             lblSelectImage.Font = new Font("Poppins Light", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
             lblSelectImage.ForeColor = Color.FromArgb(146, 90, 57);
-            lblSelectImage.Location = new Point(239, 393);
+            lblSelectImage.Location = new Point(157, 273);
             lblSelectImage.Name = "lblSelectImage";
             lblSelectImage.Size = new Size(68, 26);
             lblSelectImage.TabIndex = 46;
@@ -423,43 +451,89 @@
             // 
             // label8
             // 
+            label8.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
             label8.AutoSize = true;
             label8.Font = new Font("Poppins Light", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
             label8.ForeColor = Color.FromArgb(146, 90, 57);
-            label8.Location = new Point(92, 52);
+            label8.Location = new Point(60, 7);
             label8.Name = "label8";
             label8.Size = new Size(180, 37);
             label8.TabIndex = 47;
             label8.Text = "Nuevo Producto";
             // 
+            // panel1
+            // 
+            panel1.Anchor = AnchorStyles.None;
+            panel1.Controls.Add(btnSave);
+            panel1.Controls.Add(btnCancel);
+            panel1.Controls.Add(btnDelete);
+            panel1.Location = new Point(-3, 547);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(999, 58);
+            panel1.TabIndex = 48;
+            // 
+            // panel2
+            // 
+            panel2.Anchor = AnchorStyles.None;
+            panel2.Controls.Add(panel3);
+            panel2.Controls.Add(panel5);
+            panel2.Location = new Point(-3, 109);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(999, 407);
+            panel2.TabIndex = 49;
+            // 
+            // panel3
+            // 
+            panel3.Anchor = AnchorStyles.Left;
+            panel3.Controls.Add(lblSelectImage);
+            panel3.Controls.Add(ipState);
+            panel3.Controls.Add(lblStock);
+            panel3.Controls.Add(ipPrice);
+            panel3.Controls.Add(lblType);
+            panel3.Controls.Add(lblPrice);
+            panel3.Controls.Add(lblCategory);
+            panel3.Controls.Add(ipName);
+            panel3.Controls.Add(btnAddImage);
+            panel3.Controls.Add(lblName);
+            panel3.Controls.Add(ipType);
+            panel3.Controls.Add(lblState);
+            panel3.Controls.Add(ipCategory);
+            panel3.Controls.Add(ipStock);
+            panel3.Location = new Point(49, 11);
+            panel3.Name = "panel3";
+            panel3.Size = new Size(414, 349);
+            panel3.TabIndex = 39;
+            // 
+            // panel5
+            // 
+            panel5.Anchor = AnchorStyles.None;
+            panel5.Controls.Add(showImage);
+            panel5.Controls.Add(bgImagen);
+            panel5.Location = new Point(609, 26);
+            panel5.Name = "panel5";
+            panel5.Size = new Size(263, 374);
+            panel5.TabIndex = 40;
+            // 
+            // panel4
+            // 
+            panel4.Anchor = AnchorStyles.None;
+            panel4.Controls.Add(label8);
+            panel4.Controls.Add(btnGoBack);
+            panel4.Location = new Point(-3, 61);
+            panel4.Name = "panel4";
+            panel4.Size = new Size(999, 48);
+            panel4.TabIndex = 50;
+            // 
             // Product_Form
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(942, 663);
-            Controls.Add(label8);
-            Controls.Add(lblSelectImage);
-            Controls.Add(lblStock);
-            Controls.Add(lblType);
-            Controls.Add(lblCategory);
-            Controls.Add(lblPrice);
-            Controls.Add(ipState);
-            Controls.Add(lblState);
-            Controls.Add(lblName);
-            Controls.Add(showImage);
-            Controls.Add(bgImagen);
-            Controls.Add(btnAddImage);
-            Controls.Add(ipType);
-            Controls.Add(ipCategory);
-            Controls.Add(ipStock);
-            Controls.Add(ipPrice);
-            Controls.Add(ipName);
+            ClientSize = new Size(995, 651);
+            Controls.Add(panel1);
+            Controls.Add(panel2);
             Controls.Add(barHPanel);
-            Controls.Add(btnDelete);
-            Controls.Add(btnGoBack);
-            Controls.Add(btnCancel);
-            Controls.Add(btnSave);
             Controls.Add(lblTitle);
+            Controls.Add(panel4);
             FormBorderStyle = FormBorderStyle.None;
             Name = "Product_Form";
             StartPosition = FormStartPosition.CenterScreen;
@@ -467,6 +541,13 @@
             ((System.ComponentModel.ISupportInitialize)btnGoBack).EndInit();
             ((System.ComponentModel.ISupportInitialize)bgImagen).EndInit();
             ((System.ComponentModel.ISupportInitialize)showImage).EndInit();
+            panel1.ResumeLayout(false);
+            panel2.ResumeLayout(false);
+            panel3.ResumeLayout(false);
+            panel3.PerformLayout();
+            panel5.ResumeLayout(false);
+            panel4.ResumeLayout(false);
+            panel4.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -495,5 +576,10 @@
         private Label lblStock;
         private Label lblSelectImage;
         private Label label8;
+        private Panel panel1;
+        private Panel panel2;
+        private Panel panel3;
+        private Panel panel4;
+        private Panel panel5;
     }
 }

@@ -7,14 +7,6 @@ namespace CorazonDeCafeStockManager.App.Presenters
 {
     public class ProductsPresenter
     {
-        public static async Task CreatePresenter(IProductsView view, IProductRepository productRepository, HomePresenter homePresenter)
-        {
-            ProductsPresenter presenter = new(view, productRepository, homePresenter);
-            await presenter.LoadAllProducts();
-            presenter.view.LoadProducts();
-            presenter.view.Show();
-        }
-
         private readonly Timer SearchTimer = new(1500);
         private readonly IProductsView view;
         private readonly HomePresenter homePresenter;
@@ -34,6 +26,9 @@ namespace CorazonDeCafeStockManager.App.Presenters
             this.view.EditEvent += EditEvent!;
 
             SearchTimer.Elapsed += SearchProducts!;
+
+            _ = LoadAllProducts();
+            this.view.Show();
         }
         public async Task LoadAllProducts()
         {
@@ -46,6 +41,11 @@ namespace CorazonDeCafeStockManager.App.Presenters
         public void ShowView()
         {
             view!.Show();
+        }
+
+        public void CloseView()
+        {
+            view!.Close();
         }
 
         private void SearchProducts(object sender, EventArgs e)
@@ -108,21 +108,14 @@ namespace CorazonDeCafeStockManager.App.Presenters
         private void AddEvent(object sender, EventArgs e)
         {
             this.view.Close();
-            this.homePresenter.ShowProductView();
+            this.homePresenter.ShowProductView(null);
         }
       
         private void EditEvent(object sender, EventArgs e)
         {
-            Product product = (Product)sender!;
-            IProductView productView = new Product_Form();
-            productView.ProductName = product.Name;
-            productView.ProductCategory = product.Category.Name;
-            productView.ProductType = product.Type.Name;
-            productView.ProductPrice = product.Price;
-            productView.ProductStock = product.Stock;
-            productView.ProductActive = product.Active == 1 ? "Activo" : "Inactivo";
-            productView.ProductId = product.Id;
-            ProductPresenter.CreatePresenter(productView, this, productRepository);
+            Product product = (Product)sender;
+            this.view.Close();
+            this.homePresenter.ShowProductView(product);
         }
     }
 }

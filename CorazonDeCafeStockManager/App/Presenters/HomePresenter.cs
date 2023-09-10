@@ -11,8 +11,8 @@ namespace CorazonDeCafeStockManager.App.Presenters
     {
         private readonly CorazonDeCafeContext dbContext;
         private readonly IHomeView view;
-        private IProductsView? productsView;
-        private IProductView? productView;
+        private ProductsPresenter? productsPresenter;
+        private ProductPresenter? productPresenter;
 
         public HomePresenter(IHomeView view, CorazonDeCafeContext dbContext)
         {
@@ -29,7 +29,7 @@ namespace CorazonDeCafeStockManager.App.Presenters
             view.Show();
         }
 
-        private async void ShowProductsView(object? sender, EventArgs e)
+        private void ShowProductsView(object? sender, EventArgs e)
         {
             view.RemoveBackgroundBtns();
             view.ProductButton.BackColor = Color.FromArgb(255, 219, 197);
@@ -38,24 +38,33 @@ namespace CorazonDeCafeStockManager.App.Presenters
             view.TitleHeader.Text = "PRODUCTOS";
 
             IProductRepository productRepository = new ProductRepository(dbContext);
-            productsView = Products.GetInstance(view.ControlPanel);
-
-
-            await ProductsPresenter.CreatePresenter(productsView, productRepository, this);
+            IProductsView productsView = Products.GetInstance(view.ControlPanel);
+            productsPresenter = new(productsView, productRepository, this);
         }
 
-        public void ShowProductView()
+        public void ShowProductView(Product? product)
         {
             IProductRepository productRepository = new ProductRepository(dbContext);
-            productView = Product_Form.GetInstance(view.ControlPanel);
+            IProductView productView = Product_Form.GetInstance(view.ControlPanel);
 
-            ProductPresenter.CreatePresenter(productView, productRepository);
+            if (product != null)
+            {
+                productView.ProductName = product.Name;
+                productView.ProductCategory = product.Category.Name;
+                productView.ProductType = product.Type.Name;
+                productView.ProductPrice = product.Price;
+                productView.ProductStock = product.Stock;
+                productView.ProductActive = product.Active == 1 ? "Activo" : "Inactivo";
+                productView.ProductId = product.Id;
+            }
+            productsPresenter!.CloseView();
+            productPresenter = new(productView, productsPresenter!, productRepository);
         }
 
         private void CloseView(object? sender, EventArgs e)
         {
-            productsView?.Close();
-            productView?.Close(); 
+            productsPresenter?.CloseView();
+            productPresenter?.CloseView();
         }
     }
 }

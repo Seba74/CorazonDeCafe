@@ -79,7 +79,7 @@
             panel1.Dock = DockStyle.Left;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(191, 614);
+            panel1.Size = new Size(191, 682);
             panel1.TabIndex = 0;
             // 
             // btnAdd
@@ -96,7 +96,7 @@
             btnAdd.ForeColor = Color.FromArgb(145, 90, 57);
             btnAdd.Image = (Image)resources.GetObject("btnAdd.Image");
             btnAdd.ImageAlign = ContentAlignment.MiddleLeft;
-            btnAdd.Location = new Point(12, 565);
+            btnAdd.Location = new Point(12, 633);
             btnAdd.MaximumSize = new Size(160, 37);
             btnAdd.Name = "btnAdd";
             btnAdd.Padding = new Padding(6, 0, 6, 0);
@@ -113,10 +113,10 @@
             pictureBox5.BackColor = Color.Transparent;
             pictureBox5.BackgroundImage = (Image)resources.GetObject("pictureBox5.BackgroundImage");
             pictureBox5.BackgroundImageLayout = ImageLayout.Center;
-            pictureBox5.Location = new Point(5, 33);
+            pictureBox5.Location = new Point(5, 31);
             pictureBox5.MaximumSize = new Size(177, 220);
             pictureBox5.Name = "pictureBox5";
-            pictureBox5.Size = new Size(177, 118);
+            pictureBox5.Size = new Size(177, 117);
             pictureBox5.SizeMode = PictureBoxSizeMode.CenterImage;
             pictureBox5.TabIndex = 0;
             pictureBox5.TabStop = false;
@@ -127,17 +127,18 @@
             panel5.BackColor = Color.FromArgb(145, 90, 57);
             panel5.Location = new Point(188, 33);
             panel5.Name = "panel5";
-            panel5.Size = new Size(5, 582);
+            panel5.Size = new Size(5, 650);
             panel5.TabIndex = 0;
             // 
             // panel4
             // 
+            panel4.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             panel4.Controls.Add(btnHome);
             panel4.Controls.Add(btnProducts);
             panel4.Controls.Add(btnSales);
             panel4.Controls.Add(btnUsers);
             panel4.Controls.Add(btnStats);
-            panel4.Location = new Point(0, 200);
+            panel4.Location = new Point(1, 228);
             panel4.Name = "panel4";
             panel4.Size = new Size(189, 283);
             panel4.TabIndex = 0;
@@ -267,7 +268,7 @@
             panel2.Dock = DockStyle.Top;
             panel2.Location = new Point(191, 0);
             panel2.Name = "panel2";
-            panel2.Size = new Size(943, 33);
+            panel2.Size = new Size(1026, 33);
             panel2.TabIndex = 17;
             // 
             // btnMin
@@ -277,7 +278,7 @@
             btnMin.BackgroundImage = (Image)resources.GetObject("btnMin.BackgroundImage");
             btnMin.BackgroundImageLayout = ImageLayout.Zoom;
             btnMin.Cursor = Cursors.Hand;
-            btnMin.Location = new Point(849, 7);
+            btnMin.Location = new Point(932, 7);
             btnMin.Name = "btnMin";
             btnMin.Size = new Size(15, 15);
             btnMin.TabIndex = 21;
@@ -290,7 +291,7 @@
             btnNormal.BackgroundImage = (Image)resources.GetObject("btnNormal.BackgroundImage");
             btnNormal.BackgroundImageLayout = ImageLayout.Zoom;
             btnNormal.Cursor = Cursors.Hand;
-            btnNormal.Location = new Point(881, 7);
+            btnNormal.Location = new Point(964, 7);
             btnNormal.Name = "btnNormal";
             btnNormal.Size = new Size(14, 14);
             btnNormal.TabIndex = 20;
@@ -305,7 +306,7 @@
             btnClose.BackgroundImageLayout = ImageLayout.Zoom;
             btnClose.Cursor = Cursors.Hand;
             btnClose.ErrorImage = null;
-            btnClose.Location = new Point(911, 7);
+            btnClose.Location = new Point(994, 7);
             btnClose.Name = "btnClose";
             btnClose.Size = new Size(15, 15);
             btnClose.TabIndex = 18;
@@ -318,7 +319,7 @@
             btnMax.BackgroundImage = (Image)resources.GetObject("btnMax.BackgroundImage");
             btnMax.BackgroundImageLayout = ImageLayout.Zoom;
             btnMax.Cursor = Cursors.Hand;
-            btnMax.Location = new Point(881, 7);
+            btnMax.Location = new Point(964, 7);
             btnMax.Name = "btnMax";
             btnMax.Size = new Size(14, 14);
             btnMax.TabIndex = 19;
@@ -329,7 +330,7 @@
             viewPanel.Dock = DockStyle.Fill;
             viewPanel.Location = new Point(191, 33);
             viewPanel.Name = "viewPanel";
-            viewPanel.Size = new Size(943, 581);
+            viewPanel.Size = new Size(1026, 649);
             viewPanel.TabIndex = 19;
             // 
             // panel3
@@ -343,7 +344,7 @@
             panel3.Dock = DockStyle.Top;
             panel3.Location = new Point(191, 33);
             panel3.Name = "panel3";
-            panel3.Size = new Size(943, 45);
+            panel3.Size = new Size(1026, 45);
             panel3.TabIndex = 22;
             // 
             // panel6
@@ -353,7 +354,7 @@
             panel6.Controls.Add(titleHeader);
             panel6.Location = new Point(13, -1);
             panel6.Name = "panel6";
-            panel6.Size = new Size(187, 46);
+            panel6.Size = new Size(270, 46);
             panel6.TabIndex = 22;
             // 
             // iconHeader
@@ -384,7 +385,7 @@
             pictureBox1.BackgroundImage = (Image)resources.GetObject("pictureBox1.BackgroundImage");
             pictureBox1.BackgroundImageLayout = ImageLayout.Zoom;
             pictureBox1.Cursor = Cursors.Hand;
-            pictureBox1.Location = new Point(1607, 10);
+            pictureBox1.Location = new Point(1690, 10);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(18, 18);
             pictureBox1.TabIndex = 21;
@@ -397,7 +398,7 @@
             pictureBox2.BackgroundImage = (Image)resources.GetObject("pictureBox2.BackgroundImage");
             pictureBox2.BackgroundImageLayout = ImageLayout.Zoom;
             pictureBox2.Cursor = Cursors.Hand;
-            pictureBox2.Location = new Point(1646, 11);
+            pictureBox2.Location = new Point(1729, 11);
             pictureBox2.Name = "pictureBox2";
             pictureBox2.Size = new Size(18, 18);
             pictureBox2.TabIndex = 20;
@@ -410,7 +411,7 @@
             pictureBox3.BackColor = Color.Transparent;
             pictureBox3.BackgroundImageLayout = ImageLayout.Zoom;
             pictureBox3.Cursor = Cursors.Hand;
-            pictureBox3.Location = new Point(1682, 8);
+            pictureBox3.Location = new Point(1765, 8);
             pictureBox3.Name = "pictureBox3";
             pictureBox3.Size = new Size(23, 23);
             pictureBox3.TabIndex = 18;
@@ -422,7 +423,7 @@
             pictureBox4.BackColor = Color.Transparent;
             pictureBox4.BackgroundImageLayout = ImageLayout.Zoom;
             pictureBox4.Cursor = Cursors.Hand;
-            pictureBox4.Location = new Point(1646, 10);
+            pictureBox4.Location = new Point(1729, 10);
             pictureBox4.Name = "pictureBox4";
             pictureBox4.Size = new Size(18, 18);
             pictureBox4.TabIndex = 19;
@@ -433,7 +434,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Menu;
-            ClientSize = new Size(1134, 614);
+            ClientSize = new Size(1217, 682);
             ControlBox = false;
             Controls.Add(panel3);
             Controls.Add(viewPanel);

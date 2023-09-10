@@ -10,12 +10,6 @@ namespace CorazonDeCafeStockManager.App.Presenters
 {
     public class ProductPresenter
     {
-        public static void CreatePresenter(IProductView view, ProductsPresenter productsPresenter, IProductRepository productRepository)
-        {
-            ProductPresenter presenter = new(view, productsPresenter, productRepository);
-            presenter.view.Show();
-        }
-
         private readonly IProductView view;
         private readonly ProductsPresenter productsPresenter;
         private readonly IProductRepository productRepository;
@@ -39,6 +33,16 @@ namespace CorazonDeCafeStockManager.App.Presenters
             types = LocalStorage.Types;
             categories = LocalStorage.Categories;
 
+        }
+
+        public void ShowView()
+        {
+            view.Show();
+        }
+
+        public void CloseView()
+        {
+            view.Close();
         }
         private async void SaveEvent(object sender, EventArgs e)
         {
@@ -66,16 +70,16 @@ namespace CorazonDeCafeStockManager.App.Presenters
 
             File.Copy(filePath!, fileSavePath!);
             await productsPresenter.LoadAllProducts();
-            productsPresenter.ShowView();
             view.Close();
+            productsPresenter.ShowView();
         }
 
         private void CancelEvent(object sender, EventArgs e)
         {
             if(view.ProductId != null)
             {
-                productsPresenter.ShowView();
                 view.Close();
+                productsPresenter.ShowView();
                 return;
             }
 
@@ -93,8 +97,8 @@ namespace CorazonDeCafeStockManager.App.Presenters
                 }
             }
 
-            productsPresenter.ShowView();
             view.Close();
+            productsPresenter.ShowView();
         }
 
         private bool ValidateData()
