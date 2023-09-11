@@ -44,7 +44,6 @@ namespace CorazonDeCafeStockManager
             selectType.OnSelectedIndexChanged += delegate { FilterEvent?.Invoke(this, EventArgs.Empty); };
             reload.Click += delegate { ResetProductsEvent?.Invoke(this, EventArgs.Empty); };
             btnAdd.Click += delegate { AddEvent?.Invoke(this, EventArgs.Empty); };
-            // btnEdit send the selected product to the edit form
             btnEdit.Click += delegate
             {
                 if (productList.SelectedRows.Count > 0)
@@ -65,11 +64,6 @@ namespace CorazonDeCafeStockManager
 
         public void LoadProducts()
         {
-            if(ProductsList == null)
-            {
-                return;
-            }
-
             if (productList.InvokeRequired)
             {
                 productList.Invoke(new MethodInvoker(delegate
@@ -98,6 +92,7 @@ namespace CorazonDeCafeStockManager
                 }
             }
         }
+
 
         public void ChangeDataGridViewFont(DataGridView dataGridView)
         {

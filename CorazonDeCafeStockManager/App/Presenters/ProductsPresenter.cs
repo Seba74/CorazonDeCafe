@@ -101,6 +101,7 @@ namespace CorazonDeCafeStockManager.App.Presenters
             }
 
             view.ProductsList = productsToFilter;
+            products = productsToFilter;
             view.LoadProducts();
         }
       

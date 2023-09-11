@@ -3,6 +3,7 @@ using CorazonDeCafeStockManager.App.Models;
 using CorazonDeCafeStockManager.App.Repositories;
 using CorazonDeCafeStockManager.App.Views.Product_Form;
 using CorazonDeCafeStockManager.utils.Custom.TextBox;
+using FluentValidation;
 using Type = CorazonDeCafeStockManager.App.Models.Type;
 
 namespace CorazonDeCafeStockManager.App.Presenters

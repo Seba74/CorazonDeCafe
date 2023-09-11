@@ -78,6 +78,7 @@ namespace CorazonDeCafeStockManager.utils.Custom.TextBox
             }
             pathTxt.Dispose();
         }
+
         private void UpdateControlHeight()
         {
             if (textBox1.Multiline == false)
@@ -146,6 +147,7 @@ namespace CorazonDeCafeStockManager.utils.Custom.TextBox
             get { return textBox1.Multiline; }
             set { textBox1.Multiline = value; }
         }
+
         [Category("Coffee Input Custom")]
         public override Color BackColor
         {
@@ -171,6 +173,8 @@ namespace CorazonDeCafeStockManager.utils.Custom.TextBox
         {
             get
             {
+                if(placeholderText == textBox1.Text)
+                    return "";
                 return textBox1.Text;
             }
             set
@@ -179,6 +183,7 @@ namespace CorazonDeCafeStockManager.utils.Custom.TextBox
                 SetPlaceholder();
             }
         }
+
         [Category("Coffee Input Custom")]
         public int BorderRadius
         {
@@ -192,6 +197,7 @@ namespace CorazonDeCafeStockManager.utils.Custom.TextBox
                 }
             }
         }
+
         [Category("Coffee Input Custom")]
         public Color PlaceholderColor
         {
