@@ -1,6 +1,7 @@
 using CorazonDeCafeStockManager.App.Common;
 using CorazonDeCafeStockManager.App.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using System.Text;
 
 namespace CorazonDeCafeStockManager.App.Repositories._Repository;
@@ -17,26 +18,58 @@ public class ProductRepository : IProductRepository
 
     private async Task LoadCategoriesAndTypes()
     {
-        await _context.Categories!.LoadAsync();
-        await _context.Types!.LoadAsync();
+        try
+        {
+            await _context.Categories!.LoadAsync();
+            await _context.Types!.LoadAsync();
 
-        LocalStorage.Categories = await _context.Categories!.ToListAsync();
-        LocalStorage.Types = await _context.Types!.ToListAsync();
+            LocalStorage.Categories = await _context.Categories!.ToListAsync();
+            LocalStorage.Types = await _context.Types!.ToListAsync();
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e.Message);
+        }
     }
 
     public async Task AddProduct(Product product)
     {
+        if (product == null)
+        {
+            throw new ArgumentNullException(nameof(product));
+        }
+
         await _context.Products!.AddAsync(product);
-        await _context.SaveChangesAsync();
+
+        try
+        {
+            await _context.SaveChangesAsync();
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e.Message);
+        }
 
         LocalStorage.Products!.Add(product);
     }
 
-    public async void DeleteProduct(Product product)
+    public async Task<bool> DeleteProduct(int id)
     {
-        product.Status = 0;
-        _context.Products!.Update(product);
-        await _context.SaveChangesAsync();
+        Product? productToDelete = await _context.Products!.FirstOrDefaultAsync(p => p.Id == id);
+        if (productToDelete == null) return false;
+        productToDelete.Status = 0;
+
+        try
+        {
+            int isDeleted = await _context.SaveChangesAsync();
+            if (isDeleted > 0) LocalStorage.Products!.Remove(productToDelete);
+
+            return isDeleted > 0;
+        }
+        catch (Exception)
+        {
+            return false;
+        }
     }
 
     // Get All Products
@@ -44,27 +77,34 @@ public class ProductRepository : IProductRepository
     {
         if (LocalStorage.Categories == null || LocalStorage.Types == null)
             await LoadCategoriesAndTypes();
-        LocalStorage.Products ??= await _context.Products!.ToListAsync();
-        return LocalStorage.Products;
-    }
-    public Product GetProductById(int id)
-    {
-        return _context.Products!.First(p => p.Id == id);
-    }
+        // if is empty
+        if (!LocalStorage.Products.IsNullOrEmpty()) return LocalStorage.Products!;
 
-    public IEnumerable<Product> GetProductsByCategory(int categoryId)
-    {
-        return _context.Products!.Where(p => p.CategoryId == categoryId).ToList();
-    }
+        try
+        {
+            LocalStorage.Products = await _context.Products!.Where(p => p.Status == 1).ToListAsync();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
 
-    public IEnumerable<Product> GetProductsByType(int typeId)
+        return LocalStorage.Products ?? new();
+    }
+    public async Task<Product> GetProductById(int id)
     {
-        return _context.Products!.Where(p => p.TypeId == typeId).ToList();
+        Product? product = await _context.Products!.FirstOrDefaultAsync(p => p.Id == id) ?? throw new ArgumentException("Product not found");
+        return product;
     }
 
     public async Task<bool> UpdateProduct(Product product)
     {
         Product? productToUpdate = await _context.Products!.FirstOrDefaultAsync(p => p.Id == product.Id);
+
+        if (productToUpdate == null)
+        {
+            return false;
+        }
 
         productToUpdate!.Name = product.Name;
         productToUpdate.Price = product.Price;

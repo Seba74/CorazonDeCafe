@@ -1,6 +1,4 @@
-﻿using CorazonDeCafeStockManager.App.Common;
-using CorazonDeCafeStockManager.App.Models;
-using CorazonDeCafeStockManager.App.Views.Product_Form;
+﻿using CorazonDeCafeStockManager.App.Views.Product_Form;
 
 namespace CorazonDeCafeStockManager
 {
@@ -78,6 +76,7 @@ namespace CorazonDeCafeStockManager
         public PictureBox? ShowImage { get => showImage; set => showImage = value!; }
         public PictureBox? BgImagen { get => bgImagen; set => bgImagen = value!; }
         public ButtonCustom? BtnAddImage { get => btnAddImage; set => btnAddImage = value!; }
+        public ButtonCustom? BtnDelete { get => btnDelete; set => btnDelete = value!; }
 
         public Product_Form()
         {
@@ -95,6 +94,7 @@ namespace CorazonDeCafeStockManager
             btnCancel.Click += delegate { CancelEvent?.Invoke(this, EventArgs.Empty); };
             btnGoBack.Click += delegate { CancelEvent?.Invoke(this, EventArgs.Empty); };
             btnAddImage.Click += delegate { AddImageEvent?.Invoke(this, EventArgs.Empty); };
+            btnDelete.Click += delegate { DeleteEvent?.Invoke(this, EventArgs.Empty); };
             ipCategory.OnSelectedIndexChanged += delegate { ipCategory.ForeColor = Color.Black; };
             ipType.OnSelectedIndexChanged += delegate { ipType.ForeColor = Color.Black; };
             ipName.KeyPress += (sender, e) => ValidateEvent?.Invoke(sender, e);
@@ -104,6 +104,7 @@ namespace CorazonDeCafeStockManager
         public event KeyPressEventHandler? ValidateEvent;
         public event EventHandler? CancelEvent;
         public event EventHandler? AddImageEvent;
+        public event EventHandler? DeleteEvent;
         public event EventHandler? SaveEvent;
 
         public void ShowError(string message)

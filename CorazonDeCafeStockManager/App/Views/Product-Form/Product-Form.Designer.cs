@@ -109,7 +109,7 @@
             btnSave.Location = new Point(868, 11);
             btnSave.Name = "btnSave";
             btnSave.Padding = new Padding(6, 0, 5, 0);
-            btnSave.Size = new Size(120, 37);
+            btnSave.Size = new Size(120, 42);
             btnSave.TabIndex = 22;
             btnSave.Text = "Guardar";
             btnSave.TextAlign = ContentAlignment.MiddleLeft;
@@ -136,7 +136,7 @@
             btnCancel.Location = new Point(718, 11);
             btnCancel.Name = "btnCancel";
             btnCancel.Padding = new Padding(6, 0, 2, 0);
-            btnCancel.Size = new Size(120, 37);
+            btnCancel.Size = new Size(120, 42);
             btnCancel.TabIndex = 23;
             btnCancel.Text = "Cancelar";
             btnCancel.TextAlign = ContentAlignment.MiddleLeft;
@@ -163,12 +163,13 @@
             btnDelete.Location = new Point(15, 11);
             btnDelete.Name = "btnDelete";
             btnDelete.Padding = new Padding(8, 0, 0, 0);
-            btnDelete.Size = new Size(115, 37);
+            btnDelete.Size = new Size(115, 42);
             btnDelete.TabIndex = 25;
             btnDelete.Text = "Eliminar";
             btnDelete.TextAlign = ContentAlignment.MiddleLeft;
             btnDelete.TextColor = Color.FromArgb(255, 95, 95);
             btnDelete.UseVisualStyleBackColor = false;
+            btnDelete.Visible = false;
             // 
             // barHPanel
             // 

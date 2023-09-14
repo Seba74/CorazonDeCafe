@@ -19,10 +19,12 @@ namespace CorazonDeCafeStockManager.App.Views.Product_Form
         PictureBox? ShowImage { get; set; }
         PictureBox? BgImagen { get; set; }
         ButtonCustom? BtnAddImage { get; set; }
+        ButtonCustom? BtnDelete { get; set; }
         // Events
         event EventHandler? CancelEvent;
         event EventHandler? AddImageEvent;
         event KeyPressEventHandler? ValidateEvent;
+        event EventHandler? DeleteEvent;
         event EventHandler? SaveEvent;
         
         // Methods

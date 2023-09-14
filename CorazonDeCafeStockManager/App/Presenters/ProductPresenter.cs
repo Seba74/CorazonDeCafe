@@ -25,14 +25,17 @@ namespace CorazonDeCafeStockManager.App.Presenters
             this.productRepository = productRepository;
             this.view.ValidateEvent += ValidateEvent!;
             this.view.AddImageEvent += AddImageEvent!;
+            this.view.DeleteEvent += DeleteEvent!;
             this.view.SaveEvent += SaveEvent!;
             this.view.CancelEvent += CancelEvent!;
 
             types = LocalStorage.Types;
             categories = LocalStorage.Categories;
 
-            if (product != null) {
+            if (product != null)
+            {   
                 SetProductToView(product);
+                view.BtnDelete!.Visible = true;
             }
         }
 
@@ -49,19 +52,13 @@ namespace CorazonDeCafeStockManager.App.Presenters
             imageName = product.Imagen;
 
             view.Title = product.Name;
-            
+
             string path = Path.Combine("..", "..", "..", "products", view.ProductImagen);
             view.ShowImage!.Image = Image.FromFile(path);
             view.BgImagen!.Visible = true;
             view.BtnAddImage!.Text = $"Image: {view.ProductId}";
 
         }
-
-        public void ShowView()
-        {
-            view.Show();
-        }
-
         public void CloseView()
         {
             view.Close();
@@ -89,17 +86,18 @@ namespace CorazonDeCafeStockManager.App.Presenters
                 Imagen = imageName!
             };
 
-            if(view.ProductId != null)
+            if (view.ProductId != null)
             {
                 productToUpdate.Id = (int)view.ProductId;
                 bool isUpdated = await productRepository.UpdateProduct(productToUpdate);
-                if(filePath != null && fileSavePath != null && isUpdated)
+                if (filePath != null && fileSavePath != null && isUpdated)
                 {
                     try
                     {
                         GC.Collect();
                         GC.WaitForPendingFinalizers();
                         File.Copy(filePath!, fileSavePath!, true);
+                        GC.WaitForPendingFinalizers();
                     }
                     catch (IOException)
                     {
@@ -124,13 +122,13 @@ namespace CorazonDeCafeStockManager.App.Presenters
             view.Close();
         }
 
-        private void CancelEvent(object sender, EventArgs e)
+        private async void CancelEvent(object sender, EventArgs e)
         {
-            if(view.ProductId != null)
+            if (view.ProductId != null)
             {
-                Product product = productRepository.GetProductById((int)view.ProductId!);
-                
-                if(product != null &&
+                Product product = await productRepository.GetProductById((int)view.ProductId!);
+
+                if (product != null &&
                    product.Name != view.ProductName ||
                    product?.Price != view.ProductPrice ||
                    product.Stock != view.ProductStock ||
@@ -167,6 +165,27 @@ namespace CorazonDeCafeStockManager.App.Presenters
 
             homePresenter.ShowProductsView(this, EventArgs.Empty);
             view.Close();
+        }
+
+        private async void DeleteEvent(object sender, EventArgs e)
+        {
+            DialogResult dialogResult = MessageBox.Show("¿Desea eliminar el producto?", "Eliminar", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (dialogResult == DialogResult.No)
+            {
+                return;
+            }
+
+            bool isDeleted = await productRepository.DeleteProduct((int)view.ProductId!);
+            if (isDeleted)
+            {
+                homePresenter.ShowProductsView(this, EventArgs.Empty);
+                view.Close();
+            }
+            else
+            {
+                view.ShowError("Error al eliminar el producto, por favor intentelo nuevamente");
+            }
         }
 
         private bool ValidateData()
@@ -227,8 +246,6 @@ namespace CorazonDeCafeStockManager.App.Presenters
         private void ValidateEvent(object sender, KeyPressEventArgs e)
         {
             TextBoxCustom textBox = (TextBoxCustom)sender;
-
-            // If the input is not valid, mark the event as handled
             if (!IsValidInput(e.KeyChar, textBox))
             {
                 e.Handled = true;
@@ -275,7 +292,7 @@ namespace CorazonDeCafeStockManager.App.Presenters
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 imageName = Guid.NewGuid().ToString() + ".png";
-                if(view.ProductId != null)
+                if (view.ProductId != null)
                 {
                     imageName = view.ProductImagen;
                 }
