@@ -126,7 +126,7 @@ public partial class CorazonDeCafeContext : DbContext
                 .IsUnicode(false)
                 .HasColumnName("imagen");
             entity.Property(e => e.Name)
-                .HasMaxLength(30)
+                .HasMaxLength(150)
                 .IsUnicode(false)
                 .HasColumnName("name");
             entity.Property(e => e.Price).HasColumnName("price");

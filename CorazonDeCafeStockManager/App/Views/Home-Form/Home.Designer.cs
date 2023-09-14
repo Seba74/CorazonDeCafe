@@ -90,17 +90,18 @@
             btnAdd.BorderColor = Color.FromArgb(145, 90, 57);
             btnAdd.BorderRadius = 6;
             btnAdd.BorderSize = 2;
+            btnAdd.Cursor = Cursors.Hand;
             btnAdd.FlatAppearance.BorderSize = 0;
             btnAdd.FlatStyle = FlatStyle.Flat;
             btnAdd.Font = new Font("Poppins Light", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
             btnAdd.ForeColor = Color.FromArgb(145, 90, 57);
             btnAdd.Image = (Image)resources.GetObject("btnAdd.Image");
             btnAdd.ImageAlign = ContentAlignment.MiddleLeft;
-            btnAdd.Location = new Point(12, 633);
-            btnAdd.MaximumSize = new Size(160, 37);
+            btnAdd.Location = new Point(12, 628);
+            btnAdd.MaximumSize = new Size(160, 42);
             btnAdd.Name = "btnAdd";
             btnAdd.Padding = new Padding(6, 0, 6, 0);
-            btnAdd.Size = new Size(160, 37);
+            btnAdd.Size = new Size(160, 42);
             btnAdd.TabIndex = 18;
             btnAdd.Text = "      Cerrar Sesión";
             btnAdd.TextAlign = ContentAlignment.MiddleLeft;
@@ -148,7 +149,7 @@
             btnHome.BackColor = Color.FromArgb(255, 219, 197);
             btnHome.BackgroundColor = Color.FromArgb(255, 219, 197);
             btnHome.BorderColor = Color.Transparent;
-            btnHome.BorderRadius = 10;
+            btnHome.BorderRadius = 8;
             btnHome.BorderSize = 0;
             btnHome.Cursor = Cursors.Hand;
             btnHome.FlatAppearance.BorderSize = 0;
@@ -160,7 +161,7 @@
             btnHome.Location = new Point(12, 0);
             btnHome.Name = "btnHome";
             btnHome.Padding = new Padding(5, 3, 0, 3);
-            btnHome.Size = new Size(165, 44);
+            btnHome.Size = new Size(165, 42);
             btnHome.TabIndex = 1;
             btnHome.Text = "          INICIO";
             btnHome.TextAlign = ContentAlignment.MiddleLeft;
@@ -172,7 +173,7 @@
             btnProducts.BackColor = Color.Transparent;
             btnProducts.BackgroundColor = Color.Transparent;
             btnProducts.BorderColor = Color.Transparent;
-            btnProducts.BorderRadius = 10;
+            btnProducts.BorderRadius = 8;
             btnProducts.BorderSize = 0;
             btnProducts.Cursor = Cursors.Hand;
             btnProducts.FlatAppearance.BorderSize = 0;
@@ -184,7 +185,7 @@
             btnProducts.Location = new Point(11, 50);
             btnProducts.Name = "btnProducts";
             btnProducts.Padding = new Padding(5, 3, 0, 3);
-            btnProducts.Size = new Size(165, 44);
+            btnProducts.Size = new Size(165, 42);
             btnProducts.TabIndex = 2;
             btnProducts.Text = "          PRODUCTOS";
             btnProducts.TextColor = Color.Black;
@@ -195,7 +196,7 @@
             btnSales.BackColor = Color.Transparent;
             btnSales.BackgroundColor = Color.Transparent;
             btnSales.BorderColor = Color.Transparent;
-            btnSales.BorderRadius = 10;
+            btnSales.BorderRadius = 8;
             btnSales.BorderSize = 0;
             btnSales.Cursor = Cursors.Hand;
             btnSales.FlatAppearance.BorderSize = 0;
@@ -207,7 +208,7 @@
             btnSales.Location = new Point(12, 100);
             btnSales.Name = "btnSales";
             btnSales.Padding = new Padding(5, 3, 0, 3);
-            btnSales.Size = new Size(165, 44);
+            btnSales.Size = new Size(165, 42);
             btnSales.TabIndex = 4;
             btnSales.Text = "   VENTAS";
             btnSales.TextColor = Color.Black;
@@ -218,7 +219,7 @@
             btnUsers.BackColor = Color.Transparent;
             btnUsers.BackgroundColor = Color.Transparent;
             btnUsers.BorderColor = Color.Transparent;
-            btnUsers.BorderRadius = 10;
+            btnUsers.BorderRadius = 8;
             btnUsers.BorderSize = 0;
             btnUsers.Cursor = Cursors.Hand;
             btnUsers.FlatAppearance.BorderSize = 0;
@@ -230,7 +231,7 @@
             btnUsers.Location = new Point(12, 150);
             btnUsers.Name = "btnUsers";
             btnUsers.Padding = new Padding(5, 3, 0, 3);
-            btnUsers.Size = new Size(165, 44);
+            btnUsers.Size = new Size(165, 42);
             btnUsers.TabIndex = 3;
             btnUsers.Text = "      USUARIOS";
             btnUsers.TextColor = Color.Black;
@@ -241,7 +242,7 @@
             btnStats.BackColor = Color.Transparent;
             btnStats.BackgroundColor = Color.Transparent;
             btnStats.BorderColor = Color.Transparent;
-            btnStats.BorderRadius = 10;
+            btnStats.BorderRadius = 8;
             btnStats.BorderSize = 0;
             btnStats.Cursor = Cursors.Hand;
             btnStats.FlatAppearance.BorderSize = 0;
@@ -253,7 +254,7 @@
             btnStats.Location = new Point(11, 200);
             btnStats.Name = "btnStats";
             btnStats.Padding = new Padding(5, 3, 0, 3);
-            btnStats.Size = new Size(164, 44);
+            btnStats.Size = new Size(164, 42);
             btnStats.TabIndex = 5;
             btnStats.Text = "        REPORTES";
             btnStats.TextColor = Color.Black;

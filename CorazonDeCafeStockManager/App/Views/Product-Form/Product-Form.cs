@@ -75,7 +75,7 @@ namespace CorazonDeCafeStockManager
             }
         }
 
-        public PictureBox? ShowImage { get => showImage; set => showImage = value!;}
+        public PictureBox? ShowImage { get => showImage; set => showImage = value!; }
         public PictureBox? BgImagen { get => bgImagen; set => bgImagen = value!; }
         public ButtonCustom? BtnAddImage { get => btnAddImage; set => btnAddImage = value!; }
 
@@ -86,7 +86,7 @@ namespace CorazonDeCafeStockManager
 
             bgImagen.Controls.Add(showImage);
             showImage.Location = new Point(0, -28);
-            showImage.BackColor = Color.Transparent;       
+            showImage.BackColor = Color.Transparent;
         }
 
         private void AssociateEvents()

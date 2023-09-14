@@ -50,7 +50,7 @@
             lblTitle.AutoSize = true;
             lblTitle.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             lblTitle.ForeColor = Color.FromArgb(0, 0, 0, 0);
-            lblTitle.Location = new Point(27, 28);
+            lblTitle.Location = new Point(24, 28);
             lblTitle.Margin = new Padding(4, 0, 4, 0);
             lblTitle.Name = "lblTitle";
             lblTitle.Size = new Size(92, 21);
@@ -62,7 +62,7 @@
             lblSubtitle.AutoSize = true;
             lblSubtitle.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             lblSubtitle.ForeColor = Color.FromArgb(0, 0, 0, 0);
-            lblSubtitle.Location = new Point(30, 67);
+            lblSubtitle.Location = new Point(27, 67);
             lblSubtitle.Margin = new Padding(4, 0, 4, 0);
             lblSubtitle.Name = "lblSubtitle";
             lblSubtitle.Size = new Size(209, 21);
@@ -75,7 +75,7 @@
             panel1.BackgroundImage = Properties.Resources.CORAZÓN_DE_CAFÉ2;
             panel1.BackgroundImageLayout = ImageLayout.Center;
             panel1.Controls.Add(closeBtn);
-            panel1.Location = new Point(326, -40);
+            panel1.Location = new Point(320, -40);
             panel1.Name = "panel1";
             panel1.Size = new Size(652, 546);
             panel1.TabIndex = 8;
@@ -105,9 +105,9 @@
             btnLogin.FlatAppearance.MouseDownBackColor = Color.FromArgb(147, 110, 77);
             btnLogin.FlatStyle = FlatStyle.Flat;
             btnLogin.ForeColor = Color.FromArgb(255, 219, 197);
-            btnLogin.Location = new Point(34, 354);
+            btnLogin.Location = new Point(31, 354);
             btnLogin.Name = "btnLogin";
-            btnLogin.Size = new Size(254, 41);
+            btnLogin.Size = new Size(254, 42);
             btnLogin.TabIndex = 10;
             btnLogin.Text = "INICIAR SESIÓN";
             btnLogin.TextColor = Color.FromArgb(255, 219, 197);
@@ -122,14 +122,14 @@
             ipUser.BorderSize = 2;
             ipUser.Cursor = Cursors.Hand;
             ipUser.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Point);
-            ipUser.Location = new Point(34, 194);
+            ipUser.Location = new Point(31, 194);
             ipUser.Multiline = false;
             ipUser.Name = "ipUser";
-            ipUser.Padding = new Padding(8, 7, 8, 7);
+            ipUser.Padding = new Padding(8, 9, 8, 9);
             ipUser.PasswordChar = false;
             ipUser.PlaceholderColor = Color.FromArgb(146, 90, 57);
             ipUser.PlaceholderText = "USUARIO";
-            ipUser.Size = new Size(254, 35);
+            ipUser.Size = new Size(254, 39);
             ipUser.TabIndex = 11;
             ipUser.Texts = "";
             ipUser.UnderlinedStyle = false;
@@ -143,14 +143,14 @@
             ipPassword.BorderSize = 2;
             ipPassword.Cursor = Cursors.Hand;
             ipPassword.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Point);
-            ipPassword.Location = new Point(34, 269);
+            ipPassword.Location = new Point(31, 269);
             ipPassword.Multiline = false;
             ipPassword.Name = "ipPassword";
-            ipPassword.Padding = new Padding(8, 7, 8, 7);
+            ipPassword.Padding = new Padding(8, 9, 8, 9);
             ipPassword.PasswordChar = true;
             ipPassword.PlaceholderColor = Color.FromArgb(146, 90, 57);
             ipPassword.PlaceholderText = "CONTRASEÑA";
-            ipPassword.Size = new Size(254, 35);
+            ipPassword.Size = new Size(254, 39);
             ipPassword.TabIndex = 12;
             ipPassword.Texts = "";
             ipPassword.UnderlinedStyle = false;
@@ -161,7 +161,7 @@
             lblError.BackColor = Color.Transparent;
             lblError.Font = new Font("Poppins Light", 10F, FontStyle.Regular, GraphicsUnit.Point);
             lblError.ForeColor = Color.FromArgb(255, 95, 95);
-            lblError.Location = new Point(57, 136);
+            lblError.Location = new Point(54, 136);
             lblError.Name = "lblError";
             lblError.Size = new Size(236, 25);
             lblError.TabIndex = 13;
@@ -174,7 +174,7 @@
             inError.BackgroundImage = (Image)resources.GetObject("inError.BackgroundImage");
             inError.BackgroundImageLayout = ImageLayout.Zoom;
             inError.ErrorImage = null;
-            inError.Location = new Point(34, 135);
+            inError.Location = new Point(31, 135);
             inError.Name = "inError";
             inError.Size = new Size(22, 24);
             inError.TabIndex = 14;
@@ -184,7 +184,7 @@
             // loading
             // 
             loading.BackColor = Color.Transparent;
-            loading.Location = new Point(99, 194);
+            loading.Location = new Point(96, 194);
             loading.Name = "loading";
             loading.Size = new Size(106, 97);
             loading.SizeMode = PictureBoxSizeMode.Zoom;
@@ -196,7 +196,7 @@
             AutoScaleDimensions = new SizeF(9F, 21F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Window;
-            ClientSize = new Size(977, 467);
+            ClientSize = new Size(971, 467);
             Controls.Add(loading);
             Controls.Add(inError);
             Controls.Add(lblError);
