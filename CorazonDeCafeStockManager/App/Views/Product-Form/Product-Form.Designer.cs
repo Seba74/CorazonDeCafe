@@ -324,20 +324,20 @@
             // 
             bgImagen.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             bgImagen.BackColor = Color.Transparent;
+            bgImagen.BackgroundImageLayout = ImageLayout.Zoom;
             bgImagen.Image = (Image)resources.GetObject("bgImagen.Image");
-            bgImagen.Location = new Point(12, 11);
+            bgImagen.Location = new Point(12, 14);
             bgImagen.Name = "bgImagen";
             bgImagen.Size = new Size(239, 355);
             bgImagen.TabIndex = 38;
             bgImagen.TabStop = false;
-            bgImagen.Visible = false;
             // 
             // showImage
             // 
             showImage.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             showImage.BackColor = Color.Transparent;
             showImage.BackgroundImageLayout = ImageLayout.Zoom;
-            showImage.Location = new Point(12, 13);
+            showImage.Location = new Point(12, 16);
             showImage.Name = "showImage";
             showImage.Size = new Size(239, 332);
             showImage.SizeMode = PictureBoxSizeMode.Zoom;
@@ -510,7 +510,7 @@
             panel5.Anchor = AnchorStyles.None;
             panel5.Controls.Add(showImage);
             panel5.Controls.Add(bgImagen);
-            panel5.Location = new Point(609, 26);
+            panel5.Location = new Point(609, 28);
             panel5.Name = "panel5";
             panel5.Size = new Size(263, 374);
             panel5.TabIndex = 40;

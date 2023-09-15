@@ -2,7 +2,9 @@
 using CorazonDeCafeStockManager.App.Models;
 using CorazonDeCafeStockManager.App.Repositories;
 using CorazonDeCafeStockManager.App.Views.Product_Form;
+using CorazonDeCafeStockManager.Properties;
 using CorazonDeCafeStockManager.utils.Custom.TextBox;
+using Microsoft.IdentityModel.Tokens;
 using Type = CorazonDeCafeStockManager.App.Models.Type;
 
 namespace CorazonDeCafeStockManager.App.Presenters
@@ -33,28 +35,39 @@ namespace CorazonDeCafeStockManager.App.Presenters
             categories = LocalStorage.Categories;
 
             if (product != null)
-            {   
+            {
                 SetProductToView(product);
                 view.BtnDelete!.Visible = true;
+                view.BgImagen!.Image = Resources.bg;
             }
         }
 
         private void SetProductToView(Product product)
         {
+
+
             view.ProductName = product.Name;
             view.ProductActive = product.Active == 1 ? "Activo" : "Inactivo";
             view.ProductPrice = product.Price;
             view.ProductCategory = product.Category.Name;
             view.ProductType = product.Type.Name;
             view.ProductStock = product.Stock;
-            view.ProductImagen = product.Imagen;
             view.ProductId = product.Id;
+            view.Title = product.Name;
             imageName = product.Imagen;
 
-            view.Title = product.Name;
+            if (product.Imagen.IsNullOrEmpty())
+            {
+                product.Imagen = "default.png";
+                view.ShowImage!.Image = Resources.imageNotFound;
+            }
+            else
+            {
+                string path = Path.Combine("..", "..", "..", "products", product.Imagen);
+                view.ShowImage!.Image = Image.FromFile(path);
+            }
 
-            string path = Path.Combine("..", "..", "..", "products", view.ProductImagen);
-            view.ShowImage!.Image = Image.FromFile(path);
+            view.ProductImagen = product.Imagen;
             view.BgImagen!.Visible = true;
             view.BtnAddImage!.Text = $"Image: {view.ProductId}";
 
@@ -135,7 +148,9 @@ namespace CorazonDeCafeStockManager.App.Presenters
                    product.Category.Name != view.ProductCategory ||
                    product.Type.Name != view.ProductType ||
                    product.Active != (view.ProductActive == "Activo" ? 1 : 0) ||
-                   product.Imagen != view.ProductImagen)
+                   product.Imagen != view.ProductImagen ||
+                   view.BtnAddImage!.Text != $"Image: {view.ProductId}")
+
                 {
                     DialogResult dialogResult = MessageBox.Show("Hay cambios sin guardar, ¿Desea cancelar?", "Cancelar", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (dialogResult == DialogResult.No)
@@ -302,7 +317,7 @@ namespace CorazonDeCafeStockManager.App.Presenters
                 this.fileSavePath = fileSavePath;
                 filePath = openFileDialog.FileName;
 
-                view.BgImagen!.Visible = true;
+                view.BgImagen!.Image = Resources.bg;
                 view.ShowImage!.Image = Image.FromFile(filePath);
                 view.BtnAddImage!.Text = $"Image: {fileName}";
             }

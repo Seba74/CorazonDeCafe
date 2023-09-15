@@ -23,6 +23,7 @@ public class ProductRepository : IProductRepository
             await _context.Categories!.LoadAsync();
             await _context.Types!.LoadAsync();
 
+
             LocalStorage.Categories = await _context.Categories!.ToListAsync();
             LocalStorage.Types = await _context.Types!.ToListAsync();
         }

@@ -72,8 +72,8 @@
             // panel1
             // 
             panel1.BackColor = Color.FromArgb(147, 90, 57);
-            panel1.BackgroundImage = Properties.Resources.CORAZÓN_DE_CAFÉ2;
-            panel1.BackgroundImageLayout = ImageLayout.Center;
+            panel1.BackgroundImage = Properties.Resources.CORAZÓN_DE_CAFÉ;
+            panel1.BackgroundImageLayout = ImageLayout.Zoom;
             panel1.Controls.Add(closeBtn);
             panel1.Location = new Point(320, -40);
             panel1.Name = "panel1";
