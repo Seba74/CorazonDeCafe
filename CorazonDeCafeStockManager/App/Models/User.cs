@@ -13,13 +13,7 @@ public partial class User
 
     public string Email { get; set; } = null!;
 
-    public string Username { get; set; } = null!;
-
     public int Dni { get; set; }
-
-    public string Pass { get; set; } = null!;
-
-    public int RoleId { get; set; }
 
     public int? AddressId { get; set; }
 
@@ -29,7 +23,7 @@ public partial class User
 
     public virtual Address? Address { get; set; }
 
-    public virtual ICollection<Order> Orders { get; set; } = new List<Order>();
+    public virtual ICollection<Client> Clients { get; set; } = new List<Client>();
 
-    public virtual Role Role { get; set; } = null!;
+    public virtual ICollection<Employee> Employees { get; set; } = new List<Employee>();
 }

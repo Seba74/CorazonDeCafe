@@ -1,4 +1,3 @@
-using System.Configuration;
 using CorazonDeCafeStockManager.App.Common;
 using CorazonDeCafeStockManager.App.Models;
 using CorazonDeCafeStockManager.App.Presenters;
@@ -6,6 +5,7 @@ using CorazonDeCafeStockManager.App.Repositories;
 using CorazonDeCafeStockManager.App.Repositories._Repository;
 using CorazonDeCafeStockManager.App.Views.Home_Form;
 using CorazonDeCafeStockManager.App.Views.Login_Form;
+using CorazonDeCafeStockManager.Properties;
 using Microsoft.EntityFrameworkCore;
 
 namespace CorazonDeCafeStockManager
@@ -18,9 +18,8 @@ namespace CorazonDeCafeStockManager
         static void Main()
         {
             ApplicationConfiguration.Initialize();
-            string connectionString = ConfigurationManager.ConnectionStrings["CorazonDeCafeStockManager.App.SqlConnection"].ConnectionString;
             DbContextOptionsBuilder<CorazonDeCafeContext> optionsBuilder = new();
-            CorazonDeCafeContext dbContext = new(optionsBuilder.UseSqlServer(connectionString).Options);
+            CorazonDeCafeContext dbContext = new(optionsBuilder.UseSqlServer(Resources.connectionString).Options);
             loadFonts.Init();
             // Init Home View
             IHomeView homeView = new Home(); 

@@ -7,15 +7,15 @@ public partial class Order
 {
     public int Id { get; set; }
 
-    public int? UserId { get; set; }
+    public int? ClientId { get; set; }
 
-    public DateTime? CreateAt { get; set; }
+    public DateTime CreateAt { get; set; }
 
     public int Status { get; set; }
 
     public double TotalPrice { get; set; }
 
-    public virtual ICollection<OrderProduct> OrderProducts { get; set; } = new List<OrderProduct>();
+    public virtual Client? Client { get; set; }
 
-    public virtual User? User { get; set; }
+    public virtual ICollection<OrderProduct> OrderProducts { get; set; } = new List<OrderProduct>();
 }

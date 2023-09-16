@@ -15,21 +15,21 @@ public class AuthRepository : IAuthRepository
 
     public async Task<bool> Login(string username, string password)
     {
-        // get user from database
-        User? user = await _context.Users!.FirstOrDefaultAsync(u => u.Username == username);
+        // get employee from database by username and get user with it
+        Employee? employee = await _context.Employees.Include(e => e.User).FirstOrDefaultAsync(e => e.Username == username);
 
-        if (user == null)
+        if (employee == null)
         {
             return false;
         }
         else
         {
             // check password
-            if (user.Pass == password)
+            if (employee.Pass == password)
             {
-                SessionManager.Name = user.Name;
-                SessionManager.RoleId = user.RoleId;
-                SessionManager.Username = user.Username;
+                SessionManager.Name = employee.User.Name;
+                SessionManager.RoleId = employee.RoleId;
+                SessionManager.Username = employee.Username;
                 SessionManager.IsLoggedIn = true;
 
                 return true;

@@ -131,6 +131,15 @@ namespace CorazonDeCafeStockManager.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Server=localhost;Database=CorazonDeCafe;Integrated Security=True;TrustServerCertificate=True;.
+        /// </summary>
+        internal static string connectionString {
+            get {
+                return ResourceManager.GetString("connectionString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap CORAZÓN_DE_CAFÉ {
