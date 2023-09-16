@@ -261,6 +261,12 @@ namespace CorazonDeCafeStockManager.App.Presenters
         private void ValidateEvent(object sender, KeyPressEventArgs e)
         {
             TextBoxCustom textBox = (TextBoxCustom)sender;
+
+            if (e.KeyChar == '\b')
+            {
+                return;
+            }
+
             if (!IsValidInput(e.KeyChar, textBox))
             {
                 e.Handled = true;
