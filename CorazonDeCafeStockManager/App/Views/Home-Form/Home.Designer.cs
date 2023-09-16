@@ -93,15 +93,15 @@
             btnAdd.Cursor = Cursors.Hand;
             btnAdd.FlatAppearance.BorderSize = 0;
             btnAdd.FlatStyle = FlatStyle.Flat;
-            btnAdd.Font = new Font("Poppins Light", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            btnAdd.Font = new Font("Poppins Light", 10F, FontStyle.Regular, GraphicsUnit.Point);
             btnAdd.ForeColor = Color.FromArgb(145, 90, 57);
             btnAdd.Image = (Image)resources.GetObject("btnAdd.Image");
             btnAdd.ImageAlign = ContentAlignment.MiddleLeft;
-            btnAdd.Location = new Point(12, 628);
+            btnAdd.Location = new Point(13, 632);
             btnAdd.MaximumSize = new Size(160, 42);
             btnAdd.Name = "btnAdd";
             btnAdd.Padding = new Padding(6, 0, 6, 0);
-            btnAdd.Size = new Size(160, 42);
+            btnAdd.Size = new Size(149, 38);
             btnAdd.TabIndex = 18;
             btnAdd.Text = "      Cerrar Sesión";
             btnAdd.TextAlign = ContentAlignment.MiddleLeft;
@@ -114,10 +114,10 @@
             pictureBox5.BackColor = Color.Transparent;
             pictureBox5.BackgroundImage = (Image)resources.GetObject("pictureBox5.BackgroundImage");
             pictureBox5.BackgroundImageLayout = ImageLayout.Center;
-            pictureBox5.Location = new Point(5, 31);
+            pictureBox5.Location = new Point(12, 32);
             pictureBox5.MaximumSize = new Size(177, 220);
             pictureBox5.Name = "pictureBox5";
-            pictureBox5.Size = new Size(177, 117);
+            pictureBox5.Size = new Size(165, 117);
             pictureBox5.SizeMode = PictureBoxSizeMode.CenterImage;
             pictureBox5.TabIndex = 0;
             pictureBox5.TabStop = false;
@@ -154,16 +154,16 @@
             btnHome.Cursor = Cursors.Hand;
             btnHome.FlatAppearance.BorderSize = 0;
             btnHome.FlatStyle = FlatStyle.Flat;
-            btnHome.Font = new Font("Poppins Light", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            btnHome.Font = new Font("Poppins Light", 10F, FontStyle.Regular, GraphicsUnit.Point);
             btnHome.ForeColor = Color.Black;
             btnHome.Image = (Image)resources.GetObject("btnHome.Image");
             btnHome.ImageAlign = ContentAlignment.MiddleLeft;
             btnHome.Location = new Point(12, 0);
             btnHome.Name = "btnHome";
             btnHome.Padding = new Padding(5, 3, 0, 3);
-            btnHome.Size = new Size(165, 42);
+            btnHome.Size = new Size(159, 41);
             btnHome.TabIndex = 1;
-            btnHome.Text = "          INICIO";
+            btnHome.Text = "           INICIO";
             btnHome.TextAlign = ContentAlignment.MiddleLeft;
             btnHome.TextColor = Color.Black;
             btnHome.UseVisualStyleBackColor = false;
@@ -178,16 +178,16 @@
             btnProducts.Cursor = Cursors.Hand;
             btnProducts.FlatAppearance.BorderSize = 0;
             btnProducts.FlatStyle = FlatStyle.Flat;
-            btnProducts.Font = new Font("Poppins Light", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            btnProducts.Font = new Font("Poppins Light", 10F, FontStyle.Regular, GraphicsUnit.Point);
             btnProducts.ForeColor = Color.Black;
             btnProducts.Image = (Image)resources.GetObject("btnProducts.Image");
             btnProducts.ImageAlign = ContentAlignment.MiddleLeft;
             btnProducts.Location = new Point(11, 50);
             btnProducts.Name = "btnProducts";
             btnProducts.Padding = new Padding(5, 3, 0, 3);
-            btnProducts.Size = new Size(165, 42);
+            btnProducts.Size = new Size(159, 41);
             btnProducts.TabIndex = 2;
-            btnProducts.Text = "          PRODUCTOS";
+            btnProducts.Text = "         PRODUCTOS";
             btnProducts.TextColor = Color.Black;
             btnProducts.UseVisualStyleBackColor = false;
             // 
@@ -201,16 +201,16 @@
             btnSales.Cursor = Cursors.Hand;
             btnSales.FlatAppearance.BorderSize = 0;
             btnSales.FlatStyle = FlatStyle.Flat;
-            btnSales.Font = new Font("Poppins Light", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            btnSales.Font = new Font("Poppins Light", 10F, FontStyle.Regular, GraphicsUnit.Point);
             btnSales.ForeColor = Color.Black;
             btnSales.Image = (Image)resources.GetObject("btnSales.Image");
             btnSales.ImageAlign = ContentAlignment.MiddleLeft;
             btnSales.Location = new Point(12, 100);
             btnSales.Name = "btnSales";
             btnSales.Padding = new Padding(5, 3, 0, 3);
-            btnSales.Size = new Size(165, 42);
+            btnSales.Size = new Size(159, 41);
             btnSales.TabIndex = 4;
-            btnSales.Text = "   VENTAS";
+            btnSales.Text = "VENTAS";
             btnSales.TextColor = Color.Black;
             btnSales.UseVisualStyleBackColor = false;
             // 
@@ -224,16 +224,16 @@
             btnUsers.Cursor = Cursors.Hand;
             btnUsers.FlatAppearance.BorderSize = 0;
             btnUsers.FlatStyle = FlatStyle.Flat;
-            btnUsers.Font = new Font("Poppins Light", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            btnUsers.Font = new Font("Poppins Light", 10F, FontStyle.Regular, GraphicsUnit.Point);
             btnUsers.ForeColor = Color.Black;
             btnUsers.Image = (Image)resources.GetObject("btnUsers.Image");
             btnUsers.ImageAlign = ContentAlignment.MiddleLeft;
             btnUsers.Location = new Point(12, 150);
             btnUsers.Name = "btnUsers";
             btnUsers.Padding = new Padding(5, 3, 0, 3);
-            btnUsers.Size = new Size(165, 42);
+            btnUsers.Size = new Size(159, 41);
             btnUsers.TabIndex = 3;
-            btnUsers.Text = "      USUARIOS";
+            btnUsers.Text = "    USUARIOS";
             btnUsers.TextColor = Color.Black;
             btnUsers.UseVisualStyleBackColor = false;
             // 
@@ -247,16 +247,16 @@
             btnStats.Cursor = Cursors.Hand;
             btnStats.FlatAppearance.BorderSize = 0;
             btnStats.FlatStyle = FlatStyle.Flat;
-            btnStats.Font = new Font("Poppins Light", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            btnStats.Font = new Font("Poppins Light", 10F, FontStyle.Regular, GraphicsUnit.Point);
             btnStats.ForeColor = Color.Black;
             btnStats.Image = (Image)resources.GetObject("btnStats.Image");
             btnStats.ImageAlign = ContentAlignment.MiddleLeft;
             btnStats.Location = new Point(11, 200);
             btnStats.Name = "btnStats";
             btnStats.Padding = new Padding(5, 3, 0, 3);
-            btnStats.Size = new Size(164, 42);
+            btnStats.Size = new Size(158, 41);
             btnStats.TabIndex = 5;
-            btnStats.Text = "        REPORTES";
+            btnStats.Text = "     REPORTES";
             btnStats.TextColor = Color.Black;
             btnStats.UseVisualStyleBackColor = false;
             // 
@@ -345,7 +345,7 @@
             panel3.Dock = DockStyle.Top;
             panel3.Location = new Point(191, 33);
             panel3.Name = "panel3";
-            panel3.Size = new Size(1026, 45);
+            panel3.Size = new Size(1026, 39);
             panel3.TabIndex = 22;
             // 
             // panel6
@@ -355,27 +355,27 @@
             panel6.Controls.Add(titleHeader);
             panel6.Location = new Point(13, -1);
             panel6.Name = "panel6";
-            panel6.Size = new Size(270, 46);
+            panel6.Size = new Size(270, 40);
             panel6.TabIndex = 22;
             // 
             // iconHeader
             // 
             iconHeader.BackgroundImage = Properties.Resources.home;
-            iconHeader.BackgroundImageLayout = ImageLayout.Center;
-            iconHeader.Location = new Point(0, 9);
+            iconHeader.BackgroundImageLayout = ImageLayout.Stretch;
+            iconHeader.Location = new Point(3, 7);
             iconHeader.Name = "iconHeader";
-            iconHeader.Size = new Size(28, 30);
+            iconHeader.Size = new Size(23, 25);
             iconHeader.TabIndex = 23;
             iconHeader.TabStop = false;
             // 
             // titleHeader
             // 
             titleHeader.AutoSize = true;
-            titleHeader.Font = new Font("Poppins Light", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
+            titleHeader.Font = new Font("Poppins Light", 14F, FontStyle.Regular, GraphicsUnit.Point);
             titleHeader.ForeColor = Color.White;
-            titleHeader.Location = new Point(34, 6);
+            titleHeader.Location = new Point(32, 4);
             titleHeader.Name = "titleHeader";
-            titleHeader.Size = new Size(79, 37);
+            titleHeader.Size = new Size(70, 34);
             titleHeader.TabIndex = 0;
             titleHeader.Text = "INICIO";
             // 

@@ -109,7 +109,7 @@
             btnSave.Location = new Point(868, 11);
             btnSave.Name = "btnSave";
             btnSave.Padding = new Padding(6, 0, 5, 0);
-            btnSave.Size = new Size(120, 42);
+            btnSave.Size = new Size(120, 38);
             btnSave.TabIndex = 22;
             btnSave.Text = "Guardar";
             btnSave.TextAlign = ContentAlignment.MiddleLeft;
@@ -136,7 +136,7 @@
             btnCancel.Location = new Point(718, 11);
             btnCancel.Name = "btnCancel";
             btnCancel.Padding = new Padding(6, 0, 2, 0);
-            btnCancel.Size = new Size(120, 42);
+            btnCancel.Size = new Size(120, 38);
             btnCancel.TabIndex = 23;
             btnCancel.Text = "Cancelar";
             btnCancel.TextAlign = ContentAlignment.MiddleLeft;
@@ -163,7 +163,7 @@
             btnDelete.Location = new Point(15, 11);
             btnDelete.Name = "btnDelete";
             btnDelete.Padding = new Padding(8, 0, 0, 0);
-            btnDelete.Size = new Size(115, 42);
+            btnDelete.Size = new Size(115, 38);
             btnDelete.TabIndex = 25;
             btnDelete.Text = "Eliminar";
             btnDelete.TextAlign = ContentAlignment.MiddleLeft;
@@ -175,7 +175,7 @@
             // 
             barHPanel.Anchor = AnchorStyles.None;
             barHPanel.BackColor = Color.FromArgb(145, 90, 57);
-            barHPanel.Location = new Point(-3, 520);
+            barHPanel.Location = new Point(-3, 543);
             barHPanel.MaximumSize = new Size(3400, 4);
             barHPanel.Name = "barHPanel";
             barHPanel.Size = new Size(999, 4);
@@ -468,7 +468,7 @@
             panel1.Controls.Add(btnSave);
             panel1.Controls.Add(btnCancel);
             panel1.Controls.Add(btnDelete);
-            panel1.Location = new Point(-3, 547);
+            panel1.Location = new Point(-3, 559);
             panel1.Name = "panel1";
             panel1.Size = new Size(999, 58);
             panel1.TabIndex = 48;
@@ -478,7 +478,7 @@
             panel2.Anchor = AnchorStyles.None;
             panel2.Controls.Add(panel3);
             panel2.Controls.Add(panel5);
-            panel2.Location = new Point(-3, 109);
+            panel2.Location = new Point(-3, 125);
             panel2.Name = "panel2";
             panel2.Size = new Size(999, 407);
             panel2.TabIndex = 49;
@@ -520,7 +520,7 @@
             panel4.Anchor = AnchorStyles.None;
             panel4.Controls.Add(title);
             panel4.Controls.Add(btnGoBack);
-            panel4.Location = new Point(-3, 61);
+            panel4.Location = new Point(-3, 63);
             panel4.Name = "panel4";
             panel4.Size = new Size(999, 48);
             panel4.TabIndex = 50;
