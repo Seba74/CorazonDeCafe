@@ -279,7 +279,7 @@ namespace CorazonDeCafeStockManager.App.Presenters
             {
                 "ipName" => char.IsLetterOrDigit(inputChar) || char.IsWhiteSpace(inputChar),
                 "ipPrice" => char.IsDigit(inputChar) || IsDecimalSeparator(inputChar),
-                "ipStock" => char.IsDigit(inputChar) && IsStockValid(textBox.Text + inputChar),
+                "ipStock" => char.IsDigit(inputChar) && IsStockValid(textBox.Texts + inputChar),
                 _ => true,
             };
         }
@@ -292,7 +292,7 @@ namespace CorazonDeCafeStockManager.App.Presenters
 
         private bool IsStockValid(string inputText)
         {
-            if (int.TryParse(inputText, out int stock))
+            if (!string.IsNullOrWhiteSpace(inputText) && int.TryParse(inputText, out int stock))
             {
                 return stock >= 0;
             }

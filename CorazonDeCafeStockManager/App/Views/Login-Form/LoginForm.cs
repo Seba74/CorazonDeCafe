@@ -38,7 +38,7 @@ namespace CorazonDeCafeStockManager
         {
             ipUser._TextChanged += OnInputChanged!;
             ipPassword._TextChanged += OnInputChanged!;
-            closeBtn.Click += delegate (object? sender, EventArgs e) { Close(); };
+            closeBtn.Click += delegate{ Application.Exit(); };
             btnLogin.Click += delegate (object? sender, EventArgs e)
             {
                 HideInputs(false);

@@ -24,7 +24,7 @@ namespace CorazonDeCafeStockManager
             btnProducts.Click += delegate { ShowProductsView?.Invoke(this, EventArgs.Empty); };
             btnHome.Click += delegate { CloseView?.Invoke(this, EventArgs.Empty); };
 
-            btnClose.Click += delegate { Close(); };
+            btnClose.Click += delegate { Application.Exit(); };
             btnMin.Click += delegate { WindowState = FormWindowState.Minimized; };
             btnNormal.Click += delegate
             {

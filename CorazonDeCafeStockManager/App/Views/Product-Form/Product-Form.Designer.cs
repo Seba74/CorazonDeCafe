@@ -247,7 +247,7 @@
             ipStock.Padding = new Padding(10, 8, 4, 7);
             ipStock.PasswordChar = false;
             ipStock.PlaceholderColor = Color.FromArgb(146, 90, 57);
-            ipStock.PlaceholderText = "5";
+            ipStock.PlaceholderText = "";
             ipStock.Size = new Size(122, 37);
             ipStock.TabIndex = 33;
             ipStock.Texts = "";
