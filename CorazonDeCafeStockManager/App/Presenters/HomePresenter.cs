@@ -1,6 +1,7 @@
 ﻿using CorazonDeCafeStockManager.App.Models;
 using CorazonDeCafeStockManager.App.Repositories;
 using CorazonDeCafeStockManager.App.Repositories._Repository;
+using CorazonDeCafeStockManager.App.Views.Customers_Form;
 using CorazonDeCafeStockManager.App.Views.Home_Form;
 using CorazonDeCafeStockManager.App.Views.Product_Form;
 using CorazonDeCafeStockManager.App.Views.Products_Form;
@@ -12,10 +13,12 @@ namespace CorazonDeCafeStockManager.App.Presenters
         private readonly CorazonDeCafeContext dbContext;
         private readonly IHomeView view;
         private IProductsView? productsView;
+        private ICustomersView? customersView;
         private IProductView? productView;
 
         private ProductsPresenter? productsPresenter { get; set; }
         private ProductPresenter? productPresenter { get; set; }
+        private CustomersPresenter? customersPresenter { get; set; }
 
         public HomePresenter(IHomeView view, CorazonDeCafeContext dbContext)
         {
@@ -56,6 +59,18 @@ namespace CorazonDeCafeStockManager.App.Presenters
             productView = Product_Form.GetInstance(view.ControlPanel);
       
             productPresenter = new(productView, productRepository, product!, this);
+        }
+        public void ShowCustomersView(object? sender, EventArgs e)
+        {
+            view.RemoveBackgroundBtns();
+            view.ProductButton.BackColor = Color.FromArgb(255, 219, 197);
+
+            view.IconHeader.BackgroundImage = Properties.Resources.coffee1;
+            view.TitleHeader.Text = "PRODUCTOS";
+
+            ICustomerRepository customerRepository = new CustomerRepository(dbContext);
+            customersView = CustomersForm.GetInstance(view.ControlPanel);
+            customersPresenter = new(customersView, customerRepository, this);
         }
 
         private void CloseView(object? sender, EventArgs e)

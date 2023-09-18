@@ -63,7 +63,7 @@ namespace CorazonDeCafeStockManager.App.Presenters
             }
             else
             {
-                string path = Path.Combine("..", "..", "..", "products", product.Imagen);
+                string path = Path.Combine("products", product.Imagen);
                 view.ShowImage!.Image = Image.FromFile(path);
             }
 
