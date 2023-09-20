@@ -23,9 +23,21 @@ public partial class Product
 
     public int Active { get; set; }
 
+    public DateTime? CreatedAt { get; set; }
+
+    public int CreatedById { get; set; }
+
+    public DateTime? UpdatedAt { get; set; }
+
+    public int? UpdatedById { get; set; }
+
     public virtual Category Category { get; set; } = null!;
+
+    public virtual Employee CreatedBy { get; set; } = null!;
 
     public virtual ICollection<OrderProduct> OrderProducts { get; set; } = new List<OrderProduct>();
 
     public virtual Type Type { get; set; } = null!;
+
+    public virtual Employee? UpdatedBy { get; set; }
 }

@@ -21,9 +21,13 @@ public partial class User
 
     public string? Phone { get; set; }
 
+    public DateTime? CreatedAt { get; set; }
+
+    public DateTime? UpdatedAt { get; set; }
+
     public virtual Address? Address { get; set; }
 
-    public virtual ICollection<Client> Clients { get; set; } = new List<Client>();
+    public virtual ICollection<Customer> Customers { get; set; } = new List<Customer>();
 
     public virtual ICollection<Employee> Employees { get; set; } = new List<Employee>();
 }

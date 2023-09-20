@@ -1,4 +1,4 @@
-﻿namespace CorazonDeCafeStockManager.App.Views.Login_Form
+﻿namespace CorazonDeCafeStockManager.App.Views.LoginForm
 {
     public interface IAuthView
     {

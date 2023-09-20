@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using CorazonDeCafeStockManager.App.Models;
 
-namespace CorazonDeCafeStockManager.App.Views.Products_Form
+namespace CorazonDeCafeStockManager.App.Views.CustomersForm
 {
     public interface ICustomersView
     {
@@ -15,14 +15,13 @@ namespace CorazonDeCafeStockManager.App.Views.Products_Form
         DateTime? StartDate { get; set; }
         DateTime? EndDate { get; set; }
         Size Size { get; set; }
-        IEnumerable<Client>? CustomersList { get; set; }
+        IEnumerable<Customer>? CustomersList { get; set; }
         // Events
         event EventHandler? SearchEvent;
         event EventHandler? FilterEvent;
         event EventHandler? ResetCustomersEvent;
         event EventHandler? AddEvent;
         event EventHandler? EditEvent;
-        event EventHandler? DeleteEvent;
 
         // Methods
         void ShowError(string message);

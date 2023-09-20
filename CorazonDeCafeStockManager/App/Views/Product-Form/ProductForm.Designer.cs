@@ -1,6 +1,6 @@
 ﻿namespace CorazonDeCafeStockManager
 {
-    partial class Product_Form
+    partial class ProductForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Product_Form));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ProductForm));
             lblTitle = new Label();
             btnGoBack = new PictureBox();
             btnSave = new ButtonCustom();
@@ -525,7 +525,7 @@
             panel4.Size = new Size(999, 48);
             panel4.TabIndex = 50;
             // 
-            // Product_Form
+            // ProductForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -536,9 +536,9 @@
             Controls.Add(lblTitle);
             Controls.Add(panel4);
             FormBorderStyle = FormBorderStyle.None;
-            Name = "Product_Form";
+            Name = "ProductForm";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Product_Form";
+            Text = "ProductForm";
             ((System.ComponentModel.ISupportInitialize)btnGoBack).EndInit();
             ((System.ComponentModel.ISupportInitialize)bgImagen).EndInit();
             ((System.ComponentModel.ISupportInitialize)showImage).EndInit();

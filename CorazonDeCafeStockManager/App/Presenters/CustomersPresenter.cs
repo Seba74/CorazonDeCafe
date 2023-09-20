@@ -1,7 +1,7 @@
 ﻿using CorazonDeCafeStockManager.App.Models;
 using CorazonDeCafeStockManager.App.Repositories;
-using CorazonDeCafeStockManager.App.Views.Customers_Form;
-using CorazonDeCafeStockManager.App.Views.Products_Form;
+using CorazonDeCafeStockManager.App.Views.CustomersForm;
+using CorazonDeCafeStockManager.App.Views.ProductsForm;
 using Timer = System.Timers.Timer;
 
 namespace CorazonDeCafeStockManager.App.Presenters
@@ -12,8 +12,8 @@ namespace CorazonDeCafeStockManager.App.Presenters
         private readonly ICustomersView view;
         private readonly HomePresenter homePresenter;
         private readonly ICustomerRepository customerRepository;
-        private IEnumerable<Client>? customers;
-        private IEnumerable<Client>? customersBackUp;
+        private IEnumerable<Customer>? customers;
+        private IEnumerable<Customer>? customersBackUp;
         private string previousSearchText = string.Empty;
         public CustomersPresenter(ICustomersView view, ICustomerRepository customerRepository, HomePresenter homePresenter)
         {
@@ -89,16 +89,16 @@ namespace CorazonDeCafeStockManager.App.Presenters
 
         private void FilterEvent(object sender, EventArgs e)
         {
-            IEnumerable<Client>? customersToFilter = customersBackUp;
+            IEnumerable<Customer>? customersToFilter = customersBackUp;
             view.Search = string.Empty;
             if (view.StartDate != DateTime.Now)
             {
-                customersToFilter = customersToFilter?.Where(p => p.CreatedAt >= view.StartDate);
+                customersToFilter = customersToFilter?.Where(p => p.User.CreatedAt >= view.StartDate);
             }
             
             if (view.EndDate != DateTime.Now)
             {
-                customersToFilter = customersToFilter?.Where(p => p.CreatedAt <= view.EndDate);
+                customersToFilter = customersToFilter?.Where(p => p.User.CreatedAt <= view.EndDate);
             }
             
             view.CustomersList = customersToFilter;

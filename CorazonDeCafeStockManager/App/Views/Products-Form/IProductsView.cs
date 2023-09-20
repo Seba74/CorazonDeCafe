@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using CorazonDeCafeStockManager.App.Models;
 
-namespace CorazonDeCafeStockManager.App.Views.Products_Form
+namespace CorazonDeCafeStockManager.App.Views.ProductsForm
 {
     public interface IProductsView
     {
@@ -23,7 +23,6 @@ namespace CorazonDeCafeStockManager.App.Views.Products_Form
         event EventHandler? ResetProductsEvent;
         event EventHandler? AddEvent;
         event EventHandler? EditEvent;
-        event EventHandler? DeleteEvent;
 
         // Methods
         void ShowError(string message);

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 
 namespace CorazonDeCafeStockManager.App.Models;
-
 public partial class CorazonDeCafeContext : DbContext
 {
     public CorazonDeCafeContext()
@@ -19,7 +18,7 @@ public partial class CorazonDeCafeContext : DbContext
 
     public virtual DbSet<Category> Categories { get; set; }
 
-    public virtual DbSet<Client> Clients { get; set; }
+    public virtual DbSet<Customer> Customers { get; set; }
 
     public virtual DbSet<Employee> Employees { get; set; }
 
@@ -41,7 +40,7 @@ public partial class CorazonDeCafeContext : DbContext
     {
         modelBuilder.Entity<Address>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__addresse__3213E83FB50A1B83");
+            entity.HasKey(e => e.Id).HasName("PK__addresse__3213E83F143C652F");
 
             entity.ToTable("addresses");
 
@@ -50,6 +49,10 @@ public partial class CorazonDeCafeContext : DbContext
                 .HasMaxLength(30)
                 .IsUnicode(false)
                 .HasColumnName("city");
+            entity.Property(e => e.CreatedAt)
+                .HasDefaultValueSql("(getdate())")
+                .HasColumnType("datetime")
+                .HasColumnName("createdAt");
             entity.Property(e => e.Number).HasColumnName("number");
             entity.Property(e => e.PostalCode).HasColumnName("postal_code");
             entity.Property(e => e.Province)
@@ -60,49 +63,56 @@ public partial class CorazonDeCafeContext : DbContext
                 .HasMaxLength(50)
                 .IsUnicode(false)
                 .HasColumnName("street");
+            entity.Property(e => e.UpdatedAt)
+                .HasColumnType("datetime")
+                .HasColumnName("updatedAt");
         });
 
         modelBuilder.Entity<Category>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__categori__3213E83FC69B7F7E");
+            entity.HasKey(e => e.Id).HasName("PK__categori__3213E83FA1858EF2");
 
             entity.ToTable("categories");
 
-            entity.HasIndex(e => e.Name, "UQ__categori__72E12F1B97BC4D23").IsUnique();
+            entity.HasIndex(e => e.Name, "UQ__categori__72E12F1BC13B91A5").IsUnique();
 
             entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.CreatedAt)
+                .HasDefaultValueSql("(getdate())")
+                .HasColumnType("datetime")
+                .HasColumnName("createdAt");
             entity.Property(e => e.Name)
                 .HasMaxLength(20)
                 .IsUnicode(false)
                 .HasColumnName("name");
             entity.Property(e => e.Status).HasColumnName("status");
+            entity.Property(e => e.UpdatedAt)
+                .HasColumnType("datetime")
+                .HasColumnName("updatedAt");
         });
 
-        modelBuilder.Entity<Client>(entity =>
+        modelBuilder.Entity<Customer>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__clients__3213E83FD5D7DC1E");
+            entity.HasKey(e => e.Id).HasName("PK__customer__3213E83F92CE43C1");
 
-            entity.ToTable("clients");
+            entity.ToTable("customers");
 
             entity.Property(e => e.Id).HasColumnName("id");
-            entity.Property(e => e.CreatedAt)
-                .HasColumnType("datetime")
-                .HasColumnName("createdAt");
             entity.Property(e => e.UserId).HasColumnName("user_id");
 
-            entity.HasOne(d => d.User).WithMany(p => p.Clients)
+            entity.HasOne(d => d.User).WithMany(p => p.Customers)
                 .HasForeignKey(d => d.UserId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_user_id_CLIENTS");
+                .HasConstraintName("FK_user_id_CUSTOMERS");
         });
 
         modelBuilder.Entity<Employee>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__employee__3213E83F6B5967A7");
+            entity.HasKey(e => e.Id).HasName("PK__employee__3213E83FD069BF33");
 
             entity.ToTable("employees");
 
-            entity.HasIndex(e => e.Username, "UQ__employee__F3DBC572971C067B").IsUnique();
+            entity.HasIndex(e => e.Username, "UQ__employee__F3DBC572B984A50C").IsUnique();
 
             entity.Property(e => e.Id).HasColumnName("id");
             entity.Property(e => e.Pass)
@@ -129,21 +139,25 @@ public partial class CorazonDeCafeContext : DbContext
 
         modelBuilder.Entity<Order>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__orders__3213E83F7CFDF3FB");
+            entity.HasKey(e => e.Id).HasName("PK__orders__3213E83F9283807C");
 
             entity.ToTable("orders");
 
             entity.Property(e => e.Id).HasColumnName("id");
-            entity.Property(e => e.ClientId).HasColumnName("client_id");
-            entity.Property(e => e.CreateAt)
+            entity.Property(e => e.CreatedAt)
+                .HasDefaultValueSql("(getdate())")
                 .HasColumnType("datetime")
-                .HasColumnName("createAt");
+                .HasColumnName("createdAt");
+            entity.Property(e => e.CustomerId).HasColumnName("customer_id");
             entity.Property(e => e.Status).HasColumnName("status");
             entity.Property(e => e.TotalPrice).HasColumnName("total_price");
+            entity.Property(e => e.UpdatedAt)
+                .HasColumnType("datetime")
+                .HasColumnName("updatedAt");
 
-            entity.HasOne(d => d.Client).WithMany(p => p.Orders)
-                .HasForeignKey(d => d.ClientId)
-                .HasConstraintName("FK_client_id_ORDERS");
+            entity.HasOne(d => d.Customer).WithMany(p => p.Orders)
+                .HasForeignKey(d => d.CustomerId)
+                .HasConstraintName("FK_customer_id_ORDERS");
         });
 
         modelBuilder.Entity<OrderProduct>(entity =>
@@ -155,7 +169,14 @@ public partial class CorazonDeCafeContext : DbContext
             entity.Property(e => e.OrderId).HasColumnName("order_id");
             entity.Property(e => e.ProductId).HasColumnName("product_id");
             entity.Property(e => e.Amount).HasColumnName("amount");
+            entity.Property(e => e.CreatedAt)
+                .HasDefaultValueSql("(getdate())")
+                .HasColumnType("datetime")
+                .HasColumnName("createdAt");
             entity.Property(e => e.Price).HasColumnName("price");
+            entity.Property(e => e.UpdatedAt)
+                .HasColumnType("datetime")
+                .HasColumnName("updatedAt");
 
             entity.HasOne(d => d.Order).WithMany(p => p.OrderProducts)
                 .HasForeignKey(d => d.OrderId)
@@ -170,15 +191,20 @@ public partial class CorazonDeCafeContext : DbContext
 
         modelBuilder.Entity<Product>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__products__3213E83F72E323C7");
+            entity.HasKey(e => e.Id).HasName("PK__products__3213E83FF789C53F");
 
             entity.ToTable("products");
 
-            entity.HasIndex(e => e.Imagen, "UQ__products__3E079E41EC0C7D31").IsUnique();
+            entity.HasIndex(e => e.Imagen, "UQ__products__3E079E4128A3345A").IsUnique();
 
             entity.Property(e => e.Id).HasColumnName("id");
             entity.Property(e => e.Active).HasColumnName("active");
             entity.Property(e => e.CategoryId).HasColumnName("category_id");
+            entity.Property(e => e.CreatedAt)
+                .HasDefaultValueSql("(getdate())")
+                .HasColumnType("datetime")
+                .HasColumnName("createdAt");
+            entity.Property(e => e.CreatedById).HasColumnName("createdById");
             entity.Property(e => e.Imagen)
                 .HasMaxLength(150)
                 .IsUnicode(false)
@@ -191,62 +217,93 @@ public partial class CorazonDeCafeContext : DbContext
             entity.Property(e => e.Status).HasColumnName("status");
             entity.Property(e => e.Stock).HasColumnName("stock");
             entity.Property(e => e.TypeId).HasColumnName("type_id");
+            entity.Property(e => e.UpdatedAt)
+                .HasColumnType("datetime")
+                .HasColumnName("updatedAt");
+            entity.Property(e => e.UpdatedById).HasColumnName("updatedById");
 
             entity.HasOne(d => d.Category).WithMany(p => p.Products)
                 .HasForeignKey(d => d.CategoryId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_category_id_PRODUCTS");
 
+            entity.HasOne(d => d.CreatedBy).WithMany(p => p.ProductCreatedBies)
+                .HasForeignKey(d => d.CreatedById)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_createdById_PRODUCTS");
+
             entity.HasOne(d => d.Type).WithMany(p => p.Products)
                 .HasForeignKey(d => d.TypeId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_type_id_PRODUCTS");
+
+            entity.HasOne(d => d.UpdatedBy).WithMany(p => p.ProductUpdatedBies)
+                .HasForeignKey(d => d.UpdatedById)
+                .HasConstraintName("FK_updatedById_PRODUCTS");
         });
 
         modelBuilder.Entity<Role>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__roles__3213E83F6A401818");
+            entity.HasKey(e => e.Id).HasName("PK__roles__3213E83F5D581D8F");
 
             entity.ToTable("roles");
 
-            entity.HasIndex(e => e.Name, "UQ__roles__72E12F1BE2D46D81").IsUnique();
+            entity.HasIndex(e => e.Name, "UQ__roles__72E12F1B7E3320D5").IsUnique();
 
             entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.CreatedAt)
+                .HasDefaultValueSql("(getdate())")
+                .HasColumnType("datetime")
+                .HasColumnName("createdAt");
             entity.Property(e => e.Name)
                 .HasMaxLength(20)
                 .IsUnicode(false)
                 .HasColumnName("name");
             entity.Property(e => e.Status).HasColumnName("status");
+            entity.Property(e => e.UpdatedAt)
+                .HasColumnType("datetime")
+                .HasColumnName("updatedAt");
         });
 
         modelBuilder.Entity<Type>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__types__3213E83F31B391DC");
+            entity.HasKey(e => e.Id).HasName("PK__types__3213E83F2842C1EE");
 
             entity.ToTable("types");
 
-            entity.HasIndex(e => e.Name, "UQ__types__72E12F1B0ED856B9").IsUnique();
+            entity.HasIndex(e => e.Name, "UQ__types__72E12F1BB9E1CE3A").IsUnique();
 
             entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.CreatedAt)
+                .HasDefaultValueSql("(getdate())")
+                .HasColumnType("datetime")
+                .HasColumnName("createdAt");
             entity.Property(e => e.Name)
                 .HasMaxLength(20)
                 .IsUnicode(false)
                 .HasColumnName("name");
             entity.Property(e => e.Status).HasColumnName("status");
+            entity.Property(e => e.UpdatedAt)
+                .HasColumnType("datetime")
+                .HasColumnName("updatedAt");
         });
 
         modelBuilder.Entity<User>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__users__3213E83F255A3558");
+            entity.HasKey(e => e.Id).HasName("PK__users__3213E83F7BC76F00");
 
             entity.ToTable("users");
 
-            entity.HasIndex(e => e.Email, "UQ__users__AB6E616496CAB2B6").IsUnique();
+            entity.HasIndex(e => e.Email, "UQ__users__AB6E6164CDC2BB6B").IsUnique();
 
-            entity.HasIndex(e => e.Dni, "UQ__users__D87608A76C3CF238").IsUnique();
+            entity.HasIndex(e => e.Dni, "UQ__users__D87608A7AB78B5A9").IsUnique();
 
             entity.Property(e => e.Id).HasColumnName("id");
             entity.Property(e => e.AddressId).HasColumnName("address_id");
+            entity.Property(e => e.CreatedAt)
+                .HasDefaultValueSql("(getdate())")
+                .HasColumnType("datetime")
+                .HasColumnName("createdAt");
             entity.Property(e => e.Dni).HasColumnName("dni");
             entity.Property(e => e.Email)
                 .HasMaxLength(50)
@@ -265,6 +322,9 @@ public partial class CorazonDeCafeContext : DbContext
                 .HasMaxLength(30)
                 .IsUnicode(false)
                 .HasColumnName("surname");
+            entity.Property(e => e.UpdatedAt)
+                .HasColumnType("datetime")
+                .HasColumnName("updatedAt");
 
             entity.HasOne(d => d.Address).WithMany(p => p.Users)
                 .HasForeignKey(d => d.AddressId)

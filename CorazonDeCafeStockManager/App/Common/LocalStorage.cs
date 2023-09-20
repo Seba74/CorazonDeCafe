@@ -6,7 +6,7 @@ namespace CorazonDeCafeStockManager.App.Common
     public static class LocalStorage
     {
         public static List<Product>? Products { get; set; }
-        public static List<Client>? Customers { get; set; }
+        public static List<Customer>? Customers { get; set; }
         public static List<Category>? Categories { get; set; }
         public static List<Type>? Types { get; set; }
     }

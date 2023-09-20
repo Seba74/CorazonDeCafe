@@ -1,4 +1,4 @@
-﻿namespace CorazonDeCafeStockManager.App.Views.Customers_Form
+﻿namespace CorazonDeCafeStockManager.App.Views.CustomersForm
 {
     partial class CustomersForm
     {
@@ -35,7 +35,7 @@
             DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
-            productList = new DataGridView();
+            customersDataGrid = new DataGridView();
             Id = new DataGridViewTextBoxColumn();
             Nombre = new DataGridViewTextBoxColumn();
             Precio = new DataGridViewTextBoxColumn();
@@ -51,28 +51,28 @@
             selectType = new ComboBoxCustom();
             btnAdd = new ButtonCustom();
             selectCategory = new ComboBoxCustom();
-            ((System.ComponentModel.ISupportInitialize)productList).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)customersDataGrid).BeginInit();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)IcSearch).BeginInit();
             SuspendLayout();
             // 
-            // productList
+            // customersDataGrid
             // 
-            productList.AllowUserToAddRows = false;
-            productList.AllowUserToDeleteRows = false;
-            productList.AllowUserToResizeColumns = false;
-            productList.AllowUserToResizeRows = false;
+            customersDataGrid.AllowUserToAddRows = false;
+            customersDataGrid.AllowUserToDeleteRows = false;
+            customersDataGrid.AllowUserToResizeColumns = false;
+            customersDataGrid.AllowUserToResizeRows = false;
             dataGridViewCellStyle1.BackColor = Color.FromArgb(146, 90, 57);
             dataGridViewCellStyle1.ForeColor = Color.White;
             dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(146, 90, 57);
             dataGridViewCellStyle1.SelectionForeColor = Color.White;
-            productList.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            productList.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            productList.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            productList.BackgroundColor = SystemColors.MenuBar;
-            productList.BorderStyle = BorderStyle.None;
-            productList.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-            productList.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            customersDataGrid.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            customersDataGrid.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            customersDataGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            customersDataGrid.BackgroundColor = SystemColors.MenuBar;
+            customersDataGrid.BorderStyle = BorderStyle.None;
+            customersDataGrid.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            customersDataGrid.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
             dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = Color.FromArgb(146, 90, 57);
             dataGridViewCellStyle2.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point);
@@ -80,9 +80,9 @@
             dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(146, 90, 57);
             dataGridViewCellStyle2.SelectionForeColor = SystemColors.Window;
             dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
-            productList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            productList.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            productList.Columns.AddRange(new DataGridViewColumn[] { Id, Nombre, Precio, Stock, Tipo, Categoria, Estado });
+            customersDataGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            customersDataGrid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            customersDataGrid.Columns.AddRange(new DataGridViewColumn[] { Id, Nombre, Precio, Stock, Tipo, Categoria, Estado });
             dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle5.BackColor = Color.FromArgb(146, 90, 57);
             dataGridViewCellStyle5.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point);
@@ -90,12 +90,12 @@
             dataGridViewCellStyle5.SelectionBackColor = Color.FromArgb(146, 90, 57);
             dataGridViewCellStyle5.SelectionForeColor = Color.White;
             dataGridViewCellStyle5.WrapMode = DataGridViewTriState.False;
-            productList.DefaultCellStyle = dataGridViewCellStyle5;
-            productList.GridColor = SystemColors.WindowText;
-            productList.Location = new Point(12, 153);
-            productList.MultiSelect = false;
-            productList.Name = "productList";
-            productList.ReadOnly = true;
+            customersDataGrid.DefaultCellStyle = dataGridViewCellStyle5;
+            customersDataGrid.GridColor = SystemColors.WindowText;
+            customersDataGrid.Location = new Point(12, 153);
+            customersDataGrid.MultiSelect = false;
+            customersDataGrid.Name = "customersDataGrid";
+            customersDataGrid.ReadOnly = true;
             dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle6.BackColor = Color.IndianRed;
             dataGridViewCellStyle6.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point);
@@ -103,23 +103,23 @@
             dataGridViewCellStyle6.SelectionBackColor = SystemColors.Highlight;
             dataGridViewCellStyle6.SelectionForeColor = SystemColors.ControlText;
             dataGridViewCellStyle6.WrapMode = DataGridViewTriState.True;
-            productList.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
-            productList.RowHeadersVisible = false;
-            productList.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToFirstHeader;
+            customersDataGrid.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            customersDataGrid.RowHeadersVisible = false;
+            customersDataGrid.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToFirstHeader;
             dataGridViewCellStyle7.BackColor = Color.FromArgb(146, 90, 57);
             dataGridViewCellStyle7.ForeColor = Color.White;
             dataGridViewCellStyle7.SelectionBackColor = Color.FromArgb(146, 90, 57);
             dataGridViewCellStyle7.SelectionForeColor = Color.White;
-            productList.RowsDefaultCellStyle = dataGridViewCellStyle7;
-            productList.RowTemplate.DefaultCellStyle.BackColor = SystemColors.Menu;
-            productList.RowTemplate.DefaultCellStyle.ForeColor = Color.Black;
-            productList.RowTemplate.DefaultCellStyle.SelectionBackColor = Color.FromArgb(255, 219, 197);
-            productList.RowTemplate.DefaultCellStyle.SelectionForeColor = Color.Black;
-            productList.RowTemplate.Height = 35;
-            productList.RowTemplate.Resizable = DataGridViewTriState.False;
-            productList.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            productList.Size = new Size(918, 498);
-            productList.TabIndex = 0;
+            customersDataGrid.RowsDefaultCellStyle = dataGridViewCellStyle7;
+            customersDataGrid.RowTemplate.DefaultCellStyle.BackColor = SystemColors.Menu;
+            customersDataGrid.RowTemplate.DefaultCellStyle.ForeColor = Color.Black;
+            customersDataGrid.RowTemplate.DefaultCellStyle.SelectionBackColor = Color.FromArgb(255, 219, 197);
+            customersDataGrid.RowTemplate.DefaultCellStyle.SelectionForeColor = Color.Black;
+            customersDataGrid.RowTemplate.Height = 35;
+            customersDataGrid.RowTemplate.Resizable = DataGridViewTriState.False;
+            customersDataGrid.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            customersDataGrid.Size = new Size(918, 498);
+            customersDataGrid.TabIndex = 0;
             // 
             // Id
             // 
@@ -355,14 +355,14 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(942, 663);
             Controls.Add(panel1);
-            Controls.Add(productList);
+            Controls.Add(customersDataGrid);
             Cursor = Cursors.Hand;
             Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point);
             FormBorderStyle = FormBorderStyle.None;
             Name = "CustomerForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Products";
-            ((System.ComponentModel.ISupportInitialize)productList).EndInit();
+            ((System.ComponentModel.ISupportInitialize)customersDataGrid).EndInit();
             panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)IcSearch).EndInit();
             ResumeLayout(false);
@@ -370,7 +370,7 @@
 
         #endregion
 
-        private DataGridView productList;
+        private DataGridView customersDataGrid;
         private utils.Custom.TextBox.TextBoxCustom ipSearch;
         private PictureBox IcSearch;
         private DataGridViewTextBoxColumn Id;

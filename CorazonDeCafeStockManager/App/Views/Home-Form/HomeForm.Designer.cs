@@ -34,11 +34,14 @@
             pictureBox5 = new PictureBox();
             panel5 = new Panel();
             panel4 = new Panel();
+            btnBilling = new ButtonCustom();
+            btnBackup = new ButtonCustom();
+            btnReports = new ButtonCustom();
             btnHome = new ButtonCustom();
             btnProducts = new ButtonCustom();
             btnSales = new ButtonCustom();
-            btnUsers = new ButtonCustom();
-            btnStats = new ButtonCustom();
+            btnCustomers = new ButtonCustom();
+            btnEmployees = new ButtonCustom();
             panel2 = new Panel();
             btnMin = new PictureBox();
             btnNormal = new PictureBox();
@@ -134,15 +137,88 @@
             // panel4
             // 
             panel4.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            panel4.Controls.Add(btnBilling);
+            panel4.Controls.Add(btnBackup);
+            panel4.Controls.Add(btnReports);
             panel4.Controls.Add(btnHome);
             panel4.Controls.Add(btnProducts);
             panel4.Controls.Add(btnSales);
-            panel4.Controls.Add(btnUsers);
-            panel4.Controls.Add(btnStats);
+            panel4.Controls.Add(btnCustomers);
+            panel4.Controls.Add(btnEmployees);
             panel4.Location = new Point(1, 228);
             panel4.Name = "panel4";
-            panel4.Size = new Size(189, 283);
+            panel4.Size = new Size(189, 350);
             panel4.TabIndex = 0;
+            // 
+            // btnBilling
+            // 
+            btnBilling.BackColor = Color.Transparent;
+            btnBilling.BackgroundColor = Color.Transparent;
+            btnBilling.BorderColor = Color.Transparent;
+            btnBilling.BorderRadius = 8;
+            btnBilling.BorderSize = 0;
+            btnBilling.Cursor = Cursors.Hand;
+            btnBilling.FlatAppearance.BorderSize = 0;
+            btnBilling.FlatStyle = FlatStyle.Flat;
+            btnBilling.Font = new Font("Poppins Light", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            btnBilling.ForeColor = Color.Black;
+            btnBilling.Image = Properties.Resources.billing;
+            btnBilling.ImageAlign = ContentAlignment.MiddleLeft;
+            btnBilling.Location = new Point(12, 144);
+            btnBilling.Name = "btnBilling";
+            btnBilling.Padding = new Padding(5, 3, 0, 3);
+            btnBilling.Size = new Size(157, 41);
+            btnBilling.TabIndex = 8;
+            btnBilling.Text = "     FACTURAR";
+            btnBilling.TextColor = Color.Black;
+            btnBilling.UseVisualStyleBackColor = false;
+            btnBilling.Visible = false;
+            // 
+            // btnBackup
+            // 
+            btnBackup.BackColor = Color.Transparent;
+            btnBackup.BackgroundColor = Color.Transparent;
+            btnBackup.BorderColor = Color.Transparent;
+            btnBackup.BorderRadius = 8;
+            btnBackup.BorderSize = 0;
+            btnBackup.Cursor = Cursors.Hand;
+            btnBackup.FlatAppearance.BorderSize = 0;
+            btnBackup.FlatStyle = FlatStyle.Flat;
+            btnBackup.Font = new Font("Poppins Light", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            btnBackup.ForeColor = Color.Black;
+            btnBackup.Image = (Image)resources.GetObject("btnBackup.Image");
+            btnBackup.ImageAlign = ContentAlignment.MiddleLeft;
+            btnBackup.Location = new Point(11, 285);
+            btnBackup.Name = "btnBackup";
+            btnBackup.Padding = new Padding(5, 3, 0, 3);
+            btnBackup.Size = new Size(158, 41);
+            btnBackup.TabIndex = 7;
+            btnBackup.Text = "     RESPALDO";
+            btnBackup.TextColor = Color.Black;
+            btnBackup.UseVisualStyleBackColor = false;
+            // 
+            // btnReports
+            // 
+            btnReports.BackColor = Color.Transparent;
+            btnReports.BackgroundColor = Color.Transparent;
+            btnReports.BorderColor = Color.Transparent;
+            btnReports.BorderRadius = 8;
+            btnReports.BorderSize = 0;
+            btnReports.Cursor = Cursors.Hand;
+            btnReports.FlatAppearance.BorderSize = 0;
+            btnReports.FlatStyle = FlatStyle.Flat;
+            btnReports.Font = new Font("Poppins Light", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            btnReports.ForeColor = Color.Black;
+            btnReports.Image = (Image)resources.GetObject("btnReports.Image");
+            btnReports.ImageAlign = ContentAlignment.MiddleLeft;
+            btnReports.Location = new Point(11, 238);
+            btnReports.Name = "btnReports";
+            btnReports.Padding = new Padding(5, 3, 0, 3);
+            btnReports.Size = new Size(158, 41);
+            btnReports.TabIndex = 6;
+            btnReports.Text = "     REPORTES";
+            btnReports.TextColor = Color.Black;
+            btnReports.UseVisualStyleBackColor = false;
             // 
             // btnHome
             // 
@@ -205,7 +281,7 @@
             btnSales.ForeColor = Color.Black;
             btnSales.Image = (Image)resources.GetObject("btnSales.Image");
             btnSales.ImageAlign = ContentAlignment.MiddleLeft;
-            btnSales.Location = new Point(12, 100);
+            btnSales.Location = new Point(10, 191);
             btnSales.Name = "btnSales";
             btnSales.Padding = new Padding(5, 3, 0, 3);
             btnSales.Size = new Size(159, 41);
@@ -214,51 +290,51 @@
             btnSales.TextColor = Color.Black;
             btnSales.UseVisualStyleBackColor = false;
             // 
-            // btnUsers
+            // btnCustomers
             // 
-            btnUsers.BackColor = Color.Transparent;
-            btnUsers.BackgroundColor = Color.Transparent;
-            btnUsers.BorderColor = Color.Transparent;
-            btnUsers.BorderRadius = 8;
-            btnUsers.BorderSize = 0;
-            btnUsers.Cursor = Cursors.Hand;
-            btnUsers.FlatAppearance.BorderSize = 0;
-            btnUsers.FlatStyle = FlatStyle.Flat;
-            btnUsers.Font = new Font("Poppins Light", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            btnUsers.ForeColor = Color.Black;
-            btnUsers.Image = (Image)resources.GetObject("btnUsers.Image");
-            btnUsers.ImageAlign = ContentAlignment.MiddleLeft;
-            btnUsers.Location = new Point(12, 150);
-            btnUsers.Name = "btnUsers";
-            btnUsers.Padding = new Padding(5, 3, 0, 3);
-            btnUsers.Size = new Size(159, 41);
-            btnUsers.TabIndex = 3;
-            btnUsers.Text = "    USUARIOS";
-            btnUsers.TextColor = Color.Black;
-            btnUsers.UseVisualStyleBackColor = false;
+            btnCustomers.BackColor = Color.Transparent;
+            btnCustomers.BackgroundColor = Color.Transparent;
+            btnCustomers.BorderColor = Color.Transparent;
+            btnCustomers.BorderRadius = 8;
+            btnCustomers.BorderSize = 0;
+            btnCustomers.Cursor = Cursors.Hand;
+            btnCustomers.FlatAppearance.BorderSize = 0;
+            btnCustomers.FlatStyle = FlatStyle.Flat;
+            btnCustomers.Font = new Font("Poppins Light", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            btnCustomers.ForeColor = Color.Black;
+            btnCustomers.Image = (Image)resources.GetObject("btnCustomers.Image");
+            btnCustomers.ImageAlign = ContentAlignment.MiddleLeft;
+            btnCustomers.Location = new Point(10, 144);
+            btnCustomers.Name = "btnCustomers";
+            btnCustomers.Padding = new Padding(5, 3, 0, 3);
+            btnCustomers.Size = new Size(159, 41);
+            btnCustomers.TabIndex = 3;
+            btnCustomers.Text = "        EMPLEADOS";
+            btnCustomers.TextColor = Color.Black;
+            btnCustomers.UseVisualStyleBackColor = false;
             // 
-            // btnStats
+            // btnEmployees
             // 
-            btnStats.BackColor = Color.Transparent;
-            btnStats.BackgroundColor = Color.Transparent;
-            btnStats.BorderColor = Color.Transparent;
-            btnStats.BorderRadius = 8;
-            btnStats.BorderSize = 0;
-            btnStats.Cursor = Cursors.Hand;
-            btnStats.FlatAppearance.BorderSize = 0;
-            btnStats.FlatStyle = FlatStyle.Flat;
-            btnStats.Font = new Font("Poppins Light", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            btnStats.ForeColor = Color.Black;
-            btnStats.Image = (Image)resources.GetObject("btnStats.Image");
-            btnStats.ImageAlign = ContentAlignment.MiddleLeft;
-            btnStats.Location = new Point(11, 200);
-            btnStats.Name = "btnStats";
-            btnStats.Padding = new Padding(5, 3, 0, 3);
-            btnStats.Size = new Size(158, 41);
-            btnStats.TabIndex = 5;
-            btnStats.Text = "     REPORTES";
-            btnStats.TextColor = Color.Black;
-            btnStats.UseVisualStyleBackColor = false;
+            btnEmployees.BackColor = Color.Transparent;
+            btnEmployees.BackgroundColor = Color.Transparent;
+            btnEmployees.BorderColor = Color.Transparent;
+            btnEmployees.BorderRadius = 8;
+            btnEmployees.BorderSize = 0;
+            btnEmployees.Cursor = Cursors.Hand;
+            btnEmployees.FlatAppearance.BorderSize = 0;
+            btnEmployees.FlatStyle = FlatStyle.Flat;
+            btnEmployees.Font = new Font("Poppins Light", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            btnEmployees.ForeColor = Color.Black;
+            btnEmployees.Image = (Image)resources.GetObject("btnEmployees.Image");
+            btnEmployees.ImageAlign = ContentAlignment.MiddleLeft;
+            btnEmployees.Location = new Point(11, 97);
+            btnEmployees.Name = "btnEmployees";
+            btnEmployees.Padding = new Padding(5, 3, 0, 3);
+            btnEmployees.Size = new Size(158, 41);
+            btnEmployees.TabIndex = 5;
+            btnEmployees.Text = "   CLIENTES";
+            btnEmployees.TextColor = Color.Black;
+            btnEmployees.UseVisualStyleBackColor = false;
             // 
             // panel2
             // 
@@ -361,7 +437,7 @@
             // iconHeader
             // 
             iconHeader.BackgroundImage = Properties.Resources.home;
-            iconHeader.BackgroundImageLayout = ImageLayout.Stretch;
+            iconHeader.BackgroundImageLayout = ImageLayout.Zoom;
             iconHeader.Location = new Point(3, 7);
             iconHeader.Name = "iconHeader";
             iconHeader.Size = new Size(23, 25);
@@ -488,9 +564,12 @@
         private PictureBox iconHeader;
         private Panel panel4;
         private ButtonCustom btnSales;
-        private ButtonCustom btnUsers;
-        private ButtonCustom btnStats;
+        private ButtonCustom btnCustomers;
+        private ButtonCustom btnEmployees;
         private ButtonCustom btnHome;
         private ButtonCustom btnProducts;
+        private ButtonCustom btnReports;
+        private ButtonCustom btnBackup;
+        private ButtonCustom btnBilling;
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace CorazonDeCafeStockManager
 {
-    partial class Products
+    partial class ProductsForm
     {
         /// <summary>
         /// Required designer variable.
@@ -35,7 +35,7 @@
             DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Products));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ProductsForm));
             productList = new DataGridView();
             Id = new DataGridViewTextBoxColumn();
             Nombre = new DataGridViewTextBoxColumn();
@@ -350,7 +350,7 @@
             selectCategory.TabIndex = 13;
             selectCategory.Texts = "Categoría";
             // 
-            // Products
+            // ProductsForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -360,9 +360,9 @@
             Cursor = Cursors.Hand;
             Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point);
             FormBorderStyle = FormBorderStyle.None;
-            Name = "Products";
+            Name = "ProductsForm";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Products";
+            Text = "ProductsForm";
             ((System.ComponentModel.ISupportInitialize)productList).EndInit();
             panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)IcSearch).EndInit();

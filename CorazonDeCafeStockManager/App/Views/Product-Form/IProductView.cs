@@ -1,6 +1,6 @@
 ﻿using CorazonDeCafeStockManager.App.Models;
 
-namespace CorazonDeCafeStockManager.App.Views.Product_Form
+namespace CorazonDeCafeStockManager.App.Views.ProductForm
 {
     public interface IProductView
     {

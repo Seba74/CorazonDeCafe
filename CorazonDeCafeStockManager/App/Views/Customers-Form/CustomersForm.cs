@@ -8,9 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using CorazonDeCafeStockManager.App.Models;
-using CorazonDeCafeStockManager.App.Views.Products_Form;
 
-namespace CorazonDeCafeStockManager.App.Views.Customers_Form
+namespace CorazonDeCafeStockManager.App.Views.CustomersForm
 {
     public partial class CustomersForm : Form, ICustomersView
     {
@@ -32,7 +31,7 @@ namespace CorazonDeCafeStockManager.App.Views.Customers_Form
             set; 
         }
 
-        public IEnumerable<Client>? CustomersList { get; set; }
+        public IEnumerable<Customer>? CustomersList { get; set; }
 
         public CustomersForm()
         {
@@ -40,7 +39,7 @@ namespace CorazonDeCafeStockManager.App.Views.Customers_Form
             InitializeEvents();
 
             loadFonts = new LoadFonts();
-            ChangeDataGridViewFont(productList);
+            ChangeDataGridViewFont(customersDataGrid);
 
             ipSearch.Font = loadFonts.poppinsFont;
             selectCategory.Font = loadFonts.poppinsFont;
@@ -55,10 +54,10 @@ namespace CorazonDeCafeStockManager.App.Views.Customers_Form
             btnAdd.Click += delegate { AddEvent?.Invoke(this, EventArgs.Empty); };
             btnEdit.Click += delegate
             {
-                if (productList.SelectedRows.Count > 0)
+                if (customersDataGrid.SelectedRows.Count > 0)
                 {
-                    int id = Convert.ToInt32(productList.SelectedRows[0].Cells[0].Value);
-                    Client customer = CustomersList!.Where(p => p.Id == id).FirstOrDefault()!;
+                    int id = Convert.ToInt32(customersDataGrid.SelectedRows[0].Cells[0].Value);
+                    Customer customer = CustomersList!.Where(p => p.Id == id).FirstOrDefault()!;
                     EditEvent?.Invoke(customer, EventArgs.Empty);
                 }
             };
@@ -69,35 +68,34 @@ namespace CorazonDeCafeStockManager.App.Views.Customers_Form
         public event EventHandler? ResetCustomersEvent;
         public event EventHandler? AddEvent;
         public event EventHandler? EditEvent;
-        public event EventHandler? DeleteEvent;
 
         public void LoadCustomers()
         {
-            if (productList.InvokeRequired)
+            if (customersDataGrid.InvokeRequired)
             {
-                productList.Invoke(new MethodInvoker(delegate
+                customersDataGrid.Invoke(new MethodInvoker(delegate
                 {
-                    productList.Rows.Clear();
-                    productList.Refresh();
+                    customersDataGrid.Rows.Clear();
+                    customersDataGrid.Refresh();
 
-                    foreach (Client customer in CustomersList!)
+                    foreach (Customer customer in CustomersList!)
                     {
                         // string active = product.Active == 1 ? "Activo" : "Inactivo";
 
-                        // productList.Rows.Add(product.Id, product.Name, product.Price, product.Stock, product.Type.Name, product.Category.Name, active);
+                        // customersDataGrid.Rows.Add(product.Id, product.Name, product.Price, product.Stock, product.Type.Name, product.Category.Name, active);
                     }
                 }));
             }
             else
             {
-                productList.Rows.Clear();
-                productList.Refresh();
+                customersDataGrid.Rows.Clear();
+                customersDataGrid.Refresh();
 
-                foreach (Client customer in CustomersList!)
+                foreach (Customer customer in CustomersList!)
                 {
                     // string active = product.Active == 1 ? "Activo" : "Inactivo";
 
-                    // productList.Rows.Add(product.Id, product.Name, product.Price, product.Stock, product.Type.Name, product.Category.Name, active);
+                    // customersDataGrid.Rows.Add(product.Id, product.Name, product.Price, product.Stock, product.Type.Name, product.Category.Name, active);
                 }
             }
         }

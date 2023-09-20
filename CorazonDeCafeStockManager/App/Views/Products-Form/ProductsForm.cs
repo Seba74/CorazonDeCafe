@@ -1,9 +1,9 @@
 ﻿using CorazonDeCafeStockManager.App.Models;
-using CorazonDeCafeStockManager.App.Views.Products_Form;
+using CorazonDeCafeStockManager.App.Views.ProductsForm;
 
 namespace CorazonDeCafeStockManager
 {
-    public partial class Products : Form, IProductsView
+    public partial class ProductsForm : Form, IProductsView
     {
         private readonly LoadFonts loadFonts;
         public string? Search
@@ -25,7 +25,7 @@ namespace CorazonDeCafeStockManager
 
         public IEnumerable<Product>? ProductsList { get; set; }
 
-        public Products()
+        public ProductsForm()
         {
             InitializeComponent();
             InitializeEvents();
@@ -60,7 +60,6 @@ namespace CorazonDeCafeStockManager
         public event EventHandler? ResetProductsEvent;
         public event EventHandler? AddEvent;
         public event EventHandler? EditEvent;
-        public event EventHandler? DeleteEvent;
 
         public void LoadProducts()
         {
@@ -107,12 +106,12 @@ namespace CorazonDeCafeStockManager
             throw new NotImplementedException();
         }
 
-        private static Products? instance;
-        public static Products GetInstance(Control controlParent)
+        private static ProductsForm? instance;
+        public static ProductsForm GetInstance(Control controlParent)
         {
             if (instance == null || instance.IsDisposed)
             {
-                instance = new Products
+                instance = new ProductsForm
                 {
                     Dock = DockStyle.Fill,
                     TopLevel = false,

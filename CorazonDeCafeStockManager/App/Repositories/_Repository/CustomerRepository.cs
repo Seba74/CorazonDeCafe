@@ -33,14 +33,14 @@ public class CustomerRepository : ICustomerRepository
         }
     }
 
-    public async Task AddCustomer(Client product)
+    public async Task AddCustomer(Customer customer)
     {
-        if (product == null)
+        if (customer == null)
         {
-            throw new ArgumentNullException(nameof(product));
+            throw new ArgumentNullException(nameof(customer));
         }
 
-        await _context.Clients!.AddAsync(product);
+        await _context.Customers!.AddAsync(customer);
 
         try
         {
@@ -51,12 +51,12 @@ public class CustomerRepository : ICustomerRepository
             Console.WriteLine(e.Message);
         }
 
-        LocalStorage.Customers!.Add(product);
+        LocalStorage.Customers!.Add(customer);
     }
 
     public async Task<bool> DeleteCustomer(int id)
     {
-        Client? customer = await _context.Clients!.Include(p => p.User).FirstOrDefaultAsync(p => p.Id == id);
+        Customer? customer = await _context.Customers!.Include(p => p.User).FirstOrDefaultAsync(p => p.Id == id);
         if (customer == null) return false;
         customer.User.Status = 0;
         try
@@ -72,7 +72,7 @@ public class CustomerRepository : ICustomerRepository
         }
     }
 
-    public async Task<IEnumerable<Client>> GetAllCustomers()
+    public async Task<IEnumerable<Customer>> GetAllCustomers()
     {
         if (LocalStorage.Categories == null || LocalStorage.Types == null)
             await LoadCategoriesAndTypes();
@@ -81,7 +81,7 @@ public class CustomerRepository : ICustomerRepository
 
         try
         {
-            LocalStorage.Customers = await _context.Clients!.Include(p => p.User).Where(p => p.User.Status == 1).ToListAsync();
+            LocalStorage.Customers = await _context.Customers!.Include(p => p.User).Where(p => p.User.Status == 1).ToListAsync();
         }
         catch (Exception ex)
         {
@@ -90,15 +90,15 @@ public class CustomerRepository : ICustomerRepository
 
         return LocalStorage.Customers ?? new();
     }
-    public async Task<Client> GetCustomerById(int id)
+    public async Task<Customer> GetCustomerById(int id)
     {
-        Client? product = await _context.Clients!.Include(p => p.User).FirstOrDefaultAsync(p => p.Id == id) ?? throw new ArgumentException("Client not found");
-        return product;
+        Customer? customer = await _context.Customers!.Include(p => p.User).FirstOrDefaultAsync(p => p.Id == id) ?? throw new ArgumentException("Customer not found");
+        return customer;
     }
 
-    public async Task<bool> UpdateCustomer(Client customer)
+    public async Task<bool> UpdateCustomer(Customer customer)
     {
-        Client? customerToUpdate = await _context.Clients!.Include(p => p.User).FirstOrDefaultAsync(p => p.Id == customer.Id);
+        Customer? customerToUpdate = await _context.Customers!.Include(p => p.User).FirstOrDefaultAsync(p => p.Id == customer.Id);
 
         if (customerToUpdate == null)
         {

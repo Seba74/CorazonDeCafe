@@ -1,7 +1,7 @@
 ﻿using CorazonDeCafeStockManager.App.Common;
 using CorazonDeCafeStockManager.App.Models;
 using CorazonDeCafeStockManager.App.Repositories;
-using CorazonDeCafeStockManager.App.Views.Product_Form;
+using CorazonDeCafeStockManager.App.Views.ProductForm;
 using CorazonDeCafeStockManager.Properties;
 using CorazonDeCafeStockManager.utils.Custom.TextBox;
 using Microsoft.IdentityModel.Tokens;

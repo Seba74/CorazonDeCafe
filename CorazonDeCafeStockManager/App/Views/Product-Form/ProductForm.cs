@@ -1,8 +1,8 @@
-﻿using CorazonDeCafeStockManager.App.Views.Product_Form;
+﻿using CorazonDeCafeStockManager.App.Views.ProductForm;
 
 namespace CorazonDeCafeStockManager
 {
-    public partial class Product_Form : Form, IProductView
+    public partial class ProductForm : Form, IProductView
     {
         public int? ProductId { get; set; }
         public new string? ProductName
@@ -78,7 +78,7 @@ namespace CorazonDeCafeStockManager
         public ButtonCustom? BtnAddImage { get => btnAddImage; set => btnAddImage = value!; }
         public ButtonCustom? BtnDelete { get => btnDelete; set => btnDelete = value!; }
 
-        public Product_Form()
+        public ProductForm()
         {
             InitializeComponent();
             AssociateEvents();
@@ -112,12 +112,12 @@ namespace CorazonDeCafeStockManager
             MessageBox.Show(message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
-        private static Product_Form? instance;
-        public static Product_Form GetInstance(Control controlParent)
+        private static ProductForm? instance;
+        public static ProductForm GetInstance(Control controlParent)
         {
             if (instance == null || instance.IsDisposed)
             {
-                instance = new Product_Form
+                instance = new ProductForm
                 {
                     Dock = DockStyle.Fill,
                     TopLevel = false,

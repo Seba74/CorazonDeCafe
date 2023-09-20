@@ -1,11 +1,11 @@
-﻿namespace CorazonDeCafeStockManager.App.Views.Home_Form
+﻿namespace CorazonDeCafeStockManager.App.Views.HomeForm
 {
     public interface IHomeView
     {
         Control ControlPanel { get; }
         Control HomeButton { get; }
         Control ProductButton { get; }
-        Control UserButton { get; }
+        Control CustomerButton { get; }
         Control SaleButton { get; }
         Control ReportButton { get; }
         Control IconHeader { get; }
@@ -13,6 +13,7 @@
 
 
         event EventHandler? ShowProductsView;
+        event EventHandler? ShowCustomersView;
         event EventHandler? CloseView;
 
         void RemoveBackgroundBtns();
