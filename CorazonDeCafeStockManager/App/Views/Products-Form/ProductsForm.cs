@@ -53,6 +53,16 @@ namespace CorazonDeCafeStockManager
                     EditEvent?.Invoke(product, EventArgs.Empty);
                 }
             };
+
+            productList.DoubleClick += delegate
+            {
+                if (productList.SelectedRows.Count > 0)
+                {
+                    int id = Convert.ToInt32(productList.SelectedRows[0].Cells[0].Value);
+                    Product product = ProductsList!.Where(p => p.Id == id).FirstOrDefault()!;
+                    EditEvent?.Invoke(product, EventArgs.Empty);
+                }
+            };
         }
 
         public event EventHandler? SearchEvent;

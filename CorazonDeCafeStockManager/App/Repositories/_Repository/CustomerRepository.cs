@@ -96,19 +96,23 @@ public class CustomerRepository : ICustomerRepository
         return customer;
     }
 
-    public async Task<bool> UpdateCustomer(Customer customer)
+    public async Task<bool> UpdateCustomer(Customer customer, User user, Address address)
     {
-        Customer? customerToUpdate = await _context.Customers!.Include(p => p.User).FirstOrDefaultAsync(p => p.Id == customer.Id);
+        User? customerToUpdate = await _context.Users!.Include(p => p.Address).FirstOrDefaultAsync(p => p.Id == customer.UserId);
+        if(customerToUpdate == null) return false;
 
-        if (customerToUpdate == null)
-        {
-            return false;
-        }
+        customerToUpdate.Name = user.Name;
+        customerToUpdate.Surname = user.Surname;
+        customerToUpdate.Email = user.Email;
+        customerToUpdate.Phone = user.Phone;
+        customerToUpdate.Dni = user.Dni;
+        customerToUpdate.Address!.Street = address.Street;
+        customerToUpdate.Address.Number = address.Number;
+        customerToUpdate.Address.City = address.City;
+        customerToUpdate.Address.Province = address.Province;
+        customerToUpdate.Address.PostalCode = address.PostalCode;
+        customerToUpdate.UpdatedAt = DateTime.Now;
 
-        customerToUpdate.User.Name = customer.User.Name;
-        customerToUpdate.User.Surname = customer.User.Surname;
-        customerToUpdate.User.Email = customer.User.Email;
-        customerToUpdate.User.Phone = customer.User.Phone;
     
         int fieldAct = await _context.SaveChangesAsync();
         return fieldAct > 0;

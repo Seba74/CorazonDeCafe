@@ -40,8 +40,8 @@
             btnHome = new ButtonCustom();
             btnProducts = new ButtonCustom();
             btnSales = new ButtonCustom();
-            btnCustomers = new ButtonCustom();
             btnEmployees = new ButtonCustom();
+            btnCustomers = new ButtonCustom();
             panel2 = new Panel();
             btnMin = new PictureBox();
             btnNormal = new PictureBox();
@@ -143,8 +143,8 @@
             panel4.Controls.Add(btnHome);
             panel4.Controls.Add(btnProducts);
             panel4.Controls.Add(btnSales);
-            panel4.Controls.Add(btnCustomers);
             panel4.Controls.Add(btnEmployees);
+            panel4.Controls.Add(btnCustomers);
             panel4.Location = new Point(1, 228);
             panel4.Name = "panel4";
             panel4.Size = new Size(189, 350);
@@ -164,7 +164,7 @@
             btnBilling.ForeColor = Color.Black;
             btnBilling.Image = Properties.Resources.billing;
             btnBilling.ImageAlign = ContentAlignment.MiddleLeft;
-            btnBilling.Location = new Point(12, 144);
+            btnBilling.Location = new Point(11, 144);
             btnBilling.Name = "btnBilling";
             btnBilling.Padding = new Padding(5, 3, 0, 3);
             btnBilling.Size = new Size(157, 41);
@@ -290,29 +290,6 @@
             btnSales.TextColor = Color.Black;
             btnSales.UseVisualStyleBackColor = false;
             // 
-            // btnCustomers
-            // 
-            btnCustomers.BackColor = Color.Transparent;
-            btnCustomers.BackgroundColor = Color.Transparent;
-            btnCustomers.BorderColor = Color.Transparent;
-            btnCustomers.BorderRadius = 8;
-            btnCustomers.BorderSize = 0;
-            btnCustomers.Cursor = Cursors.Hand;
-            btnCustomers.FlatAppearance.BorderSize = 0;
-            btnCustomers.FlatStyle = FlatStyle.Flat;
-            btnCustomers.Font = new Font("Poppins Light", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            btnCustomers.ForeColor = Color.Black;
-            btnCustomers.Image = (Image)resources.GetObject("btnCustomers.Image");
-            btnCustomers.ImageAlign = ContentAlignment.MiddleLeft;
-            btnCustomers.Location = new Point(10, 144);
-            btnCustomers.Name = "btnCustomers";
-            btnCustomers.Padding = new Padding(5, 3, 0, 3);
-            btnCustomers.Size = new Size(159, 41);
-            btnCustomers.TabIndex = 3;
-            btnCustomers.Text = "        EMPLEADOS";
-            btnCustomers.TextColor = Color.Black;
-            btnCustomers.UseVisualStyleBackColor = false;
-            // 
             // btnEmployees
             // 
             btnEmployees.BackColor = Color.Transparent;
@@ -327,14 +304,37 @@
             btnEmployees.ForeColor = Color.Black;
             btnEmployees.Image = (Image)resources.GetObject("btnEmployees.Image");
             btnEmployees.ImageAlign = ContentAlignment.MiddleLeft;
-            btnEmployees.Location = new Point(11, 97);
+            btnEmployees.Location = new Point(10, 144);
             btnEmployees.Name = "btnEmployees";
             btnEmployees.Padding = new Padding(5, 3, 0, 3);
-            btnEmployees.Size = new Size(158, 41);
-            btnEmployees.TabIndex = 5;
-            btnEmployees.Text = "   CLIENTES";
+            btnEmployees.Size = new Size(159, 41);
+            btnEmployees.TabIndex = 3;
+            btnEmployees.Text = "        EMPLEADOS";
             btnEmployees.TextColor = Color.Black;
             btnEmployees.UseVisualStyleBackColor = false;
+            // 
+            // btnCustomers
+            // 
+            btnCustomers.BackColor = Color.Transparent;
+            btnCustomers.BackgroundColor = Color.Transparent;
+            btnCustomers.BorderColor = Color.Transparent;
+            btnCustomers.BorderRadius = 8;
+            btnCustomers.BorderSize = 0;
+            btnCustomers.Cursor = Cursors.Hand;
+            btnCustomers.FlatAppearance.BorderSize = 0;
+            btnCustomers.FlatStyle = FlatStyle.Flat;
+            btnCustomers.Font = new Font("Poppins Light", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            btnCustomers.ForeColor = Color.Black;
+            btnCustomers.Image = (Image)resources.GetObject("btnCustomers.Image");
+            btnCustomers.ImageAlign = ContentAlignment.MiddleLeft;
+            btnCustomers.Location = new Point(11, 97);
+            btnCustomers.Name = "btnCustomers";
+            btnCustomers.Padding = new Padding(5, 3, 0, 3);
+            btnCustomers.Size = new Size(158, 41);
+            btnCustomers.TabIndex = 5;
+            btnCustomers.Text = "   CLIENTES";
+            btnCustomers.TextColor = Color.Black;
+            btnCustomers.UseVisualStyleBackColor = false;
             // 
             // panel2
             // 
@@ -564,8 +564,8 @@
         private PictureBox iconHeader;
         private Panel panel4;
         private ButtonCustom btnSales;
-        private ButtonCustom btnCustomers;
         private ButtonCustom btnEmployees;
+        private ButtonCustom btnCustomers;
         private ButtonCustom btnHome;
         private ButtonCustom btnProducts;
         private ButtonCustom btnReports;

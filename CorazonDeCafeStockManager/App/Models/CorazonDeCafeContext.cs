@@ -5,34 +5,30 @@ using Microsoft.EntityFrameworkCore;
 namespace CorazonDeCafeStockManager.App.Models;
 public partial class CorazonDeCafeContext : DbContext
 {
-    public CorazonDeCafeContext()
-    {
-    }
+    public CorazonDeCafeContext(){}
 
     public CorazonDeCafeContext(DbContextOptions<CorazonDeCafeContext> options)
-        : base(options)
-    {
-    }
+        : base(options){}
 
-    public virtual DbSet<Address> Addresses { get; set; }
+    public virtual DbSet<Address>? Addresses { get; set; }
 
-    public virtual DbSet<Category> Categories { get; set; }
+    public virtual DbSet<Category>? Categories { get; set; }
 
-    public virtual DbSet<Customer> Customers { get; set; }
+    public virtual DbSet<Customer>? Customers { get; set; }
 
-    public virtual DbSet<Employee> Employees { get; set; }
+    public virtual DbSet<Employee>? Employees { get; set; }
 
-    public virtual DbSet<Order> Orders { get; set; }
+    public virtual DbSet<Order>? Orders { get; set; }
 
-    public virtual DbSet<OrderProduct> OrderProducts { get; set; }
+    public virtual DbSet<OrderProduct>? OrderProducts { get; set; }
 
-    public virtual DbSet<Product> Products { get; set; }
+    public virtual DbSet<Product>? Products { get; set; }
 
-    public virtual DbSet<Role> Roles { get; set; }
+    public virtual DbSet<Role>? Roles { get; set; }
 
-    public virtual DbSet<Type> Types { get; set; }
+    public virtual DbSet<Type>? Types { get; set; }
 
-    public virtual DbSet<User> Users { get; set; }
+    public virtual DbSet<User>? Users { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder){}
 

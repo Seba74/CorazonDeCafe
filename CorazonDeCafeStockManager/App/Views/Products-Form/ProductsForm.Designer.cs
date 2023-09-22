@@ -232,7 +232,7 @@
             reload.FlatStyle = FlatStyle.Flat;
             reload.Font = new Font("Poppins Light", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
             reload.ForeColor = Color.FromArgb(145, 90, 57);
-            reload.Image = Properties.Resources.reload1;
+            reload.Image = Properties.Resources.reload;
             reload.Location = new Point(847, 15);
             reload.MaximumSize = new Size(80, 38);
             reload.Name = "reload";

@@ -73,7 +73,6 @@ public class ProductRepository : IProductRepository
         }
     }
 
-    // Get All Products
     public async Task<IEnumerable<Product>> GetAllProducts()
     {
         if (LocalStorage.Categories == null || LocalStorage.Types == null)
@@ -94,30 +93,38 @@ public class ProductRepository : IProductRepository
     }
     public async Task<Product> GetProductById(int id)
     {
-        Product? product = await _context.Products!.FirstOrDefaultAsync(p => p.Id == id) ?? throw new ArgumentException("Product not found");
-        return product;
+        return await _context.Products!.FirstOrDefaultAsync(p => p.Id == id) ?? throw new ArgumentException("Producto no encontrado");
     }
 
     public async Task<bool> UpdateProduct(Product product)
     {
-        Product? productToUpdate = await _context.Products!.FirstOrDefaultAsync(p => p.Id == product.Id);
+        try
+        {
+            Product? productToUpdate = await _context.Products!.FirstOrDefaultAsync(p => p.Id == product.Id);
 
-        if (productToUpdate == null)
+            if (productToUpdate == null)
+            {
+                return false;
+            }
+
+            productToUpdate!.Name = product.Name;
+            productToUpdate.Price = product.Price;
+            productToUpdate.CategoryId = product.CategoryId;
+            productToUpdate.TypeId = product.TypeId;
+            productToUpdate.Stock = product.Stock;
+            productToUpdate.Status = product.Status;
+            productToUpdate.Imagen = product.Imagen;
+            productToUpdate.Active = product.Active;
+            productToUpdate.UpdatedAt = DateTime.Now;
+            productToUpdate.UpdatedById = SessionManager.Id;
+
+            int fieldAct = await _context.SaveChangesAsync();
+            return fieldAct > 0;
+        }
+        catch (Exception)
         {
             return false;
         }
-
-        productToUpdate!.Name = product.Name;
-        productToUpdate.Price = product.Price;
-        productToUpdate.CategoryId = product.CategoryId;
-        productToUpdate.TypeId = product.TypeId;
-        productToUpdate.Stock = product.Stock;
-        productToUpdate.Status = product.Status;
-        productToUpdate.Imagen = product.Imagen;
-        productToUpdate.Active = product.Active;
-
-        int fieldAct = await _context.SaveChangesAsync();
-        return fieldAct > 0;
     }
 }
 

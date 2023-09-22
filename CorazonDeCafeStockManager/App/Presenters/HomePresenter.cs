@@ -2,6 +2,7 @@
 using CorazonDeCafeStockManager.App.Repositories;
 using CorazonDeCafeStockManager.App.Repositories._Repository;
 using CorazonDeCafeStockManager.App.Views.CustomersForm;
+using CorazonDeCafeStockManager.App.Views.EmployeesForm;
 using CorazonDeCafeStockManager.App.Views.HomeForm;
 using CorazonDeCafeStockManager.App.Views.ProductForm;
 using CorazonDeCafeStockManager.App.Views.ProductsForm;
@@ -14,11 +15,13 @@ namespace CorazonDeCafeStockManager.App.Presenters
         private readonly IHomeView view;
         private IProductsView? productsView;
         private ICustomersView? customersView;
+        private IEmployeesView? employeesView;
         private IProductView? productView;
 
         private ProductsPresenter? productsPresenter { get; set; }
         private ProductPresenter? productPresenter { get; set; }
         private CustomersPresenter? customersPresenter { get; set; }
+        private EmployeesPresenter? employeesPresenter { get; set; }
 
         public HomePresenter(IHomeView view, CorazonDeCafeContext dbContext)
         {
@@ -26,6 +29,7 @@ namespace CorazonDeCafeStockManager.App.Presenters
             this.dbContext = dbContext;
             this.view.ShowProductsView += ShowProductsView;
             this.view.ShowCustomersView += ShowCustomersView;
+            this.view.ShowEmployeesView += ShowEmployeesView;
             this.view.CloseView += CloseView;
         }
 
@@ -76,12 +80,26 @@ namespace CorazonDeCafeStockManager.App.Presenters
             customersView = CustomersForm.GetInstance(view.ControlPanel);
             customersPresenter = new(customersView, customerRepository, this);
         }
+        public void ShowEmployeesView(object? sender, EventArgs e)
+        {
+            this.CloseView(sender, e);
+            view.RemoveBackgroundBtns();
+            view.EmployeeButton.BackColor = Color.FromArgb(255, 219, 197);
+
+            view.IconHeader.BackgroundImage = Properties.Resources.employees;
+            view.TitleHeader.Text = "EMPLEADOS";
+
+            IEmployeeRepository employeeRepository = new EmployeeRepository(dbContext);
+            employeesView = EmployeesForm.GetInstance(view.ControlPanel);
+            employeesPresenter = new(employeesView, employeeRepository, this);
+        }
 
         private void CloseView(object? sender, EventArgs e)
         {
             productPresenter?.CloseView();
             productsPresenter?.CloseView();
             customersPresenter?.CloseView();
+            employeesPresenter?.CloseView();
         }
     }
 }

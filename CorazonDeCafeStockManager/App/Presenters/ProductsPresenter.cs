@@ -51,15 +51,22 @@ namespace CorazonDeCafeStockManager.App.Presenters
         private void SearchProducts(object sender, EventArgs e)
         {
             SearchTimer.Stop();
+
             if (!string.IsNullOrEmpty(view.Search))
             {
-                products = products?.Where(p => p.Name.ToLowerInvariant().Contains(view.Search!.ToLowerInvariant()));
+                if (int.TryParse(view.Search, out int id))
+                {
+                    view.ProductsList = products?.Where(p => p.Id == id);
+                }
+                else
+                {
+                    view.ProductsList = products?.Where(p => p.Name.ToLowerInvariant().Contains(view.Search!.ToLowerInvariant()));
+                }
             }
             else
             {
-                products = view.ProductsList;
+                view.ProductsList = products;
             }
-            view.ProductsList = products;
             view.LoadProducts();
         }
 
@@ -104,13 +111,13 @@ namespace CorazonDeCafeStockManager.App.Presenters
             products = productsToFilter;
             view.LoadProducts();
         }
-      
+
         private void AddEvent(object sender, EventArgs e)
         {
             this.view.Close();
             this.homePresenter.ShowProductView(null, e);
         }
-      
+
         private void EditEvent(object sender, EventArgs e)
         {
             Product product = (Product)sender;

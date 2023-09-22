@@ -8,14 +8,15 @@ namespace CorazonDeCafeStockManager
         public Control HomeButton { get { return btnHome; } }
         public Control ProductButton { get { return btnProducts; } }
         public Control CustomerButton { get { return btnCustomers; } }
+        public Control EmployeeButton { get { return btnEmployees; } }
         public Control SaleButton { get { return btnSales; } }
-        public Control ReportButton { get { return btnEmployees; } }
+        public Control ReportButton { get { return btnReports; } }
         public Control IconHeader { get { return iconHeader; } }
         public Control TitleHeader { get { return titleHeader; } }
 
         public Home()
         {
-            InitializeComponent();
+            InitializeComponent();  
             AssociateEvents();
         }
 
@@ -23,6 +24,7 @@ namespace CorazonDeCafeStockManager
         {
             btnProducts.Click += delegate { ShowProductsView?.Invoke(this, EventArgs.Empty); };
             btnCustomers.Click += delegate { ShowCustomersView?.Invoke(this, EventArgs.Empty); };
+            btnEmployees.Click += delegate { ShowEmployeesView?.Invoke(this, EventArgs.Empty); };
             btnHome.Click += delegate { CloseView?.Invoke(this, EventArgs.Empty); };
 
             btnClose.Click += delegate { Application.Exit(); };
@@ -54,13 +56,14 @@ namespace CorazonDeCafeStockManager
         {
             btnHome.BackColor = Color.Transparent;
             btnProducts.BackColor = Color.Transparent;
-            btnCustomers.BackColor = Color.Transparent;
-            btnSales.BackColor = Color.Transparent;
             btnEmployees.BackColor = Color.Transparent;
+            btnSales.BackColor = Color.Transparent;
+            btnCustomers.BackColor = Color.Transparent;
         }
 
         public event EventHandler? ShowProductsView;
         public event EventHandler? ShowCustomersView;
+        public event EventHandler? ShowEmployeesView;
         public event EventHandler? CloseView;
     }
 }

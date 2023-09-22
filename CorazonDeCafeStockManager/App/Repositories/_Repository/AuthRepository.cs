@@ -6,7 +6,7 @@ namespace CorazonDeCafeStockManager.App.Repositories._Repository;
 
 public class AuthRepository : IAuthRepository
 {
-    private readonly CorazonDeCafeContext _context;
+    private readonly CorazonDeCafeContext? _context;
 
     public AuthRepository(CorazonDeCafeContext context)
     {
@@ -15,8 +15,7 @@ public class AuthRepository : IAuthRepository
 
     public async Task<bool> Login(string username, string password)
     {
-        // get employee from database by username and get user with it
-        Employee? employee = await _context.Employees.Include(e => e.User).FirstOrDefaultAsync(e => e.Username == username);
+        Employee? employee = await _context!.Employees!.Include(e => e.User).FirstOrDefaultAsync(e => e.Username == username);
 
         if (employee == null)
         {
@@ -27,6 +26,7 @@ public class AuthRepository : IAuthRepository
             // check password
             if (employee.Pass == password)
             {
+                SessionManager.Id = employee.Id;
                 SessionManager.Name = employee.User.Name;
                 SessionManager.RoleId = employee.RoleId;
                 SessionManager.Username = employee.Username;
