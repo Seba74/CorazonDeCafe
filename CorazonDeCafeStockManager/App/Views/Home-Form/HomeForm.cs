@@ -1,4 +1,5 @@
-﻿using CorazonDeCafeStockManager.App.Views.HomeForm;
+﻿using CorazonDeCafeStockManager.App.Common;
+using CorazonDeCafeStockManager.App.Views.HomeForm;
 
 namespace CorazonDeCafeStockManager
 {
@@ -9,46 +10,44 @@ namespace CorazonDeCafeStockManager
         public Control ProductButton { get { return btnProducts; } }
         public Control CustomerButton { get { return btnCustomers; } }
         public Control EmployeeButton { get { return btnEmployees; } }
+        public Control BillingButton { get { return btnBilling; } }
         public Control SaleButton { get { return btnSales; } }
         public Control ReportButton { get { return btnReports; } }
+        public Control BackupButton { get { return btnBackup; } }
         public Control IconHeader { get { return iconHeader; } }
         public Control TitleHeader { get { return titleHeader; } }
 
         public Home()
         {
-            InitializeComponent();  
+            InitializeComponent();
             AssociateEvents();
         }
-
         private void AssociateEvents()
         {
-            btnProducts.Click += delegate { ShowProductsView?.Invoke(this, EventArgs.Empty); };
-            btnCustomers.Click += delegate { ShowCustomersView?.Invoke(this, EventArgs.Empty); };
-            btnEmployees.Click += delegate { ShowEmployeesView?.Invoke(this, EventArgs.Empty); };
-            btnHome.Click += delegate { CloseView?.Invoke(this, EventArgs.Empty); };
-
-            btnClose.Click += delegate { Application.Exit(); };
-            btnMin.Click += delegate { WindowState = FormWindowState.Minimized; };
-            btnNormal.Click += delegate
+            btnProducts.Click += (_, __) => ShowProductsView?.Invoke(this, EventArgs.Empty);
+            btnCustomers.Click += (_, __) => ShowCustomersView?.Invoke(this, EventArgs.Empty);
+            btnEmployees.Click += (_, __) => ShowEmployeesView?.Invoke(this, EventArgs.Empty);
+            btnClose.Click += (_, __) => Application.Exit();
+            btnMin.Click += (_, __) => WindowState = FormWindowState.Minimized;
+            btnHome.Click += (_, __) =>
+            {
+                CloseView?.Invoke(this, EventArgs.Empty);
+                RemoveBackgroundBtns();
+                btnHome.BackColor = Color.FromArgb(255, 219, 197);
+                IconHeader.BackgroundImage = Properties.Resources.home;
+                TitleHeader.Text = "INICIO";
+            };
+            btnNormal.Click += (_, __) =>
             {
                 WindowState = FormWindowState.Normal;
                 btnNormal.Visible = false;
                 btnMax.Visible = true;
             };
-            btnMax.Click += delegate
+            btnMax.Click += (_, __) =>
             {
                 WindowState = FormWindowState.Maximized;
                 btnNormal.Visible = true;
                 btnMax.Visible = false;
-            };
-
-            btnHome.Click += delegate
-            {
-                RemoveBackgroundBtns();
-                btnHome.BackColor = Color.FromArgb(255, 219, 197);
-
-                IconHeader.BackgroundImage = Properties.Resources.home;
-                TitleHeader.Text = "INICIO";
             };
         }
 

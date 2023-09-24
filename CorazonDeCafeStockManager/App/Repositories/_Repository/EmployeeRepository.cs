@@ -16,25 +16,30 @@ public class EmployeeRepository : IEmployeeRepository
         _context = context;
     }
 
-    public async Task AddEmployee(Employee employee)
+    public async Task AddEmployee(Employee employee, User user)
     {
-        if (employee == null)
-        {
-            throw new ArgumentNullException(nameof(employee));
-        }
-
-        await _context.Employees!.AddAsync(employee);
-
         try
         {
+            if (employee == null) throw new ArgumentNullException(nameof(employee));
+            if (user == null) throw new ArgumentNullException(nameof(user));
+
+            await _context.Users!.AddAsync(user);
             await _context.SaveChangesAsync();
+
+            User userSaved = await _context.Users.FirstOrDefaultAsync(p => p.Dni == user.Dni) ?? throw new ArgumentException("Usuario no encontrado");
+
+            employee.UserId = userSaved.Id;
+            employee.Pass = HashPass.HashPassword(user.Dni.ToString());
+
+            await _context.Employees!.AddAsync(employee);
+            await _context.SaveChangesAsync();
+
+            LocalStorage.Employees!.Add(employee);
         }
         catch (Exception e)
         {
             Console.WriteLine(e.Message);
         }
-
-        LocalStorage.Employees!.Add(employee);
     }
 
     public async Task<bool> DeleteEmployee(int id)
@@ -74,41 +79,20 @@ public class EmployeeRepository : IEmployeeRepository
         return employee;
     }
 
-    public async Task<bool> UpdateEmployee(Employee employee, User user, Address address)
+    public async Task<bool> UpdateEmployee(Employee employee, User user)
     {
         Employee? employeeToUpdate = await _context.Employees!.Include(p => p.User).FirstOrDefaultAsync(p => p.Id == employee.Id);
         if (employeeToUpdate == null) return false;
 
         employeeToUpdate.Username = employee.Username;
         employeeToUpdate.RoleId = employee.RoleId;
-        
+
         employeeToUpdate.User.Name = user.Name;
         employeeToUpdate.User.Surname = user.Surname;
         employeeToUpdate.User.Email = user.Email;
         employeeToUpdate.User.Phone = user.Phone;
         employeeToUpdate.User.Dni = user.Dni;
         employeeToUpdate.User.UpdatedAt = DateTime.Now;
-
-        if (address != null)
-        {
-            if (employeeToUpdate.User.Address == null)
-            {
-                Address NewAddress = new()
-                {
-                    Street = address.Street,
-                    Number = address.Number,
-                    City = address.City,
-                    Province = address.Province,
-                    PostalCode = address.PostalCode
-                };
-            }else{
-                employeeToUpdate.User.Address.Street = address.Street;
-                employeeToUpdate.User.Address.Number = address.Number;
-                employeeToUpdate.User.Address.City = address.City;
-                employeeToUpdate.User.Address.Province = address.Province;
-                employeeToUpdate.User.Address.PostalCode = address.PostalCode;
-            }
-        }
 
         int fieldAct = await _context.SaveChangesAsync();
         return fieldAct > 0;
@@ -118,6 +102,12 @@ public class EmployeeRepository : IEmployeeRepository
     {
         Role? role = await _context.Roles!.FirstOrDefaultAsync(p => p.Name == name) ?? throw new ArgumentException("Rol no encontrado");
         return role;
+    }
+
+    public async Task<User> GetUserByDni(int dni)
+    {
+        User? user = await _context.Users!.FirstOrDefaultAsync(p => p.Dni == dni) ?? throw new ArgumentException("Usuario no encontrado");
+        return user;
     }
 }
 

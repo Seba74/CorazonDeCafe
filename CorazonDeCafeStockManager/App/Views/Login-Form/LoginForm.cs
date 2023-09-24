@@ -1,20 +1,12 @@
 using CorazonDeCafeStockManager.App.Views.LoginForm;
+using CorazonDeCafeStockManager.Properties;
 
 namespace CorazonDeCafeStockManager
 {
     public partial class LoginForm : Form, IAuthView
     {
-        public string Username
-        {
-            get { return ipUser.Texts; }
-            set { ipUser.Texts = value; }
-        }
-        public string Password
-        {
-            get { return ipPassword.Texts; }
-            set { ipPassword.Texts = value; }
-        }
-
+        public string Username { get { return ipUser.Texts; } set { ipUser.Texts = value; } }
+        public string Password { get { return ipPassword.Texts; } set { ipPassword.Texts = value; } }
         public Control Loading { get { return loading; } }
 
         public LoginForm()
@@ -23,22 +15,14 @@ namespace CorazonDeCafeStockManager
             LoadLoading();
             AssociateEvents();
             UpdateButtonStyle();
-
-            LoadFonts loadFonts = new();
-
-            lblTitle.Font = new Font(loadFonts.poppinsFont!.FontFamily, 16);
-            ipUser.Font = new Font(loadFonts.poppinsFont!.FontFamily, 12);
-            ipPassword.Font = new Font(loadFonts.poppinsFont!.FontFamily, 12);
-            lblSubtitle.Font = new Font(loadFonts.poppinsFont!.FontFamily, 12);
-            lblError.Font = new Font(loadFonts.poppinsFont!.FontFamily, 10);
-            closeBtn.BackColor = Color.Transparent;
+            SetFonts();
         }
         public event EventHandler<Tuple<string, string>>? LoginEvent;
         private void AssociateEvents()
         {
             ipUser._TextChanged += OnInputChanged!;
             ipPassword._TextChanged += OnInputChanged!;
-            closeBtn.Click += delegate{ Application.Exit(); };
+            closeBtn.Click += delegate { Application.Exit(); };
             btnLogin.Click += delegate (object? sender, EventArgs e)
             {
                 HideInputs(false);
@@ -55,7 +39,16 @@ namespace CorazonDeCafeStockManager
             btnLogin.Enabled = !isUsernameEmpty && !isPasswordEmpty && !isPasswordShort;
             UpdateButtonStyle();
         }
-
+        private void SetFonts()
+        {
+            LoadFonts loadFonts = new();
+            lblTitle.Font = new Font(loadFonts.poppinsFont!.FontFamily, 16);
+            ipUser.Font = new Font(loadFonts.poppinsFont!.FontFamily, 12);
+            ipPassword.Font = new Font(loadFonts.poppinsFont!.FontFamily, 12);
+            lblSubtitle.Font = new Font(loadFonts.poppinsFont!.FontFamily, 12);
+            lblError.Font = new Font(loadFonts.poppinsFont!.FontFamily, 10);
+            closeBtn.BackColor = Color.Transparent;
+        }
         private void UpdateButtonStyle()
         {
             if (btnLogin.Enabled)
@@ -99,8 +92,7 @@ namespace CorazonDeCafeStockManager
         {
             loading.Visible = false;
             loading.BackColor = Color.Transparent;
-            string loaderPath = Path.Combine(Application.StartupPath, "..", "..", "..", "utils/Assets", "loader.gif");
-            loading.Image = Image.FromFile(loaderPath);
+            loading.Image = Resources.loader;
             loading.SizeMode = PictureBoxSizeMode.StretchImage;
         }
     }

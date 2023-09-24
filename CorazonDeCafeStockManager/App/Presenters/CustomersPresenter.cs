@@ -39,15 +39,8 @@ namespace CorazonDeCafeStockManager.App.Presenters
             view.LoadCustomers();
         }
 
-        public void ShowView()
-        {
-            view!.Show();
-        }
-
-        public void CloseView()
-        {
-            view!.Close();
-        }
+        public void ShowView() => view!.Show();
+        public void CloseView() => view!.Close();
 
         private void SearchCustomers(object sender, EventArgs e)
         {
@@ -95,23 +88,23 @@ namespace CorazonDeCafeStockManager.App.Presenters
             {
                 customersToFilter = customersToFilter?.Where(p => p.User.CreatedAt >= view.StartDate);
             }
-            
+
             if (view.EndDate != DateTime.Now)
             {
                 customersToFilter = customersToFilter?.Where(p => p.User.CreatedAt <= view.EndDate);
             }
-            
+
             view.CustomersList = customersToFilter;
             customers = customersToFilter;
             view.LoadCustomers();
         }
-      
+
         private void AddEvent(object sender, EventArgs e)
         {
             // this.view.Close();
             // this.homePresenter.ShowCustomerView(null, e);
         }
-      
+
         private void EditEvent(object sender, EventArgs e)
         {
             // Client customer = (Client)sender;

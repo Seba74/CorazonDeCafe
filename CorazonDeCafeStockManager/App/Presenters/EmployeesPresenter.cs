@@ -39,15 +39,8 @@ namespace CorazonDeCafeStockManager.App.Presenters
             view.LoadEmployees();
         }
 
-        public void ShowView()
-        {
-            view!.Show();
-        }
-
-        public void CloseView()
-        {
-            view!.Close();
-        }
+        public void ShowView() => view!.Show();
+        public void CloseView() => view!.Close();
 
         private void SearchEmployees(object sender, EventArgs e)
         {

@@ -1,4 +1,5 @@
-﻿using CorazonDeCafeStockManager.App.Models;
+﻿using CorazonDeCafeStockManager.App.Common;
+using CorazonDeCafeStockManager.App.Models;
 using CorazonDeCafeStockManager.App.Repositories;
 using CorazonDeCafeStockManager.App.Repositories._Repository;
 using CorazonDeCafeStockManager.App.Views.CustomersForm;
@@ -19,12 +20,6 @@ namespace CorazonDeCafeStockManager.App.Presenters
         private IEmployeesView? employeesView;
         private IProductView? productView;
         private IEmployeeView? employeeView;
-
-        private ProductsPresenter? productsPresenter { get; set; }
-        private ProductPresenter? productPresenter { get; set; }
-        private CustomersPresenter? customersPresenter { get; set; }
-        private EmployeesPresenter? employeesPresenter { get; set; }
-        private EmployeePresenter? employeePresenter { get; set; }
         public HomePresenter(IHomeView view, CorazonDeCafeContext dbContext)
         {
             this.view = view;
@@ -38,11 +33,42 @@ namespace CorazonDeCafeStockManager.App.Presenters
         public void ShowHomeView()
         {
             ShowProductsView(this, EventArgs.Empty);
+            VerifyRole();
             view.Show();
+        }
+
+        private void VerifyRole()
+        {
+
+            if (SessionManager.RoleId != 1)
+            {
+                view.BackupButton.Visible = false;
+            }
+
+            if (SessionManager.RoleId != 1 && SessionManager.RoleId != 2)
+            {
+                view.EmployeeButton.Visible = false;
+                view.ReportButton.Visible = false;
+            }
+
+            if (SessionManager.RoleId == 3 || SessionManager.RoleId == 4)
+            {
+                view.BillingButton.Visible = true;
+            }
+
+            if (SessionManager.RoleId == 4)
+            {
+                view.SaleButton.Visible = false;
+            }
         }
 
         public void ShowProductsView(object? sender, EventArgs e)
         {
+            if (productsView != null)
+            {
+                return;
+            }
+
             this.CloseView(sender, e);
             view.RemoveBackgroundBtns();
             view.ProductButton.BackColor = Color.FromArgb(255, 219, 197);
@@ -52,25 +78,35 @@ namespace CorazonDeCafeStockManager.App.Presenters
 
             IProductRepository productRepository = new ProductRepository(dbContext);
             productsView = ProductsForm.GetInstance(view.ControlPanel);
-            productsPresenter = new(productsView, productRepository, this);
+            ProductsPresenter ProductsPresenter = new(productsView, productRepository, this);
         }
 
         public void ShowProductView(object? sender, EventArgs e)
         {
+            if (productView != null)
+            {
+                return;
+            }
+
             this.CloseView(sender, e);
             Product? product = null;
-            if(sender != null)
+            if (sender != null)
             {
                 product = (Product)sender;
             }
 
             IProductRepository productRepository = new ProductRepository(dbContext);
             productView = ProductForm.GetInstance(view.ControlPanel);
-      
-            productPresenter = new(productView, productRepository, product!, this);
+
+            ProductPresenter ProductPresenter = new(productView, productRepository, product!, this);
         }
         public void ShowCustomersView(object? sender, EventArgs e)
         {
+            if (customersView != null)
+            {
+                return;
+            }
+
             this.CloseView(sender, e);
             view.RemoveBackgroundBtns();
             view.CustomerButton.BackColor = Color.FromArgb(255, 219, 197);
@@ -80,10 +116,15 @@ namespace CorazonDeCafeStockManager.App.Presenters
 
             ICustomerRepository customerRepository = new CustomerRepository(dbContext);
             customersView = CustomersForm.GetInstance(view.ControlPanel);
-            customersPresenter = new(customersView, customerRepository, this);
+            CustomersPresenter CustomersPresenter = new(customersView, customerRepository, this);
         }
         public void ShowEmployeesView(object? sender, EventArgs e)
         {
+            if (employeesView != null)
+            {
+                return;
+            }
+
             this.CloseView(sender, e);
             view.RemoveBackgroundBtns();
             view.EmployeeButton.BackColor = Color.FromArgb(255, 219, 197);
@@ -93,30 +134,57 @@ namespace CorazonDeCafeStockManager.App.Presenters
 
             IEmployeeRepository employeeRepository = new EmployeeRepository(dbContext);
             employeesView = EmployeesForm.GetInstance(view.ControlPanel);
-            employeesPresenter = new(employeesView, employeeRepository, this);
+            EmployeesPresenter EmployeesPresenter = new(employeesView, employeeRepository, this);
         }
 
         public void ShowEmployeeView(object? sender, EventArgs e)
         {
+            if (employeeView != null)
+            {
+                return;
+            }
+
             this.CloseView(sender, e);
             Employee? Employee = null;
-            if(sender != null)
+            if (sender != null)
             {
                 Employee = (Employee)sender;
             }
 
             IEmployeeRepository EmployeeRepository = new EmployeeRepository(dbContext);
             employeeView = EmployeeForm.GetInstance(view.ControlPanel);
-      
-            employeePresenter = new(employeeView, EmployeeRepository, Employee!, this);
+
+            EmployeePresenter EmployeePresenter = new(employeeView, EmployeeRepository, Employee!, this);
         }
 
         private void CloseView(object? sender, EventArgs e)
         {
-            productPresenter?.CloseView();
-            productsPresenter?.CloseView();
-            customersPresenter?.CloseView();
-            employeesPresenter?.CloseView();
+            if (productView != null)
+            {
+                productView.Close();
+                productView = null;
+            }
+            if (productsView != null)
+            {
+                productsView.Close();
+                productsView = null;
+            }
+            if (customersView != null)
+            {
+                customersView.Close();
+                customersView = null;
+            }
+            if (employeesView != null)
+            {
+                employeesView.Close();
+                employeesView = null;
+            }
+            if (employeeView != null)
+            {
+                employeeView.Close();
+                employeeView = null;
+            }
+
         }
     }
 }

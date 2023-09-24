@@ -17,29 +17,26 @@ public class AuthRepository : IAuthRepository
     {
         Employee? employee = await _context!.Employees!.Include(e => e.User).FirstOrDefaultAsync(e => e.Username == username);
 
-        if (employee == null)
+        if (employee == null) return false;
+        if(employee.User.Status == 0) return false;
+        
+        if (employee.Pass == "admin")
         {
-            return false;
-        }
-        else
-        {
-            // check password
-            if (employee.Pass == password)
-            {
-                SessionManager.Id = employee.Id;
-                SessionManager.Name = employee.User.Name;
-                SessionManager.RoleId = employee.RoleId;
-                SessionManager.Username = employee.Username;
-                SessionManager.IsLoggedIn = true;
-
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            employee.Pass = HashPass.HashPassword(employee.Pass);
+            await _context.SaveChangesAsync();
         }
 
+        if (HashPass.ValidatePassword(password, employee.Pass))
+        {
+            SessionManager.Id = employee.Id;
+            SessionManager.Name = employee.User.Name;
+            SessionManager.RoleId = employee.RoleId;
+            SessionManager.Username = employee.Username;
+            SessionManager.IsLoggedIn = true;
+
+            return true;
+        }
+        return false;
     }
 }
 

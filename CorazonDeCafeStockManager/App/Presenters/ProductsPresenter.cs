@@ -38,15 +38,8 @@ namespace CorazonDeCafeStockManager.App.Presenters
             view.LoadProducts();
         }
 
-        public void ShowView()
-        {
-            view!.Show();
-        }
-
-        public void CloseView()
-        {
-            view!.Close();
-        }
+        public void ShowView() => view!.Show();
+        public void CloseView() => view!.Close();
 
         private void SearchProducts(object sender, EventArgs e)
         {

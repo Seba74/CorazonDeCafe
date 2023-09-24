@@ -39,6 +39,7 @@ namespace CorazonDeCafeStockManager.App.Presenters
             view.EmployeeRole = Employee.Role.Name;
             view.EmployeeDni = Employee.User.Dni;
             view.EmployeePhone = Employee.User.Phone;
+            view.EmployeeStatus = Employee.User.Status == 1 ? "activo" : "inactivo";
             view.Title = Employee.User.Name + " " + Employee.User.Surname;
         }
         public void CloseView()
@@ -52,7 +53,6 @@ namespace CorazonDeCafeStockManager.App.Presenters
                 return;
             }
 
-            // create a new user
             User user = new()
             {
                 Name = view.EmployeeName!,
@@ -60,11 +60,10 @@ namespace CorazonDeCafeStockManager.App.Presenters
                 Email = view.EmployeeEmail!,
                 Dni = view.EmployeeDni,
                 Phone = view.EmployeePhone!,
-                Status = 1,
+                Status = view.EmployeeStatus!.ToLower() == "activo" ? 1 : 0,
             };
 
             Role role = await EmployeeRepository.GetRoleByName(view.EmployeeRole!);
-            // create a new Employee
             Employee employee = new()
             {
                 Username = view.EmployeeUsername!,
@@ -74,11 +73,13 @@ namespace CorazonDeCafeStockManager.App.Presenters
             if (view.EmployeeId != null)
             {
                 employee.Id = (int)view.EmployeeId;
-                await EmployeeRepository.UpdateEmployee(employee, user, null!);
+                await EmployeeRepository.UpdateEmployee(employee, user);
             }
             else
             {
-                await EmployeeRepository.UpdateEmployee(employee, user, null!);
+                employee.Pass = "";
+                employee.UserId = 0;
+                await EmployeeRepository.AddEmployee(employee, user);
             }
 
             homePresenter.ShowEmployeesView(this, EventArgs.Empty);
@@ -97,7 +98,8 @@ namespace CorazonDeCafeStockManager.App.Presenters
                     Employee.User.Dni != view.EmployeeDni ||
                     (!string.IsNullOrEmpty(view.EmployeePhone) && Employee.User.Phone != view.EmployeePhone) ||
                     Employee.Username != view.EmployeeUsername ||
-                    Employee.Role.Name != view.EmployeeRole
+                    Employee.Role.Name != view.EmployeeRole ||
+                    (Employee.User.Status == 1 ? "activo" : "inactivo") != view.EmployeeStatus
                     ))
                 {
                     DialogResult dialogResult = MessageBox.Show("Hay cambios sin guardar, ¿Desea cancelar?", "Cancelar", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -219,7 +221,6 @@ namespace CorazonDeCafeStockManager.App.Presenters
                 "ipName" => char.IsLetter(inputChar) || char.IsWhiteSpace(inputChar),
                 "ipSurname" => char.IsLetter(inputChar) || char.IsWhiteSpace(inputChar),
                 "ipUser" => char.IsLetterOrDigit(inputChar) || char.IsWhiteSpace(inputChar),
-                "ipEmail" => char.IsLetterOrDigit(inputChar) || char.IsWhiteSpace(inputChar),
                 "ipPhone" => char.IsDigit(inputChar) && IsIntValid(textBox.Texts + inputChar),
                 "ipDni" => char.IsDigit(inputChar) && IsIntValid(textBox.Texts + inputChar),
                 _ => true,
@@ -235,4 +236,4 @@ namespace CorazonDeCafeStockManager.App.Presenters
             return false;
         }
     }
-}
+}   

@@ -8,6 +8,8 @@
         Control CustomerButton { get; }
         Control EmployeeButton { get; }
         Control SaleButton { get; }
+        Control BillingButton { get; }
+        Control BackupButton { get; }
         Control ReportButton { get; }
         Control IconHeader { get; }
         Control TitleHeader { get; }

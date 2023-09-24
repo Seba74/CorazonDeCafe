@@ -1,99 +1,19 @@
 ﻿using CorazonDeCafeStockManager.App.Views.EmployeeForm;
+using CorazonDeCafeStockManager.utils.Custom.TextBox;
 
 namespace CorazonDeCafeStockManager
 {
     public partial class EmployeeForm : Form, IEmployeeView
     {
         public int? EmployeeId { get; set; }
-
-        public string? EmployeeName
-        {
-            get => ipName.Texts;
-            set
-            {
-                ipName.ForeColor = Color.Black;
-                ipName.Texts = value!;
-                title.Text = value!;
-            }
-        }
-        public string? EmployeeSurname
-        {
-            get => ipSurname.Texts;
-            set
-            {
-                ipSurname.ForeColor = Color.Black;
-                ipSurname.Texts = value!;
-            }
-        }
-
-        public string? EmployeeEmail
-        {
-            get => ipEmail.Texts;
-            set
-            {
-                ipEmail.ForeColor = Color.Black;
-                ipEmail.Texts = value!;
-            }
-        }
-        public string? EmployeeUsername
-        {
-            get => ipUser.Texts;
-            set
-            {
-                ipUser.ForeColor = Color.Black;
-                ipUser.Texts = value!;
-            }
-        }
-        public string? EmployeeRole
-        {
-            get => ipRole.Texts;
-            set
-            {
-                ipRole.ForeColor = Color.Black;
-                ipRole.Texts = value!;
-            }
-        }
-        public string? EmployeePassword
-        {
-            get => ipPass.Texts;
-            set
-            {
-                ipPass.ForeColor = Color.Black;
-                ipPass.Texts = value!;
-            }
-        }
-        public string? EmployeePassword2
-        {
-            get => ipPass2.Texts;
-            set
-            {
-                ipPass2.ForeColor = Color.Black;
-                ipPass2.Texts = value!;
-            }
-        }
-        public int EmployeeDni
-        {
-            get
-            {
-                if (int.TryParse(ipDni.Texts, out int dni))
-                    return dni;
-                return 0;
-            }
-            set
-            {
-                ipDni.ForeColor = Color.Black;
-                ipDni.Texts = value.ToString();
-            }
-        }
-        public string? EmployeePhone
-        {
-            get => ipPhone.Texts;
-            set
-            {
-                ipPhone.ForeColor = Color.Black;
-                ipPhone.Texts = value!;
-            }
-        }
+        public string? EmployeeName { get => ipName.Texts; set => SetControlText(ipName, value); }
+        public string? EmployeeSurname { get => ipSurname.Texts; set => SetControlText(ipSurname, value); }
+        public string? EmployeeEmail { get => ipEmail.Texts; set => SetControlText(ipEmail, value); }
+        public string? EmployeeUsername { get => ipUser.Texts; set => SetControlText(ipUser, value); }
+        public string? EmployeeRole { get => ipRole.Texts; set => SetControlText(ipRole, value); }
+        public string? EmployeeStatus { get => ipStatus.Texts; set => SetControlText(ipStatus, value); }
+        public int EmployeeDni { get { if (int.TryParse(ipDni.Texts, out int dni)) return dni; return 0; } set => SetControlText(ipDni, value.ToString()); }
+        public string? EmployeePhone { get => ipPhone.Texts; set => SetControlText(ipPhone, value); }
         public string? Title { get => title.Text; set => title.Text = value; }
         public ButtonCustom? BtnDelete { get => btnDelete; set => btnDelete = value!; }
 
@@ -103,22 +23,22 @@ namespace CorazonDeCafeStockManager
             AssociateEvents();
 
         }
-
         private void AssociateEvents()
         {
-            btnSave.Click += delegate { SaveEvent?.Invoke(this, EventArgs.Empty); };
-            btnCancel.Click += delegate { CancelEvent?.Invoke(this, EventArgs.Empty); };
-            btnGoBack.Click += delegate { CancelEvent?.Invoke(this, EventArgs.Empty); };
-            btnDelete.Click += delegate { DeleteEvent?.Invoke(this, EventArgs.Empty); };
-            ipRole.OnSelectedIndexChanged += delegate { ipRole.ForeColor = Color.Black; };
+            btnSave.Click += (_, __) => SaveEvent?.Invoke(this, EventArgs.Empty);
+            btnCancel.Click += (_, __) => CancelEvent?.Invoke(this, EventArgs.Empty);
+            btnGoBack.Click += (_, __) => CancelEvent?.Invoke(this, EventArgs.Empty);
+            btnDelete.Click += (_, __) => DeleteEvent?.Invoke(this, EventArgs.Empty);
+
             ipName.KeyPress += (sender, e) => ValidateEvent?.Invoke(sender, e);
             ipSurname.KeyPress += (sender, e) => ValidateEvent?.Invoke(sender, e);
             ipUser.KeyPress += (sender, e) => ValidateEvent?.Invoke(sender, e);
             ipEmail.KeyPress += (sender, e) => ValidateEvent?.Invoke(sender, e);
             ipPhone.KeyPress += (sender, e) => ValidateEvent?.Invoke(sender, e);
             ipDni.KeyPress += (sender, e) => ValidateEvent?.Invoke(sender, e);
-            ipPass.KeyPress += (sender, e) => ValidateEvent?.Invoke(sender, e);
-            ipPass2.KeyPress += (sender, e) => ValidateEvent?.Invoke(sender, e);
+            
+            ipRole.OnSelectedIndexChanged += (_, __) => ipRole.ForeColor = Color.Black;
+            ipStatus.OnSelectedIndexChanged += (_, __) => ipStatus.ForeColor = Color.Black;
         }
         public event KeyPressEventHandler? ValidateEvent;
         public event EventHandler? CancelEvent;
@@ -130,6 +50,21 @@ namespace CorazonDeCafeStockManager
             MessageBox.Show(message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
+        private void SetControlText(Control? control, string? value)
+        {
+            if (control != null)
+            {
+                control.ForeColor = Color.Black;
+                if (control is TextBoxCustom txt)
+                {
+                    txt.Texts = value!;
+                }
+                else if (control is ComboBoxCustom cmb)
+                {
+                    cmb.Texts = value!;
+                }
+            }
+        }
         private static EmployeeForm? instance;
         public static EmployeeForm GetInstance(Control controlParent)
         {

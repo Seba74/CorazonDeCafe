@@ -5,6 +5,7 @@ using CorazonDeCafeStockManager.App.Views.ProductForm;
 using CorazonDeCafeStockManager.Properties;
 using CorazonDeCafeStockManager.utils.Custom.TextBox;
 using Microsoft.IdentityModel.Tokens;
+using System.Reflection;
 using Type = CorazonDeCafeStockManager.App.Models.Type;
 
 namespace CorazonDeCafeStockManager.App.Presenters
@@ -45,7 +46,6 @@ namespace CorazonDeCafeStockManager.App.Presenters
         private void SetProductToView(Product product)
         {
 
-
             view.ProductName = product.Name;
             view.ProductActive = product.Active == 1 ? "Activo" : "Inactivo";
             view.ProductPrice = product.Price;
@@ -62,9 +62,9 @@ namespace CorazonDeCafeStockManager.App.Presenters
                 view.ShowImage!.Image = Resources.imageNotFound;
             }
             else
-            {
-                string path = Path.Combine("products", product.Imagen);
-                view.ShowImage!.Image = Image.FromFile(path);
+            {   
+                string imagePath = Path.Combine("products", product.Imagen);
+                view.ShowImage!.Image = Image.FromFile(imagePath);
             }
 
             view.ProductImagen = product.Imagen;

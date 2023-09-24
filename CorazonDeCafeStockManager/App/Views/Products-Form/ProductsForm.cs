@@ -6,23 +6,9 @@ namespace CorazonDeCafeStockManager
     public partial class ProductsForm : Form, IProductsView
     {
         private readonly LoadFonts loadFonts;
-        public string? Search
-        {
-            get { return ipSearch.Texts; }
-            set { ipSearch.Texts = value!; }
-        }
-        public string? SelectType
-        {
-            get { return selectType.Texts; }
-            set { selectType.Texts = value!; }
-        }
-
-        public string? SelectCategory
-        {
-            get { return selectCategory.Texts; }
-            set { selectCategory.Texts = value!; }
-        }
-
+        public string? Search { get { return ipSearch.Texts; } set { ipSearch.Texts = value!; } }
+        public string? SelectType { get { return selectType.Texts; } set { selectType.Texts = value!; } }
+        public string? SelectCategory { get { return selectCategory.Texts; } set { selectCategory.Texts = value!; } }
         public IEnumerable<Product>? ProductsList { get; set; }
 
         public ProductsForm()
@@ -39,30 +25,23 @@ namespace CorazonDeCafeStockManager
         }
         private void InitializeEvents()
         {
-            ipSearch._TextChanged += delegate { SearchEvent?.Invoke(this, EventArgs.Empty); };
-            selectCategory.OnSelectedIndexChanged += delegate { FilterEvent?.Invoke(this, EventArgs.Empty); };
-            selectType.OnSelectedIndexChanged += delegate { FilterEvent?.Invoke(this, EventArgs.Empty); };
-            reload.Click += delegate { ResetProductsEvent?.Invoke(this, EventArgs.Empty); };
-            btnAdd.Click += delegate { AddEvent?.Invoke(this, EventArgs.Empty); };
-            btnEdit.Click += delegate
-            {
-                if (productList.SelectedRows.Count > 0)
-                {
-                    int id = Convert.ToInt32(productList.SelectedRows[0].Cells[0].Value);
-                    Product product = ProductsList!.Where(p => p.Id == id).FirstOrDefault()!;
-                    EditEvent?.Invoke(product, EventArgs.Empty);
-                }
-            };
+            ipSearch._TextChanged += (_, __) => SearchEvent?.Invoke(this, EventArgs.Empty);
+            selectCategory.OnSelectedIndexChanged += (_, __) => FilterEvent?.Invoke(this, EventArgs.Empty);
+            selectType.OnSelectedIndexChanged += (_, __) => FilterEvent?.Invoke(this, EventArgs.Empty);
+            reload.Click += (_, __) => ResetProductsEvent?.Invoke(this, EventArgs.Empty);
+            btnAdd.Click += (_, __) => AddEvent?.Invoke(this, EventArgs.Empty);
+            btnEdit.Click += (_, __) => HandleEditEvent();
+            productList.DoubleClick += (_, __) => HandleEditEvent();
+        }
 
-            productList.DoubleClick += delegate
+        private void HandleEditEvent()
+        {
+            if (productList.SelectedRows.Count > 0)
             {
-                if (productList.SelectedRows.Count > 0)
-                {
-                    int id = Convert.ToInt32(productList.SelectedRows[0].Cells[0].Value);
-                    Product product = ProductsList!.Where(p => p.Id == id).FirstOrDefault()!;
-                    EditEvent?.Invoke(product, EventArgs.Empty);
-                }
-            };
+                int id = Convert.ToInt32(productList.SelectedRows[0].Cells[0].Value);
+                Product product = ProductsList?.FirstOrDefault(p => p.Id == id)!;
+                EditEvent?.Invoke(product, EventArgs.Empty);
+            }
         }
 
         public event EventHandler? SearchEvent;
@@ -75,33 +54,23 @@ namespace CorazonDeCafeStockManager
         {
             if (productList.InvokeRequired)
             {
-                productList.Invoke(new MethodInvoker(delegate
-                {
-                    productList.Rows.Clear();
-                    productList.Refresh();
-
-                    foreach (Product product in ProductsList!)
-                    {
-                        string active = product.Active == 1 ? "Activo" : "Inactivo";
-
-                        productList.Rows.Add(product.Id, product.Name, product.Price, product.Stock, product.Type.Name, product.Category.Name, active);
-                    }
-                }));
+                productList.Invoke(new MethodInvoker(() => LoadProductsInternal()));
             }
-            else
-            {
-                productList.Rows.Clear();
-                productList.Refresh();
-
-                foreach (Product product in ProductsList!)
-                {
-                    string active = product.Active == 1 ? "Activo" : "Inactivo";
-
-                    productList.Rows.Add(product.Id, product.Name, product.Price, product.Stock, product.Type.Name, product.Category.Name, active);
-                }
-            }
+            else LoadProductsInternal();
         }
 
+        private void LoadProductsInternal()
+        {
+            productList.Rows.Clear();
+            productList.Refresh();
+
+            foreach (Product product in ProductsList!)
+            {
+                string active = product.Active == 1 ? "Activo" : "Inactivo";
+
+                productList.Rows.Add(product.Id, product.Name, product.Price, product.Stock, product.Type.Name, product.Category.Name, active);
+            }
+        }
 
         public void ChangeDataGridViewFont(DataGridView dataGridView)
         {

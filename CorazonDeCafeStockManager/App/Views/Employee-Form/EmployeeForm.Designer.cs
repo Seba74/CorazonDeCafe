@@ -35,28 +35,26 @@
             btnCancel = new ButtonCustom();
             btnDelete = new ButtonCustom();
             barHPanel = new Panel();
-            ipName = new utils.Custom.TextBox.TextBoxCustom();
-            ipSurname = new utils.Custom.TextBox.TextBoxCustom();
-            lblName = new Label();
-            lblRole = new Label();
-            ipRole = new ComboBoxCustom();
-            lblSurname = new Label();
-            lblEmail = new Label();
             title = new Label();
             panel1 = new Panel();
             panel2 = new Panel();
             panel3 = new Panel();
-            ipPass2 = new utils.Custom.TextBox.TextBoxCustom();
-            lblPass2 = new Label();
-            ipPhone = new utils.Custom.TextBox.TextBoxCustom();
-            lblPhone = new Label();
+            ipStatus = new ComboBoxCustom();
+            lblStatus = new Label();
+            ipName = new utils.Custom.TextBox.TextBoxCustom();
+            ipSurname = new utils.Custom.TextBox.TextBoxCustom();
             ipDni = new utils.Custom.TextBox.TextBoxCustom();
-            lblDni = new Label();
             ipEmail = new utils.Custom.TextBox.TextBoxCustom();
-            ipPass = new utils.Custom.TextBox.TextBoxCustom();
-            lblPass = new Label();
             ipUser = new utils.Custom.TextBox.TextBoxCustom();
+            ipPhone = new utils.Custom.TextBox.TextBoxCustom();
+            ipRole = new ComboBoxCustom();
+            lblDni = new Label();
+            lblPhone = new Label();
             lblUser = new Label();
+            lblSurname = new Label();
+            lblEmail = new Label();
+            lblName = new Label();
+            lblRole = new Label();
             panel4 = new Panel();
             ((System.ComponentModel.ISupportInitialize)btnGoBack).BeginInit();
             panel1.SuspendLayout();
@@ -179,6 +177,96 @@
             barHPanel.Size = new Size(999, 4);
             barHPanel.TabIndex = 26;
             // 
+            // title
+            // 
+            title.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
+            title.AutoSize = true;
+            title.Font = new Font("Poppins Light", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
+            title.ForeColor = Color.FromArgb(146, 90, 57);
+            title.Location = new Point(60, 7);
+            title.Name = "title";
+            title.Size = new Size(192, 37);
+            title.TabIndex = 47;
+            title.Text = "Nuevo Empleado";
+            // 
+            // panel1
+            // 
+            panel1.Anchor = AnchorStyles.None;
+            panel1.Controls.Add(btnSave);
+            panel1.Controls.Add(btnCancel);
+            panel1.Controls.Add(btnDelete);
+            panel1.Location = new Point(-3, 559);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(999, 58);
+            panel1.TabIndex = 48;
+            // 
+            // panel2
+            // 
+            panel2.Anchor = AnchorStyles.None;
+            panel2.Controls.Add(panel3);
+            panel2.Location = new Point(-3, 125);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(999, 407);
+            panel2.TabIndex = 49;
+            // 
+            // panel3
+            // 
+            panel3.Anchor = AnchorStyles.Left;
+            panel3.Controls.Add(ipStatus);
+            panel3.Controls.Add(lblStatus);
+            panel3.Controls.Add(ipName);
+            panel3.Controls.Add(ipSurname);
+            panel3.Controls.Add(ipDni);
+            panel3.Controls.Add(ipEmail);
+            panel3.Controls.Add(ipUser);
+            panel3.Controls.Add(ipPhone);
+            panel3.Controls.Add(ipRole);
+            panel3.Controls.Add(lblDni);
+            panel3.Controls.Add(lblPhone);
+            panel3.Controls.Add(lblUser);
+            panel3.Controls.Add(lblSurname);
+            panel3.Controls.Add(lblEmail);
+            panel3.Controls.Add(lblName);
+            panel3.Controls.Add(lblRole);
+            panel3.Location = new Point(60, 29);
+            panel3.Name = "panel3";
+            panel3.Size = new Size(878, 331);
+            panel3.TabIndex = 39;
+            // 
+            // ipStatus
+            // 
+            ipStatus.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            ipStatus.BackColor = Color.FromArgb(255, 219, 197);
+            ipStatus.BorderColor = Color.FromArgb(145, 90, 57);
+            ipStatus.BorderRadius = 5;
+            ipStatus.BorderSize = 0;
+            ipStatus.DropDownStyle = ComboBoxStyle.DropDown;
+            ipStatus.Font = new Font("Poppins Light", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            ipStatus.ForeColor = Color.Black;
+            ipStatus.IconColor = Color.FromArgb(145, 90, 57);
+            ipStatus.Items.AddRange(new object[] { "activo", "inactivo" });
+            ipStatus.ListBackColor = Color.FromArgb(230, 228, 245);
+            ipStatus.ListTextColor = Color.Black;
+            ipStatus.Location = new Point(25, 166);
+            ipStatus.MaximumSize = new Size(420, 37);
+            ipStatus.MinimumSize = new Size(110, 32);
+            ipStatus.Name = "ipStatus";
+            ipStatus.Size = new Size(240, 32);
+            ipStatus.TabIndex = 54;
+            ipStatus.Texts = "activo";
+            // 
+            // lblStatus
+            // 
+            lblStatus.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            lblStatus.AutoSize = true;
+            lblStatus.Font = new Font("Poppins Light", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            lblStatus.ForeColor = Color.FromArgb(146, 90, 57);
+            lblStatus.Location = new Point(25, 135);
+            lblStatus.Name = "lblStatus";
+            lblStatus.Size = new Size(63, 26);
+            lblStatus.TabIndex = 53;
+            lblStatus.Text = "Estado";
+            // 
             // ipName
             // 
             ipName.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
@@ -227,206 +315,6 @@
             ipSurname.Texts = "";
             ipSurname.UnderlinedStyle = false;
             // 
-            // lblName
-            // 
-            lblName.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            lblName.AutoSize = true;
-            lblName.Font = new Font("Poppins Light", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-            lblName.ForeColor = Color.FromArgb(146, 90, 57);
-            lblName.Location = new Point(26, 53);
-            lblName.Name = "lblName";
-            lblName.Size = new Size(71, 26);
-            lblName.TabIndex = 39;
-            lblName.Text = "Nombre";
-            // 
-            // lblRole
-            // 
-            lblRole.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            lblRole.AutoSize = true;
-            lblRole.Font = new Font("Poppins Light", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-            lblRole.ForeColor = Color.FromArgb(146, 90, 57);
-            lblRole.Location = new Point(26, 223);
-            lblRole.Name = "lblRole";
-            lblRole.Size = new Size(34, 26);
-            lblRole.TabIndex = 40;
-            lblRole.Text = "Rol";
-            // 
-            // ipRole
-            // 
-            ipRole.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            ipRole.BackColor = Color.FromArgb(255, 219, 197);
-            ipRole.BorderColor = Color.FromArgb(145, 90, 57);
-            ipRole.BorderRadius = 5;
-            ipRole.BorderSize = 0;
-            ipRole.DropDownStyle = ComboBoxStyle.DropDown;
-            ipRole.Font = new Font("Poppins Light", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            ipRole.ForeColor = Color.Black;
-            ipRole.IconColor = Color.FromArgb(145, 90, 57);
-            ipRole.Items.AddRange(new object[] { "vendedor", "supervisor", "gerente", "admin" });
-            ipRole.ListBackColor = Color.FromArgb(230, 228, 245);
-            ipRole.ListTextColor = Color.Black;
-            ipRole.Location = new Point(26, 254);
-            ipRole.MaximumSize = new Size(420, 37);
-            ipRole.MinimumSize = new Size(110, 32);
-            ipRole.Name = "ipRole";
-            ipRole.Size = new Size(240, 32);
-            ipRole.TabIndex = 41;
-            ipRole.Texts = "empleado";
-            // 
-            // lblSurname
-            // 
-            lblSurname.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            lblSurname.AutoSize = true;
-            lblSurname.Font = new Font("Poppins Light", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-            lblSurname.ForeColor = Color.FromArgb(146, 90, 57);
-            lblSurname.Location = new Point(297, 53);
-            lblSurname.Name = "lblSurname";
-            lblSurname.Size = new Size(70, 26);
-            lblSurname.TabIndex = 42;
-            lblSurname.Text = "Apellido";
-            // 
-            // lblEmail
-            // 
-            lblEmail.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            lblEmail.AutoSize = true;
-            lblEmail.Font = new Font("Poppins Light", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-            lblEmail.ForeColor = Color.FromArgb(146, 90, 57);
-            lblEmail.Location = new Point(26, 139);
-            lblEmail.Name = "lblEmail";
-            lblEmail.Size = new Size(51, 26);
-            lblEmail.TabIndex = 43;
-            lblEmail.Text = "Email";
-            // 
-            // title
-            // 
-            title.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
-            title.AutoSize = true;
-            title.Font = new Font("Poppins Light", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
-            title.ForeColor = Color.FromArgb(146, 90, 57);
-            title.Location = new Point(60, 7);
-            title.Name = "title";
-            title.Size = new Size(192, 37);
-            title.TabIndex = 47;
-            title.Text = "Nuevo Empleado";
-            // 
-            // panel1
-            // 
-            panel1.Anchor = AnchorStyles.None;
-            panel1.Controls.Add(btnSave);
-            panel1.Controls.Add(btnCancel);
-            panel1.Controls.Add(btnDelete);
-            panel1.Location = new Point(-3, 559);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(999, 58);
-            panel1.TabIndex = 48;
-            // 
-            // panel2
-            // 
-            panel2.Anchor = AnchorStyles.None;
-            panel2.Controls.Add(panel3);
-            panel2.Location = new Point(-3, 125);
-            panel2.Name = "panel2";
-            panel2.Size = new Size(999, 407);
-            panel2.TabIndex = 49;
-            // 
-            // panel3
-            // 
-            panel3.Anchor = AnchorStyles.Left;
-            panel3.Controls.Add(ipPass2);
-            panel3.Controls.Add(lblPass2);
-            panel3.Controls.Add(ipPhone);
-            panel3.Controls.Add(lblPhone);
-            panel3.Controls.Add(ipDni);
-            panel3.Controls.Add(lblDni);
-            panel3.Controls.Add(ipEmail);
-            panel3.Controls.Add(ipPass);
-            panel3.Controls.Add(lblPass);
-            panel3.Controls.Add(ipUser);
-            panel3.Controls.Add(lblUser);
-            panel3.Controls.Add(ipRole);
-            panel3.Controls.Add(ipSurname);
-            panel3.Controls.Add(lblSurname);
-            panel3.Controls.Add(lblEmail);
-            panel3.Controls.Add(ipName);
-            panel3.Controls.Add(lblName);
-            panel3.Controls.Add(lblRole);
-            panel3.Location = new Point(60, 29);
-            panel3.Name = "panel3";
-            panel3.Size = new Size(878, 331);
-            panel3.TabIndex = 39;
-            // 
-            // ipPass2
-            // 
-            ipPass2.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            ipPass2.BackColor = Color.FromArgb(255, 219, 197);
-            ipPass2.BorderColor = Color.FromArgb(255, 219, 197);
-            ipPass2.BorderFocusColor = Color.FromArgb(146, 90, 57);
-            ipPass2.BorderRadius = 5;
-            ipPass2.BorderSize = 2;
-            ipPass2.Cursor = Cursors.Hand;
-            ipPass2.Font = new Font("Poppins Light", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            ipPass2.Location = new Point(567, 254);
-            ipPass2.MaximumSize = new Size(650, 37);
-            ipPass2.MinimumSize = new Size(100, 34);
-            ipPass2.Multiline = false;
-            ipPass2.Name = "ipPass2";
-            ipPass2.Padding = new Padding(10, 6, 4, 2);
-            ipPass2.PasswordChar = true;
-            ipPass2.PlaceholderColor = Color.FromArgb(146, 90, 57);
-            ipPass2.PlaceholderText = "Contraseña nuevamente";
-            ipPass2.Size = new Size(241, 34);
-            ipPass2.TabIndex = 53;
-            ipPass2.Texts = "";
-            ipPass2.UnderlinedStyle = false;
-            // 
-            // lblPass2
-            // 
-            lblPass2.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            lblPass2.AutoSize = true;
-            lblPass2.Font = new Font("Poppins Light", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-            lblPass2.ForeColor = Color.FromArgb(146, 90, 57);
-            lblPass2.Location = new Point(567, 225);
-            lblPass2.Name = "lblPass2";
-            lblPass2.Size = new Size(153, 26);
-            lblPass2.TabIndex = 54;
-            lblPass2.Text = "Repetir Contraseña";
-            // 
-            // ipPhone
-            // 
-            ipPhone.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            ipPhone.BackColor = Color.FromArgb(255, 219, 197);
-            ipPhone.BorderColor = Color.FromArgb(255, 219, 197);
-            ipPhone.BorderFocusColor = Color.FromArgb(146, 90, 57);
-            ipPhone.BorderRadius = 5;
-            ipPhone.BorderSize = 2;
-            ipPhone.Cursor = Cursors.Hand;
-            ipPhone.Font = new Font("Poppins Light", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            ipPhone.Location = new Point(567, 166);
-            ipPhone.MaximumSize = new Size(650, 37);
-            ipPhone.MinimumSize = new Size(100, 34);
-            ipPhone.Multiline = false;
-            ipPhone.Name = "ipPhone";
-            ipPhone.Padding = new Padding(10, 6, 4, 2);
-            ipPhone.PasswordChar = false;
-            ipPhone.PlaceholderColor = Color.FromArgb(146, 90, 57);
-            ipPhone.PlaceholderText = "Número de contacto";
-            ipPhone.Size = new Size(241, 34);
-            ipPhone.TabIndex = 51;
-            ipPhone.Texts = "";
-            ipPhone.UnderlinedStyle = false;
-            // 
-            // lblPhone
-            // 
-            lblPhone.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            lblPhone.AutoSize = true;
-            lblPhone.Font = new Font("Poppins Light", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-            lblPhone.ForeColor = Color.FromArgb(146, 90, 57);
-            lblPhone.Location = new Point(567, 137);
-            lblPhone.Name = "lblPhone";
-            lblPhone.Size = new Size(82, 26);
-            lblPhone.TabIndex = 52;
-            lblPhone.Text = "Contacto";
-            // 
             // ipDni
             // 
             ipDni.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
@@ -451,18 +339,6 @@
             ipDni.Texts = "";
             ipDni.UnderlinedStyle = false;
             // 
-            // lblDni
-            // 
-            lblDni.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            lblDni.AutoSize = true;
-            lblDni.Font = new Font("Poppins Light", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-            lblDni.ForeColor = Color.FromArgb(146, 90, 57);
-            lblDni.Location = new Point(567, 53);
-            lblDni.Name = "lblDni";
-            lblDni.Size = new Size(35, 26);
-            lblDni.TabIndex = 50;
-            lblDni.Text = "Dni";
-            // 
             // ipEmail
             // 
             ipEmail.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
@@ -473,7 +349,7 @@
             ipEmail.BorderSize = 2;
             ipEmail.Cursor = Cursors.Hand;
             ipEmail.Font = new Font("Poppins Light", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            ipEmail.Location = new Point(26, 166);
+            ipEmail.Location = new Point(297, 164);
             ipEmail.MaximumSize = new Size(650, 37);
             ipEmail.MinimumSize = new Size(220, 34);
             ipEmail.Multiline = false;
@@ -487,42 +363,6 @@
             ipEmail.Texts = "";
             ipEmail.UnderlinedStyle = false;
             // 
-            // ipPass
-            // 
-            ipPass.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            ipPass.BackColor = Color.FromArgb(255, 219, 197);
-            ipPass.BorderColor = Color.FromArgb(255, 219, 197);
-            ipPass.BorderFocusColor = Color.FromArgb(146, 90, 57);
-            ipPass.BorderRadius = 5;
-            ipPass.BorderSize = 2;
-            ipPass.Cursor = Cursors.Hand;
-            ipPass.Font = new Font("Poppins Light", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            ipPass.Location = new Point(297, 254);
-            ipPass.MaximumSize = new Size(650, 37);
-            ipPass.MinimumSize = new Size(100, 34);
-            ipPass.Multiline = false;
-            ipPass.Name = "ipPass";
-            ipPass.Padding = new Padding(10, 6, 4, 2);
-            ipPass.PasswordChar = true;
-            ipPass.PlaceholderColor = Color.FromArgb(146, 90, 57);
-            ipPass.PlaceholderText = "Contraseña";
-            ipPass.Size = new Size(241, 34);
-            ipPass.TabIndex = 46;
-            ipPass.Texts = "";
-            ipPass.UnderlinedStyle = false;
-            // 
-            // lblPass
-            // 
-            lblPass.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            lblPass.AutoSize = true;
-            lblPass.Font = new Font("Poppins Light", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-            lblPass.ForeColor = Color.FromArgb(146, 90, 57);
-            lblPass.Location = new Point(297, 225);
-            lblPass.Name = "lblPass";
-            lblPass.Size = new Size(99, 26);
-            lblPass.TabIndex = 47;
-            lblPass.Text = "Contraseña";
-            // 
             // ipUser
             // 
             ipUser.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
@@ -533,7 +373,7 @@
             ipUser.BorderSize = 2;
             ipUser.Cursor = Cursors.Hand;
             ipUser.Font = new Font("Poppins Light", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            ipUser.Location = new Point(297, 166);
+            ipUser.Location = new Point(569, 166);
             ipUser.MaximumSize = new Size(650, 37);
             ipUser.MinimumSize = new Size(100, 34);
             ipUser.Multiline = false;
@@ -547,17 +387,135 @@
             ipUser.Texts = "";
             ipUser.UnderlinedStyle = false;
             // 
+            // ipPhone
+            // 
+            ipPhone.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            ipPhone.BackColor = Color.FromArgb(255, 219, 197);
+            ipPhone.BorderColor = Color.FromArgb(255, 219, 197);
+            ipPhone.BorderFocusColor = Color.FromArgb(146, 90, 57);
+            ipPhone.BorderRadius = 5;
+            ipPhone.BorderSize = 2;
+            ipPhone.Cursor = Cursors.Hand;
+            ipPhone.Font = new Font("Poppins Light", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            ipPhone.Location = new Point(297, 254);
+            ipPhone.MaximumSize = new Size(650, 37);
+            ipPhone.MinimumSize = new Size(100, 34);
+            ipPhone.Multiline = false;
+            ipPhone.Name = "ipPhone";
+            ipPhone.Padding = new Padding(10, 6, 4, 2);
+            ipPhone.PasswordChar = false;
+            ipPhone.PlaceholderColor = Color.FromArgb(146, 90, 57);
+            ipPhone.PlaceholderText = "Número de contacto";
+            ipPhone.Size = new Size(241, 34);
+            ipPhone.TabIndex = 51;
+            ipPhone.Texts = "";
+            ipPhone.UnderlinedStyle = false;
+            // 
+            // ipRole
+            // 
+            ipRole.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            ipRole.BackColor = Color.FromArgb(255, 219, 197);
+            ipRole.BorderColor = Color.FromArgb(145, 90, 57);
+            ipRole.BorderRadius = 5;
+            ipRole.BorderSize = 0;
+            ipRole.DropDownStyle = ComboBoxStyle.DropDown;
+            ipRole.Font = new Font("Poppins Light", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            ipRole.ForeColor = Color.Black;
+            ipRole.IconColor = Color.FromArgb(145, 90, 57);
+            ipRole.Items.AddRange(new object[] { "vendedor", "supervisor", "gerente", "admin" });
+            ipRole.ListBackColor = Color.FromArgb(230, 228, 245);
+            ipRole.ListTextColor = Color.Black;
+            ipRole.Location = new Point(26, 254);
+            ipRole.MaximumSize = new Size(420, 37);
+            ipRole.MinimumSize = new Size(110, 32);
+            ipRole.Name = "ipRole";
+            ipRole.Size = new Size(240, 32);
+            ipRole.TabIndex = 41;
+            ipRole.Texts = "vendedor";
+            // 
+            // lblDni
+            // 
+            lblDni.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            lblDni.AutoSize = true;
+            lblDni.Font = new Font("Poppins Light", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            lblDni.ForeColor = Color.FromArgb(146, 90, 57);
+            lblDni.Location = new Point(567, 53);
+            lblDni.Name = "lblDni";
+            lblDni.Size = new Size(35, 26);
+            lblDni.TabIndex = 50;
+            lblDni.Text = "Dni";
+            // 
+            // lblPhone
+            // 
+            lblPhone.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            lblPhone.AutoSize = true;
+            lblPhone.Font = new Font("Poppins Light", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            lblPhone.ForeColor = Color.FromArgb(146, 90, 57);
+            lblPhone.Location = new Point(297, 225);
+            lblPhone.Name = "lblPhone";
+            lblPhone.Size = new Size(82, 26);
+            lblPhone.TabIndex = 52;
+            lblPhone.Text = "Contacto";
+            // 
             // lblUser
             // 
             lblUser.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             lblUser.AutoSize = true;
             lblUser.Font = new Font("Poppins Light", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
             lblUser.ForeColor = Color.FromArgb(146, 90, 57);
-            lblUser.Location = new Point(297, 137);
+            lblUser.Location = new Point(569, 137);
             lblUser.Name = "lblUser";
             lblUser.Size = new Size(67, 26);
             lblUser.TabIndex = 45;
             lblUser.Text = "Usuario";
+            // 
+            // lblSurname
+            // 
+            lblSurname.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            lblSurname.AutoSize = true;
+            lblSurname.Font = new Font("Poppins Light", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            lblSurname.ForeColor = Color.FromArgb(146, 90, 57);
+            lblSurname.Location = new Point(297, 53);
+            lblSurname.Name = "lblSurname";
+            lblSurname.Size = new Size(70, 26);
+            lblSurname.TabIndex = 42;
+            lblSurname.Text = "Apellido";
+            // 
+            // lblEmail
+            // 
+            lblEmail.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            lblEmail.AutoSize = true;
+            lblEmail.Font = new Font("Poppins Light", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            lblEmail.ForeColor = Color.FromArgb(146, 90, 57);
+            lblEmail.Location = new Point(297, 137);
+            lblEmail.Name = "lblEmail";
+            lblEmail.Size = new Size(51, 26);
+            lblEmail.TabIndex = 43;
+            lblEmail.Text = "Email";
+            // 
+            // lblName
+            // 
+            lblName.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            lblName.AutoSize = true;
+            lblName.Font = new Font("Poppins Light", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            lblName.ForeColor = Color.FromArgb(146, 90, 57);
+            lblName.Location = new Point(26, 53);
+            lblName.Name = "lblName";
+            lblName.Size = new Size(71, 26);
+            lblName.TabIndex = 39;
+            lblName.Text = "Nombre";
+            // 
+            // lblRole
+            // 
+            lblRole.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            lblRole.AutoSize = true;
+            lblRole.Font = new Font("Poppins Light", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            lblRole.ForeColor = Color.FromArgb(146, 90, 57);
+            lblRole.Location = new Point(26, 223);
+            lblRole.Name = "lblRole";
+            lblRole.Size = new Size(34, 26);
+            lblRole.TabIndex = 40;
+            lblRole.Text = "Rol";
             // 
             // panel4
             // 
@@ -601,28 +559,26 @@
         private ButtonCustom btnCancel;
         private ButtonCustom btnDelete;
         private Panel barHPanel;
-        private utils.Custom.TextBox.TextBoxCustom ipName;
-        private utils.Custom.TextBox.TextBoxCustom ipSurname;
-        private Label lblName;
-        private Label lblRole;
-        private ComboBoxCustom ipRole;
-        private Label lblSurname;
-        private Label lblEmail;
         private Label title;
         private Panel panel1;
         private Panel panel2;
-        private Panel panel3;
         private Panel panel4;
-        private utils.Custom.TextBox.TextBoxCustom ipUser;
-        private Label lblUser;
-        private utils.Custom.TextBox.TextBoxCustom ipPass;
-        private Label lblPass;
-        private utils.Custom.TextBox.TextBoxCustom ipEmail;
-        private utils.Custom.TextBox.TextBoxCustom ipPass2;
-        private Label lblPass2;
-        private utils.Custom.TextBox.TextBoxCustom ipPhone;
-        private Label lblPhone;
+        private Panel panel3;
+        private ComboBoxCustom ipStatus;
+        private Label lblStatus;
+        private utils.Custom.TextBox.TextBoxCustom ipName;
+        private utils.Custom.TextBox.TextBoxCustom ipSurname;
         private utils.Custom.TextBox.TextBoxCustom ipDni;
+        private utils.Custom.TextBox.TextBoxCustom ipEmail;
+        private utils.Custom.TextBox.TextBoxCustom ipUser;
+        private utils.Custom.TextBox.TextBoxCustom ipPhone;
+        private ComboBoxCustom ipRole;
         private Label lblDni;
+        private Label lblPhone;
+        private Label lblUser;
+        private Label lblSurname;
+        private Label lblEmail;
+        private Label lblName;
+        private Label lblRole;
     }
 }

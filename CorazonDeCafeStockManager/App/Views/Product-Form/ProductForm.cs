@@ -1,4 +1,5 @@
 ﻿using CorazonDeCafeStockManager.App.Views.ProductForm;
+using CorazonDeCafeStockManager.utils.Custom.TextBox;
 
 namespace CorazonDeCafeStockManager
 {
@@ -10,73 +11,63 @@ namespace CorazonDeCafeStockManager
             get => ipName.Texts;
             set
             {
-                ipName.ForeColor = Color.Black;
-                ipName.Texts = value!;
+                SetControlText(ipName, value);
                 title.Text = value!;
             }
         }
-        public string? Title { get => title.Text; set => title.Text = value; }
+        public string? Title
+        {
+            get => title.Text;
+            set => title.Text = value;
+        }
         public string? ProductImagen { get; set; }
         public double ProductPrice
         {
-            get
-            {
-                if (double.TryParse(ipPrice.Texts, out double price))
-                    return price;
-                return 0;
-            }
-            set
-            {
-                ipPrice.ForeColor = Color.Black;
-                ipPrice.Texts = value.ToString();
-            }
+            get => ParseDouble(ipPrice.Texts);
+            set => SetControlText(ipPrice, value.ToString());
         }
         public string? ProductActive
         {
             get => ipState.Texts;
-            set
-            {
-                ipState.ForeColor = Color.Black;
-                ipState.Texts = value!;
-            }
+            set => SetControlText(ipState, value);
         }
         public string? ProductCategory
         {
             get => ipCategory.Texts;
-            set
-            {
-                ipCategory.ForeColor = Color.Black;
-                ipCategory.Texts = value!;
-            }
+            set => SetControlText(ipCategory, value);
         }
         public string? ProductType
         {
             get => ipType.Texts;
-            set
-            {
-                ipType.ForeColor = Color.Black;
-                ipType.Texts = value!;
-            }
+            set => SetControlText(ipType, value);
         }
         public int ProductStock
         {
-            get
-            {
-                if (int.TryParse(ipStock.Texts, out int stock))
-                    return stock;
-                return -1;
-            }
-            set
-            {
-                ipStock.ForeColor = Color.Black;
-                ipStock.Texts = value.ToString();
-            }
+            get => ParseInt(ipStock.Texts);
+            set => SetControlText(ipStock, value.ToString());
         }
-
         public PictureBox? ShowImage { get => showImage; set => showImage = value!; }
         public PictureBox? BgImagen { get => bgImagen; set => bgImagen = value!; }
         public ButtonCustom? BtnAddImage { get => btnAddImage; set => btnAddImage = value!; }
         public ButtonCustom? BtnDelete { get => btnDelete; set => btnDelete = value!; }
+
+        private double ParseDouble(string? text)
+        {
+            if (double.TryParse(text, out double value))
+            {
+                return value;
+            }
+            return 0;
+        }
+
+        private int ParseInt(string? text)
+        {
+            if (int.TryParse(text, out int value))
+            {
+                return value;
+            }
+            return -1;
+        }
 
         public ProductForm()
         {
@@ -90,22 +81,39 @@ namespace CorazonDeCafeStockManager
 
         private void AssociateEvents()
         {
-            btnSave.Click += delegate { SaveEvent?.Invoke(this, EventArgs.Empty); };
-            btnCancel.Click += delegate { CancelEvent?.Invoke(this, EventArgs.Empty); };
-            btnGoBack.Click += delegate { CancelEvent?.Invoke(this, EventArgs.Empty); };
-            btnAddImage.Click += delegate { AddImageEvent?.Invoke(this, EventArgs.Empty); };
-            btnDelete.Click += delegate { DeleteEvent?.Invoke(this, EventArgs.Empty); };
-            ipCategory.OnSelectedIndexChanged += delegate { ipCategory.ForeColor = Color.Black; };
-            ipType.OnSelectedIndexChanged += delegate { ipType.ForeColor = Color.Black; };
+            btnSave.Click += (_, __) => SaveEvent?.Invoke(this, EventArgs.Empty);
+            btnCancel.Click += (_, __) => CancelEvent?.Invoke(this, EventArgs.Empty);
+            btnGoBack.Click += (_, __) => CancelEvent?.Invoke(this, EventArgs.Empty);
+            btnAddImage.Click += (_, __) => AddImageEvent?.Invoke(this, EventArgs.Empty);
+            btnDelete.Click += (_, __) => DeleteEvent?.Invoke(this, EventArgs.Empty);
+            ipCategory.OnSelectedIndexChanged += (_, __) => ipCategory.ForeColor = Color.Black;
+            ipType.OnSelectedIndexChanged += (_, __) => ipType.ForeColor = Color.Black;
             ipName.KeyPress += (sender, e) => ValidateEvent?.Invoke(sender, e);
             ipStock.KeyPress += (sender, e) => ValidateEvent?.Invoke(sender, e);
             ipPrice.KeyPress += (sender, e) => ValidateEvent?.Invoke(sender, e);
         }
+
         public event KeyPressEventHandler? ValidateEvent;
         public event EventHandler? CancelEvent;
         public event EventHandler? AddImageEvent;
         public event EventHandler? DeleteEvent;
         public event EventHandler? SaveEvent;
+
+        private void SetControlText(Control? control, string? value)
+        {
+            if (control != null)
+            {
+                control.ForeColor = Color.Black;
+                if (control is TextBoxCustom txt)
+                {
+                    txt.Texts = value!;
+                }
+                else if (control is ComboBoxCustom cmb)
+                {
+                    cmb.Texts = value!;
+                }
+            }
+        }
 
         public void ShowError(string message)
         {

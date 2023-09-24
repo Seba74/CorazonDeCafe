@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using CorazonDeCafeStockManager.App.Common;
 using CorazonDeCafeStockManager.App.Models;
 
 namespace CorazonDeCafeStockManager.App.Views.EmployeesForm
@@ -14,21 +15,9 @@ namespace CorazonDeCafeStockManager.App.Views.EmployeesForm
     public partial class EmployeesForm : Form, IEmployeesView
     {
         private readonly LoadFonts loadFonts;
-        public string? Search
-        {
-            get { return ipSearch.Texts; }
-            set { ipSearch.Texts = value!; }
-        }
-
-        public CalendarCustom startDateCalendar {
-            get { return startDate; }
-            set { startDate = value!; }
-        }
-        public CalendarCustom endDateCalendar {
-            get { return endDate; }
-            set { endDate = value!; }
-        }
-        
+        public string? Search { get { return ipSearch.Texts; } set { ipSearch.Texts = value!; } }
+        public CalendarCustom startDateCalendar { get { return startDate; } set { startDate = value!; } }
+        public CalendarCustom endDateCalendar { get { return endDate; } set { endDate = value!; } }
         public IEnumerable<Employee>? EmployeesList { get; set; }
 
         public EmployeesForm()
@@ -37,6 +26,11 @@ namespace CorazonDeCafeStockManager.App.Views.EmployeesForm
             InitializeEvents();
 
             loadFonts = new LoadFonts();
+            SetForm();
+        }
+
+        private void SetForm()
+        {
             ChangeDataGridViewFont(employeesDataGrid);
 
             ipSearch.Font = loadFonts.poppinsFont;
@@ -45,26 +39,28 @@ namespace CorazonDeCafeStockManager.App.Views.EmployeesForm
 
             startDateCalendar.MaxDate = DateTime.Now.Date;
             endDateCalendar.MaxDate = DateTime.Now.Date;
-            
+
             startDateCalendar.Value = DateTime.Now.Date;
             endDateCalendar.Value = DateTime.Now.Date;
         }
         private void InitializeEvents()
         {
-            ipSearch._TextChanged += delegate { SearchEvent?.Invoke(this, EventArgs.Empty); };
-            startDate.ValueChanged += delegate { FilterEvent?.Invoke(this, EventArgs.Empty); };
-            endDate.ValueChanged += delegate { FilterEvent?.Invoke(this, EventArgs.Empty); };
-            reload.Click += delegate { ResetEmployeesEvent?.Invoke(this, EventArgs.Empty); };
-            btnAdd.Click += delegate { AddEvent?.Invoke(this, EventArgs.Empty); };
-            btnEdit.Click += delegate
+            ipSearch._TextChanged += (sender, e) => SearchEvent?.Invoke(this, EventArgs.Empty);
+            startDate.ValueChanged += (sender, e) => FilterEvent?.Invoke(this, EventArgs.Empty);
+            endDate.ValueChanged += (sender, e) => FilterEvent?.Invoke(this, EventArgs.Empty);
+            reload.Click += (sender, e) => ResetEmployeesEvent?.Invoke(this, EventArgs.Empty);
+            btnAdd.Click += (sender, e) => AddEvent?.Invoke(this, EventArgs.Empty);
+            btnEdit.Click += (sender, e) => HandleEditClick();
+            employeesDataGrid.DoubleClick += (sender, e) => HandleEditClick();
+        }
+        private void HandleEditClick()
+        {
+            if (employeesDataGrid.SelectedRows.Count > 0)
             {
-                if (employeesDataGrid.SelectedRows.Count > 0)
-                {
-                    int id = Convert.ToInt32(employeesDataGrid.SelectedRows[0].Cells[0].Value);
-                    Employee Employee = EmployeesList!.Where(p => p.Id == id).FirstOrDefault()!;
-                    EditEvent?.Invoke(Employee, EventArgs.Empty);
-                }
-            };
+                int id = Convert.ToInt32(employeesDataGrid.SelectedRows[0].Cells[0].Value);
+                Employee Employee = EmployeesList?.FirstOrDefault(p => p.Id == id)!;
+                EditEvent?.Invoke(Employee, EventArgs.Empty);
+            }
         }
 
         public event EventHandler? SearchEvent;
@@ -77,32 +73,22 @@ namespace CorazonDeCafeStockManager.App.Views.EmployeesForm
         {
             if (employeesDataGrid.InvokeRequired)
             {
-                employeesDataGrid.Invoke(new MethodInvoker(delegate
-                {
-                    employeesDataGrid.Rows.Clear();
-                    employeesDataGrid.Refresh();
-
-                    foreach (Employee employee in EmployeesList!)
-                    {
-                        string active = employee.User.Status == 1 ? "Activo" : "Inactivo";
-                        string fullName = employee.User.Name + " " + employee.User.Surname;
-
-                        employeesDataGrid.Rows.Add(employee.Id, fullName, employee.User.Email, employee.User.Dni, employee.User.Phone, employee.Role.Name, active);
-                    }
-                }));
+                employeesDataGrid.Invoke(new MethodInvoker(() => LoadEmployeesInternal()));
             }
-            else
+            else LoadEmployeesInternal();
+        }
+
+        private void LoadEmployeesInternal()
+        {
+            employeesDataGrid.Rows.Clear();
+            employeesDataGrid.Refresh();
+
+            foreach (Employee employee in EmployeesList!)
             {
-                employeesDataGrid.Rows.Clear();
-                employeesDataGrid.Refresh();
+                string active = employee.User.Status == 1 ? "Activo" : "Inactivo";
+                string fullName = employee.User.Name + " " + employee.User.Surname;
 
-                foreach (Employee employee in EmployeesList!)
-                {
-                    string active = employee.User.Status == 1 ? "Activo" : "Inactivo";
-                    string fullName = employee.User.Name + " " + employee.User.Surname;
-
-                    employeesDataGrid.Rows.Add(employee.Id, fullName, employee.User.Email, employee.User.Dni, employee.User.Phone, employee.Role.Name, active);
-                }
+                employeesDataGrid.Rows.Add(employee.Id, fullName, employee.User.Email, employee.User.Dni, employee.User.Phone, employee.Role.Name, active);
             }
         }
 
