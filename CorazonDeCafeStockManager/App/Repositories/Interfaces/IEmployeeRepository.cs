@@ -9,4 +9,5 @@ public interface IEmployeeRepository
     Task AddEmployee(Employee employee);
     Task<bool> UpdateEmployee(Employee employee, User user, Address address);
     Task<bool> DeleteEmployee(int id);
+    Task<Role> GetRoleByName(string name);
 }

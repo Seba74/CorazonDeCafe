@@ -76,24 +76,48 @@ public class EmployeeRepository : IEmployeeRepository
 
     public async Task<bool> UpdateEmployee(Employee employee, User user, Address address)
     {
-        User? employeeToUpdate = await _context.Users!.Include(p => p.Address).FirstOrDefaultAsync(p => p.Id == employee.UserId);
-        if(employeeToUpdate == null) return false;
+        Employee? employeeToUpdate = await _context.Employees!.Include(p => p.User).FirstOrDefaultAsync(p => p.Id == employee.Id);
+        if (employeeToUpdate == null) return false;
 
-        employeeToUpdate.Name = user.Name;
-        employeeToUpdate.Surname = user.Surname;
-        employeeToUpdate.Email = user.Email;
-        employeeToUpdate.Phone = user.Phone;
-        employeeToUpdate.Dni = user.Dni;
-        employeeToUpdate.Address!.Street = address.Street;
-        employeeToUpdate.Address.Number = address.Number;
-        employeeToUpdate.Address.City = address.City;
-        employeeToUpdate.Address.Province = address.Province;
-        employeeToUpdate.Address.PostalCode = address.PostalCode;
-        employeeToUpdate.UpdatedAt = DateTime.Now;
+        employeeToUpdate.Username = employee.Username;
+        employeeToUpdate.RoleId = employee.RoleId;
+        
+        employeeToUpdate.User.Name = user.Name;
+        employeeToUpdate.User.Surname = user.Surname;
+        employeeToUpdate.User.Email = user.Email;
+        employeeToUpdate.User.Phone = user.Phone;
+        employeeToUpdate.User.Dni = user.Dni;
+        employeeToUpdate.User.UpdatedAt = DateTime.Now;
 
-    
+        if (address != null)
+        {
+            if (employeeToUpdate.User.Address == null)
+            {
+                Address NewAddress = new()
+                {
+                    Street = address.Street,
+                    Number = address.Number,
+                    City = address.City,
+                    Province = address.Province,
+                    PostalCode = address.PostalCode
+                };
+            }else{
+                employeeToUpdate.User.Address.Street = address.Street;
+                employeeToUpdate.User.Address.Number = address.Number;
+                employeeToUpdate.User.Address.City = address.City;
+                employeeToUpdate.User.Address.Province = address.Province;
+                employeeToUpdate.User.Address.PostalCode = address.PostalCode;
+            }
+        }
+
         int fieldAct = await _context.SaveChangesAsync();
         return fieldAct > 0;
+    }
+
+    public async Task<Role> GetRoleByName(string name)
+    {
+        Role? role = await _context.Roles!.FirstOrDefaultAsync(p => p.Name == name) ?? throw new ArgumentException("Rol no encontrado");
+        return role;
     }
 }
 

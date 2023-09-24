@@ -43,10 +43,11 @@ namespace CorazonDeCafeStockManager.App.Views.EmployeesForm
             startDate.Font = new Font(loadFonts.poppinsFont!.FontFamily, 9);
             endDate.Font = new Font(loadFonts.poppinsFont!.FontFamily, 9);
 
-            startDateCalendar.Value = DateTime.Now.Date;
-            endDateCalendar.Value = DateTime.Now.Date;
             startDateCalendar.MaxDate = DateTime.Now.Date;
             endDateCalendar.MaxDate = DateTime.Now.Date;
+            
+            startDateCalendar.Value = DateTime.Now.Date;
+            endDateCalendar.Value = DateTime.Now.Date;
         }
         private void InitializeEvents()
         {

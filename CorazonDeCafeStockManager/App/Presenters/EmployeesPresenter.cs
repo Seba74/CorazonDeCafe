@@ -129,15 +129,15 @@ namespace CorazonDeCafeStockManager.App.Presenters
 
         private void AddEvent(object sender, EventArgs e)
         {
-            // this.view.Close();
-            // this.homePresenter.ShowEmployeeView(null, e);
+            this.view.Close();
+            this.homePresenter.ShowEmployeeView(null, e);
         }
 
         private void EditEvent(object sender, EventArgs e)
         {
-            // Client Employee = (Client)sender;
-            // this.view.Close();
-            // this.homePresenter.ShowEmployeeView(Employee, e);
+            Employee Employee = (Employee)sender;
+            this.view.Close();
+            this.homePresenter.ShowEmployeeView(Employee, e);
         }
     }
 }

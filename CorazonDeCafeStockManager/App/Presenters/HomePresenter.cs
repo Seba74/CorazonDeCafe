@@ -2,6 +2,7 @@
 using CorazonDeCafeStockManager.App.Repositories;
 using CorazonDeCafeStockManager.App.Repositories._Repository;
 using CorazonDeCafeStockManager.App.Views.CustomersForm;
+using CorazonDeCafeStockManager.App.Views.EmployeeForm;
 using CorazonDeCafeStockManager.App.Views.EmployeesForm;
 using CorazonDeCafeStockManager.App.Views.HomeForm;
 using CorazonDeCafeStockManager.App.Views.ProductForm;
@@ -17,12 +18,13 @@ namespace CorazonDeCafeStockManager.App.Presenters
         private ICustomersView? customersView;
         private IEmployeesView? employeesView;
         private IProductView? productView;
+        private IEmployeeView? employeeView;
 
         private ProductsPresenter? productsPresenter { get; set; }
         private ProductPresenter? productPresenter { get; set; }
         private CustomersPresenter? customersPresenter { get; set; }
         private EmployeesPresenter? employeesPresenter { get; set; }
-
+        private EmployeePresenter? employeePresenter { get; set; }
         public HomePresenter(IHomeView view, CorazonDeCafeContext dbContext)
         {
             this.view = view;
@@ -92,6 +94,21 @@ namespace CorazonDeCafeStockManager.App.Presenters
             IEmployeeRepository employeeRepository = new EmployeeRepository(dbContext);
             employeesView = EmployeesForm.GetInstance(view.ControlPanel);
             employeesPresenter = new(employeesView, employeeRepository, this);
+        }
+
+        public void ShowEmployeeView(object? sender, EventArgs e)
+        {
+            this.CloseView(sender, e);
+            Employee? Employee = null;
+            if(sender != null)
+            {
+                Employee = (Employee)sender;
+            }
+
+            IEmployeeRepository EmployeeRepository = new EmployeeRepository(dbContext);
+            employeeView = EmployeeForm.GetInstance(view.ControlPanel);
+      
+            employeePresenter = new(employeeView, EmployeeRepository, Employee!, this);
         }
 
         private void CloseView(object? sender, EventArgs e)
