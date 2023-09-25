@@ -12,10 +12,10 @@ namespace CorazonDeCafeStockManager.App.Views.CustomersForm
 
         // Properties 
         string? Search { get; set; }
-        DateTime? StartDate { get; set; }
-        DateTime? EndDate { get; set; }
         Size Size { get; set; }
         IEnumerable<Customer>? CustomersList { get; set; }
+        CalendarCustom startDateCalendar { get; set; }
+        CalendarCustom endDateCalendar { get; set; }
         // Events
         event EventHandler? SearchEvent;
         event EventHandler? FilterEvent;

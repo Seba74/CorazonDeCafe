@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using CorazonDeCafeStockManager.App.Common;
 using CorazonDeCafeStockManager.App.Models;
 
 namespace CorazonDeCafeStockManager.App.Views.CustomersForm
@@ -14,23 +15,9 @@ namespace CorazonDeCafeStockManager.App.Views.CustomersForm
     public partial class CustomersForm : Form, ICustomersView
     {
         private readonly LoadFonts loadFonts;
-        public string? Search
-        {
-            get { return ipSearch.Texts; }
-            set { ipSearch.Texts = value!; }
-        }
-        public DateTime? StartDate
-        {
-            get;
-            set;
-        }
-
-        public DateTime? EndDate
-        {
-            get; 
-            set; 
-        }
-
+        public string? Search { get { return ipSearch.Texts; } set { ipSearch.Texts = value!; } }
+        public CalendarCustom startDateCalendar { get { return startDate; } set { startDate = value!; } }
+        public CalendarCustom endDateCalendar { get { return endDate; } set { endDate = value!; } }
         public IEnumerable<Customer>? CustomersList { get; set; }
 
         public CustomersForm()
@@ -39,28 +26,41 @@ namespace CorazonDeCafeStockManager.App.Views.CustomersForm
             InitializeEvents();
 
             loadFonts = new LoadFonts();
+            SetForm();
+        }
+
+        private void SetForm()
+        {
             ChangeDataGridViewFont(customersDataGrid);
 
             ipSearch.Font = loadFonts.poppinsFont;
-            selectCategory.Font = loadFonts.poppinsFont;
-            selectCategory.Font = new Font(loadFonts.poppinsFont!.FontFamily, 12);
+            startDate.Font = new Font(loadFonts.poppinsFont!.FontFamily, 9);
+            endDate.Font = new Font(loadFonts.poppinsFont!.FontFamily, 9);
+
+            startDateCalendar.MaxDate = DateTime.Now.Date;
+            endDateCalendar.MaxDate = DateTime.Now.Date;
+
+            startDateCalendar.Value = DateTime.Now.Date;
+            endDateCalendar.Value = DateTime.Now.Date;
         }
         private void InitializeEvents()
         {
-            ipSearch._TextChanged += delegate { SearchEvent?.Invoke(this, EventArgs.Empty); };
-            selectCategory.OnSelectedIndexChanged += delegate { FilterEvent?.Invoke(this, EventArgs.Empty); };
-            selectType.OnSelectedIndexChanged += delegate { FilterEvent?.Invoke(this, EventArgs.Empty); };
-            reload.Click += delegate { ResetCustomersEvent?.Invoke(this, EventArgs.Empty); };
-            btnAdd.Click += delegate { AddEvent?.Invoke(this, EventArgs.Empty); };
-            btnEdit.Click += delegate
+            ipSearch._TextChanged += (sender, e) => SearchEvent?.Invoke(this, EventArgs.Empty);
+            startDate.ValueChanged += (sender, e) => FilterEvent?.Invoke(this, EventArgs.Empty);
+            endDate.ValueChanged += (sender, e) => FilterEvent?.Invoke(this, EventArgs.Empty);
+            reload.Click += (sender, e) => ResetCustomersEvent?.Invoke(this, EventArgs.Empty);
+            btnAdd.Click += (sender, e) => AddEvent?.Invoke(this, EventArgs.Empty);
+            btnEdit.Click += (sender, e) => HandleEditClick();
+            customersDataGrid.DoubleClick += (sender, e) => HandleEditClick();
+        }
+        private void HandleEditClick()
+        {
+            if (customersDataGrid.SelectedRows.Count > 0)
             {
-                if (customersDataGrid.SelectedRows.Count > 0)
-                {
-                    int id = Convert.ToInt32(customersDataGrid.SelectedRows[0].Cells[0].Value);
-                    Customer customer = CustomersList!.Where(p => p.Id == id).FirstOrDefault()!;
-                    EditEvent?.Invoke(customer, EventArgs.Empty);
-                }
-            };
+                int dni = Convert.ToInt32(customersDataGrid.SelectedRows[0].Cells[0].Value);
+                Customer Customer = CustomersList?.FirstOrDefault(p => p.User.Dni == dni)!;
+                EditEvent?.Invoke(Customer, EventArgs.Empty);
+            }
         }
 
         public event EventHandler? SearchEvent;
@@ -73,32 +73,24 @@ namespace CorazonDeCafeStockManager.App.Views.CustomersForm
         {
             if (customersDataGrid.InvokeRequired)
             {
-                customersDataGrid.Invoke(new MethodInvoker(delegate
-                {
-                    customersDataGrid.Rows.Clear();
-                    customersDataGrid.Refresh();
-
-                    foreach (Customer customer in CustomersList!)
-                    {
-                        // string active = product.Active == 1 ? "Activo" : "Inactivo";
-
-                        // customersDataGrid.Rows.Add(product.Id, product.Name, product.Price, product.Stock, product.Type.Name, product.Category.Name, active);
-                    }
-                }));
+                customersDataGrid.Invoke(new MethodInvoker(() => LoadCustomersInternal()));
             }
-            else
-            {
-                customersDataGrid.Rows.Clear();
-                customersDataGrid.Refresh();
-
-                foreach (Customer customer in CustomersList!)
-                {
-                    // string active = product.Active == 1 ? "Activo" : "Inactivo";
-
-                    // customersDataGrid.Rows.Add(product.Id, product.Name, product.Price, product.Stock, product.Type.Name, product.Category.Name, active);
-                }
-            }
+            else LoadCustomersInternal();
         }
+
+        private void LoadCustomersInternal()
+        {
+            customersDataGrid.Rows.Clear();
+            customersDataGrid.Refresh();
+
+            foreach (Customer customer in CustomersList!)
+            {
+                string active = customer.User.Status == 1 ? "Activo" : "Inactivo";
+                string fullName = customer.User.Name + " " + customer.User.Surname;
+
+                customersDataGrid.Rows.Add(customer.User.Dni, fullName, customer.User.Email, customer.User.Phone, customer.User.Address!.City, customer.User.Address!.Province, active);
+            }
+        } 
 
 
         public void ChangeDataGridViewFont(DataGridView dataGridView)

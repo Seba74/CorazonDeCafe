@@ -16,23 +16,6 @@ public class CustomerRepository : ICustomerRepository
         _context = context;
     }
 
-    private async Task LoadCategoriesAndTypes()
-    {
-        try
-        {
-            await _context.Categories!.LoadAsync();
-            await _context.Types!.LoadAsync();
-
-
-            LocalStorage.Categories = await _context.Categories!.ToListAsync();
-            LocalStorage.Types = await _context.Types!.ToListAsync();
-        }
-        catch (Exception e)
-        {
-            Console.WriteLine(e.Message);
-        }
-    }
-
     public async Task AddCustomer(Customer customer)
     {
         if (customer == null)
@@ -74,14 +57,11 @@ public class CustomerRepository : ICustomerRepository
 
     public async Task<IEnumerable<Customer>> GetAllCustomers()
     {
-        if (LocalStorage.Categories == null || LocalStorage.Types == null)
-            await LoadCategoriesAndTypes();
-        // if is empty
         if (!LocalStorage.Customers.IsNullOrEmpty()) return LocalStorage.Customers!;
 
         try
         {
-            LocalStorage.Customers = await _context.Customers!.Include(p => p.User).Where(p => p.User.Status == 1).ToListAsync();
+            LocalStorage.Customers = await _context.Customers!.Include(p => p.User).Include(p => p.User.Address).ToListAsync();
         }
         catch (Exception ex)
         {
@@ -98,22 +78,22 @@ public class CustomerRepository : ICustomerRepository
 
     public async Task<bool> UpdateCustomer(Customer customer, User user, Address address)
     {
-        User? customerToUpdate = await _context.Users!.Include(p => p.Address).FirstOrDefaultAsync(p => p.Id == customer.UserId);
-        if(customerToUpdate == null) return false;
+        Customer? customerToUpdate = await _context.Customers!.Include(p => p.User).Include(p => p.User.Address).FirstOrDefaultAsync(p => p.Id == customer.Id);
+        if (customerToUpdate == null) return false;
 
-        customerToUpdate.Name = user.Name;
-        customerToUpdate.Surname = user.Surname;
-        customerToUpdate.Email = user.Email;
-        customerToUpdate.Phone = user.Phone;
-        customerToUpdate.Dni = user.Dni;
-        customerToUpdate.Address!.Street = address.Street;
-        customerToUpdate.Address.Number = address.Number;
-        customerToUpdate.Address.City = address.City;
-        customerToUpdate.Address.Province = address.Province;
-        customerToUpdate.Address.PostalCode = address.PostalCode;
-        customerToUpdate.UpdatedAt = DateTime.Now;
+        customerToUpdate.User.Name = user.Name;
+        customerToUpdate.User.Surname = user.Surname;
+        customerToUpdate.User.Email = user.Email;
+        customerToUpdate.User.Phone = user.Phone;
+        customerToUpdate.User.Dni = user.Dni;
+        customerToUpdate.User.Status = user.Status;
+        
+        customerToUpdate.User.Address!.Street = address.Street;
+        customerToUpdate.User.Address!.Number = address.Number;
+        customerToUpdate.User.Address!.City = address.City;
+        customerToUpdate.User.Address!.Province = address.Province;
+        customerToUpdate.User.Address!.PostalCode = address.PostalCode;
 
-    
         int fieldAct = await _context.SaveChangesAsync();
         return fieldAct > 0;
     }

@@ -2,6 +2,7 @@
 using CorazonDeCafeStockManager.App.Models;
 using CorazonDeCafeStockManager.App.Repositories;
 using CorazonDeCafeStockManager.App.Repositories._Repository;
+using CorazonDeCafeStockManager.App.Views.CustomerForm;
 using CorazonDeCafeStockManager.App.Views.CustomersForm;
 using CorazonDeCafeStockManager.App.Views.EmployeeForm;
 using CorazonDeCafeStockManager.App.Views.EmployeesForm;
@@ -20,6 +21,7 @@ namespace CorazonDeCafeStockManager.App.Presenters
         private IEmployeesView? employeesView;
         private IProductView? productView;
         private IEmployeeView? employeeView;
+        private ICustomerView? customerView;
         public HomePresenter(IHomeView view, CorazonDeCafeContext dbContext)
         {
             this.view = view;
@@ -118,6 +120,26 @@ namespace CorazonDeCafeStockManager.App.Presenters
             customersView = CustomersForm.GetInstance(view.ControlPanel);
             CustomersPresenter CustomersPresenter = new(customersView, customerRepository, this);
         }
+
+        public void ShowCustomerView(object? sender, EventArgs e)
+        {
+            if (customerView != null)
+            {
+                return;
+            }
+
+            this.CloseView(sender, e);
+            Customer? Customer = null;
+            if (sender != null)
+            {
+                Customer = (Customer)sender;
+            }
+
+            ICustomerRepository CustomerRepository = new CustomerRepository(dbContext);
+            customerView = CustomerForm.GetInstance(view.ControlPanel);
+
+            CustomerPresenter CustomerPresenter = new(customerView, CustomerRepository, Customer!, this);
+        }
         public void ShowEmployeesView(object? sender, EventArgs e)
         {
             if (employeesView != null)
@@ -173,6 +195,11 @@ namespace CorazonDeCafeStockManager.App.Presenters
             {
                 customersView.Close();
                 customersView = null;
+            }
+            if (customerView != null)
+            {
+                customerView.Close();
+                customerView = null;
             }
             if (employeesView != null)
             {

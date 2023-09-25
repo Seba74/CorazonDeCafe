@@ -1,14 +1,13 @@
 ﻿using CorazonDeCafeStockManager.App.Models;
 using CorazonDeCafeStockManager.App.Repositories;
 using CorazonDeCafeStockManager.App.Views.CustomersForm;
-using CorazonDeCafeStockManager.App.Views.ProductsForm;
 using Timer = System.Timers.Timer;
 
 namespace CorazonDeCafeStockManager.App.Presenters
 {
     public class CustomersPresenter
     {
-        private readonly Timer SearchTimer = new(1500);
+        private readonly Timer SearchTimer = new(1200);
         private readonly ICustomersView view;
         private readonly HomePresenter homePresenter;
         private readonly ICustomerRepository customerRepository;
@@ -27,6 +26,7 @@ namespace CorazonDeCafeStockManager.App.Presenters
             this.view.EditEvent += EditEvent!;
 
             SearchTimer.Elapsed += SearchCustomers!;
+
 
             _ = LoadAllCustomers();
             this.view.Show();
@@ -47,23 +47,33 @@ namespace CorazonDeCafeStockManager.App.Presenters
             SearchTimer.Stop();
             if (!string.IsNullOrEmpty(view.Search))
             {
-                customers = customers?.Where(p => p.User.Name.ToLowerInvariant().Contains(view.Search!.ToLowerInvariant()));
+                if (int.TryParse(view.Search, out int dni))
+                {
+                    view.CustomersList = customers?.Where(p => p.User.Dni == dni);
+                }
+                else
+                {
+                    view.CustomersList = customers?.Where(p => (p.User.Name + " " + p.User.Surname).ToLowerInvariant().Contains(view.Search!.ToLowerInvariant()));
+                } 
             }
             else
             {
-                customers = view.CustomersList;
+                view.CustomersList = customers;
             }
-            view.CustomersList = customers;
             view.LoadCustomers();
         }
-
 
         private void ResetCustomersEvent(object sender, EventArgs e)
         {
             view.Search = string.Empty;
-            view.StartDate = DateTime.Now;
-            view.EndDate = DateTime.Now;
 
+            view.endDateCalendar.MaxDate = DateTime.Now.Date;
+            view.endDateCalendar.Value = DateTime.Now.Date;
+
+            view.startDateCalendar.MaxDate = DateTime.Now.Date;
+            view.startDateCalendar.Value = DateTime.Now.Date;
+
+            view.endDateCalendar.Visible = false;
             customers = customersBackUp;
             view.CustomersList = customers;
             view.LoadCustomers();
@@ -82,34 +92,44 @@ namespace CorazonDeCafeStockManager.App.Presenters
 
         private void FilterEvent(object sender, EventArgs e)
         {
-            IEnumerable<Customer>? customersToFilter = customersBackUp;
+            IEnumerable<Customer>? CustomersToFilter = customersBackUp;
             view.Search = string.Empty;
-            if (view.StartDate != DateTime.Now)
+            if (view.startDateCalendar.Value != DateTime.Now.Date)
             {
-                customersToFilter = customersToFilter?.Where(p => p.User.CreatedAt >= view.StartDate);
+                view.endDateCalendar.Visible = true;
+                view.endDateCalendar.MinDate = view.startDateCalendar.Value;
+                view.startDateCalendar.MaxDate = view.endDateCalendar.Value.AddDays(-1);
+                view.endDateCalendar.MinDate = view.startDateCalendar.Value.AddDays(1);
+
+                CustomersToFilter = CustomersToFilter?.Where(p => p.User.CreatedAt >= view.startDateCalendar.Value);
             }
 
-            if (view.EndDate != DateTime.Now)
+            if (view.endDateCalendar.Value != DateTime.Now.Date)
             {
-                customersToFilter = customersToFilter?.Where(p => p.User.CreatedAt <= view.EndDate);
+                view.startDateCalendar.MaxDate = view.endDateCalendar.Value;
+                view.startDateCalendar.MaxDate = view.endDateCalendar.Value.AddDays(-1);
+                view.endDateCalendar.MinDate = view.startDateCalendar.Value.AddDays(1);
+
+
+                CustomersToFilter = CustomersToFilter?.Where(p => p.User.CreatedAt <= view.endDateCalendar.Value);
             }
 
-            view.CustomersList = customersToFilter;
-            customers = customersToFilter;
+            view.CustomersList = CustomersToFilter;
+            customers = CustomersToFilter;
             view.LoadCustomers();
         }
 
         private void AddEvent(object sender, EventArgs e)
         {
-            // this.view.Close();
-            // this.homePresenter.ShowCustomerView(null, e);
+            this.view.Close();
+            this.homePresenter.ShowCustomerView(null, e);
         }
 
         private void EditEvent(object sender, EventArgs e)
         {
-            // Client customer = (Client)sender;
-            // this.view.Close();
-            // this.homePresenter.ShowCustomerView(customer, e);
+            Customer Customer = (Customer)sender;
+            this.view.Close();
+            this.homePresenter.ShowCustomerView(Customer, e);
         }
     }
 }

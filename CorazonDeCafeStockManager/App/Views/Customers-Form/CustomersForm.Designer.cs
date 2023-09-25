@@ -30,27 +30,26 @@
         {
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             customersDataGrid = new DataGridView();
-            Id = new DataGridViewTextBoxColumn();
-            Nombre = new DataGridViewTextBoxColumn();
-            Precio = new DataGridViewTextBoxColumn();
-            Stock = new DataGridViewTextBoxColumn();
-            Tipo = new DataGridViewTextBoxColumn();
-            Categoria = new DataGridViewTextBoxColumn();
-            Estado = new DataGridViewTextBoxColumn();
+            Dni = new DataGridViewTextBoxColumn();
+            FullName = new DataGridViewTextBoxColumn();
+            Email = new DataGridViewTextBoxColumn();
+            Phone = new DataGridViewTextBoxColumn();
+            City = new DataGridViewTextBoxColumn();
+            Province = new DataGridViewTextBoxColumn();
+            Status = new DataGridViewTextBoxColumn();
             ipSearch = new utils.Custom.TextBox.TextBoxCustom();
             panel1 = new Panel();
+            endDate = new CalendarCustom();
+            startDate = new CalendarCustom();
             reload = new ButtonCustom();
             btnEdit = new ButtonCustom();
             IcSearch = new PictureBox();
-            selectType = new ComboBoxCustom();
             btnAdd = new ButtonCustom();
-            selectCategory = new ComboBoxCustom();
             ((System.ComponentModel.ISupportInitialize)customersDataGrid).BeginInit();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)IcSearch).BeginInit();
@@ -82,35 +81,35 @@
             dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
             customersDataGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             customersDataGrid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            customersDataGrid.Columns.AddRange(new DataGridViewColumn[] { Id, Nombre, Precio, Stock, Tipo, Categoria, Estado });
-            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = Color.FromArgb(146, 90, 57);
-            dataGridViewCellStyle5.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle5.ForeColor = SystemColors.ControlLightLight;
-            dataGridViewCellStyle5.SelectionBackColor = Color.FromArgb(146, 90, 57);
-            dataGridViewCellStyle5.SelectionForeColor = Color.White;
-            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.False;
-            customersDataGrid.DefaultCellStyle = dataGridViewCellStyle5;
+            customersDataGrid.Columns.AddRange(new DataGridViewColumn[] { Dni, FullName, Email, Phone, City, Province, Status });
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = Color.FromArgb(146, 90, 57);
+            dataGridViewCellStyle4.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle4.ForeColor = SystemColors.ControlLightLight;
+            dataGridViewCellStyle4.SelectionBackColor = Color.FromArgb(146, 90, 57);
+            dataGridViewCellStyle4.SelectionForeColor = Color.White;
+            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.False;
+            customersDataGrid.DefaultCellStyle = dataGridViewCellStyle4;
             customersDataGrid.GridColor = SystemColors.WindowText;
             customersDataGrid.Location = new Point(12, 153);
             customersDataGrid.MultiSelect = false;
             customersDataGrid.Name = "customersDataGrid";
             customersDataGrid.ReadOnly = true;
-            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = Color.IndianRed;
-            dataGridViewCellStyle6.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle6.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle6.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.True;
-            customersDataGrid.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = Color.IndianRed;
+            dataGridViewCellStyle5.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle5.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle5.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.True;
+            customersDataGrid.RowHeadersDefaultCellStyle = dataGridViewCellStyle5;
             customersDataGrid.RowHeadersVisible = false;
             customersDataGrid.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToFirstHeader;
-            dataGridViewCellStyle7.BackColor = Color.FromArgb(146, 90, 57);
-            dataGridViewCellStyle7.ForeColor = Color.White;
-            dataGridViewCellStyle7.SelectionBackColor = Color.FromArgb(146, 90, 57);
-            dataGridViewCellStyle7.SelectionForeColor = Color.White;
-            customersDataGrid.RowsDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle6.BackColor = Color.FromArgb(146, 90, 57);
+            dataGridViewCellStyle6.ForeColor = Color.White;
+            dataGridViewCellStyle6.SelectionBackColor = Color.FromArgb(146, 90, 57);
+            dataGridViewCellStyle6.SelectionForeColor = Color.White;
+            customersDataGrid.RowsDefaultCellStyle = dataGridViewCellStyle6;
             customersDataGrid.RowTemplate.DefaultCellStyle.BackColor = SystemColors.Menu;
             customersDataGrid.RowTemplate.DefaultCellStyle.ForeColor = Color.Black;
             customersDataGrid.RowTemplate.DefaultCellStyle.SelectionBackColor = Color.FromArgb(255, 219, 197);
@@ -118,65 +117,66 @@
             customersDataGrid.RowTemplate.Height = 35;
             customersDataGrid.RowTemplate.Resizable = DataGridViewTriState.False;
             customersDataGrid.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            customersDataGrid.Size = new Size(918, 498);
+            customersDataGrid.Size = new Size(928, 498);
             customersDataGrid.TabIndex = 0;
-            // 
-            // Id
-            // 
-            Id.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             dataGridViewCellStyle3.BackColor = Color.FromArgb(146, 90, 57);
             dataGridViewCellStyle3.ForeColor = Color.White;
             dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(146, 90, 57);
             dataGridViewCellStyle3.SelectionForeColor = Color.White;
-            Id.DefaultCellStyle = dataGridViewCellStyle3;
-            Id.FillWeight = 50F;
-            Id.HeaderText = "Id";
-            Id.Name = "Id";
-            Id.ReadOnly = true;
             // 
-            // Nombre
+            // Dni
             // 
-            Nombre.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            Nombre.FillWeight = 200F;
-            Nombre.HeaderText = "Nombre";
-            Nombre.Name = "Nombre";
-            Nombre.ReadOnly = true;
+            Dni.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            Dni.DefaultCellStyle = dataGridViewCellStyle3;
+            Dni.FillWeight = 65F;
+            Dni.HeaderText = "Dni";
+            Dni.Name = "Dni";
+            Dni.ReadOnly = true;
             // 
-            // Precio
+            // FullName
             // 
-            Precio.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle4.Format = "C2";
-            dataGridViewCellStyle4.NullValue = null;
-            Precio.DefaultCellStyle = dataGridViewCellStyle4;
-            Precio.FillWeight = 80F;
-            Precio.HeaderText = "Precio";
-            Precio.Name = "Precio";
-            Precio.ReadOnly = true;
+            FullName.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            FullName.FillWeight = 135F;
+            FullName.HeaderText = "Nombre";
+            FullName.Name = "FullName";
+            FullName.ReadOnly = true;
             // 
-            // Stock
+            // Email
             // 
-            Stock.FillWeight = 50F;
-            Stock.HeaderText = "Stock";
-            Stock.Name = "Stock";
-            Stock.ReadOnly = true;
+            Email.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            Email.FillWeight = 150F;
+            Email.HeaderText = "Correo";
+            Email.Name = "Email";
+            Email.ReadOnly = true;
             // 
-            // Tipo
+            // Phone
             // 
-            Tipo.HeaderText = "Tipo";
-            Tipo.Name = "Tipo";
-            Tipo.ReadOnly = true;
+            Phone.FillWeight = 65F;
+            Phone.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            Phone.HeaderText = "Contacto";
+            Phone.Name = "Phone";
+            Phone.ReadOnly = true;
             // 
-            // Categoria
+            // City
             // 
-            Categoria.HeaderText = "Categoría";
-            Categoria.Name = "Categoria";
-            Categoria.ReadOnly = true;
+            City.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            City.HeaderText = "Ciudad";
+            City.Name = "City";
+            City.ReadOnly = true;
             // 
-            // Estado
+            // Province
             // 
-            Estado.HeaderText = "Estado";
-            Estado.Name = "Estado";
-            Estado.ReadOnly = true;
+            Province.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            Province.HeaderText = "Provincia";
+            Province.Name = "Province";
+            Province.ReadOnly = true;
+            // 
+            // Status
+            //
+            Status.FillWeight = 45F;
+            Status.HeaderText = "Estado";
+            Status.Name = "Status";
+            Status.ReadOnly = true;
             // 
             // ipSearch
             // 
@@ -195,7 +195,7 @@
             ipSearch.PasswordChar = false;
             ipSearch.PlaceholderColor = Color.FromArgb(146, 90, 57);
             ipSearch.PlaceholderText = "Buscar...";
-            ipSearch.Size = new Size(257, 38);
+            ipSearch.Size = new Size(248, 38);
             ipSearch.TabIndex = 12;
             ipSearch.Texts = "";
             ipSearch.UnderlinedStyle = false;
@@ -204,19 +204,61 @@
             // 
             panel1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             panel1.BackColor = Color.Transparent;
+            panel1.Controls.Add(endDate);
+            panel1.Controls.Add(startDate);
             panel1.Controls.Add(reload);
             panel1.Controls.Add(btnEdit);
             panel1.Controls.Add(IcSearch);
-            panel1.Controls.Add(selectType);
             panel1.Controls.Add(btnAdd);
             panel1.Controls.Add(ipSearch);
-            panel1.Controls.Add(selectCategory);
             panel1.Location = new Point(12, 77);
             panel1.MaximumSize = new Size(1800, 65);
             panel1.MinimumSize = new Size(0, 65);
             panel1.Name = "panel1";
-            panel1.Size = new Size(918, 65);
+            panel1.Size = new Size(928, 65);
             panel1.TabIndex = 17;
+            // 
+            // endDate
+            // 
+            endDate.BorderColor = Color.PaleVioletRed;
+            endDate.BorderRadius = 10;
+            endDate.BorderSize = 0;
+            endDate.CustomFormat = "dd/MM/yyyy";
+            endDate.Visible = false;
+            endDate.Font = new Font("Segoe UI", 9.5F, FontStyle.Regular, GraphicsUnit.Point);
+            endDate.Format = DateTimePickerFormat.Custom;
+            endDate.Location = new Point(395, 16);
+            endDate.MaxDate = new DateTime(2023, 9, 22, 0, 0, 0, 0);
+            endDate.MinDate = new DateTime(2023, 1, 25, 0, 0, 0, 0);
+            endDate.MinimumSize = new Size(0, 37);
+            endDate.Name = "endDate";
+            endDate.Size = new Size(120, 37);
+            endDate.SkinColor = Color.FromArgb(255, 219, 197);
+            endDate.TabIndex = 20;
+            endDate.TextColor = Color.FromArgb(145, 90, 57);
+            endDate.Value = new DateTime(2023, 9, 20, 0, 0, 0, 0);
+            // 
+            // startDate
+            // 
+            startDate.BorderColor = Color.PaleVioletRed;
+            startDate.BorderRadius = 10;
+            startDate.BorderSize = 0;
+            startDate.CalendarForeColor = Color.FromArgb(145, 90, 57);
+            startDate.CalendarTitleBackColor = Color.FromArgb(255, 219, 197);
+            startDate.CalendarTitleForeColor = Color.FromArgb(145, 90, 57);
+            startDate.CustomFormat = "dd/MM/yyyy";
+            startDate.Font = new Font("Segoe UI", 9.5F, FontStyle.Regular, GraphicsUnit.Point);
+            startDate.Format = DateTimePickerFormat.Custom;
+            startDate.Location = new Point(260, 15);
+            startDate.MaxDate = new DateTime(2023, 9, 22, 0, 0, 0, 0);
+            startDate.MinDate = new DateTime(2023, 1, 25, 0, 0, 0, 0);
+            startDate.MinimumSize = new Size(0, 37);
+            startDate.Name = "startDate";
+            startDate.Size = new Size(120, 37);
+            startDate.SkinColor = Color.FromArgb(255, 219, 197);
+            startDate.TabIndex = 18;
+            startDate.TextColor = Color.FromArgb(145, 90, 57);
+            startDate.Value = new DateTime(2023, 9, 11, 0, 0, 0, 0);
             // 
             // reload
             // 
@@ -232,7 +274,7 @@
             reload.Font = new Font("Poppins Light", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
             reload.ForeColor = Color.FromArgb(145, 90, 57);
             reload.Image = Properties.Resources.reload;
-            reload.Location = new Point(847, 15);
+            reload.Location = new Point(874, 17);
             reload.MaximumSize = new Size(80, 38);
             reload.Name = "reload";
             reload.Padding = new Padding(6, 0, 6, 0);
@@ -256,7 +298,7 @@
             btnEdit.ForeColor = Color.FromArgb(145, 90, 57);
             btnEdit.Image = Properties.Resources.edit;
             btnEdit.ImageAlign = ContentAlignment.MiddleRight;
-            btnEdit.Location = new Point(734, 15);
+            btnEdit.Location = new Point(761, 17);
             btnEdit.MaximumSize = new Size(160, 38);
             btnEdit.Name = "btnEdit";
             btnEdit.Padding = new Padding(6, 0, 6, 0);
@@ -271,35 +313,12 @@
             // 
             IcSearch.BackColor = Color.FromArgb(255, 219, 197);
             IcSearch.Image = Properties.Resources.search1;
-            IcSearch.Location = new Point(227, 21);
+            IcSearch.Location = new Point(216, 21);
             IcSearch.Name = "IcSearch";
             IcSearch.Size = new Size(25, 24);
             IcSearch.SizeMode = PictureBoxSizeMode.StretchImage;
             IcSearch.TabIndex = 2;
             IcSearch.TabStop = false;
-            // 
-            // selectType
-            // 
-            selectType.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
-            selectType.BackColor = Color.FromArgb(255, 219, 197);
-            selectType.BorderColor = Color.FromArgb(145, 90, 57);
-            selectType.BorderRadius = 5;
-            selectType.BorderSize = 0;
-            selectType.DropDownStyle = ComboBoxStyle.DropDown;
-            selectType.Font = new Font("Poppins Light", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            selectType.ForeColor = Color.FromArgb(145, 90, 57);
-            selectType.IconColor = Color.FromArgb(145, 90, 57);
-            selectType.Items.AddRange(new object[] { "Origen", "Sostenible", "Premium" });
-            selectType.ListBackColor = Color.FromArgb(230, 228, 245);
-            selectType.ListTextColor = Color.FromArgb(145, 90, 57);
-            selectType.Location = new Point(268, 13);
-            selectType.MaximumSize = new Size(200, 38);
-            selectType.MinimumSize = new Size(110, 37);
-            selectType.Name = "selectType";
-            selectType.Padding = new Padding(0, 0, 0, 2);
-            selectType.Size = new Size(110, 38);
-            selectType.TabIndex = 14;
-            selectType.Texts = "Tipo";
             // 
             // btnAdd
             // 
@@ -315,7 +334,7 @@
             btnAdd.ForeColor = Color.FromArgb(145, 90, 57);
             btnAdd.Image = Properties.Resources.add;
             btnAdd.ImageAlign = ContentAlignment.MiddleRight;
-            btnAdd.Location = new Point(605, 14);
+            btnAdd.Location = new Point(632, 16);
             btnAdd.MaximumSize = new Size(160, 38);
             btnAdd.Name = "btnAdd";
             btnAdd.Padding = new Padding(6, 0, 6, 0);
@@ -326,40 +345,17 @@
             btnAdd.TextColor = Color.FromArgb(145, 90, 57);
             btnAdd.UseVisualStyleBackColor = false;
             // 
-            // selectCategory
-            // 
-            selectCategory.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
-            selectCategory.BackColor = Color.FromArgb(255, 219, 197);
-            selectCategory.BorderColor = Color.FromArgb(145, 90, 57);
-            selectCategory.BorderRadius = 5;
-            selectCategory.BorderSize = 0;
-            selectCategory.DropDownStyle = ComboBoxStyle.DropDown;
-            selectCategory.Font = new Font("Poppins Light", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            selectCategory.ForeColor = Color.FromArgb(145, 90, 57);
-            selectCategory.IconColor = Color.FromArgb(145, 90, 57);
-            selectCategory.Items.AddRange(new object[] { "Soluble", "Molido", "Grano" });
-            selectCategory.ListBackColor = Color.FromArgb(230, 228, 245);
-            selectCategory.ListTextColor = Color.FromArgb(145, 90, 57);
-            selectCategory.Location = new Point(392, 13);
-            selectCategory.MaximumSize = new Size(200, 38);
-            selectCategory.MinimumSize = new Size(110, 30);
-            selectCategory.Name = "selectCategory";
-            selectCategory.Padding = new Padding(0, 0, 0, 2);
-            selectCategory.Size = new Size(110, 38);
-            selectCategory.TabIndex = 13;
-            selectCategory.Texts = "Categoría";
-            // 
-            // CustomerForm
+            // CustomersForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(942, 663);
+            ClientSize = new Size(952, 663);
             Controls.Add(panel1);
             Controls.Add(customersDataGrid);
             Cursor = Cursors.Hand;
             Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point);
             FormBorderStyle = FormBorderStyle.None;
-            Name = "CustomerForm";
+            Name = "CustomersForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Products";
             ((System.ComponentModel.ISupportInitialize)customersDataGrid).EndInit();
@@ -373,18 +369,18 @@
         private DataGridView customersDataGrid;
         private utils.Custom.TextBox.TextBoxCustom ipSearch;
         private PictureBox IcSearch;
-        private DataGridViewTextBoxColumn Id;
-        private DataGridViewTextBoxColumn Nombre;
-        private DataGridViewTextBoxColumn Precio;
-        private DataGridViewTextBoxColumn Stock;
-        private DataGridViewTextBoxColumn Tipo;
-        private DataGridViewTextBoxColumn Categoria;
-        private DataGridViewTextBoxColumn Estado;
-        private ComboBoxCustom selectCategory;
-        private ComboBoxCustom selectType;
+        private DataGridViewTextBoxColumn FullName;
+        private DataGridViewTextBoxColumn Dni;
+        private DataGridViewTextBoxColumn Email;
+        private DataGridViewTextBoxColumn Phone;
+        private DataGridViewTextBoxColumn City;
+        private DataGridViewTextBoxColumn Province;
+        private DataGridViewTextBoxColumn Status;
         private Panel panel1;
         private ButtonCustom btnAdd;
         private ButtonCustom btnEdit;
         private ButtonCustom reload;
+        private CalendarCustom endDate;
+        private CalendarCustom startDate;
     }
 }
