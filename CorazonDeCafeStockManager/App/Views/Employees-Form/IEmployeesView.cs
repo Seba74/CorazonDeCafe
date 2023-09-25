@@ -14,8 +14,9 @@ namespace CorazonDeCafeStockManager.App.Views.EmployeesForm
         string? Search { get; set; }
         Size Size { get; set; }
         IEnumerable<Employee>? EmployeesList { get; set; }
-        CalendarCustom startDateCalendar { get; set; }
-        CalendarCustom endDateCalendar { get; set; }
+        CalendarCustom StartDateCalendar { get; set; }
+        CalendarCustom EndDateCalendar { get; set; }
+        ComboBoxCustom SelectedRole { get; set; }
         // Events
         event EventHandler? SearchEvent;
         event EventHandler? FilterEvent;

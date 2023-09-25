@@ -68,13 +68,14 @@ namespace CorazonDeCafeStockManager.App.Presenters
         {
             view.Search = string.Empty;
 
-            view.endDateCalendar.MaxDate = DateTime.Now.Date;
-            view.endDateCalendar.Value = DateTime.Now.Date;
+            view.SelectedRole.Texts = "Todos";
+            view.EndDateCalendar.MaxDate = DateTime.Now.Date;
+            view.EndDateCalendar.Value = DateTime.Now.Date;
 
-            view.startDateCalendar.MaxDate = DateTime.Now.Date;
-            view.startDateCalendar.Value = DateTime.Now.Date;
+            view.StartDateCalendar.MaxDate = DateTime.Now.Date;
+            view.StartDateCalendar.Value = DateTime.Now.Date;
 
-            view.endDateCalendar.Visible = false;
+            view.EndDateCalendar.Visible = false;
             employees = employeesBackUp;
             view.EmployeesList = employees;
             view.LoadEmployees();
@@ -95,24 +96,29 @@ namespace CorazonDeCafeStockManager.App.Presenters
         {
             IEnumerable<Employee>? EmployeesToFilter = employeesBackUp;
             view.Search = string.Empty;
-            if (view.startDateCalendar.Value != DateTime.Now.Date)
+            if (view.StartDateCalendar.Value != DateTime.Now.Date)
             {
-                view.endDateCalendar.Visible = true;
-                view.endDateCalendar.MinDate = view.startDateCalendar.Value;
-                view.startDateCalendar.MaxDate = view.endDateCalendar.Value.AddDays(-1);
-                view.endDateCalendar.MinDate = view.startDateCalendar.Value.AddDays(1);
+                view.EndDateCalendar.Visible = true;
+                view.EndDateCalendar.MinDate = view.StartDateCalendar.Value;
+                view.StartDateCalendar.MaxDate = view.EndDateCalendar.Value.AddDays(-1);
+                view.EndDateCalendar.MinDate = view.StartDateCalendar.Value.AddDays(1);
 
-                EmployeesToFilter = EmployeesToFilter?.Where(p => p.User.CreatedAt >= view.startDateCalendar.Value);
+                EmployeesToFilter = EmployeesToFilter?.Where(p => p.User.CreatedAt >= view.StartDateCalendar.Value);
             }
 
-            if (view.endDateCalendar.Value != DateTime.Now.Date)
+            if (view.EndDateCalendar.Value != DateTime.Now.Date)
             {
-                view.startDateCalendar.MaxDate = view.endDateCalendar.Value;
-                view.startDateCalendar.MaxDate = view.endDateCalendar.Value.AddDays(-1);
-                view.endDateCalendar.MinDate = view.startDateCalendar.Value.AddDays(1);
+                view.StartDateCalendar.MaxDate = view.EndDateCalendar.Value;
+                view.StartDateCalendar.MaxDate = view.EndDateCalendar.Value.AddDays(-1);
+                view.EndDateCalendar.MinDate = view.StartDateCalendar.Value.AddDays(1);
 
 
-                EmployeesToFilter = EmployeesToFilter?.Where(p => p.User.CreatedAt <= view.endDateCalendar.Value);
+                EmployeesToFilter = EmployeesToFilter?.Where(p => p.User.CreatedAt <= view.EndDateCalendar.Value);
+            }
+
+            if (view.SelectedRole.Texts != "Todos")
+            {
+                EmployeesToFilter = EmployeesToFilter?.Where(p => p.Role.Name == view.SelectedRole.Texts);
             }
 
             view.EmployeesList = EmployeesToFilter;

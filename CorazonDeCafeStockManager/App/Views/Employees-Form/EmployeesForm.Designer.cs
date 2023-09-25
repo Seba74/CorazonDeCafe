@@ -28,12 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle10 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle11 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle12 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle9 = new DataGridViewCellStyle();
             employeesDataGrid = new DataGridView();
             Id = new DataGridViewTextBoxColumn();
             FullName = new DataGridViewTextBoxColumn();
@@ -44,6 +44,7 @@
             Status = new DataGridViewTextBoxColumn();
             ipSearch = new utils.Custom.TextBox.TextBoxCustom();
             panel1 = new Panel();
+            selectedRole = new ComboBoxCustom();
             endDate = new CalendarCustom();
             startDate = new CalendarCustom();
             reload = new ButtonCustom();
@@ -61,55 +62,55 @@
             employeesDataGrid.AllowUserToDeleteRows = false;
             employeesDataGrid.AllowUserToResizeColumns = false;
             employeesDataGrid.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.BackColor = Color.FromArgb(146, 90, 57);
-            dataGridViewCellStyle1.ForeColor = Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(146, 90, 57);
-            dataGridViewCellStyle1.SelectionForeColor = Color.White;
-            employeesDataGrid.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle7.BackColor = Color.FromArgb(146, 90, 57);
+            dataGridViewCellStyle7.ForeColor = Color.White;
+            dataGridViewCellStyle7.SelectionBackColor = Color.FromArgb(146, 90, 57);
+            dataGridViewCellStyle7.SelectionForeColor = Color.White;
+            employeesDataGrid.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
             employeesDataGrid.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             employeesDataGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             employeesDataGrid.BackgroundColor = SystemColors.MenuBar;
             employeesDataGrid.BorderStyle = BorderStyle.None;
             employeesDataGrid.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
             employeesDataGrid.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = Color.FromArgb(146, 90, 57);
-            dataGridViewCellStyle2.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle2.ForeColor = SystemColors.Window;
-            dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(146, 90, 57);
-            dataGridViewCellStyle2.SelectionForeColor = SystemColors.Window;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
-            employeesDataGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle8.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = Color.FromArgb(146, 90, 57);
+            dataGridViewCellStyle8.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle8.ForeColor = SystemColors.Window;
+            dataGridViewCellStyle8.SelectionBackColor = Color.FromArgb(146, 90, 57);
+            dataGridViewCellStyle8.SelectionForeColor = SystemColors.Window;
+            dataGridViewCellStyle8.WrapMode = DataGridViewTriState.True;
+            employeesDataGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
             employeesDataGrid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             employeesDataGrid.Columns.AddRange(new DataGridViewColumn[] { Id, FullName, Email, Dni, Phone, Rol, Status });
-            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = Color.FromArgb(146, 90, 57);
-            dataGridViewCellStyle4.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle4.ForeColor = SystemColors.ControlLightLight;
-            dataGridViewCellStyle4.SelectionBackColor = Color.FromArgb(146, 90, 57);
-            dataGridViewCellStyle4.SelectionForeColor = Color.White;
-            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.False;
-            employeesDataGrid.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle10.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle10.BackColor = Color.FromArgb(146, 90, 57);
+            dataGridViewCellStyle10.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle10.ForeColor = SystemColors.ControlLightLight;
+            dataGridViewCellStyle10.SelectionBackColor = Color.FromArgb(146, 90, 57);
+            dataGridViewCellStyle10.SelectionForeColor = Color.White;
+            dataGridViewCellStyle10.WrapMode = DataGridViewTriState.False;
+            employeesDataGrid.DefaultCellStyle = dataGridViewCellStyle10;
             employeesDataGrid.GridColor = SystemColors.WindowText;
             employeesDataGrid.Location = new Point(12, 153);
             employeesDataGrid.MultiSelect = false;
             employeesDataGrid.Name = "employeesDataGrid";
             employeesDataGrid.ReadOnly = true;
-            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = Color.IndianRed;
-            dataGridViewCellStyle5.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle5.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle5.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.True;
-            employeesDataGrid.RowHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle11.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle11.BackColor = Color.IndianRed;
+            dataGridViewCellStyle11.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle11.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle11.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle11.SelectionForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle11.WrapMode = DataGridViewTriState.True;
+            employeesDataGrid.RowHeadersDefaultCellStyle = dataGridViewCellStyle11;
             employeesDataGrid.RowHeadersVisible = false;
             employeesDataGrid.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToFirstHeader;
-            dataGridViewCellStyle6.BackColor = Color.FromArgb(146, 90, 57);
-            dataGridViewCellStyle6.ForeColor = Color.White;
-            dataGridViewCellStyle6.SelectionBackColor = Color.FromArgb(146, 90, 57);
-            dataGridViewCellStyle6.SelectionForeColor = Color.White;
-            employeesDataGrid.RowsDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle12.BackColor = Color.FromArgb(146, 90, 57);
+            dataGridViewCellStyle12.ForeColor = Color.White;
+            dataGridViewCellStyle12.SelectionBackColor = Color.FromArgb(146, 90, 57);
+            dataGridViewCellStyle12.SelectionForeColor = Color.White;
+            employeesDataGrid.RowsDefaultCellStyle = dataGridViewCellStyle12;
             employeesDataGrid.RowTemplate.DefaultCellStyle.BackColor = SystemColors.Menu;
             employeesDataGrid.RowTemplate.DefaultCellStyle.ForeColor = Color.Black;
             employeesDataGrid.RowTemplate.DefaultCellStyle.SelectionBackColor = Color.FromArgb(255, 219, 197);
@@ -123,11 +124,11 @@
             // Id
             // 
             Id.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle3.BackColor = Color.FromArgb(146, 90, 57);
-            dataGridViewCellStyle3.ForeColor = Color.White;
-            dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(146, 90, 57);
-            dataGridViewCellStyle3.SelectionForeColor = Color.White;
-            Id.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle9.BackColor = Color.FromArgb(146, 90, 57);
+            dataGridViewCellStyle9.ForeColor = Color.White;
+            dataGridViewCellStyle9.SelectionBackColor = Color.FromArgb(146, 90, 57);
+            dataGridViewCellStyle9.SelectionForeColor = Color.White;
+            Id.DefaultCellStyle = dataGridViewCellStyle9;
             Id.FillWeight = 40F;
             Id.HeaderText = "Id";
             Id.Name = "Id";
@@ -190,7 +191,7 @@
             ipSearch.PasswordChar = false;
             ipSearch.PlaceholderColor = Color.FromArgb(146, 90, 57);
             ipSearch.PlaceholderText = "Buscar...";
-            ipSearch.Size = new Size(248, 38);
+            ipSearch.Size = new Size(233, 38);
             ipSearch.TabIndex = 12;
             ipSearch.Texts = "";
             ipSearch.UnderlinedStyle = false;
@@ -199,6 +200,7 @@
             // 
             panel1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             panel1.BackColor = Color.Transparent;
+            panel1.Controls.Add(selectedRole);
             panel1.Controls.Add(endDate);
             panel1.Controls.Add(startDate);
             panel1.Controls.Add(reload);
@@ -213,16 +215,38 @@
             panel1.Size = new Size(928, 65);
             panel1.TabIndex = 17;
             // 
+            // selectedRole
+            // 
+            selectedRole.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
+            selectedRole.BackColor = Color.FromArgb(255, 219, 197);
+            selectedRole.BorderColor = Color.FromArgb(145, 90, 57);
+            selectedRole.BorderRadius = 5;
+            selectedRole.BorderSize = 0;
+            selectedRole.DropDownStyle = ComboBoxStyle.DropDown;
+            selectedRole.Font = new Font("Poppins Light", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            selectedRole.ForeColor = Color.FromArgb(145, 90, 57);
+            selectedRole.IconColor = Color.FromArgb(145, 90, 57);
+            selectedRole.Items.AddRange(new object[] { "Todos", "vendedor", "supervisor", "gerente" });
+            selectedRole.ListBackColor = Color.FromArgb(230, 228, 245);
+            selectedRole.ListTextColor = Color.FromArgb(145, 90, 57);
+            selectedRole.Location = new Point(244, 15);
+            selectedRole.MaximumSize = new Size(200, 38);
+            selectedRole.MinimumSize = new Size(110, 30);
+            selectedRole.Name = "selectedRole";
+            selectedRole.Padding = new Padding(0, 0, 0, 2);
+            selectedRole.Size = new Size(110, 38);
+            selectedRole.TabIndex = 18;
+            selectedRole.Texts = "Todos";
+            // 
             // endDate
             // 
             endDate.BorderColor = Color.PaleVioletRed;
             endDate.BorderRadius = 10;
             endDate.BorderSize = 0;
             endDate.CustomFormat = "dd/MM/yyyy";
-            endDate.Visible = false;
             endDate.Font = new Font("Segoe UI", 9.5F, FontStyle.Regular, GraphicsUnit.Point);
             endDate.Format = DateTimePickerFormat.Custom;
-            endDate.Location = new Point(395, 16);
+            endDate.Location = new Point(500, 16);
             endDate.MaxDate = new DateTime(2023, 9, 22, 0, 0, 0, 0);
             endDate.MinDate = new DateTime(2023, 1, 25, 0, 0, 0, 0);
             endDate.MinimumSize = new Size(0, 37);
@@ -232,6 +256,7 @@
             endDate.TabIndex = 20;
             endDate.TextColor = Color.FromArgb(145, 90, 57);
             endDate.Value = new DateTime(2023, 9, 20, 0, 0, 0, 0);
+            endDate.Visible = false;
             // 
             // startDate
             // 
@@ -244,7 +269,7 @@
             startDate.CustomFormat = "dd/MM/yyyy";
             startDate.Font = new Font("Segoe UI", 9.5F, FontStyle.Regular, GraphicsUnit.Point);
             startDate.Format = DateTimePickerFormat.Custom;
-            startDate.Location = new Point(260, 15);
+            startDate.Location = new Point(365, 15);
             startDate.MaxDate = new DateTime(2023, 9, 22, 0, 0, 0, 0);
             startDate.MinDate = new DateTime(2023, 1, 25, 0, 0, 0, 0);
             startDate.MinimumSize = new Size(0, 37);
@@ -308,7 +333,7 @@
             // 
             IcSearch.BackColor = Color.FromArgb(255, 219, 197);
             IcSearch.Image = Properties.Resources.search1;
-            IcSearch.Location = new Point(216, 21);
+            IcSearch.Location = new Point(201, 21);
             IcSearch.Name = "IcSearch";
             IcSearch.Size = new Size(25, 24);
             IcSearch.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -377,5 +402,6 @@
         private ButtonCustom reload;
         private CalendarCustom endDate;
         private CalendarCustom startDate;
+        private ComboBoxCustom selectedRole;
     }
 }

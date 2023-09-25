@@ -16,10 +16,10 @@ namespace CorazonDeCafeStockManager.App.Views.EmployeesForm
     {
         private readonly LoadFonts loadFonts;
         public string? Search { get { return ipSearch.Texts; } set { ipSearch.Texts = value!; } }
-        public CalendarCustom startDateCalendar { get { return startDate; } set { startDate = value!; } }
-        public CalendarCustom endDateCalendar { get { return endDate; } set { endDate = value!; } }
+        public CalendarCustom StartDateCalendar { get { return startDate; } set { startDate = value!; } }
+        public CalendarCustom EndDateCalendar { get { return endDate; } set { endDate = value!; } }
         public IEnumerable<Employee>? EmployeesList { get; set; }
-
+        public ComboBoxCustom SelectedRole { get { return selectedRole; } set { selectedRole = value!; } }
         public EmployeesForm()
         {
             InitializeComponent();
@@ -37,17 +37,18 @@ namespace CorazonDeCafeStockManager.App.Views.EmployeesForm
             startDate.Font = new Font(loadFonts.poppinsFont!.FontFamily, 9);
             endDate.Font = new Font(loadFonts.poppinsFont!.FontFamily, 9);
 
-            startDateCalendar.MaxDate = DateTime.Now.Date;
-            endDateCalendar.MaxDate = DateTime.Now.Date;
+            StartDateCalendar.MaxDate = DateTime.Now.Date;
+            EndDateCalendar.MaxDate = DateTime.Now.Date;
 
-            startDateCalendar.Value = DateTime.Now.Date;
-            endDateCalendar.Value = DateTime.Now.Date;
+            StartDateCalendar.Value = DateTime.Now.Date;
+            EndDateCalendar.Value = DateTime.Now.Date;
         }
         private void InitializeEvents()
         {
             ipSearch._TextChanged += (sender, e) => SearchEvent?.Invoke(this, EventArgs.Empty);
             startDate.ValueChanged += (sender, e) => FilterEvent?.Invoke(this, EventArgs.Empty);
             endDate.ValueChanged += (sender, e) => FilterEvent?.Invoke(this, EventArgs.Empty);
+            selectedRole.OnSelectedIndexChanged += (sender, e) => FilterEvent?.Invoke(this, EventArgs.Empty);
             reload.Click += (sender, e) => ResetEmployeesEvent?.Invoke(this, EventArgs.Empty);
             btnAdd.Click += (sender, e) => AddEvent?.Invoke(this, EventArgs.Empty);
             btnEdit.Click += (sender, e) => HandleEditClick();

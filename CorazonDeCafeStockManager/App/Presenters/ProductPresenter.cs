@@ -53,7 +53,7 @@ namespace CorazonDeCafeStockManager.App.Presenters
             view.ProductType = product.Type.Name;
             view.ProductStock = product.Stock;
             view.ProductId = product.Id;
-            view.Title = product.Name;
+            view.Title = product.Name.ToUpper();
             imageName = product.Imagen;
 
             if (product.Imagen.IsNullOrEmpty())

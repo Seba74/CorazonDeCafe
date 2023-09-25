@@ -196,13 +196,19 @@ namespace CorazonDeCafeStockManager.App.Presenters
                 isValid = false;
             }
 
-            if (string.IsNullOrWhiteSpace(CustomerEmail))
+            if (!string.IsNullOrWhiteSpace(CustomerEmail) && !CustomerEmail.Contains("@"))
             {
-                errorMessage = "Debe ingresar un email";
+                errorMessage = "Debe ingresar un email valido";
                 isValid = false;
             }
 
             if (CustomerDni == 0 || CustomerDni.ToString().Length < 7 || CustomerDni.ToString().Length > 10)
+            {
+                errorMessage = "Debe ingresar un dni valido";
+                isValid = false;
+            }
+
+            if (CustomerDni < 10000000 || CustomerDni > 99999999)
             {
                 errorMessage = "Debe ingresar un dni valido";
                 isValid = false;
@@ -220,9 +226,9 @@ namespace CorazonDeCafeStockManager.App.Presenters
                 isValid = false;
             }
 
-            if (CustomerNumber == 0)
+            if (CustomerNumber == 0 || CustomerNumber < 0)
             {
-                errorMessage = "Debe ingresar un numero";
+                errorMessage = "Debe ingresar un número valido";
                 isValid = false;
             }
 
@@ -238,9 +244,9 @@ namespace CorazonDeCafeStockManager.App.Presenters
                 isValid = false;
             }
 
-            if (CustomerPostalCode == 0)
+            if (CustomerPostalCode == 0 || CustomerPostalCode < 1000 || CustomerPostalCode > 9999)
             {
-                errorMessage = "Debe ingresar un codigo postal";
+                errorMessage = "Debe ingresar un codigo postal valido";
                 isValid = false;
             }
 

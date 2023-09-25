@@ -40,7 +40,7 @@ namespace CorazonDeCafeStockManager.App.Presenters
             view.EmployeeDni = Employee.User.Dni;
             view.EmployeePhone = Employee.User.Phone;
             view.EmployeeStatus = Employee.User.Status == 1 ? "activo" : "inactivo";
-            view.Title = Employee.User.Name + " " + Employee.User.Surname;
+            view.Title = (Employee.User.Name + " " + Employee.User.Surname).ToUpper();
         }
         public void CloseView()
         {
@@ -236,4 +236,4 @@ namespace CorazonDeCafeStockManager.App.Presenters
             return false;
         }
     }
-}   
+}
