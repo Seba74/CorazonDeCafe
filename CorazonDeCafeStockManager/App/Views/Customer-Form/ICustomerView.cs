@@ -4,10 +4,9 @@ namespace CorazonDeCafeStockManager.App.Views.CustomerForm
 {
     public interface ICustomerView
     {
-
         // Properties 
         int? CustomerId { get; set; }
-        int CustomerDni { get; set; }
+        string? CustomerDni { get; set; }
         string? CustomerName { get; set; }
         string? CustomerSurname { get; set; }
         string? CustomerEmail { get; set; }
@@ -16,7 +15,7 @@ namespace CorazonDeCafeStockManager.App.Views.CustomerForm
         int CustomerNumber { get; set; }
         string? CustomerCity { get; set; }
         string? CustomerProvince { get; set; }
-        int CustomerPostalCode { get; set; }
+        string? CustomerPostalCode { get; set; }
         string? CustomerStatus { get; set; }
         string? Title { get; set; }
         ButtonCustom? BtnDelete { get; set; }

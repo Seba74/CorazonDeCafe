@@ -11,11 +11,11 @@ namespace CorazonDeCafeStockManager
         public string? CustomerEmail { get => ipEmail.Texts; set => SetControlText(ipEmail, value); }
         public string? CustomerStreet { get => ipStreet.Texts; set => SetControlText(ipStreet, value); }
         public int CustomerNumber { get { if (int.TryParse(ipNumber.Texts, out int number)) return number; return 0; } set => SetControlText(ipNumber, value.ToString()); }
-        public int CustomerPostalCode { get { if (int.TryParse(ipPostalCode.Texts, out int postalCode)) return postalCode; return 0; } set => SetControlText(ipPostalCode, value.ToString()); }
+        public string? CustomerPostalCode { get => ipPostalCode.Texts; set => SetControlText(ipPostalCode, value); }
         public string? CustomerCity { get => ipCity.Texts; set => SetControlText(ipCity, value); }
         public string? CustomerProvince { get => ipProvince.Texts; set => SetControlText(ipProvince, value); }
         public string? CustomerStatus { get => ipStatus.Texts; set => SetControlText(ipStatus, value); }
-        public int CustomerDni { get { if (int.TryParse(ipDni.Texts, out int dni)) return dni; return 0; } set => SetControlText(ipDni, value.ToString()); }
+        public string? CustomerDni { get => ipDni.Texts; set => SetControlText(ipDni, value); } 
         public string? CustomerPhone { get => ipPhone.Texts; set => SetControlText(ipPhone, value); }
         public string? Title { get => title.Text; set => title.Text = value; }
         public ButtonCustom? BtnDelete { get => btnDelete; set => btnDelete = value!; }

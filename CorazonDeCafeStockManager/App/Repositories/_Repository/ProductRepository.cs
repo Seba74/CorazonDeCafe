@@ -1,4 +1,5 @@
 using CorazonDeCafeStockManager.App.Common;
+using CorazonDeCafeStockManager.App.EntityData;
 using CorazonDeCafeStockManager.App.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -20,110 +21,122 @@ public class ProductRepository : IProductRepository
     {
         try
         {
-            await _context.Categories!.LoadAsync();
-            await _context.Types!.LoadAsync();
-
-
             LocalStorage.Categories = await _context.Categories!.ToListAsync();
             LocalStorage.Types = await _context.Types!.ToListAsync();
         }
-        catch (Exception e)
+        catch (Exception)
         {
-            Console.WriteLine(e.Message);
+            throw new LocalException("Error al cargar las categorías y tipos");
         }
     }
 
-    public async Task AddProduct(Product product)
+    public async Task AddProduct(ProductData product)
     {
-        if (product == null)
-        {
-            throw new ArgumentNullException(nameof(product));
-        }
-
-        await _context.Products!.AddAsync(product);
-
         try
         {
-            await _context.SaveChangesAsync();
-        }
-        catch (Exception e)
-        {
-            Console.WriteLine(e.Message);
-        }
+            if (await _context.Products!.AnyAsync(p => p.Imagen == product.Imagen && p.Name == product.Name)) throw new LocalException("Ya existe el producto");
 
-        LocalStorage.Products!.Add(product);
+            Product productToAdd = new()
+            {
+                Name = product.Name!,
+                Price = product.Price,
+                Stock = product.Stock,
+                CategoryId = product.CategoryId,
+                TypeId = product.TypeId,
+                Active = product.Active,
+                Status = product.Status,
+                Imagen = product.Imagen!,
+                CreatedById = (int)SessionManager.Id!
+            };
+
+            await _context.Products!.AddAsync(productToAdd);
+            await _context.SaveChangesAsync();
+
+            LocalStorage.Products!.Add(productToAdd);
+        }
+        catch (LocalException e)
+        {
+            throw new LocalException(e.Message);
+        }
+        catch (Exception)
+        {
+            throw new Exception("No fue posible añadir el producto");
+        }
     }
 
     public async Task<bool> DeleteProduct(int id)
     {
-        Product? productToDelete = await _context.Products!.FirstOrDefaultAsync(p => p.Id == id);
-        if (productToDelete == null) return false;
-        productToDelete.Status = 0;
-
         try
         {
+            Product productToDelete = await _context.Products!.FirstOrDefaultAsync(p => p.Id == id) ?? throw new LocalException("Producto no encontrado");
+            productToDelete.Status = 0;
             int isDeleted = await _context.SaveChangesAsync();
             if (isDeleted > 0) LocalStorage.Products!.Remove(productToDelete);
 
             return isDeleted > 0;
         }
+        catch (LocalException e)
+        {
+            throw new LocalException(e.Message);
+        }
         catch (Exception)
         {
-            return false;
+            throw new ArgumentException("Error al eliminar el producto");
         }
     }
 
     public async Task<IEnumerable<Product>> GetAllProducts()
     {
-        if (LocalStorage.Categories == null || LocalStorage.Types == null)
-            await LoadCategoriesAndTypes();
-        // if is empty
-        if (!LocalStorage.Products.IsNullOrEmpty()) return LocalStorage.Products!;
-
         try
         {
-            LocalStorage.Products = await _context.Products!.Where(p => p.Status == 1).ToListAsync();
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine(ex.Message);
-        }
+            if (LocalStorage.Categories.IsNullOrEmpty() || LocalStorage.Types.IsNullOrEmpty()) await LoadCategoriesAndTypes();
+            if (!LocalStorage.Products.IsNullOrEmpty()) return LocalStorage.Products!;
 
+            LocalStorage.Products = await _context.Products!.Include(p => p.Category).Include(p => p.Type).Where(p => p.Status == 1).ToListAsync();
+        }
+        catch (LocalException e)
+        {
+            throw new LocalException(e.Message);
+        }
+        catch (Exception)
+        {
+            throw new Exception("Error al cargar los productos");
+        }
         return LocalStorage.Products ?? new();
     }
     public async Task<Product> GetProductById(int id)
     {
-        return await _context.Products!.FirstOrDefaultAsync(p => p.Id == id) ?? throw new ArgumentException("Producto no encontrado");
+        return await _context.Products!.FirstOrDefaultAsync(p => p.Id == id) ?? throw new LocalException("Producto no encontrado");
     }
 
-    public async Task<bool> UpdateProduct(Product product)
+    public async Task<bool> UpdateProduct(ProductData product)
     {
         try
         {
-            Product? productToUpdate = await _context.Products!.FirstOrDefaultAsync(p => p.Id == product.Id);
+            Product productToUpdate = await _context.Products!.FirstOrDefaultAsync(p => p.Id == product.Id) ?? throw new LocalException("Producto no encontrado");
 
-            if (productToUpdate == null)
-            {
-                return false;
-            }
-
-            productToUpdate!.Name = product.Name;
+            productToUpdate!.Name = product.Name!;
             productToUpdate.Price = product.Price;
             productToUpdate.CategoryId = product.CategoryId;
             productToUpdate.TypeId = product.TypeId;
             productToUpdate.Stock = product.Stock;
             productToUpdate.Status = product.Status;
-            productToUpdate.Imagen = product.Imagen;
+            productToUpdate.Imagen = product.Imagen!;
             productToUpdate.Active = product.Active;
             productToUpdate.UpdatedAt = DateTime.Now;
             productToUpdate.UpdatedById = SessionManager.Id;
 
             int fieldAct = await _context.SaveChangesAsync();
-            return fieldAct > 0;
+            if (fieldAct <= 0) throw new LocalException("No se pudo actualizar el producto");
+            return true;
+        }
+        catch (LocalException e)
+        {
+            throw new LocalException(e.Message);
         }
         catch (Exception)
         {
-            return false;
+            throw new ArgumentException("Error al actualizar el producto");
         }
     }
 }

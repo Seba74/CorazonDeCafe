@@ -57,8 +57,8 @@ namespace CorazonDeCafeStockManager.App.Views.CustomersForm
         {
             if (customersDataGrid.SelectedRows.Count > 0)
             {
-                int dni = Convert.ToInt32(customersDataGrid.SelectedRows[0].Cells[0].Value);
-                Customer Customer = CustomersList?.FirstOrDefault(p => p.User.Dni == dni)!;
+                string dni = customersDataGrid.SelectedRows[0].Cells[0].Value.ToString()!;
+                Customer Customer = CustomersList?.FirstOrDefault(p => p.User.Dni.Equals(dni))!;
                 EditEvent?.Invoke(Customer, EventArgs.Empty);
             }
         }
@@ -90,7 +90,7 @@ namespace CorazonDeCafeStockManager.App.Views.CustomersForm
 
                 customersDataGrid.Rows.Add(customer.User.Dni, fullName, customer.User.Email, customer.User.Phone, customer.User.Address!.City, customer.User.Address!.Province, active);
             }
-        } 
+        }
 
 
         public void ChangeDataGridViewFont(DataGridView dataGridView)
@@ -103,7 +103,7 @@ namespace CorazonDeCafeStockManager.App.Views.CustomersForm
         }
         public void ShowError(string message)
         {
-            throw new NotImplementedException();
+            MessageBox.Show(message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
         private static CustomersForm? instance;

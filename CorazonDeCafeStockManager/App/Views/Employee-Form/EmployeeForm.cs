@@ -12,7 +12,7 @@ namespace CorazonDeCafeStockManager
         public string? EmployeeUsername { get => ipUser.Texts; set => SetControlText(ipUser, value); }
         public string? EmployeeRole { get => ipRole.Texts; set => SetControlText(ipRole, value); }
         public string? EmployeeStatus { get => ipStatus.Texts; set => SetControlText(ipStatus, value); }
-        public int EmployeeDni { get { if (int.TryParse(ipDni.Texts, out int dni)) return dni; return 0; } set => SetControlText(ipDni, value.ToString()); }
+        public string? EmployeeDni { get => ipDni.Texts; set => SetControlText(ipDni, value);}
         public string? EmployeePhone { get => ipPhone.Texts; set => SetControlText(ipPhone, value); }
         public string? Title { get => title.Text; set => title.Text = value; }
         public ButtonCustom? BtnDelete { get => btnDelete; set => btnDelete = value!; }

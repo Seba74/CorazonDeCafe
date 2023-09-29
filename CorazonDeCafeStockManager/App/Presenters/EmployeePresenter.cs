@@ -1,8 +1,11 @@
 ﻿using CorazonDeCafeStockManager.App.Common;
+using CorazonDeCafeStockManager.App.EntityData;
 using CorazonDeCafeStockManager.App.Models;
 using CorazonDeCafeStockManager.App.Repositories;
+using CorazonDeCafeStockManager.App.Validators;
 using CorazonDeCafeStockManager.App.Views.EmployeeForm;
 using CorazonDeCafeStockManager.utils.Custom.TextBox;
+using FluentValidation.Results;
 
 namespace CorazonDeCafeStockManager.App.Presenters
 {
@@ -42,44 +45,48 @@ namespace CorazonDeCafeStockManager.App.Presenters
             view.EmployeeStatus = Employee.User.Status == 1 ? "activo" : "inactivo";
             view.Title = (Employee.User.Name + " " + Employee.User.Surname).ToUpper();
         }
-        public void CloseView()
-        {
-            view.Close();
-        }
+        public void CloseView() => view.Close();
         private async void SaveEvent(object sender, EventArgs e)
         {
-            if (!ValidateData())
-            {
-                return;
-            }
 
-            User user = new()
+            Role role = await EmployeeRepository.GetRoleByName(view.EmployeeRole!);
+            EmployeeData employeeData = new()
             {
-                Name = view.EmployeeName!,
-                Surname = view.EmployeeSurname!,
-                Email = view.EmployeeEmail!,
+                Name = view.EmployeeName,
+                Surname = view.EmployeeSurname,
+                Email = view.EmployeeEmail,
+                Username = view.EmployeeUsername,
+                RoleId = role.Id,
                 Dni = view.EmployeeDni,
-                Phone = view.EmployeePhone!,
+                Phone = view.EmployeePhone,
                 Status = view.EmployeeStatus!.ToLower() == "activo" ? 1 : 0,
             };
 
-            Role role = await EmployeeRepository.GetRoleByName(view.EmployeeRole!);
-            Employee employee = new()
-            {
-                Username = view.EmployeeUsername!,
-                RoleId = role.Id,
-            };
+            EmployeeValidator validator = new();
+            ValidationResult result = validator.Validate(employeeData);
 
-            if (view.EmployeeId != null)
+            if (!result.IsValid)
             {
-                employee.Id = (int)view.EmployeeId;
-                await EmployeeRepository.UpdateEmployee(employee, user);
+                view.ShowError(result.Errors[0].ErrorMessage);
+                return;
             }
-            else
+
+            try
             {
-                employee.Pass = "";
-                employee.UserId = 0;
-                await EmployeeRepository.AddEmployee(employee, user);
+                if (view.EmployeeId != null)
+                {
+                    employeeData.Id = (int)view.EmployeeId;
+                    await EmployeeRepository.UpdateEmployee(employeeData);
+                }
+                else
+                {
+                    await EmployeeRepository.AddEmployee(employeeData);
+                }
+            }
+            catch (LocalException ex)
+            {
+                view.ShowError(ex.Message);
+                return;
             }
 
             homePresenter.ShowEmployeesView(this, EventArgs.Empty);
@@ -118,7 +125,8 @@ namespace CorazonDeCafeStockManager.App.Presenters
                 !string.IsNullOrWhiteSpace(view.EmployeeSurname) ||
                 !string.IsNullOrWhiteSpace(view.EmployeeEmail) ||
                 !string.IsNullOrWhiteSpace(view.EmployeePhone) ||
-                view.EmployeeDni != 0)
+                !string.IsNullOrWhiteSpace(view.EmployeeDni) ||
+                !string.IsNullOrWhiteSpace(view.EmployeeUsername)) 
             {
                 DialogResult dialogResult = MessageBox.Show("Hay cambios sin guardar, ¿Desea cancelar?", "Cancelar", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (dialogResult == DialogResult.No)
@@ -140,63 +148,16 @@ namespace CorazonDeCafeStockManager.App.Presenters
                 return;
             }
 
-            bool isDeleted = await EmployeeRepository.DeleteEmployee((int)view.EmployeeId!);
-            if (isDeleted)
+            try
             {
+                bool isDeleted = await EmployeeRepository.DeleteEmployee((int)view.EmployeeId!);
                 homePresenter.ShowEmployeesView(this, EventArgs.Empty);
                 view.Close();
             }
-            else
+            catch (Exception ex)
             {
-                view.ShowError("Error al eliminar el empleado, por favor intentelo nuevamente");
+                view.ShowError(ex.Message);
             }
-        }
-
-        private bool ValidateData()
-        {
-            bool isValid = true;
-            string errorMessage = string.Empty;
-            string EmployeeName = view.EmployeeName!;
-            string EmployeeSurname = view.EmployeeSurname!;
-            string EmployeeEmail = view.EmployeeEmail!;
-            int EmployeeDni = view.EmployeeDni;
-
-            if (string.IsNullOrWhiteSpace(EmployeeName))
-            {
-                errorMessage = "Debe ingresar un nombre";
-                isValid = false;
-            }
-
-            if (string.IsNullOrWhiteSpace(EmployeeSurname))
-            {
-                errorMessage = "Debe ingresar un apellido";
-                isValid = false;
-            }
-
-            if (string.IsNullOrWhiteSpace(EmployeeEmail))
-            {
-                errorMessage = "Debe ingresar un email";
-                isValid = false;
-            }
-
-            if (EmployeeDni == 0 || EmployeeDni.ToString().Length < 7 || EmployeeDni.ToString().Length > 10)
-            {
-                errorMessage = "Debe ingresar un dni valido";
-                isValid = false;
-            }
-
-            if (!string.IsNullOrWhiteSpace(view.EmployeePhone) && (view.EmployeePhone.Length < 9 || view.EmployeePhone.Length > 11 || view.EmployeePhone.Contains(" ") || !long.TryParse(view.EmployeePhone, out long phone)))
-            {
-                errorMessage = "Debe ingresar un telefono valido";
-                isValid = false;
-            }
-
-            if (!isValid)
-            {
-                view.ShowError(errorMessage);
-            }
-
-            return isValid;
         }
 
         private void ValidateEvent(object sender, KeyPressEventArgs e)

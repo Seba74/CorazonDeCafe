@@ -1,8 +1,11 @@
 ﻿using CorazonDeCafeStockManager.App.Common;
+using CorazonDeCafeStockManager.App.EntityData;
 using CorazonDeCafeStockManager.App.Models;
 using CorazonDeCafeStockManager.App.Repositories;
+using CorazonDeCafeStockManager.App.Validators;
 using CorazonDeCafeStockManager.App.Views.CustomerForm;
 using CorazonDeCafeStockManager.utils.Custom.TextBox;
+using FluentValidation.Results;
 
 namespace CorazonDeCafeStockManager.App.Presenters
 {
@@ -55,40 +58,47 @@ namespace CorazonDeCafeStockManager.App.Presenters
         }
         private async void SaveEvent(object sender, EventArgs e)
         {
-            if (!ValidateData())
-            {
-                return;
-            }
 
-            User user = new()
+            CustomerData customerData = new()
             {
                 Name = view.CustomerName!,
                 Surname = view.CustomerSurname!,
                 Email = view.CustomerEmail!,
                 Dni = view.CustomerDni,
                 Phone = view.CustomerPhone!,
-                Status = view.CustomerStatus!.ToLower() == "activo" ? 1 : 0,
-            };
-
-            Address address = new()
-            {
                 Street = view.CustomerStreet!,
                 Number = view.CustomerNumber,
+                Status = view.CustomerStatus == "activo" ? 1 : 0,
                 City = view.CustomerCity!,
                 Province = view.CustomerProvince!,
                 PostalCode = view.CustomerPostalCode,
             };
 
-            Customer customer = new() { };
+            CustomerValidator validator = new();
+            ValidationResult result = validator.Validate(customerData);
 
-            if (view.CustomerId != null)
+            if (!result.IsValid)
             {
-                customer.Id = (int)view.CustomerId;
-                await CustomerRepository.UpdateCustomer(customer, user, address);
+                view.ShowError(result.Errors[0].ErrorMessage);
+                return;
             }
-            else
+
+            try
             {
-                await CustomerRepository.AddCustomer(customer);
+                if (view.CustomerId != null)
+                {
+                    customerData.Id = (int)view.CustomerId;
+                    await CustomerRepository.UpdateCustomer(customerData);
+                }
+                else
+                {
+                    await CustomerRepository.AddCustomer(customerData);
+                }
+            }
+            catch (Exception ex)
+            {
+                view.ShowError(ex.Message);
+                return;
             }
 
             homePresenter.ShowCustomersView(this, EventArgs.Empty);
@@ -133,9 +143,9 @@ namespace CorazonDeCafeStockManager.App.Presenters
                 !string.IsNullOrWhiteSpace(view.CustomerStreet) ||
                 !string.IsNullOrWhiteSpace(view.CustomerCity) ||
                 !string.IsNullOrWhiteSpace(view.CustomerProvince) ||
-                view.CustomerNumber != 0 ||
-                view.CustomerPostalCode != 0 ||
-                view.CustomerDni != 0)
+                !string.IsNullOrWhiteSpace(view.CustomerPostalCode) ||
+                !string.IsNullOrWhiteSpace(view.CustomerDni) ||
+                view.CustomerNumber != 0)
             {
                 DialogResult dialogResult = MessageBox.Show("Hay cambios sin guardar, ¿Desea cancelar?", "Cancelar", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (dialogResult == DialogResult.No)
@@ -157,107 +167,18 @@ namespace CorazonDeCafeStockManager.App.Presenters
                 return;
             }
 
-            bool isDeleted = await CustomerRepository.DeleteCustomer((int)view.CustomerId!);
-            if (isDeleted)
+            try
             {
+                bool isDeleted = await CustomerRepository.DeleteCustomer((int)view.CustomerId!);
                 homePresenter.ShowCustomersView(this, EventArgs.Empty);
                 view.Close();
             }
-            else
+            catch (Exception ex)
             {
-                view.ShowError("Error al eliminar el empleado, por favor intentelo nuevamente");
+                view.ShowError(ex.Message);
+                return;
             }
         }
-
-        private bool ValidateData()
-        {
-            bool isValid = true;
-            string errorMessage = string.Empty;
-            string CustomerName = view.CustomerName!;
-            string CustomerSurname = view.CustomerSurname!;
-            string CustomerEmail = view.CustomerEmail!;
-            int CustomerDni = view.CustomerDni;
-            string CustomerPhone = view.CustomerPhone!;
-            string CustomerStreet = view.CustomerStreet!;
-            int CustomerNumber = view.CustomerNumber;
-            string CustomerCity = view.CustomerCity!;
-            string CustomerProvince = view.CustomerProvince!;
-            int CustomerPostalCode = view.CustomerPostalCode;
-
-            if (string.IsNullOrWhiteSpace(CustomerName))
-            {
-                errorMessage = "Debe ingresar un nombre";
-                isValid = false;
-            }
-
-            if (string.IsNullOrWhiteSpace(CustomerSurname))
-            {
-                errorMessage = "Debe ingresar un apellido";
-                isValid = false;
-            }
-
-            if (!string.IsNullOrWhiteSpace(CustomerEmail) && !CustomerEmail.Contains("@"))
-            {
-                errorMessage = "Debe ingresar un email valido";
-                isValid = false;
-            }
-
-            if (CustomerDni == 0 || CustomerDni.ToString().Length < 7 || CustomerDni.ToString().Length > 10)
-            {
-                errorMessage = "Debe ingresar un dni valido";
-                isValid = false;
-            }
-
-            if (CustomerDni < 10000000 || CustomerDni > 99999999)
-            {
-                errorMessage = "Debe ingresar un dni valido";
-                isValid = false;
-            }
-
-            if (!string.IsNullOrWhiteSpace(CustomerPhone) && (CustomerPhone.Length < 9 || CustomerPhone.Length > 11 || CustomerPhone.Contains(" ") || !long.TryParse(CustomerPhone, out long phone)))
-            {
-                errorMessage = "Debe ingresar un telefono valido";
-                isValid = false;
-            }
-
-            if (string.IsNullOrWhiteSpace(CustomerStreet))
-            {
-                errorMessage = "Debe ingresar una calle";
-                isValid = false;
-            }
-
-            if (CustomerNumber == 0 || CustomerNumber < 0)
-            {
-                errorMessage = "Debe ingresar un número valido";
-                isValid = false;
-            }
-
-            if (string.IsNullOrWhiteSpace(CustomerCity))
-            {
-                errorMessage = "Debe ingresar una ciudad";
-                isValid = false;
-            }
-
-            if (string.IsNullOrWhiteSpace(CustomerProvince))
-            {
-                errorMessage = "Debe ingresar una provincia";
-                isValid = false;
-            }
-
-            if (CustomerPostalCode == 0 || CustomerPostalCode < 1000 || CustomerPostalCode > 9999)
-            {
-                errorMessage = "Debe ingresar un codigo postal valido";
-                isValid = false;
-            }
-
-            if (!isValid)
-            {
-                view.ShowError(errorMessage);
-            }
-
-            return isValid;
-        }
-
         private void ValidateEvent(object sender, KeyPressEventArgs e)
         {
             TextBoxCustom textBox = (TextBoxCustom)sender;

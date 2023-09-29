@@ -1,4 +1,5 @@
 using CorazonDeCafeStockManager.App.Common;
+using CorazonDeCafeStockManager.App.EntityData;
 using CorazonDeCafeStockManager.App.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -16,98 +17,127 @@ public class EmployeeRepository : IEmployeeRepository
         _context = context;
     }
 
-    public async Task AddEmployee(Employee employee, User user)
+    public async Task AddEmployee(EmployeeData employee)
     {
         try
         {
-            if (employee == null) throw new ArgumentNullException(nameof(employee));
-            if (user == null) throw new ArgumentNullException(nameof(user));
+            if (await _context.Users!.AnyAsync(p => p.Dni == employee.Dni)) throw new LocalException("Ya existe una persona con ese DNI");
+            if (await _context.Users!.AnyAsync(p => p.Email == employee.Email)) throw new LocalException("Ya existe una persona con ese Email");
+
+            User user = new()
+            {
+                Name = employee.Name!,
+                Surname = employee.Surname!,
+                Email = employee.Email!,
+                Dni = employee.Dni!,
+                Phone = employee.Phone,
+                Status = employee.Status,
+            };
 
             await _context.Users!.AddAsync(user);
             await _context.SaveChangesAsync();
 
-            User userSaved = await _context.Users.FirstOrDefaultAsync(p => p.Dni == user.Dni) ?? throw new ArgumentException("Usuario no encontrado");
+            Employee employeeToAdd = new()
+            {
+                UserId = user.Id,
+                Username = employee.Username!,
+                RoleId = employee.RoleId,
+            };
 
-            employee.UserId = userSaved.Id;
-            employee.Pass = HashPass.HashPassword(user.Dni.ToString());
-
-            await _context.Employees!.AddAsync(employee);
+            await _context.Employees!.AddAsync(employeeToAdd);
             await _context.SaveChangesAsync();
 
-            LocalStorage.Employees!.Add(employee);
+            LocalStorage.Employees!.Add(employeeToAdd);
         }
-        catch (Exception e)
+        catch (LocalException e)
         {
-            Console.WriteLine(e.Message);
+            throw new LocalException(e.Message);
+        }
+        catch (Exception)
+        {
+            throw new ArgumentException("Error al agregar el empleado");
         }
     }
 
     public async Task<bool> DeleteEmployee(int id)
     {
-        Employee? employee = await _context.Employees!.Include(p => p.User).FirstOrDefaultAsync(p => p.Id == id);
-        if (employee == null) return false;
-        employee.User.Status = 0;
         try
         {
+            Employee? employee = await _context.Employees!.Include(p => p.User).FirstOrDefaultAsync(p => p.Id == id) ?? throw new LocalException("Empleado no encontrado");
+            employee.User.Status = 0;
             int isDeleted = await _context.SaveChangesAsync();
             if (isDeleted > 0) LocalStorage.Employees!.Remove(employee);
 
             return isDeleted > 0;
         }
+        catch (LocalException e)
+        {
+            throw new LocalException(e.Message);
+        }
         catch (Exception)
         {
-            return false;
+            throw new ArgumentException("Error al eliminar el empleado");
         }
     }
 
     public async Task<IEnumerable<Employee>> GetAllEmployees()
     {
+        if (!LocalStorage.Employees.IsNullOrEmpty()) return LocalStorage.Employees!;
+
         try
         {
-            LocalStorage.Employees = await _context.Employees!.Include(p => p.User).Include(p => p.Role).Where(p => p.User.Status == 1).ToListAsync();
+            LocalStorage.Employees = await _context.Employees!.Include(p => p.User).Include(p => p.Role).ToListAsync();
         }
-        catch (Exception ex)
+        catch (Exception)
         {
-            Console.WriteLine(ex.Message);
+            throw new ArgumentException("Error al obtener los empleados");
         }
 
         return LocalStorage.Employees ?? new();
     }
     public async Task<Employee> GetEmployeeById(int id)
     {
-        Employee? employee = await _context.Employees!.Include(p => p.User).Include(p => p.Role).FirstOrDefaultAsync(p => p.Id == id) ?? throw new ArgumentException("Empleado no encontrado");
-        return employee;
+        return await _context.Employees!.Include(p => p.User).Include(p => p.Role).FirstOrDefaultAsync(p => p.Id == id) ?? throw new LocalException("Empleado no encontrado");
     }
 
-    public async Task<bool> UpdateEmployee(Employee employee, User user)
+    public async Task<bool> UpdateEmployee(EmployeeData employee)
     {
-        Employee? employeeToUpdate = await _context.Employees!.Include(p => p.User).FirstOrDefaultAsync(p => p.Id == employee.Id);
-        if (employeeToUpdate == null) return false;
+        try
+        {
+            Employee? employeeToUpdate = await _context.Employees!.Include(p => p.User).FirstOrDefaultAsync(p => p.Id == employee.Id) ?? throw new LocalException("Empleado no encontrado");
 
-        employeeToUpdate.Username = employee.Username;
-        employeeToUpdate.RoleId = employee.RoleId;
+            employeeToUpdate.Username = employee.Username!;
+            employeeToUpdate.RoleId = employee.RoleId;
 
-        employeeToUpdate.User.Name = user.Name;
-        employeeToUpdate.User.Surname = user.Surname;
-        employeeToUpdate.User.Email = user.Email;
-        employeeToUpdate.User.Phone = user.Phone;
-        employeeToUpdate.User.Dni = user.Dni;
-        employeeToUpdate.User.UpdatedAt = DateTime.Now;
+            employeeToUpdate.User.Name = employee.Name!;
+            employeeToUpdate.User.Surname = employee.Surname!;
+            employeeToUpdate.User.Email = employee.Email!;
+            employeeToUpdate.User.Phone = employee.Phone;
+            employeeToUpdate.User.Dni = employee.Dni!;
+            employeeToUpdate.User.UpdatedAt = DateTime.Now;
 
-        int fieldAct = await _context.SaveChangesAsync();
-        return fieldAct > 0;
+            int fieldAct = await _context.SaveChangesAsync();
+            if (fieldAct <= 0) throw new LocalException("No se pudo actualizar el empleado");
+            return true;
+        }
+        catch (LocalException e)
+        {
+            throw new LocalException(e.Message);
+        }
+        catch (Exception)
+        {
+            throw new ArgumentException("Error al actualizar el empleado");
+        }
     }
 
     public async Task<Role> GetRoleByName(string name)
     {
-        Role? role = await _context.Roles!.FirstOrDefaultAsync(p => p.Name == name) ?? throw new ArgumentException("Rol no encontrado");
-        return role;
+        return await _context.Roles!.FirstOrDefaultAsync(p => p.Name == name) ?? throw new LocalException("Rol no encontrado");
     }
 
-    public async Task<User> GetUserByDni(int dni)
+    public async Task<User> GetUserByDni(string dni)
     {
-        User? user = await _context.Users!.FirstOrDefaultAsync(p => p.Dni == dni) ?? throw new ArgumentException("Usuario no encontrado");
-        return user;
+        return await _context.Users!.FirstOrDefaultAsync(p => p.Dni.Equals(dni)) ?? throw new LocalException("Usuario no encontrado");
     }
 }
 

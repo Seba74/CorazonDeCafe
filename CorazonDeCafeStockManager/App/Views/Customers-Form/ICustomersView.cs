@@ -9,7 +9,6 @@ namespace CorazonDeCafeStockManager.App.Views.CustomersForm
 {
     public interface ICustomersView
     {
-
         // Properties 
         string? Search { get; set; }
         Size Size { get; set; }

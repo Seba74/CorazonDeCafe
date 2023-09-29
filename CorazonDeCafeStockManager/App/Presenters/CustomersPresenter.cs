@@ -33,10 +33,17 @@ namespace CorazonDeCafeStockManager.App.Presenters
         }
         public async Task LoadAllCustomers()
         {
-            customers = await customerRepository.GetAllCustomers();
-            customersBackUp = customers;
-            view.CustomersList = customers;
-            view.LoadCustomers();
+            try
+            {
+                customers = await customerRepository.GetAllCustomers();
+                customersBackUp = customers;
+                view.CustomersList = customers;
+                view.LoadCustomers();
+            }
+            catch
+            {
+                view.ShowError("Error al cargar los clientes");
+            }
         }
 
         public void ShowView() => view!.Show();
@@ -49,12 +56,12 @@ namespace CorazonDeCafeStockManager.App.Presenters
             {
                 if (int.TryParse(view.Search, out int dni))
                 {
-                    view.CustomersList = customers?.Where(p => p.User.Dni == dni);
+                    view.CustomersList = customers?.Where(p => p.User.Dni.Equals(dni));
                 }
                 else
                 {
                     view.CustomersList = customers?.Where(p => (p.User.Name + " " + p.User.Surname).ToLowerInvariant().Contains(view.Search!.ToLowerInvariant()));
-                } 
+                }
             }
             else
             {

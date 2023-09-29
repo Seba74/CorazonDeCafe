@@ -3,12 +3,17 @@ using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 
 namespace CorazonDeCafeStockManager.App.Models;
+
 public partial class CorazonDeCafeContext : DbContext
 {
-    public CorazonDeCafeContext(){}
+    public CorazonDeCafeContext()
+    {
+    }
 
     public CorazonDeCafeContext(DbContextOptions<CorazonDeCafeContext> options)
-        : base(options){}
+        : base(options)
+    {
+    }
 
     public virtual DbSet<Address>? Addresses { get; set; }
 
@@ -36,7 +41,7 @@ public partial class CorazonDeCafeContext : DbContext
     {
         modelBuilder.Entity<Address>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__addresse__3213E83F143C652F");
+            entity.HasKey(e => e.Id).HasName("PK__addresse__3213E83F75166067");
 
             entity.ToTable("addresses");
 
@@ -50,7 +55,10 @@ public partial class CorazonDeCafeContext : DbContext
                 .HasColumnType("datetime")
                 .HasColumnName("createdAt");
             entity.Property(e => e.Number).HasColumnName("number");
-            entity.Property(e => e.PostalCode).HasColumnName("postal_code");
+            entity.Property(e => e.PostalCode)
+                .HasMaxLength(8)
+                .IsUnicode(false)
+                .HasColumnName("postal_code");
             entity.Property(e => e.Province)
                 .HasMaxLength(30)
                 .IsUnicode(false)
@@ -66,11 +74,11 @@ public partial class CorazonDeCafeContext : DbContext
 
         modelBuilder.Entity<Category>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__categori__3213E83FA1858EF2");
+            entity.HasKey(e => e.Id).HasName("PK__categori__3213E83F431B7656");
 
             entity.ToTable("categories");
 
-            entity.HasIndex(e => e.Name, "UQ__categori__72E12F1BC13B91A5").IsUnique();
+            entity.HasIndex(e => e.Name, "UQ__categori__72E12F1BBBAE8325").IsUnique();
 
             entity.Property(e => e.Id).HasColumnName("id");
             entity.Property(e => e.CreatedAt)
@@ -89,7 +97,7 @@ public partial class CorazonDeCafeContext : DbContext
 
         modelBuilder.Entity<Customer>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__customer__3213E83F92CE43C1");
+            entity.HasKey(e => e.Id).HasName("PK__customer__3213E83FC4565BAA");
 
             entity.ToTable("customers");
 
@@ -104,11 +112,11 @@ public partial class CorazonDeCafeContext : DbContext
 
         modelBuilder.Entity<Employee>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__employee__3213E83FD069BF33");
+            entity.HasKey(e => e.Id).HasName("PK__employee__3213E83F9B64D6D7");
 
             entity.ToTable("employees");
 
-            entity.HasIndex(e => e.Username, "UQ__employee__F3DBC572B984A50C").IsUnique();
+            entity.HasIndex(e => e.Username, "UQ__employee__F3DBC5725CD182C9").IsUnique();
 
             entity.Property(e => e.Id).HasColumnName("id");
             entity.Property(e => e.Pass)
@@ -135,7 +143,7 @@ public partial class CorazonDeCafeContext : DbContext
 
         modelBuilder.Entity<Order>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__orders__3213E83F9283807C");
+            entity.HasKey(e => e.Id).HasName("PK__orders__3213E83F9D49736B");
 
             entity.ToTable("orders");
 
@@ -187,11 +195,11 @@ public partial class CorazonDeCafeContext : DbContext
 
         modelBuilder.Entity<Product>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__products__3213E83FF789C53F");
+            entity.HasKey(e => e.Id).HasName("PK__products__3213E83F36B40BC3");
 
             entity.ToTable("products");
 
-            entity.HasIndex(e => e.Imagen, "UQ__products__3E079E4128A3345A").IsUnique();
+            entity.HasIndex(e => e.Imagen, "UQ__products__3E079E413B876299").IsUnique();
 
             entity.Property(e => e.Id).HasColumnName("id");
             entity.Property(e => e.Active).HasColumnName("active");
@@ -240,11 +248,11 @@ public partial class CorazonDeCafeContext : DbContext
 
         modelBuilder.Entity<Role>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__roles__3213E83F5D581D8F");
+            entity.HasKey(e => e.Id).HasName("PK__roles__3213E83F770D5718");
 
             entity.ToTable("roles");
 
-            entity.HasIndex(e => e.Name, "UQ__roles__72E12F1B7E3320D5").IsUnique();
+            entity.HasIndex(e => e.Name, "UQ__roles__72E12F1B3AA28C46").IsUnique();
 
             entity.Property(e => e.Id).HasColumnName("id");
             entity.Property(e => e.CreatedAt)
@@ -263,11 +271,11 @@ public partial class CorazonDeCafeContext : DbContext
 
         modelBuilder.Entity<Type>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__types__3213E83F2842C1EE");
+            entity.HasKey(e => e.Id).HasName("PK__types__3213E83FB9433A1F");
 
             entity.ToTable("types");
 
-            entity.HasIndex(e => e.Name, "UQ__types__72E12F1BB9E1CE3A").IsUnique();
+            entity.HasIndex(e => e.Name, "UQ__types__72E12F1BDB3E3AC7").IsUnique();
 
             entity.Property(e => e.Id).HasColumnName("id");
             entity.Property(e => e.CreatedAt)
@@ -286,13 +294,13 @@ public partial class CorazonDeCafeContext : DbContext
 
         modelBuilder.Entity<User>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__users__3213E83F7BC76F00");
+            entity.HasKey(e => e.Id).HasName("PK__users__3213E83F6A787B41");
 
             entity.ToTable("users");
 
-            entity.HasIndex(e => e.Email, "UQ__users__AB6E6164CDC2BB6B").IsUnique();
+            entity.HasIndex(e => e.Email, "UQ__users__AB6E6164C32819FF").IsUnique();
 
-            entity.HasIndex(e => e.Dni, "UQ__users__D87608A7AB78B5A9").IsUnique();
+            entity.HasIndex(e => e.Dni, "UQ__users__D87608A78FE9BD3F").IsUnique();
 
             entity.Property(e => e.Id).HasColumnName("id");
             entity.Property(e => e.AddressId).HasColumnName("address_id");
@@ -300,7 +308,10 @@ public partial class CorazonDeCafeContext : DbContext
                 .HasDefaultValueSql("(getdate())")
                 .HasColumnType("datetime")
                 .HasColumnName("createdAt");
-            entity.Property(e => e.Dni).HasColumnName("dni");
+            entity.Property(e => e.Dni)
+                .HasMaxLength(10)
+                .IsUnicode(false)
+                .HasColumnName("dni");
             entity.Property(e => e.Email)
                 .HasMaxLength(50)
                 .IsUnicode(false)

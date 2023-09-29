@@ -12,7 +12,7 @@ namespace CorazonDeCafeStockManager.App.Views.EmployeeForm
         string? EmployeeEmail { get; set; }
         string? EmployeeUsername { get; set; }
         string? EmployeeRole { get; set; }
-        int EmployeeDni { get; set; }
+        string? EmployeeDni { get; set; }
         string? EmployeePhone { get; set; }
         string? EmployeeStatus { get; set; }
         string? Title { get; set; }

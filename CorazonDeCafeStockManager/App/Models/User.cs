@@ -13,7 +13,7 @@ public partial class User
 
     public string Email { get; set; } = null!;
 
-    public int Dni { get; set; }
+    public string Dni { get; set; } = null!;
 
     public int? AddressId { get; set; }
 

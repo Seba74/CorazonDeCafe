@@ -33,14 +33,21 @@ namespace CorazonDeCafeStockManager.App.Presenters
         }
         public async Task LoadAllEmployees()
         {
-            employees = await employeeRepository.GetAllEmployees();
-            employeesBackUp = employees;
-            view.EmployeesList = employees;
-            view.LoadEmployees();
+            try
+            {
+                employees = await employeeRepository.GetAllEmployees();
+                employeesBackUp = employees;
+                view.EmployeesList = employees;
+                view.LoadEmployees();
+            }
+            catch (Exception e)
+            {
+                view.ShowError(e.Message);
+            }
         }
 
-        public void ShowView() => view!.Show();
-        public void CloseView() => view!.Close();
+        public void ShowView() => view.Show();
+        public void CloseView() => view.Close();
 
         private void SearchEmployees(object sender, EventArgs e)
         {

@@ -1,9 +1,12 @@
 ﻿using CorazonDeCafeStockManager.App.Common;
+using CorazonDeCafeStockManager.App.EntityData;
 using CorazonDeCafeStockManager.App.Models;
 using CorazonDeCafeStockManager.App.Repositories;
+using CorazonDeCafeStockManager.App.Validators;
 using CorazonDeCafeStockManager.App.Views.ProductForm;
 using CorazonDeCafeStockManager.Properties;
 using CorazonDeCafeStockManager.utils.Custom.TextBox;
+using FluentValidation.Results;
 using Microsoft.IdentityModel.Tokens;
 using System.Reflection;
 using Type = CorazonDeCafeStockManager.App.Models.Type;
@@ -62,7 +65,7 @@ namespace CorazonDeCafeStockManager.App.Presenters
                 view.ShowImage!.Image = Resources.imageNotFound;
             }
             else
-            {   
+            {
                 string imagePath = Path.Combine("products", product.Imagen);
                 view.ShowImage!.Image = Image.FromFile(imagePath);
             }
@@ -72,14 +75,26 @@ namespace CorazonDeCafeStockManager.App.Presenters
             view.BtnAddImage!.Text = $"Image: {view.ProductId}";
 
         }
-        public void CloseView()
-        {
-            view.Close();
-        }
+        public void CloseView() => view.Close();
         private async void SaveEvent(object sender, EventArgs e)
         {
-            if (!ValidateData())
+            ProductData productData = new()
             {
+                Name = view.ProductName,
+                Price = view.ProductPrice,
+                Stock = view.ProductStock,
+                Category = view.ProductCategory,
+                Type = view.ProductType,
+                Status = 1,
+                Imagen = imageName
+            };
+
+            ProductValidator validator = new();
+            ValidationResult result = validator.Validate(productData);
+
+            if (!result.IsValid)
+            {
+                view.ShowError(result.Errors[0].ErrorMessage);
                 return;
             }
 
@@ -87,48 +102,39 @@ namespace CorazonDeCafeStockManager.App.Presenters
             int typeId = types!.First(t => t.Name == view.ProductType).Id;
             int active = view.ProductActive == "Activo" ? 1 : 0;
 
-            Product productToUpdate = new()
-            {
-                Name = view.ProductName!,
-                Price = view.ProductPrice,
-                Stock = view.ProductStock,
-                CategoryId = categoryId,
-                TypeId = typeId,
-                Active = active,
-                Status = 1,
-                Imagen = imageName!
-            };
+            productData.CategoryId = categoryId;
+            productData.TypeId = typeId;
+            productData.Active = active;
 
-            if (view.ProductId != null)
+            try
             {
-                productToUpdate.Id = (int)view.ProductId;
-                bool isUpdated = await productRepository.UpdateProduct(productToUpdate);
-                if (filePath != null && fileSavePath != null && isUpdated)
+                if (view.ProductId != null)
                 {
-                    try
+                    productData.Id = (int)view.ProductId;
+                    bool isUpdated = await productRepository.UpdateProduct(productData);
+                    if (filePath != null && fileSavePath != null && isUpdated)
                     {
                         GC.Collect();
                         GC.WaitForPendingFinalizers();
                         File.Copy(filePath!, fileSavePath!, true);
                         GC.WaitForPendingFinalizers();
                     }
-                    catch (IOException)
-                    {
-                        view.ShowError("Error al guardar el archivo, por favor intentelo nuevamente");
-                    }
                 }
-            }
-            else
-            {
-                try
+                else
                 {
-                    await productRepository.AddProduct(productToUpdate);
+                    await productRepository.AddProduct(productData);
                     File.Copy(filePath!, fileSavePath!, true);
                 }
-                catch (IOException)
-                {
-                    view.ShowError("Error al guardar el archivo, por favor intentelo nuevamente");
-                }
+            }
+            catch (LocalException ex)
+            {
+                view.ShowError(ex.Message);
+                return;
+            }
+            catch (Exception)
+            {
+                view.ShowError("Error al guardar el producto, por favor intentelo nuevamente");
+                return;
             }
 
             homePresenter.ShowProductsView(this, EventArgs.Empty);
@@ -190,72 +196,16 @@ namespace CorazonDeCafeStockManager.App.Presenters
             {
                 return;
             }
-
-            bool isDeleted = await productRepository.DeleteProduct((int)view.ProductId!);
-            if (isDeleted)
+            try
             {
+                bool isDeleted = await productRepository.DeleteProduct((int)view.ProductId!);
                 homePresenter.ShowProductsView(this, EventArgs.Empty);
                 view.Close();
             }
-            else
+            catch (Exception ex)
             {
-                view.ShowError("Error al eliminar el producto, por favor intentelo nuevamente");
+                view.ShowError(ex.Message);
             }
-        }
-
-        private bool ValidateData()
-        {
-            bool isValid = true;
-            string errorMessage = string.Empty;
-            string productName = view.ProductName!;
-            string productCategory = view.ProductCategory!;
-            string productType = view.ProductType!;
-            int productStock = view.ProductStock;
-            double productPrice = view.ProductPrice;
-            string imageButtonText = view.BtnAddImage!.Text;
-
-            if (string.IsNullOrWhiteSpace(imageButtonText) || imageButtonText == "Seleccione una imagen")
-            {
-                errorMessage = "Debe seleccionar una imagen";
-                isValid = false;
-            }
-
-            if (productStock < 0)
-            {
-                errorMessage = "Debe ingresar un stock válido";
-                isValid = false;
-            }
-
-            if (productType == "Tipo")
-            {
-                errorMessage = "Debe ingresar un tipo";
-                isValid = false;
-            }
-
-            if (productCategory == "Categoría")
-            {
-                errorMessage = "Debe ingresar una categoría";
-                isValid = false;
-            }
-
-            if (productPrice == 0)
-            {
-                errorMessage = "Debe ingresar un precio";
-                isValid = false;
-            }
-
-            if (string.IsNullOrWhiteSpace(productName))
-            {
-                errorMessage = "Debe ingresar un nombre";
-                isValid = false;
-            }
-
-            if (!isValid)
-            {
-                view.ShowError(errorMessage);
-            }
-
-            return isValid;
         }
 
         private void ValidateEvent(object sender, KeyPressEventArgs e)
@@ -318,7 +268,7 @@ namespace CorazonDeCafeStockManager.App.Presenters
                     imageName = view.ProductImagen;
                 }
 
-                string fileSavePath = Path.Combine("..", "..", "..", "products", imageName!);
+                string fileSavePath = Path.Combine("products", imageName!);
                 string fileName = openFileDialog.SafeFileName;
                 this.fileSavePath = fileSavePath;
                 filePath = openFileDialog.FileName;

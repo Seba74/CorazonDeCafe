@@ -43,7 +43,6 @@ namespace CorazonDeCafeStockManager
                 EditEvent?.Invoke(product, EventArgs.Empty);
             }
         }
-
         public event EventHandler? SearchEvent;
         public event EventHandler? FilterEvent;
         public event EventHandler? ResetProductsEvent;

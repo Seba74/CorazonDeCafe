@@ -15,7 +15,7 @@ public partial class Address
 
     public string Province { get; set; } = null!;
 
-    public int PostalCode { get; set; }
+    public string PostalCode { get; set; } = null!;
 
     public DateTime? CreatedAt { get; set; }
 
