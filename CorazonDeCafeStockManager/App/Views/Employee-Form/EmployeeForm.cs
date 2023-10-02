@@ -12,7 +12,7 @@ namespace CorazonDeCafeStockManager
         public string? EmployeeUsername { get => ipUser.Texts; set => SetControlText(ipUser, value); }
         public string? EmployeeRole { get => ipRole.Texts; set => SetControlText(ipRole, value); }
         public string? EmployeeStatus { get => ipStatus.Texts; set => SetControlText(ipStatus, value); }
-        public string? EmployeeDni { get => ipDni.Texts; set => SetControlText(ipDni, value);}
+        public string? EmployeeDni { get => ipDni.Texts; set => SetControlText(ipDni, value); }
         public string? EmployeePhone { get => ipPhone.Texts; set => SetControlText(ipPhone, value); }
         public string? Title { get => title.Text; set => title.Text = value; }
         public ButtonCustom? BtnDelete { get => btnDelete; set => btnDelete = value!; }
@@ -36,7 +36,7 @@ namespace CorazonDeCafeStockManager
             ipEmail.KeyPress += (sender, e) => ValidateEvent?.Invoke(sender, e);
             ipPhone.KeyPress += (sender, e) => ValidateEvent?.Invoke(sender, e);
             ipDni.KeyPress += (sender, e) => ValidateEvent?.Invoke(sender, e);
-            
+
             ipRole.OnSelectedIndexChanged += (_, __) => ipRole.ForeColor = Color.Black;
             ipStatus.OnSelectedIndexChanged += (_, __) => ipStatus.ForeColor = Color.Black;
         }

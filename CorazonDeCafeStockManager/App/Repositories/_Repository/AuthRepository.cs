@@ -15,28 +15,35 @@ public class AuthRepository : IAuthRepository
 
     public async Task<bool> Login(string username, string password)
     {
-        Employee? employee = await _context!.Employees!.Include(e => e.User).FirstOrDefaultAsync(e => e.Username == username);
-
-        if (employee == null) return false;
-        if(employee.User.Status == 0) return false;
-        
-        if (employee.Pass == "admin")
+        try
         {
-            employee.Pass = HashPass.HashPassword(employee.Pass);
-            await _context.SaveChangesAsync();
-        }
+            Employee? employee = await _context!.Employees!.Include(e => e.User).FirstOrDefaultAsync(e => e.Username == username);
 
-        if (HashPass.ValidatePassword(password, employee.Pass))
+            if (employee == null) return false;
+            if (employee.User.Status == 0) return false;
+
+            if (employee.Pass == "admin")
+            {
+                employee.Pass = HashPass.HashPassword(employee.Pass);
+                await _context.SaveChangesAsync();
+            }
+
+            if (HashPass.ValidatePassword(password, employee.Pass))
+            {
+                SessionManager.Id = employee.Id;
+                SessionManager.Name = employee.User.Name;
+                SessionManager.RoleId = employee.RoleId;
+                SessionManager.Username = employee.Username;
+                SessionManager.IsLoggedIn = true;
+
+                return true;
+            }
+            return false;
+        }
+        catch (Exception)
         {
-            SessionManager.Id = employee.Id;
-            SessionManager.Name = employee.User.Name;
-            SessionManager.RoleId = employee.RoleId;
-            SessionManager.Username = employee.Username;
-            SessionManager.IsLoggedIn = true;
-
-            return true;
+            throw new LocalException("Error al iniciar sesión");
         }
-        return false;
     }
 }
 

@@ -84,6 +84,7 @@
             productList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             productList.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             productList.Columns.AddRange(new DataGridViewColumn[] { Id, Nombre, Precio, Stock, Tipo, Categoria, Estado });
+            productList.Cursor = Cursors.Hand;
             dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle5.BackColor = Color.FromArgb(146, 90, 57);
             dataGridViewCellStyle5.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point);
@@ -186,7 +187,7 @@
             ipSearch.BorderFocusColor = Color.FromArgb(146, 90, 57);
             ipSearch.BorderRadius = 5;
             ipSearch.BorderSize = 2;
-            ipSearch.Cursor = Cursors.Hand;
+            ipSearch.Cursor = Cursors.IBeam;
             ipSearch.Font = new Font("Poppins Light", 10F, FontStyle.Regular, GraphicsUnit.Point);
             ipSearch.Location = new Point(0, 14);
             ipSearch.MaximumSize = new Size(650, 38);
@@ -228,6 +229,7 @@
             reload.BorderColor = Color.FromArgb(145, 90, 57);
             reload.BorderRadius = 5;
             reload.BorderSize = 2;
+            reload.Cursor = Cursors.Hand;
             reload.FlatAppearance.BorderSize = 0;
             reload.FlatStyle = FlatStyle.Flat;
             reload.Font = new Font("Poppins Light", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
@@ -251,6 +253,7 @@
             btnEdit.BorderColor = Color.FromArgb(145, 90, 57);
             btnEdit.BorderRadius = 5;
             btnEdit.BorderSize = 2;
+            btnEdit.Cursor = Cursors.Hand;
             btnEdit.FlatAppearance.BorderSize = 0;
             btnEdit.FlatStyle = FlatStyle.Flat;
             btnEdit.Font = new Font("Poppins Light", 11F, FontStyle.Regular, GraphicsUnit.Point);
@@ -310,6 +313,7 @@
             btnAdd.BorderColor = Color.FromArgb(145, 90, 57);
             btnAdd.BorderRadius = 5;
             btnAdd.BorderSize = 2;
+            btnAdd.Cursor = Cursors.Hand;
             btnAdd.FlatAppearance.BorderSize = 0;
             btnAdd.FlatStyle = FlatStyle.Flat;
             btnAdd.Font = new Font("Poppins Light", 11F, FontStyle.Regular, GraphicsUnit.Point);
@@ -357,7 +361,6 @@
             ClientSize = new Size(942, 663);
             Controls.Add(panel1);
             Controls.Add(productList);
-            Cursor = Cursors.Hand;
             Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point);
             FormBorderStyle = FormBorderStyle.None;
             Name = "ProductsForm";

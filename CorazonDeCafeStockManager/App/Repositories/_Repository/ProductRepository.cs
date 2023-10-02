@@ -93,6 +93,7 @@ public class ProductRepository : IProductRepository
             if (!LocalStorage.Products.IsNullOrEmpty()) return LocalStorage.Products!;
 
             LocalStorage.Products = await _context.Products!.Include(p => p.Category).Include(p => p.Type).Where(p => p.Status == 1).ToListAsync();
+            return LocalStorage.Products!;
         }
         catch (LocalException e)
         {
@@ -102,7 +103,6 @@ public class ProductRepository : IProductRepository
         {
             throw new Exception("Error al cargar los productos");
         }
-        return LocalStorage.Products ?? new();
     }
     public async Task<Product> GetProductById(int id)
     {
@@ -112,7 +112,7 @@ public class ProductRepository : IProductRepository
     public async Task<bool> UpdateProduct(ProductData product)
     {
         try
-        {
+        {   
             Product productToUpdate = await _context.Products!.FirstOrDefaultAsync(p => p.Id == product.Id) ?? throw new LocalException("Producto no encontrado");
 
             productToUpdate!.Name = product.Name!;

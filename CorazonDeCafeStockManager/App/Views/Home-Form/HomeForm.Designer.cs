@@ -30,7 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Home));
             panel1 = new Panel();
-            btnAdd = new ButtonCustom();
+            btnLogout = new ButtonCustom();
             pictureBox5 = new PictureBox();
             panel5 = new Panel();
             panel4 = new Panel();
@@ -75,7 +75,7 @@
             // 
             // panel1
             // 
-            panel1.Controls.Add(btnAdd);
+            panel1.Controls.Add(btnLogout);
             panel1.Controls.Add(pictureBox5);
             panel1.Controls.Add(panel5);
             panel1.Controls.Add(panel4);
@@ -85,31 +85,31 @@
             panel1.Size = new Size(191, 682);
             panel1.TabIndex = 0;
             // 
-            // btnAdd
+            // btnLogout
             // 
-            btnAdd.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            btnAdd.BackColor = Color.Transparent;
-            btnAdd.BackgroundColor = Color.Transparent;
-            btnAdd.BorderColor = Color.FromArgb(145, 90, 57);
-            btnAdd.BorderRadius = 6;
-            btnAdd.BorderSize = 2;
-            btnAdd.Cursor = Cursors.Hand;
-            btnAdd.FlatAppearance.BorderSize = 0;
-            btnAdd.FlatStyle = FlatStyle.Flat;
-            btnAdd.Font = new Font("Poppins Light", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            btnAdd.ForeColor = Color.FromArgb(145, 90, 57);
-            btnAdd.Image = (Image)resources.GetObject("btnAdd.Image");
-            btnAdd.ImageAlign = ContentAlignment.MiddleLeft;
-            btnAdd.Location = new Point(13, 632);
-            btnAdd.MaximumSize = new Size(160, 42);
-            btnAdd.Name = "btnAdd";
-            btnAdd.Padding = new Padding(6, 0, 6, 0);
-            btnAdd.Size = new Size(149, 38);
-            btnAdd.TabIndex = 18;
-            btnAdd.Text = "      Cerrar Sesión";
-            btnAdd.TextAlign = ContentAlignment.MiddleLeft;
-            btnAdd.TextColor = Color.FromArgb(145, 90, 57);
-            btnAdd.UseVisualStyleBackColor = false;
+            btnLogout.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            btnLogout.BackColor = Color.Transparent;
+            btnLogout.BackgroundColor = Color.Transparent;
+            btnLogout.BorderColor = Color.FromArgb(145, 90, 57);
+            btnLogout.BorderRadius = 6;
+            btnLogout.BorderSize = 2;
+            btnLogout.Cursor = Cursors.Hand;
+            btnLogout.FlatAppearance.BorderSize = 0;
+            btnLogout.FlatStyle = FlatStyle.Flat;
+            btnLogout.Font = new Font("Poppins Light", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            btnLogout.ForeColor = Color.FromArgb(145, 90, 57);
+            btnLogout.Image = (Image)resources.GetObject("btnLogout.Image");
+            btnLogout.ImageAlign = ContentAlignment.MiddleLeft;
+            btnLogout.Location = new Point(13, 632);
+            btnLogout.MaximumSize = new Size(160, 42);
+            btnLogout.Name = "btnLogout";
+            btnLogout.Padding = new Padding(6, 0, 6, 0);
+            btnLogout.Size = new Size(149, 38);
+            btnLogout.TabIndex = 18;
+            btnLogout.Text = "      Cerrar Sesión";
+            btnLogout.TextAlign = ContentAlignment.MiddleLeft;
+            btnLogout.TextColor = Color.FromArgb(145, 90, 57);
+            btnLogout.UseVisualStyleBackColor = false;
             // 
             // pictureBox5
             // 
@@ -558,7 +558,7 @@
         private PictureBox pictureBox4;
         private Panel panel5;
         private PictureBox pictureBox5;
-        private ButtonCustom btnAdd;
+        private ButtonCustom btnLogout;
         private Panel panel6;
         private Label titleHeader;
         private PictureBox iconHeader;

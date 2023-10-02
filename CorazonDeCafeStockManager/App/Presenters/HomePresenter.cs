@@ -2,11 +2,13 @@
 using CorazonDeCafeStockManager.App.Models;
 using CorazonDeCafeStockManager.App.Repositories;
 using CorazonDeCafeStockManager.App.Repositories._Repository;
+using CorazonDeCafeStockManager.App.Views.BackupForm;
 using CorazonDeCafeStockManager.App.Views.CustomerForm;
 using CorazonDeCafeStockManager.App.Views.CustomersForm;
 using CorazonDeCafeStockManager.App.Views.EmployeeForm;
 using CorazonDeCafeStockManager.App.Views.EmployeesForm;
 using CorazonDeCafeStockManager.App.Views.HomeForm;
+using CorazonDeCafeStockManager.App.Views.LoginForm;
 using CorazonDeCafeStockManager.App.Views.ProductForm;
 using CorazonDeCafeStockManager.App.Views.ProductsForm;
 
@@ -15,10 +17,11 @@ namespace CorazonDeCafeStockManager.App.Presenters
     public class HomePresenter
     {
         private readonly CorazonDeCafeContext dbContext;
-        private readonly IHomeView view;
+        private IHomeView view;
         private IProductsView? productsView;
         private ICustomersView? customersView;
         private IEmployeesView? employeesView;
+        private IBackupView? backupView;
         private IProductView? productView;
         private IEmployeeView? employeeView;
         private ICustomerView? customerView;
@@ -26,14 +29,16 @@ namespace CorazonDeCafeStockManager.App.Presenters
         {
             this.view = view;
             this.dbContext = dbContext;
+
+            this.view.LogoutEvent += LogoutEvent;
             this.view.ShowProductsView += ShowProductsView;
             this.view.ShowCustomersView += ShowCustomersView;
             this.view.ShowEmployeesView += ShowEmployeesView;
+            this.view.ShowBackupView += ShowBackupView;
             this.view.CloseView += CloseView;
         }
-
-        public void ShowHomeView()
-        {
+        
+        public void ShowHomeView(){
             ShowProductsView(this, EventArgs.Empty);
             VerifyRole();
             view.Show();
@@ -179,6 +184,38 @@ namespace CorazonDeCafeStockManager.App.Presenters
             EmployeePresenter EmployeePresenter = new(employeeView, EmployeeRepository, Employee!, this);
         }
 
+        public void ShowBackupView(object? sender, EventArgs e)
+        {
+            if (backupView != null)
+            {
+                return;
+            }
+
+            this.CloseView(sender, e);
+            view.RemoveBackgroundBtns();
+            view.BackupButton.BackColor = Color.FromArgb(255, 219, 197);
+
+            view.IconHeader.BackgroundImage = Properties.Resources.backup2;
+            view.TitleHeader.Text = "EMPLEADOS";
+
+            IBackupRepository backupRepository = new BackupRepository(dbContext);
+            backupView = BackupForm.GetInstance(view.ControlPanel);
+            BackupPresenter BackupPresenter = new(backupView, backupRepository, this);
+        }
+
+        private void LogoutEvent(object? sender, EventArgs e)
+        {
+            // are you sure to logout message dialog
+            DialogResult dialogResult = MessageBox.Show("¿Estás seguro de cerrar sesión?", "Cerrar sesión", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (dialogResult == DialogResult.Yes)
+            {
+                SessionManager.Logout();
+                view.Close();
+                _ = new AuthPresenter(dbContext);
+            }
+        }
+
         private void CloseView(object? sender, EventArgs e)
         {
             if (productView != null)
@@ -201,17 +238,21 @@ namespace CorazonDeCafeStockManager.App.Presenters
                 customerView.Close();
                 customerView = null;
             }
-            if (employeesView != null)
+            if (backupView != null)
             {
-                employeesView.Close();
-                employeesView = null;
+                backupView.Close();
+                backupView = null;
             }
             if (employeeView != null)
             {
                 employeeView.Close();
                 employeeView = null;
             }
-
+            if (employeesView != null)
+            {
+                employeesView.Close();
+                employeesView = null;
+            }
         }
     }
 }

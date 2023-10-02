@@ -27,7 +27,9 @@ namespace CorazonDeCafeStockManager
             btnProducts.Click += (_, __) => ShowProductsView?.Invoke(this, EventArgs.Empty);
             btnCustomers.Click += (_, __) => ShowCustomersView?.Invoke(this, EventArgs.Empty);
             btnEmployees.Click += (_, __) => ShowEmployeesView?.Invoke(this, EventArgs.Empty);
+            btnBackup.Click += (_, __) => ShowBackupView?.Invoke(this, EventArgs.Empty);
             btnClose.Click += (_, __) => Application.Exit();
+            btnLogout.Click += (_, __) => LogoutEvent?.Invoke(this, EventArgs.Empty);
             btnMin.Click += (_, __) => WindowState = FormWindowState.Minimized;
             btnHome.Click += (_, __) =>
             {
@@ -58,11 +60,16 @@ namespace CorazonDeCafeStockManager
             btnEmployees.BackColor = Color.Transparent;
             btnSales.BackColor = Color.Transparent;
             btnCustomers.BackColor = Color.Transparent;
+            btnBilling.BackColor = Color.Transparent;
+            btnReports.BackColor = Color.Transparent;
+            btnBackup.BackColor = Color.Transparent;
         }
 
         public event EventHandler? ShowProductsView;
         public event EventHandler? ShowCustomersView;
         public event EventHandler? ShowEmployeesView;
+        public event EventHandler? ShowBackupView;
         public event EventHandler? CloseView;
+        public event EventHandler? LogoutEvent;
     }
 }

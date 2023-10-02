@@ -39,7 +39,10 @@
             panel1 = new Panel();
             panel2 = new Panel();
             panel3 = new Panel();
-            panel4 = new Panel();
+            ipPostalCode = new utils.Custom.TextBox.TextBoxCustom();
+            lblPostalCode = new Label();
+            ipProvince = new utils.Custom.TextBox.TextBoxCustom();
+            lblProvince = new Label();
             ipCity = new utils.Custom.TextBox.TextBoxCustom();
             lblCity = new Label();
             ipNumber = new utils.Custom.TextBox.TextBoxCustom();
@@ -58,10 +61,7 @@
             lblSurname = new Label();
             lblEmail = new Label();
             lblName = new Label();
-            ipPostalCode = new utils.Custom.TextBox.TextBoxCustom();
-            lblPostalCode = new Label();
-            ipProvince = new utils.Custom.TextBox.TextBoxCustom();
-            lblProvince = new Label();
+            panel4 = new Panel();
             ((System.ComponentModel.ISupportInitialize)btnGoBack).BeginInit();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
@@ -245,15 +245,77 @@
             panel3.Size = new Size(943, 331);
             panel3.TabIndex = 39;
             // 
-            // panel4
+            // ipPostalCode
             // 
-            panel4.Anchor = AnchorStyles.None;
-            panel4.Controls.Add(title);
-            panel4.Controls.Add(btnGoBack);
-            panel4.Location = new Point(-3, 63);
-            panel4.Name = "panel4";
-            panel4.Size = new Size(999, 48);
-            panel4.TabIndex = 50;
+            ipPostalCode.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            ipPostalCode.BackColor = Color.FromArgb(255, 219, 197);
+            ipPostalCode.BorderColor = Color.FromArgb(255, 219, 197);
+            ipPostalCode.BorderFocusColor = Color.FromArgb(146, 90, 57);
+            ipPostalCode.BorderRadius = 5;
+            ipPostalCode.BorderSize = 2;
+            ipPostalCode.Cursor = Cursors.IBeam;
+            ipPostalCode.Font = new Font("Poppins Light", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            ipPostalCode.Location = new Point(713, 162);
+            ipPostalCode.MaximumSize = new Size(650, 37);
+            ipPostalCode.MinimumSize = new Size(100, 34);
+            ipPostalCode.Multiline = false;
+            ipPostalCode.Name = "ipPostalCode";
+            ipPostalCode.Padding = new Padding(10, 6, 4, 2);
+            ipPostalCode.PasswordChar = false;
+            ipPostalCode.PlaceholderColor = Color.FromArgb(146, 90, 57);
+            ipPostalCode.PlaceholderText = "Código Postal";
+            ipPostalCode.Size = new Size(210, 34);
+            ipPostalCode.TabIndex = 79;
+            ipPostalCode.Texts = "";
+            ipPostalCode.UnderlinedStyle = false;
+            // 
+            // lblPostalCode
+            // 
+            lblPostalCode.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            lblPostalCode.AutoSize = true;
+            lblPostalCode.Font = new Font("Poppins Light", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            lblPostalCode.ForeColor = Color.FromArgb(146, 90, 57);
+            lblPostalCode.Location = new Point(713, 133);
+            lblPostalCode.Name = "lblPostalCode";
+            lblPostalCode.Size = new Size(115, 26);
+            lblPostalCode.TabIndex = 80;
+            lblPostalCode.Text = "Código Postal";
+            // 
+            // ipProvince
+            // 
+            ipProvince.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            ipProvince.BackColor = Color.FromArgb(255, 219, 197);
+            ipProvince.BorderColor = Color.FromArgb(255, 219, 197);
+            ipProvince.BorderFocusColor = Color.FromArgb(146, 90, 57);
+            ipProvince.BorderRadius = 5;
+            ipProvince.BorderSize = 2;
+            ipProvince.Cursor = Cursors.IBeam;
+            ipProvince.Font = new Font("Poppins Light", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            ipProvince.Location = new Point(713, 76);
+            ipProvince.MaximumSize = new Size(650, 37);
+            ipProvince.MinimumSize = new Size(100, 34);
+            ipProvince.Multiline = false;
+            ipProvince.Name = "ipProvince";
+            ipProvince.Padding = new Padding(10, 6, 4, 2);
+            ipProvince.PasswordChar = false;
+            ipProvince.PlaceholderColor = Color.FromArgb(146, 90, 57);
+            ipProvince.PlaceholderText = "Nombre de la provincia";
+            ipProvince.Size = new Size(210, 34);
+            ipProvince.TabIndex = 77;
+            ipProvince.Texts = "";
+            ipProvince.UnderlinedStyle = false;
+            // 
+            // lblProvince
+            // 
+            lblProvince.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            lblProvince.AutoSize = true;
+            lblProvince.Font = new Font("Poppins Light", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            lblProvince.ForeColor = Color.FromArgb(146, 90, 57);
+            lblProvince.Location = new Point(713, 47);
+            lblProvince.Name = "lblProvince";
+            lblProvince.Size = new Size(77, 26);
+            lblProvince.TabIndex = 78;
+            lblProvince.Text = "Provincia";
             // 
             // ipCity
             // 
@@ -263,7 +325,7 @@
             ipCity.BorderFocusColor = Color.FromArgb(146, 90, 57);
             ipCity.BorderRadius = 5;
             ipCity.BorderSize = 2;
-            ipCity.Cursor = Cursors.Hand;
+            ipCity.Cursor = Cursors.IBeam;
             ipCity.Font = new Font("Poppins Light", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             ipCity.Location = new Point(477, 246);
             ipCity.MaximumSize = new Size(650, 37);
@@ -299,7 +361,7 @@
             ipNumber.BorderFocusColor = Color.FromArgb(146, 90, 57);
             ipNumber.BorderRadius = 5;
             ipNumber.BorderSize = 2;
-            ipNumber.Cursor = Cursors.Hand;
+            ipNumber.Cursor = Cursors.IBeam;
             ipNumber.Font = new Font("Poppins Light", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             ipNumber.Location = new Point(477, 162);
             ipNumber.MaximumSize = new Size(650, 37);
@@ -369,7 +431,7 @@
             ipName.BorderFocusColor = Color.FromArgb(146, 90, 57);
             ipName.BorderRadius = 5;
             ipName.BorderSize = 2;
-            ipName.Cursor = Cursors.Hand;
+            ipName.Cursor = Cursors.IBeam;
             ipName.Font = new Font("Poppins Light", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             ipName.Location = new Point(11, 76);
             ipName.MaximumSize = new Size(650, 37);
@@ -393,7 +455,7 @@
             ipSurname.BorderFocusColor = Color.FromArgb(146, 90, 57);
             ipSurname.BorderRadius = 5;
             ipSurname.BorderSize = 2;
-            ipSurname.Cursor = Cursors.Hand;
+            ipSurname.Cursor = Cursors.IBeam;
             ipSurname.Font = new Font("Poppins Light", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             ipSurname.Location = new Point(241, 76);
             ipSurname.MaximumSize = new Size(650, 37);
@@ -417,7 +479,7 @@
             ipDni.BorderFocusColor = Color.FromArgb(146, 90, 57);
             ipDni.BorderRadius = 5;
             ipDni.BorderSize = 2;
-            ipDni.Cursor = Cursors.Hand;
+            ipDni.Cursor = Cursors.IBeam;
             ipDni.Font = new Font("Poppins Light", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             ipDni.Location = new Point(241, 246);
             ipDni.MaximumSize = new Size(650, 37);
@@ -441,7 +503,7 @@
             ipEmail.BorderFocusColor = Color.FromArgb(146, 90, 57);
             ipEmail.BorderRadius = 5;
             ipEmail.BorderSize = 2;
-            ipEmail.Cursor = Cursors.Hand;
+            ipEmail.Cursor = Cursors.IBeam;
             ipEmail.Font = new Font("Poppins Light", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             ipEmail.Location = new Point(11, 160);
             ipEmail.MaximumSize = new Size(650, 37);
@@ -465,7 +527,7 @@
             ipStreet.BorderFocusColor = Color.FromArgb(146, 90, 57);
             ipStreet.BorderRadius = 5;
             ipStreet.BorderSize = 2;
-            ipStreet.Cursor = Cursors.Hand;
+            ipStreet.Cursor = Cursors.IBeam;
             ipStreet.Font = new Font("Poppins Light", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             ipStreet.Location = new Point(477, 76);
             ipStreet.MaximumSize = new Size(650, 37);
@@ -489,7 +551,7 @@
             ipPhone.BorderFocusColor = Color.FromArgb(146, 90, 57);
             ipPhone.BorderRadius = 5;
             ipPhone.BorderSize = 2;
-            ipPhone.Cursor = Cursors.Hand;
+            ipPhone.Cursor = Cursors.IBeam;
             ipPhone.Font = new Font("Poppins Light", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             ipPhone.Location = new Point(241, 162);
             ipPhone.MaximumSize = new Size(650, 37);
@@ -577,77 +639,15 @@
             lblName.TabIndex = 61;
             lblName.Text = "Nombre";
             // 
-            // ipPostalCode
+            // panel4
             // 
-            ipPostalCode.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            ipPostalCode.BackColor = Color.FromArgb(255, 219, 197);
-            ipPostalCode.BorderColor = Color.FromArgb(255, 219, 197);
-            ipPostalCode.BorderFocusColor = Color.FromArgb(146, 90, 57);
-            ipPostalCode.BorderRadius = 5;
-            ipPostalCode.BorderSize = 2;
-            ipPostalCode.Cursor = Cursors.Hand;
-            ipPostalCode.Font = new Font("Poppins Light", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            ipPostalCode.Location = new Point(713, 162);
-            ipPostalCode.MaximumSize = new Size(650, 37);
-            ipPostalCode.MinimumSize = new Size(100, 34);
-            ipPostalCode.Multiline = false;
-            ipPostalCode.Name = "ipPostalCode";
-            ipPostalCode.Padding = new Padding(10, 6, 4, 2);
-            ipPostalCode.PasswordChar = false;
-            ipPostalCode.PlaceholderColor = Color.FromArgb(146, 90, 57);
-            ipPostalCode.PlaceholderText = "Código Postal";
-            ipPostalCode.Size = new Size(210, 34);
-            ipPostalCode.TabIndex = 79;
-            ipPostalCode.Texts = "";
-            ipPostalCode.UnderlinedStyle = false;
-            // 
-            // lblPostalCode
-            // 
-            lblPostalCode.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            lblPostalCode.AutoSize = true;
-            lblPostalCode.Font = new Font("Poppins Light", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-            lblPostalCode.ForeColor = Color.FromArgb(146, 90, 57);
-            lblPostalCode.Location = new Point(713, 133);
-            lblPostalCode.Name = "lblPostalCode";
-            lblPostalCode.Size = new Size(115, 26);
-            lblPostalCode.TabIndex = 80;
-            lblPostalCode.Text = "Código Postal";
-            // 
-            // ipProvince
-            // 
-            ipProvince.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            ipProvince.BackColor = Color.FromArgb(255, 219, 197);
-            ipProvince.BorderColor = Color.FromArgb(255, 219, 197);
-            ipProvince.BorderFocusColor = Color.FromArgb(146, 90, 57);
-            ipProvince.BorderRadius = 5;
-            ipProvince.BorderSize = 2;
-            ipProvince.Cursor = Cursors.Hand;
-            ipProvince.Font = new Font("Poppins Light", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            ipProvince.Location = new Point(713, 76);
-            ipProvince.MaximumSize = new Size(650, 37);
-            ipProvince.MinimumSize = new Size(100, 34);
-            ipProvince.Multiline = false;
-            ipProvince.Name = "ipProvince";
-            ipProvince.Padding = new Padding(10, 6, 4, 2);
-            ipProvince.PasswordChar = false;
-            ipProvince.PlaceholderColor = Color.FromArgb(146, 90, 57);
-            ipProvince.PlaceholderText = "Nombre de la provincia";
-            ipProvince.Size = new Size(210, 34);
-            ipProvince.TabIndex = 77;
-            ipProvince.Texts = "";
-            ipProvince.UnderlinedStyle = false;
-            // 
-            // lblProvince
-            // 
-            lblProvince.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            lblProvince.AutoSize = true;
-            lblProvince.Font = new Font("Poppins Light", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-            lblProvince.ForeColor = Color.FromArgb(146, 90, 57);
-            lblProvince.Location = new Point(713, 47);
-            lblProvince.Name = "lblProvince";
-            lblProvince.Size = new Size(77, 26);
-            lblProvince.TabIndex = 78;
-            lblProvince.Text = "Provincia";
+            panel4.Anchor = AnchorStyles.None;
+            panel4.Controls.Add(title);
+            panel4.Controls.Add(btnGoBack);
+            panel4.Location = new Point(-3, 63);
+            panel4.Name = "panel4";
+            panel4.Size = new Size(999, 48);
+            panel4.TabIndex = 50;
             // 
             // CustomerForm
             // 

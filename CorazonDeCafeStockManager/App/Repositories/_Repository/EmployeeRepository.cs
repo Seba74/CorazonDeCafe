@@ -86,7 +86,8 @@ public class EmployeeRepository : IEmployeeRepository
 
         try
         {
-            LocalStorage.Employees = await _context.Employees!.Include(p => p.User).Include(p => p.Role).ToListAsync();
+            if (SessionManager.Id == 1) LocalStorage.Employees = await _context.Employees!.Include(p => p.User).Include(p => p.Role).Where(p => p.Role.Id != 1).ToListAsync();
+            else LocalStorage.Employees = await _context.Employees!.Include(p => p.User).Include(p => p.Role).Where(p => p.Role.Id != 1 && p.Role.Id != 2).ToListAsync();
         }
         catch (Exception)
         {

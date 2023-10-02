@@ -275,7 +275,7 @@
             ipName.BorderFocusColor = Color.FromArgb(146, 90, 57);
             ipName.BorderRadius = 5;
             ipName.BorderSize = 2;
-            ipName.Cursor = Cursors.Hand;
+            ipName.Cursor = Cursors.IBeam;
             ipName.Font = new Font("Poppins Light", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             ipName.Location = new Point(25, 82);
             ipName.MaximumSize = new Size(650, 37);
@@ -299,7 +299,7 @@
             ipSurname.BorderFocusColor = Color.FromArgb(146, 90, 57);
             ipSurname.BorderRadius = 5;
             ipSurname.BorderSize = 2;
-            ipSurname.Cursor = Cursors.Hand;
+            ipSurname.Cursor = Cursors.IBeam;
             ipSurname.Font = new Font("Poppins Light", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             ipSurname.Location = new Point(297, 82);
             ipSurname.MaximumSize = new Size(650, 37);
@@ -323,7 +323,7 @@
             ipDni.BorderFocusColor = Color.FromArgb(146, 90, 57);
             ipDni.BorderRadius = 5;
             ipDni.BorderSize = 2;
-            ipDni.Cursor = Cursors.Hand;
+            ipDni.Cursor = Cursors.IBeam;
             ipDni.Font = new Font("Poppins Light", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             ipDni.Location = new Point(567, 82);
             ipDni.MaximumSize = new Size(650, 37);
@@ -347,7 +347,7 @@
             ipEmail.BorderFocusColor = Color.FromArgb(146, 90, 57);
             ipEmail.BorderRadius = 5;
             ipEmail.BorderSize = 2;
-            ipEmail.Cursor = Cursors.Hand;
+            ipEmail.Cursor = Cursors.IBeam;
             ipEmail.Font = new Font("Poppins Light", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             ipEmail.Location = new Point(297, 164);
             ipEmail.MaximumSize = new Size(650, 37);
@@ -371,7 +371,7 @@
             ipUser.BorderFocusColor = Color.FromArgb(146, 90, 57);
             ipUser.BorderRadius = 5;
             ipUser.BorderSize = 2;
-            ipUser.Cursor = Cursors.Hand;
+            ipUser.Cursor = Cursors.IBeam;
             ipUser.Font = new Font("Poppins Light", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             ipUser.Location = new Point(569, 166);
             ipUser.MaximumSize = new Size(650, 37);
@@ -395,7 +395,7 @@
             ipPhone.BorderFocusColor = Color.FromArgb(146, 90, 57);
             ipPhone.BorderRadius = 5;
             ipPhone.BorderSize = 2;
-            ipPhone.Cursor = Cursors.Hand;
+            ipPhone.Cursor = Cursors.IBeam;
             ipPhone.Font = new Font("Poppins Light", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             ipPhone.Location = new Point(297, 254);
             ipPhone.MaximumSize = new Size(650, 37);
@@ -422,7 +422,7 @@
             ipRole.Font = new Font("Poppins Light", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             ipRole.ForeColor = Color.Black;
             ipRole.IconColor = Color.FromArgb(145, 90, 57);
-            ipRole.Items.AddRange(new object[] { "vendedor", "supervisor", "gerente", "admin" });
+            ipRole.Items.AddRange(new object[] { "vendedor", "supervisor", "gerente"});
             ipRole.ListBackColor = Color.FromArgb(230, 228, 245);
             ipRole.ListTextColor = Color.Black;
             ipRole.Location = new Point(26, 254);

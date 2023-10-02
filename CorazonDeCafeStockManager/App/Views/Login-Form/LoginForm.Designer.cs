@@ -206,6 +206,7 @@
             Controls.Add(panel1);
             Controls.Add(lblTitle);
             Controls.Add(lblSubtitle);
+            Cursor = Cursors.Arrow;
             Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             FormBorderStyle = FormBorderStyle.None;
             Margin = new Padding(4);

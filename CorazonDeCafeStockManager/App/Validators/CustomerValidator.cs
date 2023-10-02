@@ -8,6 +8,24 @@ namespace CorazonDeCafeStockManager.App.Validators
     {
         public CustomerValidator()
         {
+            // if all fields are empty then Rule custom && send error
+            RuleFor(x => x).Custom((customer, context) =>
+            {
+                if (string.IsNullOrWhiteSpace(customer.Name) &&
+                    string.IsNullOrWhiteSpace(customer.Surname) &&
+                    string.IsNullOrWhiteSpace(customer.Email) &&
+                    string.IsNullOrWhiteSpace(customer.Dni) &&
+                    string.IsNullOrWhiteSpace(customer.Phone) &&
+                    string.IsNullOrWhiteSpace(customer.Street) &&
+                    string.IsNullOrWhiteSpace(customer.City) &&
+                    string.IsNullOrWhiteSpace(customer.Province) &&
+                    string.IsNullOrWhiteSpace(customer.PostalCode) &&
+                    customer.Number == 0)
+                {
+                    context.AddFailure("Hay campos vacios o incompletos");
+                }
+            });
+
             RuleFor(x => x.Name)
                 .NotEmpty().WithMessage("El nombre es requerido")
                 .MinimumLength(3).WithMessage("El nombre debe tener al menos 3 caracteres");

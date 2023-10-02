@@ -15,7 +15,7 @@ namespace CorazonDeCafeStockManager
         public string? CustomerCity { get => ipCity.Texts; set => SetControlText(ipCity, value); }
         public string? CustomerProvince { get => ipProvince.Texts; set => SetControlText(ipProvince, value); }
         public string? CustomerStatus { get => ipStatus.Texts; set => SetControlText(ipStatus, value); }
-        public string? CustomerDni { get => ipDni.Texts; set => SetControlText(ipDni, value); } 
+        public string? CustomerDni { get => ipDni.Texts; set => SetControlText(ipDni, value); }
         public string? CustomerPhone { get => ipPhone.Texts; set => SetControlText(ipPhone, value); }
         public string? Title { get => title.Text; set => title.Text = value; }
         public ButtonCustom? BtnDelete { get => btnDelete; set => btnDelete = value!; }

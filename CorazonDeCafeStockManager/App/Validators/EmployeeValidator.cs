@@ -8,6 +8,14 @@ namespace CorazonDeCafeStockManager.App.Validators
     {
         public EmployeeValidator()
         {
+            RuleFor(x => x).Custom((employee, context) =>
+            {
+                if (string.IsNullOrEmpty(employee.Name) && string.IsNullOrEmpty(employee.Surname) && string.IsNullOrEmpty(employee.Email) && string.IsNullOrEmpty(employee.Dni) && string.IsNullOrEmpty(employee.Phone) && string.IsNullOrEmpty(employee.Username))
+                {
+                    context.AddFailure("Hay campos vacios o incompletos");
+                }
+            });
+
             RuleFor(x => x.Name)
                 .NotEmpty().WithMessage("El nombre es requerido")
                 .MinimumLength(3).WithMessage("El nombre debe tener al menos 3 caracteres");
@@ -36,7 +44,7 @@ namespace CorazonDeCafeStockManager.App.Validators
 
             RuleFor(x => x.Username)
                 .NotEmpty().WithMessage("El usuario es requerido")
-                .MinimumLength(6).WithMessage("El usuario debe tener al menos 6 caracteres"); 
+                .MinimumLength(6).WithMessage("El usuario debe tener al menos 6 caracteres");
         }
     }
 }

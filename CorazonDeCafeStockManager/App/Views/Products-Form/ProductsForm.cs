@@ -1,4 +1,5 @@
-﻿using CorazonDeCafeStockManager.App.Models;
+﻿using CorazonDeCafeStockManager.App.Common;
+using CorazonDeCafeStockManager.App.Models;
 using CorazonDeCafeStockManager.App.Views.ProductsForm;
 
 namespace CorazonDeCafeStockManager
@@ -16,6 +17,14 @@ namespace CorazonDeCafeStockManager
             InitializeComponent();
             InitializeEvents();
 
+            if (SessionManager.Id != 1 && SessionManager.Id != 2)
+            {
+                btnAdd.Visible = false;
+                btnEdit.Visible = false;
+            }
+            else productList.DoubleClick += (_, __) => HandleEditEvent();
+
+
             loadFonts = new LoadFonts();
             ChangeDataGridViewFont(productList);
 
@@ -31,7 +40,6 @@ namespace CorazonDeCafeStockManager
             reload.Click += (_, __) => ResetProductsEvent?.Invoke(this, EventArgs.Empty);
             btnAdd.Click += (_, __) => AddEvent?.Invoke(this, EventArgs.Empty);
             btnEdit.Click += (_, __) => HandleEditEvent();
-            productList.DoubleClick += (_, __) => HandleEditEvent();
         }
 
         private void HandleEditEvent()

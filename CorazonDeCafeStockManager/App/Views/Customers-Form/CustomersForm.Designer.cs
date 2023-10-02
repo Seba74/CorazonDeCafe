@@ -82,6 +82,7 @@
             customersDataGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             customersDataGrid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             customersDataGrid.Columns.AddRange(new DataGridViewColumn[] { Dni, FullName, Email, Phone, City, Province, Status });
+            customersDataGrid.Cursor = Cursors.Hand;
             dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle4.BackColor = Color.FromArgb(146, 90, 57);
             dataGridViewCellStyle4.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point);
@@ -119,14 +120,14 @@
             customersDataGrid.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             customersDataGrid.Size = new Size(928, 498);
             customersDataGrid.TabIndex = 0;
-            dataGridViewCellStyle3.BackColor = Color.FromArgb(146, 90, 57);
-            dataGridViewCellStyle3.ForeColor = Color.White;
-            dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(146, 90, 57);
-            dataGridViewCellStyle3.SelectionForeColor = Color.White;
             // 
             // Dni
             // 
             Dni.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dataGridViewCellStyle3.BackColor = Color.FromArgb(146, 90, 57);
+            dataGridViewCellStyle3.ForeColor = Color.White;
+            dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(146, 90, 57);
+            dataGridViewCellStyle3.SelectionForeColor = Color.White;
             Dni.DefaultCellStyle = dataGridViewCellStyle3;
             Dni.FillWeight = 65F;
             Dni.HeaderText = "Dni";
@@ -151,8 +152,8 @@
             // 
             // Phone
             // 
-            Phone.FillWeight = 65F;
             Phone.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            Phone.FillWeight = 65F;
             Phone.HeaderText = "Contacto";
             Phone.Name = "Phone";
             Phone.ReadOnly = true;
@@ -172,7 +173,7 @@
             Province.ReadOnly = true;
             // 
             // Status
-            //
+            // 
             Status.FillWeight = 45F;
             Status.HeaderText = "Estado";
             Status.Name = "Status";
@@ -185,7 +186,7 @@
             ipSearch.BorderFocusColor = Color.FromArgb(146, 90, 57);
             ipSearch.BorderRadius = 5;
             ipSearch.BorderSize = 2;
-            ipSearch.Cursor = Cursors.Hand;
+            ipSearch.Cursor = Cursors.IBeam;
             ipSearch.Font = new Font("Poppins Light", 10F, FontStyle.Regular, GraphicsUnit.Point);
             ipSearch.Location = new Point(0, 14);
             ipSearch.MaximumSize = new Size(650, 38);
@@ -224,7 +225,6 @@
             endDate.BorderRadius = 10;
             endDate.BorderSize = 0;
             endDate.CustomFormat = "dd/MM/yyyy";
-            endDate.Visible = false;
             endDate.Font = new Font("Segoe UI", 9.5F, FontStyle.Regular, GraphicsUnit.Point);
             endDate.Format = DateTimePickerFormat.Custom;
             endDate.Location = new Point(395, 16);
@@ -237,6 +237,7 @@
             endDate.TabIndex = 20;
             endDate.TextColor = Color.FromArgb(145, 90, 57);
             endDate.Value = new DateTime(2023, 9, 20, 0, 0, 0, 0);
+            endDate.Visible = false;
             // 
             // startDate
             // 
@@ -269,6 +270,7 @@
             reload.BorderColor = Color.FromArgb(145, 90, 57);
             reload.BorderRadius = 5;
             reload.BorderSize = 2;
+            reload.Cursor = Cursors.Hand;
             reload.FlatAppearance.BorderSize = 0;
             reload.FlatStyle = FlatStyle.Flat;
             reload.Font = new Font("Poppins Light", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
@@ -292,6 +294,7 @@
             btnEdit.BorderColor = Color.FromArgb(145, 90, 57);
             btnEdit.BorderRadius = 5;
             btnEdit.BorderSize = 2;
+            btnEdit.Cursor = Cursors.Hand;
             btnEdit.FlatAppearance.BorderSize = 0;
             btnEdit.FlatStyle = FlatStyle.Flat;
             btnEdit.Font = new Font("Poppins Light", 11F, FontStyle.Regular, GraphicsUnit.Point);
@@ -328,6 +331,7 @@
             btnAdd.BorderColor = Color.FromArgb(145, 90, 57);
             btnAdd.BorderRadius = 5;
             btnAdd.BorderSize = 2;
+            btnAdd.Cursor = Cursors.Hand;
             btnAdd.FlatAppearance.BorderSize = 0;
             btnAdd.FlatStyle = FlatStyle.Flat;
             btnAdd.Font = new Font("Poppins Light", 11F, FontStyle.Regular, GraphicsUnit.Point);
@@ -352,7 +356,6 @@
             ClientSize = new Size(952, 663);
             Controls.Add(panel1);
             Controls.Add(customersDataGrid);
-            Cursor = Cursors.Hand;
             Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point);
             FormBorderStyle = FormBorderStyle.None;
             Name = "CustomersForm";

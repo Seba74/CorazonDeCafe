@@ -17,11 +17,13 @@
         event EventHandler? ShowProductsView;
         event EventHandler? ShowCustomersView;
         event EventHandler? ShowEmployeesView;
+        event EventHandler? ShowBackupView;
         event EventHandler? CloseView;
+        event EventHandler? LogoutEvent;
 
         void RemoveBackgroundBtns();
         void Show();
-
+        void Hide();
         void Close();
     }
 }

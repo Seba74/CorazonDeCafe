@@ -189,7 +189,7 @@
             ipName.BorderFocusColor = Color.FromArgb(146, 90, 57);
             ipName.BorderRadius = 5;
             ipName.BorderSize = 2;
-            ipName.Cursor = Cursors.Hand;
+            ipName.Cursor = Cursors.IBeam;
             ipName.Font = new Font("Poppins Light", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             ipName.Location = new Point(18, 46);
             ipName.MaximumSize = new Size(650, 37);
@@ -213,7 +213,7 @@
             ipPrice.BorderFocusColor = Color.FromArgb(146, 90, 57);
             ipPrice.BorderRadius = 5;
             ipPrice.BorderSize = 2;
-            ipPrice.Cursor = Cursors.Hand;
+            ipPrice.Cursor = Cursors.IBeam;
             ipPrice.Font = new Font("Poppins Light", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             ipPrice.Location = new Point(212, 130);
             ipPrice.MaximumSize = new Size(650, 37);
@@ -237,7 +237,7 @@
             ipStock.BorderFocusColor = Color.FromArgb(146, 90, 57);
             ipStock.BorderRadius = 5;
             ipStock.BorderSize = 2;
-            ipStock.Cursor = Cursors.Hand;
+            ipStock.Cursor = Cursors.IBeam;
             ipStock.Font = new Font("Poppins Light", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             ipStock.Location = new Point(19, 302);
             ipStock.MaximumSize = new Size(650, 37);

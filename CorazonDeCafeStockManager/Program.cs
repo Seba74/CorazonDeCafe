@@ -21,15 +21,8 @@ namespace CorazonDeCafeStockManager
             DbContextOptionsBuilder<CorazonDeCafeContext> optionsBuilder = new();
             CorazonDeCafeContext dbContext = new(optionsBuilder.UseSqlServer(Resources.connectionString).Options);
             loadFonts.Init();
-            // Init Home View
-            IHomeView homeView = new Home(); 
-            HomePresenter homePresenter = new(homeView, dbContext);
 
-            // First View Presentation  
-            IAuthRepository authRepository = new AuthRepository(dbContext);
-            IAuthView authLogin = new LoginForm();
-            _ = new AuthPresenter(authLogin, authRepository, homePresenter);
-
+            _ = new AuthPresenter(dbContext);
             Application.Run();
         }
     }
