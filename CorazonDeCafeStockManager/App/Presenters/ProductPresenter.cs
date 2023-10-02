@@ -66,7 +66,7 @@ namespace CorazonDeCafeStockManager.App.Presenters
             }
             else
             {
-                string imagePath = Path.Combine("products", product.Imagen);
+                string imagePath = Path.Combine("..", "..", "..", "products", product.Imagen);
                 view.ShowImage!.Image = Image.FromFile(imagePath);
             }
 
@@ -268,7 +268,7 @@ namespace CorazonDeCafeStockManager.App.Presenters
                     imageName = view.ProductImagen;
                 }
 
-                string fileSavePath = Path.Combine("products", imageName!);
+                string fileSavePath = Path.Combine("..", "..", "..", "products", imageName!);
                 string fileName = openFileDialog.SafeFileName;
                 this.fileSavePath = fileSavePath;
                 filePath = openFileDialog.FileName;

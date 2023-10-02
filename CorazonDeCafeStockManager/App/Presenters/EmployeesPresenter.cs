@@ -19,6 +19,7 @@ namespace CorazonDeCafeStockManager.App.Presenters
             this.view = view;
             this.homePresenter = homePresenter;
             this.employeeRepository = employeeRepository;
+            
             this.view.SearchEvent += SearchEvent!;
             this.view.FilterEvent += FilterEvent!;
             this.view.ResetEmployeesEvent += ResetEmployeesEvent!;

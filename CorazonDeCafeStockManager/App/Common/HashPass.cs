@@ -1,5 +1,3 @@
-using BCrypt.Net;
-
 namespace CorazonDeCafeStockManager.App.Common{
     public static class HashPass{
         public static string HashPassword(string password){
