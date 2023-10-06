@@ -25,17 +25,25 @@ namespace CorazonDeCafeStockManager.App.Presenters
         {
             view.Loading.Visible = true;
             await Task.Delay(600);
-            bool logged = await repository!.Login(e.Item1, e.Item2);
-            if (logged)
+            bool logged;
+            try
             {
-                view?.Close();
-                IHomeView homeView = new Home();
-                HomePresenter presenter = new(homeView, dbContext);
-                presenter.ShowHomeView();
+                logged = await repository!.Login(e.Item1, e.Item2);
+                if (logged)
+                {
+                    view?.Close();
+                    IHomeView homeView = new Home();
+                    HomePresenter presenter = new(homeView, dbContext);
+                    presenter.ShowHomeView();
+                }
+                else
+                {
+                    view?.ShowError("Usuario o contraseña incorrectos");
+                }
             }
-            else
+            catch
             {
-                view?.ShowError("Usuario o contraseña incorrectos");
+                view?.ShowError("Error al iniciar sesión");
             }
         }
     }
