@@ -27,6 +27,9 @@
     <Compile Update="App\Views\Backup-Form\BackupForm.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="App\Views\Billing-Form\ProductsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Properties\Resources.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>

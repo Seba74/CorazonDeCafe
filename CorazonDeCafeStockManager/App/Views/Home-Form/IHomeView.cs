@@ -17,6 +17,7 @@
         event EventHandler? ShowProductsView;
         event EventHandler? ShowCustomersView;
         event EventHandler? ShowEmployeesView;
+        event EventHandler? ShowBillingView;
         event EventHandler? ShowBackupView;
         event EventHandler? CloseView;
         event EventHandler? LogoutEvent;

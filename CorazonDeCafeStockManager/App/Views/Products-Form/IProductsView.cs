@@ -17,11 +17,13 @@ namespace CorazonDeCafeStockManager.App.Views.ProductsForm
 
         Size Size { get; set; }
         IEnumerable<Product>? ProductsList { get; set; }
+        DataGridView ProductsGrid { get; set; }
         // Events
         event EventHandler? SearchEvent;
         event EventHandler? FilterEvent;
         event EventHandler? ResetProductsEvent;
         event EventHandler? AddEvent;
+        event EventHandler AddProductToCartEvent;
         event EventHandler? EditEvent;
 
         // Methods

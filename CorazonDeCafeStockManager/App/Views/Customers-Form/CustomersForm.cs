@@ -45,27 +45,46 @@ namespace CorazonDeCafeStockManager.App.Views.CustomersForm
         }
         private void InitializeEvents()
         {
+            if (SessionManager.Id != 1 && SessionManager.Id != 2)
+            {
+                btnAdd.Visible = false;
+                btnEdit.Visible = false;
+                customersDataGrid.DoubleClick += (_, __) => HandleActionEvent(HandleSelectCustomer);
+            }
+            else customersDataGrid.DoubleClick += (_, __) => HandleActionEvent(HandleEditClick);
+
             ipSearch._TextChanged += (sender, e) => SearchEvent?.Invoke(this, EventArgs.Empty);
             startDate.ValueChanged += (sender, e) => FilterEvent?.Invoke(this, EventArgs.Empty);
             endDate.ValueChanged += (sender, e) => FilterEvent?.Invoke(this, EventArgs.Empty);
             reload.Click += (sender, e) => ResetCustomersEvent?.Invoke(this, EventArgs.Empty);
             btnAdd.Click += (sender, e) => AddEvent?.Invoke(this, EventArgs.Empty);
-            btnEdit.Click += (sender, e) => HandleEditClick();
-            customersDataGrid.DoubleClick += (sender, e) => HandleEditClick();
+            btnEdit.Click += (sender, e) => HandleActionEvent(HandleEditClick);
         }
-        private void HandleEditClick()
+
+        private void HandleActionEvent(Action<Customer> action)
         {
             if (customersDataGrid.SelectedRows.Count > 0)
             {
-                string dni = customersDataGrid.SelectedRows[0].Cells[0].Value.ToString()!;
-                Customer Customer = CustomersList?.FirstOrDefault(p => p.User.Dni.Equals(dni))!;
-                EditEvent?.Invoke(Customer, EventArgs.Empty);
+                string dni = Convert.ToInt32(customersDataGrid.SelectedRows[0].Cells[0].Value).ToString();
+                Customer customer = CustomersList?.FirstOrDefault(p => p.User.Dni == dni)!;
+                action?.Invoke(customer);
             }
+        }
+
+        private void HandleEditClick(Customer customer)
+        {
+            EditEvent?.Invoke(customer, EventArgs.Empty);
+        }
+
+        private void HandleSelectCustomer(Customer customer)
+        {
+            SelectCustomerEvent?.Invoke(customer, EventArgs.Empty);
         }
 
         public event EventHandler? SearchEvent;
         public event EventHandler? FilterEvent;
         public event EventHandler? ResetCustomersEvent;
+        public event EventHandler? SelectCustomerEvent;
         public event EventHandler? AddEvent;
         public event EventHandler? EditEvent;
 

@@ -8,7 +8,6 @@ namespace CorazonDeCafeStockManager.App.Validators
     {
         public CustomerValidator()
         {
-            // if all fields are empty then Rule custom && send error
             RuleFor(x => x).Custom((customer, context) =>
             {
                 if (string.IsNullOrWhiteSpace(customer.Name) &&

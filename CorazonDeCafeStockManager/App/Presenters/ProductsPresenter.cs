@@ -1,4 +1,6 @@
-﻿using CorazonDeCafeStockManager.App.Models;
+﻿using CorazonDeCafeStockManager.App.Common;
+using CorazonDeCafeStockManager.App.EntityData;
+using CorazonDeCafeStockManager.App.Models;
 using CorazonDeCafeStockManager.App.Repositories;
 using CorazonDeCafeStockManager.App.Views.ProductsForm;
 using Timer = System.Timers.Timer;
@@ -19,12 +21,13 @@ namespace CorazonDeCafeStockManager.App.Presenters
             this.view = view;
             this.homePresenter = homePresenter;
             this.productRepository = productRepository;
-            
+
             this.view.SearchEvent += SearchEvent!;
             this.view.FilterEvent += FilterEvent!;
             this.view.ResetProductsEvent += ResetProductsEvent!;
             this.view.AddEvent += AddEvent!;
             this.view.EditEvent += EditEvent!;
+            this.view.AddProductToCartEvent += (s, e) => AddProductToCartEvent?.Invoke(s, e);
 
             SearchTimer.Elapsed += SearchProducts!;
 
@@ -37,6 +40,11 @@ namespace CorazonDeCafeStockManager.App.Presenters
             productsBackUp = products;
             view.ProductsList = products;
             view.LoadProducts();
+        }
+
+        public void RemoveColumnFromDataGrid(int columnIndex)
+        {
+            view.ProductsGrid.Columns[columnIndex].Visible = false;
         }
 
         public void ShowView() => view!.Show();
@@ -64,6 +72,7 @@ namespace CorazonDeCafeStockManager.App.Presenters
             view.LoadProducts();
         }
 
+        public event EventHandler? AddProductToCartEvent;
 
         private void ResetProductsEvent(object sender, EventArgs e)
         {

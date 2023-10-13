@@ -28,6 +28,7 @@ namespace CorazonDeCafeStockManager
             btnCustomers.Click += (_, __) => ShowCustomersView?.Invoke(this, EventArgs.Empty);
             btnEmployees.Click += (_, __) => ShowEmployeesView?.Invoke(this, EventArgs.Empty);
             btnBackup.Click += (_, __) => ShowBackupView?.Invoke(this, EventArgs.Empty);
+            btnBilling.Click += (_, __) => ShowBillingView?.Invoke(null, EventArgs.Empty);
             btnClose.Click += (_, __) => Application.Exit();
             btnLogout.Click += (_, __) => LogoutEvent?.Invoke(this, EventArgs.Empty);
             btnMin.Click += (_, __) => WindowState = FormWindowState.Minimized;
@@ -68,6 +69,7 @@ namespace CorazonDeCafeStockManager
         public event EventHandler? ShowProductsView;
         public event EventHandler? ShowCustomersView;
         public event EventHandler? ShowEmployeesView;
+        public event EventHandler? ShowBillingView;
         public event EventHandler? ShowBackupView;
         public event EventHandler? CloseView;
         public event EventHandler? LogoutEvent;

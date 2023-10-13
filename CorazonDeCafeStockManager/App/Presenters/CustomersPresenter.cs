@@ -24,6 +24,7 @@ namespace CorazonDeCafeStockManager.App.Presenters
             this.view.ResetCustomersEvent += ResetCustomersEvent!;
             this.view.AddEvent += AddEvent!;
             this.view.EditEvent += EditEvent!;
+            this.view.SelectCustomerEvent += SelectCustomerEvent!;
 
             SearchTimer.Elapsed += SearchCustomers!;
 
@@ -137,6 +138,13 @@ namespace CorazonDeCafeStockManager.App.Presenters
             Customer Customer = (Customer)sender;
             this.view.Close();
             this.homePresenter.ShowCustomerView(Customer, e);
+        }
+
+        private void SelectCustomerEvent(object sender, EventArgs e)
+        {
+            Customer Customer = (Customer)sender;
+            this.view.Close();
+            this.homePresenter.ShowBillingView(Customer, e);
         }
     }
 }

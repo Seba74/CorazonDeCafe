@@ -19,6 +19,7 @@ namespace CorazonDeCafeStockManager.App.Views.CustomersForm
         event EventHandler? SearchEvent;
         event EventHandler? FilterEvent;
         event EventHandler? ResetCustomersEvent;
+        event EventHandler? SelectCustomerEvent;
         event EventHandler? AddEvent;
         event EventHandler? EditEvent;
 

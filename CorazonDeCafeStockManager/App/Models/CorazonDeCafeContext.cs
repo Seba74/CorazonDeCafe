@@ -6,16 +6,13 @@ namespace CorazonDeCafeStockManager.App.Models;
 
 public partial class CorazonDeCafeContext : DbContext
 {
-    public CorazonDeCafeContext()
-    {
-    }
+    public CorazonDeCafeContext(){}
 
-    public CorazonDeCafeContext(DbContextOptions<CorazonDeCafeContext> options)
-        : base(options)
-    {
-    }
+    public CorazonDeCafeContext(DbContextOptions<CorazonDeCafeContext> options) : base(options){}
 
     public virtual DbSet<Address>? Addresses { get; set; }
+
+    public virtual DbSet<BillingType>? BillingTypes { get; set; }
 
     public virtual DbSet<Category>? Categories { get; set; }
 
@@ -26,6 +23,8 @@ public partial class CorazonDeCafeContext : DbContext
     public virtual DbSet<Order>? Orders { get; set; }
 
     public virtual DbSet<OrderProduct>? OrderProducts { get; set; }
+
+    public virtual DbSet<PaymentMethod>? PaymentMethods { get; set; }
 
     public virtual DbSet<Product>? Products { get; set; }
 
@@ -41,7 +40,7 @@ public partial class CorazonDeCafeContext : DbContext
     {
         modelBuilder.Entity<Address>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__addresse__3213E83F75166067");
+            entity.HasKey(e => e.Id).HasName("PK__addresse__3213E83FF6776B50");
 
             entity.ToTable("addresses");
 
@@ -72,13 +71,36 @@ public partial class CorazonDeCafeContext : DbContext
                 .HasColumnName("updatedAt");
         });
 
+        modelBuilder.Entity<BillingType>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK__billing___3213E83F33BBCE54");
+
+            entity.ToTable("billing_types");
+
+            entity.HasIndex(e => e.Description, "UQ__billing___489B0D977267B2D0").IsUnique();
+
+            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.CreatedAt)
+                .HasDefaultValueSql("(getdate())")
+                .HasColumnType("datetime")
+                .HasColumnName("createdAt");
+            entity.Property(e => e.Description)
+                .HasMaxLength(30)
+                .IsUnicode(false)
+                .HasColumnName("description");
+            entity.Property(e => e.Status).HasColumnName("status");
+            entity.Property(e => e.UpdatedAt)
+                .HasColumnType("datetime")
+                .HasColumnName("updatedAt");
+        });
+
         modelBuilder.Entity<Category>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__categori__3213E83F431B7656");
+            entity.HasKey(e => e.Id).HasName("PK__categori__3213E83F75DDFAC5");
 
             entity.ToTable("categories");
 
-            entity.HasIndex(e => e.Name, "UQ__categori__72E12F1BBBAE8325").IsUnique();
+            entity.HasIndex(e => e.Name, "UQ__categori__72E12F1B93F62F96").IsUnique();
 
             entity.Property(e => e.Id).HasColumnName("id");
             entity.Property(e => e.CreatedAt)
@@ -97,7 +119,7 @@ public partial class CorazonDeCafeContext : DbContext
 
         modelBuilder.Entity<Customer>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__customer__3213E83FC4565BAA");
+            entity.HasKey(e => e.Id).HasName("PK__customer__3213E83F74503DF3");
 
             entity.ToTable("customers");
 
@@ -112,11 +134,11 @@ public partial class CorazonDeCafeContext : DbContext
 
         modelBuilder.Entity<Employee>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__employee__3213E83F9B64D6D7");
+            entity.HasKey(e => e.Id).HasName("PK__employee__3213E83F0F42EC92");
 
             entity.ToTable("employees");
 
-            entity.HasIndex(e => e.Username, "UQ__employee__F3DBC5725CD182C9").IsUnique();
+            entity.HasIndex(e => e.Username, "UQ__employee__F3DBC572EA36198E").IsUnique();
 
             entity.Property(e => e.Id).HasColumnName("id");
             entity.Property(e => e.Pass)
@@ -143,25 +165,41 @@ public partial class CorazonDeCafeContext : DbContext
 
         modelBuilder.Entity<Order>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__orders__3213E83F9D49736B");
+            entity.HasKey(e => e.Id).HasName("PK__orders__3213E83F52F83364");
 
             entity.ToTable("orders");
 
             entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.BillingTypeId).HasColumnName("billing_type_id");
             entity.Property(e => e.CreatedAt)
                 .HasDefaultValueSql("(getdate())")
                 .HasColumnType("datetime")
                 .HasColumnName("createdAt");
+            entity.Property(e => e.CustomerCuil)
+                .HasMaxLength(11)
+                .IsUnicode(false)
+                .HasColumnName("customer_cuil");
             entity.Property(e => e.CustomerId).HasColumnName("customer_id");
+            entity.Property(e => e.PaymentMethodId).HasColumnName("payment_method_id");
             entity.Property(e => e.Status).HasColumnName("status");
             entity.Property(e => e.TotalPrice).HasColumnName("total_price");
             entity.Property(e => e.UpdatedAt)
                 .HasColumnType("datetime")
                 .HasColumnName("updatedAt");
 
+            entity.HasOne(d => d.BillingType).WithMany(p => p.Orders)
+                .HasForeignKey(d => d.BillingTypeId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_billing_type_id_ORDERS");
+
             entity.HasOne(d => d.Customer).WithMany(p => p.Orders)
                 .HasForeignKey(d => d.CustomerId)
                 .HasConstraintName("FK_customer_id_ORDERS");
+
+            entity.HasOne(d => d.PaymentMethod).WithMany(p => p.Orders)
+                .HasForeignKey(d => d.PaymentMethodId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_payment_method_id_ORDERS");
         });
 
         modelBuilder.Entity<OrderProduct>(entity =>
@@ -193,13 +231,36 @@ public partial class CorazonDeCafeContext : DbContext
                 .HasConstraintName("FK_product_id_ORDER_PRODUCTS");
         });
 
+        modelBuilder.Entity<PaymentMethod>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK__payment___3213E83F0FA7E9FC");
+
+            entity.ToTable("payment_methods");
+
+            entity.HasIndex(e => e.Description, "UQ__payment___489B0D97C9B244F9").IsUnique();
+
+            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.CreatedAt)
+                .HasDefaultValueSql("(getdate())")
+                .HasColumnType("datetime")
+                .HasColumnName("createdAt");
+            entity.Property(e => e.Description)
+                .HasMaxLength(30)
+                .IsUnicode(false)
+                .HasColumnName("description");
+            entity.Property(e => e.Status).HasColumnName("status");
+            entity.Property(e => e.UpdatedAt)
+                .HasColumnType("datetime")
+                .HasColumnName("updatedAt");
+        });
+
         modelBuilder.Entity<Product>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__products__3213E83F36B40BC3");
+            entity.HasKey(e => e.Id).HasName("PK__products__3213E83F88CF2562");
 
             entity.ToTable("products");
 
-            entity.HasIndex(e => e.Imagen, "UQ__products__3E079E413B876299").IsUnique();
+            entity.HasIndex(e => e.Imagen, "UQ__products__3E079E41C547E456").IsUnique();
 
             entity.Property(e => e.Id).HasColumnName("id");
             entity.Property(e => e.Active).HasColumnName("active");
@@ -248,11 +309,11 @@ public partial class CorazonDeCafeContext : DbContext
 
         modelBuilder.Entity<Role>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__roles__3213E83F770D5718");
+            entity.HasKey(e => e.Id).HasName("PK__roles__3213E83F0106ED5F");
 
             entity.ToTable("roles");
 
-            entity.HasIndex(e => e.Name, "UQ__roles__72E12F1B3AA28C46").IsUnique();
+            entity.HasIndex(e => e.Name, "UQ__roles__72E12F1BE4E481B1").IsUnique();
 
             entity.Property(e => e.Id).HasColumnName("id");
             entity.Property(e => e.CreatedAt)
@@ -271,11 +332,11 @@ public partial class CorazonDeCafeContext : DbContext
 
         modelBuilder.Entity<Type>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__types__3213E83FB9433A1F");
+            entity.HasKey(e => e.Id).HasName("PK__types__3213E83F98DC32CF");
 
             entity.ToTable("types");
 
-            entity.HasIndex(e => e.Name, "UQ__types__72E12F1BDB3E3AC7").IsUnique();
+            entity.HasIndex(e => e.Name, "UQ__types__72E12F1B24C88A31").IsUnique();
 
             entity.Property(e => e.Id).HasColumnName("id");
             entity.Property(e => e.CreatedAt)
@@ -294,13 +355,13 @@ public partial class CorazonDeCafeContext : DbContext
 
         modelBuilder.Entity<User>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__users__3213E83F6A787B41");
+            entity.HasKey(e => e.Id).HasName("PK__users__3213E83FAF469D85");
 
             entity.ToTable("users");
 
-            entity.HasIndex(e => e.Email, "UQ__users__AB6E6164C32819FF").IsUnique();
+            entity.HasIndex(e => e.Email, "UQ__users__AB6E61643589A087").IsUnique();
 
-            entity.HasIndex(e => e.Dni, "UQ__users__D87608A78FE9BD3F").IsUnique();
+            entity.HasIndex(e => e.Dni, "UQ__users__D87608A758F17FB1").IsUnique();
 
             entity.Property(e => e.Id).HasColumnName("id");
             entity.Property(e => e.AddressId).HasColumnName("address_id");

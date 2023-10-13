@@ -10,51 +10,61 @@ namespace CorazonDeCafeStockManager
         public string? Search { get { return ipSearch.Texts; } set { ipSearch.Texts = value!; } }
         public string? SelectType { get { return selectType.Texts; } set { selectType.Texts = value!; } }
         public string? SelectCategory { get { return selectCategory.Texts; } set { selectCategory.Texts = value!; } }
+        public DataGridView ProductsGrid { get => productList; set => productList = value!; }
         public IEnumerable<Product>? ProductsList { get; set; }
 
         public ProductsForm()
         {
             InitializeComponent();
             InitializeEvents();
-
-            if (SessionManager.Id != 1 && SessionManager.Id != 2)
-            {
-                btnAdd.Visible = false;
-                btnEdit.Visible = false;
-            }
-            else productList.DoubleClick += (_, __) => HandleEditEvent();
-
-
             loadFonts = new LoadFonts();
             ChangeDataGridViewFont(productList);
 
             ipSearch.Font = loadFonts.poppinsFont;
             selectCategory.Font = loadFonts.poppinsFont;
-            selectCategory.Font = new Font(loadFonts.poppinsFont!.FontFamily, 12);
+            selectCategory.Font = new Font(loadFonts.poppinsFont!.FontFamily, 10);
         }
         private void InitializeEvents()
         {
+            if (SessionManager.Id != 1 && SessionManager.Id != 2)
+            {
+                btnAdd.Visible = false;
+                btnEdit.Visible = false;
+                productList.DoubleClick += (_, __) => HandleActionEvent(HandleSelectProduct);
+            }
+            else productList.DoubleClick += (_, __) => HandleActionEvent(HandleEditClick);
+            
             ipSearch._TextChanged += (_, __) => SearchEvent?.Invoke(this, EventArgs.Empty);
             selectCategory.OnSelectedIndexChanged += (_, __) => FilterEvent?.Invoke(this, EventArgs.Empty);
             selectType.OnSelectedIndexChanged += (_, __) => FilterEvent?.Invoke(this, EventArgs.Empty);
             reload.Click += (_, __) => ResetProductsEvent?.Invoke(this, EventArgs.Empty);
             btnAdd.Click += (_, __) => AddEvent?.Invoke(this, EventArgs.Empty);
-            btnEdit.Click += (_, __) => HandleEditEvent();
+            btnEdit.Click += (_, __) => HandleActionEvent(HandleEditClick);
         }
 
-        private void HandleEditEvent()
+        private void HandleActionEvent(Action<Product> action)
         {
             if (productList.SelectedRows.Count > 0)
             {
                 int id = Convert.ToInt32(productList.SelectedRows[0].Cells[0].Value);
                 Product product = ProductsList?.FirstOrDefault(p => p.Id == id)!;
-                EditEvent?.Invoke(product, EventArgs.Empty);
+                action?.Invoke(product);
             }
+        }
+        private void HandleEditClick(Product product)
+        {
+            EditEvent?.Invoke(product, EventArgs.Empty);
+        }
+
+        private void HandleSelectProduct(Product product)
+        {
+            AddProductToCartEvent?.Invoke(product, EventArgs.Empty);
         }
         public event EventHandler? SearchEvent;
         public event EventHandler? FilterEvent;
         public event EventHandler? ResetProductsEvent;
         public event EventHandler? AddEvent;
+        public event EventHandler? AddProductToCartEvent;
         public event EventHandler? EditEvent;
 
         public void LoadProducts()

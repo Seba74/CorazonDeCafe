@@ -3,6 +3,7 @@ using CorazonDeCafeStockManager.App.Models;
 using CorazonDeCafeStockManager.App.Repositories;
 using CorazonDeCafeStockManager.App.Repositories._Repository;
 using CorazonDeCafeStockManager.App.Views.BackupForm;
+using CorazonDeCafeStockManager.App.Views.BillingForm;
 using CorazonDeCafeStockManager.App.Views.CustomerForm;
 using CorazonDeCafeStockManager.App.Views.CustomersForm;
 using CorazonDeCafeStockManager.App.Views.EmployeeForm;
@@ -24,7 +25,11 @@ namespace CorazonDeCafeStockManager.App.Presenters
         private IBackupView? backupView;
         private IProductView? productView;
         private IEmployeeView? employeeView;
+        private IBillingView? billingView;
         private ICustomerView? customerView;
+
+        // Presenter
+        private BillingPresenter? billingPresenter;
         public HomePresenter(IHomeView view, CorazonDeCafeContext dbContext)
         {
             this.view = view;
@@ -35,11 +40,13 @@ namespace CorazonDeCafeStockManager.App.Presenters
             this.view.ShowCustomersView += ShowCustomersView;
             this.view.ShowEmployeesView += ShowEmployeesView;
             this.view.ShowBackupView += ShowBackupView;
+            this.view.ShowBillingView += ShowBillingView;
             this.view.CloseView += CloseView;
         }
-        
-        public void ShowHomeView(){
-            ShowProductsView(this, EventArgs.Empty);
+
+        public void ShowHomeView()
+        {
+            ShowCustomersView(this, EventArgs.Empty);
             VerifyRole();
             view.Show();
         }
@@ -183,7 +190,32 @@ namespace CorazonDeCafeStockManager.App.Presenters
 
             EmployeePresenter EmployeePresenter = new(employeeView, EmployeeRepository, Employee!, this);
         }
+        public void ShowBillingView(object? sender, EventArgs e)
+        {
 
+            Customer? customer = null;
+            this.CloseView(sender, e);
+            view.RemoveBackgroundBtns();
+            view.BillingButton.BackColor = Color.FromArgb(255, 219, 197);
+
+            view.IconHeader.BackgroundImage = Properties.Resources.billing;
+            view.TitleHeader.Text = "FACTURACIÓN";
+
+            if (sender != null)
+            {
+                customer = (Customer)sender;
+            }
+
+            IBillingRepository billingRepository = new BillingRepository(dbContext);
+            ICustomerRepository customerRepository = new CustomerRepository(dbContext);
+            IProductRepository productRepository = new ProductRepository(dbContext);
+            billingView = BillingForm.GetInstance(view.ControlPanel);
+
+            productsView = ProductsForm.GetInstance(billingView.PanelProducts);
+            ProductsPresenter productsPresenter = new(productsView, productRepository, this);
+
+            billingPresenter = new(billingView, billingRepository, customerRepository, productsPresenter, this, customer!);
+        }
         public void ShowBackupView(object? sender, EventArgs e)
         {
             if (backupView != null)
@@ -252,6 +284,12 @@ namespace CorazonDeCafeStockManager.App.Presenters
             {
                 employeesView.Close();
                 employeesView = null;
+            }
+
+            if (billingView != null)
+            {
+                billingView.Close();
+                billingView = null;
             }
         }
     }
