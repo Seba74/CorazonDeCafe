@@ -10,17 +10,18 @@ using System.Windows.Forms;
 using CorazonDeCafeStockManager.App.Common;
 using CorazonDeCafeStockManager.App.Models;
 
-namespace CorazonDeCafeStockManager.App.Views.EmployeesForm
+namespace CorazonDeCafeStockManager.App.Views.OrdersForm
 {
-    public partial class EmployeesForm : Form, IEmployeesView
+    public partial class OrdersForm : Form, IOrdersView
     {
         private readonly LoadFonts loadFonts;
         public string? Search { get { return ipSearch.Texts; } set { ipSearch.Texts = value!; } }
         public CalendarCustom StartDateCalendar { get { return startDate; } set { startDate = value!; } }
         public CalendarCustom EndDateCalendar { get { return endDate; } set { endDate = value!; } }
-        public IEnumerable<Employee>? EmployeesList { get; set; }
-        public ComboBoxCustom SelectedRole { get { return selectedRole; } set { selectedRole = value!; } }
-        public EmployeesForm()
+        public ComboBoxCustom SelectedPaymentMethod { get { return selectedPaymentMethod; } set { selectedPaymentMethod = value!; } }
+        public ComboBoxCustom SelectedBillingType { get { return selectedBillingType; } set { selectedBillingType = value!; } }
+        public IEnumerable<Order>? OrdersList { get; set; }
+        public OrdersForm()
         {
             InitializeComponent();
             InitializeEvents();
@@ -31,7 +32,7 @@ namespace CorazonDeCafeStockManager.App.Views.EmployeesForm
 
         private void SetForm()
         {
-            ChangeDataGridViewFont(employeesDataGrid);
+            ChangeDataGridViewFont(ordersDataGrid);
 
             ipSearch.Font = loadFonts.poppinsFont;
             startDate.Font = new Font(loadFonts.poppinsFont!.FontFamily, 9);
@@ -48,55 +49,52 @@ namespace CorazonDeCafeStockManager.App.Views.EmployeesForm
             ipSearch._TextChanged += (sender, e) => SearchEvent?.Invoke(this, EventArgs.Empty);
             startDate.ValueChanged += (sender, e) => FilterEvent?.Invoke(this, EventArgs.Empty);
             endDate.ValueChanged += (sender, e) => FilterEvent?.Invoke(this, EventArgs.Empty);
-            selectedRole.OnSelectedIndexChanged += (sender, e) => FilterEvent?.Invoke(this, EventArgs.Empty);
-            reload.Click += (sender, e) => ResetEmployeesEvent?.Invoke(this, EventArgs.Empty);
-            btnAdd.Click += (sender, e) => AddEvent?.Invoke(this, EventArgs.Empty);
+            selectedPaymentMethod.OnSelectedIndexChanged += (sender, e) => FilterEvent?.Invoke(this, EventArgs.Empty);
+            selectedBillingType.OnSelectedIndexChanged += (sender, e) => FilterEvent?.Invoke(this, EventArgs.Empty);
+            ordersDataGrid.CellContentClick += (sender, e) => ShowOrderDetailsEvent?.Invoke(this, e);
+            reload.Click += (sender, e) => ResetOrdersEvent?.Invoke(this, EventArgs.Empty);
             btnEdit.Click += (sender, e) => HandleEditClick();
-            employeesDataGrid.DoubleClick += (sender, e) => HandleEditClick();
+            ordersDataGrid.DoubleClick += (sender, e) => HandleEditClick();
         }
         private void HandleEditClick()
         {
-            if (employeesDataGrid.SelectedRows.Count > 0)
+            if (ordersDataGrid.SelectedRows.Count > 0)
             {
-                int id = Convert.ToInt32(employeesDataGrid.SelectedRows[0].Cells[0].Value);
-                Employee Employee = EmployeesList?.FirstOrDefault(p => p.Id == id)!;
-                EditEvent?.Invoke(Employee, EventArgs.Empty);
+                int id = Convert.ToInt32(ordersDataGrid.SelectedRows[0].Cells[0].Value);
+                Order Order = OrdersList?.FirstOrDefault(p => p.Id == id)!;
+                EditEvent?.Invoke(Order, EventArgs.Empty);
             }
         }
 
         public event EventHandler? SearchEvent;
         public event EventHandler? FilterEvent;
-        public event EventHandler? ResetEmployeesEvent;
-        public event EventHandler? AddEvent;
+        public event EventHandler? ResetOrdersEvent;
+        public event DataGridViewCellEventHandler? ShowOrderDetailsEvent;
         public event EventHandler? EditEvent;
 
-        public void LoadEmployees()
+        public void LoadOrders()
         {
-            if (employeesDataGrid.InvokeRequired)
+            if (ordersDataGrid.InvokeRequired)
             {
-                employeesDataGrid.Invoke(new MethodInvoker(() => LoadEmployeesInternal()));
+                ordersDataGrid.Invoke(new MethodInvoker(() => LoadOrdersInternal()));
             }
-            else LoadEmployeesInternal();
+            else LoadOrdersInternal();
         }
 
-        private void LoadEmployeesInternal()
+        private void LoadOrdersInternal()
         {
-            employeesDataGrid.Rows.Clear();
-            employeesDataGrid.Refresh();
+            ordersDataGrid.Rows.Clear();
+            ordersDataGrid.Refresh();
 
-            foreach (Employee employee in EmployeesList!)
+            OrdersList ??= LocalStorage.Orders;
+
+            foreach (Order order in OrdersList!)
             {
+                string active = order.Status == 1 ? "Activo" : "Inactivo";
+                string fullName = order.Customer!.User.Name + " " + order.Customer!.User.Surname;
+                string Date = order.CreatedAt.ToString()!.Split(' ')[0];
 
-                if (employee.RoleId != 1)
-                {
-
-                    employee.Role ??= LocalStorage.Roles!.FirstOrDefault(p => p.Id == employee.RoleId)!;
-
-                    string active = employee.User.Status == 1 ? "Activo" : "Inactivo";
-                    string fullName = employee.User.Name + " " + employee.User.Surname;
-
-                    employeesDataGrid.Rows.Add(employee.Id, fullName, employee.User.Email, employee.User.Dni, employee.User.Phone, employee.Role.Name, active);
-                }
+                ordersDataGrid.Rows.Add(order.Id, fullName, Date, order.TotalPrice, order.PaymentMethod.Description, order.BillingType.Description, active);
             }
         }
 
@@ -114,12 +112,12 @@ namespace CorazonDeCafeStockManager.App.Views.EmployeesForm
             throw new NotImplementedException();
         }
 
-        private static EmployeesForm? instance;
-        public static EmployeesForm GetInstance(Control controlParent)
+        private static OrdersForm? instance;
+        public static OrdersForm GetInstance(Control controlParent)
         {
             if (instance == null || instance.IsDisposed)
             {
-                instance = new EmployeesForm
+                instance = new OrdersForm
                 {
                     Dock = DockStyle.Fill,
                     TopLevel = false,

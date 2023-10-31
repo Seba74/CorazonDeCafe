@@ -37,7 +37,6 @@
             btnBilling = new ButtonCustom();
             btnBackup = new ButtonCustom();
             btnReports = new ButtonCustom();
-            btnHome = new ButtonCustom();
             btnProducts = new ButtonCustom();
             btnSales = new ButtonCustom();
             btnEmployees = new ButtonCustom();
@@ -140,7 +139,6 @@
             panel4.Controls.Add(btnBilling);
             panel4.Controls.Add(btnBackup);
             panel4.Controls.Add(btnReports);
-            panel4.Controls.Add(btnHome);
             panel4.Controls.Add(btnProducts);
             panel4.Controls.Add(btnSales);
             panel4.Controls.Add(btnEmployees);
@@ -164,7 +162,7 @@
             btnBilling.ForeColor = Color.Black;
             btnBilling.Image = Properties.Resources.billing;
             btnBilling.ImageAlign = ContentAlignment.MiddleLeft;
-            btnBilling.Location = new Point(11, 144);
+            btnBilling.Location = new Point(12, 50);
             btnBilling.Name = "btnBilling";
             btnBilling.Padding = new Padding(5, 3, 0, 3);
             btnBilling.Size = new Size(157, 41);
@@ -188,7 +186,7 @@
             btnBackup.ForeColor = Color.Black;
             btnBackup.Image = (Image)resources.GetObject("btnBackup.Image");
             btnBackup.ImageAlign = ContentAlignment.MiddleLeft;
-            btnBackup.Location = new Point(11, 285);
+            btnBackup.Location = new Point(11, 238);
             btnBackup.Name = "btnBackup";
             btnBackup.Padding = new Padding(5, 3, 0, 3);
             btnBackup.Size = new Size(158, 41);
@@ -211,7 +209,7 @@
             btnReports.ForeColor = Color.Black;
             btnReports.Image = (Image)resources.GetObject("btnReports.Image");
             btnReports.ImageAlign = ContentAlignment.MiddleLeft;
-            btnReports.Location = new Point(11, 238);
+            btnReports.Location = new Point(11, 3);
             btnReports.Name = "btnReports";
             btnReports.Padding = new Padding(5, 3, 0, 3);
             btnReports.Size = new Size(158, 41);
@@ -219,30 +217,6 @@
             btnReports.Text = "     REPORTES";
             btnReports.TextColor = Color.Black;
             btnReports.UseVisualStyleBackColor = false;
-            // 
-            // btnHome
-            // 
-            btnHome.BackColor = Color.FromArgb(255, 219, 197);
-            btnHome.BackgroundColor = Color.FromArgb(255, 219, 197);
-            btnHome.BorderColor = Color.Transparent;
-            btnHome.BorderRadius = 8;
-            btnHome.BorderSize = 0;
-            btnHome.Cursor = Cursors.Hand;
-            btnHome.FlatAppearance.BorderSize = 0;
-            btnHome.FlatStyle = FlatStyle.Flat;
-            btnHome.Font = new Font("Poppins Light", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            btnHome.ForeColor = Color.Black;
-            btnHome.Image = (Image)resources.GetObject("btnHome.Image");
-            btnHome.ImageAlign = ContentAlignment.MiddleLeft;
-            btnHome.Location = new Point(12, 0);
-            btnHome.Name = "btnHome";
-            btnHome.Padding = new Padding(5, 3, 0, 3);
-            btnHome.Size = new Size(159, 41);
-            btnHome.TabIndex = 1;
-            btnHome.Text = "           INICIO";
-            btnHome.TextAlign = ContentAlignment.MiddleLeft;
-            btnHome.TextColor = Color.Black;
-            btnHome.UseVisualStyleBackColor = false;
             // 
             // btnProducts
             // 
@@ -281,7 +255,7 @@
             btnSales.ForeColor = Color.Black;
             btnSales.Image = (Image)resources.GetObject("btnSales.Image");
             btnSales.ImageAlign = ContentAlignment.MiddleLeft;
-            btnSales.Location = new Point(10, 191);
+            btnSales.Location = new Point(11, 97);
             btnSales.Name = "btnSales";
             btnSales.Padding = new Padding(5, 3, 0, 3);
             btnSales.Size = new Size(159, 41);
@@ -327,7 +301,7 @@
             btnCustomers.ForeColor = Color.Black;
             btnCustomers.Image = (Image)resources.GetObject("btnCustomers.Image");
             btnCustomers.ImageAlign = ContentAlignment.MiddleLeft;
-            btnCustomers.Location = new Point(11, 97);
+            btnCustomers.Location = new Point(12, 191);
             btnCustomers.Name = "btnCustomers";
             btnCustomers.Padding = new Padding(5, 3, 0, 3);
             btnCustomers.Size = new Size(158, 41);
@@ -566,7 +540,6 @@
         private ButtonCustom btnSales;
         private ButtonCustom btnEmployees;
         private ButtonCustom btnCustomers;
-        private ButtonCustom btnHome;
         private ButtonCustom btnProducts;
         private ButtonCustom btnReports;
         private ButtonCustom btnBackup;

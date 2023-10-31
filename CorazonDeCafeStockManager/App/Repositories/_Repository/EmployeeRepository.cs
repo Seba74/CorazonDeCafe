@@ -15,7 +15,23 @@ public class EmployeeRepository : IEmployeeRepository
     public EmployeeRepository(CorazonDeCafeContext context)
     {
         _context = context;
+        _ = LoadRoles();
     }
+        
+    private async Task LoadRoles()
+    {
+        if (!LocalStorage.Roles.IsNullOrEmpty()) return;
+
+        try
+        {
+            LocalStorage.Roles = await _context.Roles!.ToListAsync();
+        }
+        catch (Exception)
+        {
+            throw new ArgumentException("Error al obtener los roles");
+        }
+    }
+
 
     public async Task AddEmployee(EmployeeData employee)
     {

@@ -22,6 +22,8 @@ public class AuthRepository : IAuthRepository
             if (employee == null) return false;
             if (employee.User.Status == 0) return false;
 
+            if(employee.Pass == employee.User.Dni) employee.Pass = HashPass.HashPassword(employee.User.Dni); await _context.SaveChangesAsync();
+
             if (employee.Pass == "admin") employee.Pass = HashPass.HashPassword("admin"); await _context.SaveChangesAsync();
 
             if (HashPass.ValidatePassword(password, employee.Pass))

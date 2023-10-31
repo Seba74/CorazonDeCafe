@@ -9,7 +9,9 @@ public partial class Order
 
     public int? CustomerId { get; set; }
 
-    public string? CustomerCuil { get; set; }
+    public int EmployeeId { get; set; }
+
+    public string? CustomerCuit { get; set; }
 
     public int Status { get; set; }
 
@@ -26,6 +28,8 @@ public partial class Order
     public virtual BillingType BillingType { get; set; } = null!;
 
     public virtual Customer? Customer { get; set; }
+
+    public virtual Employee Employee { get; set; } = null!;
 
     public virtual ICollection<OrderProduct> OrderProducts { get; set; } = new List<OrderProduct>();
 

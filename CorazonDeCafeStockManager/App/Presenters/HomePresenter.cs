@@ -1,4 +1,5 @@
 ﻿using CorazonDeCafeStockManager.App.Common;
+using CorazonDeCafeStockManager.App.EntityData;
 using CorazonDeCafeStockManager.App.Models;
 using CorazonDeCafeStockManager.App.Repositories;
 using CorazonDeCafeStockManager.App.Repositories._Repository;
@@ -10,8 +11,12 @@ using CorazonDeCafeStockManager.App.Views.EmployeeForm;
 using CorazonDeCafeStockManager.App.Views.EmployeesForm;
 using CorazonDeCafeStockManager.App.Views.HomeForm;
 using CorazonDeCafeStockManager.App.Views.LoginForm;
+using CorazonDeCafeStockManager.App.Views.OrderForm;
+using CorazonDeCafeStockManager.App.Views.OrdersForm;
+using CorazonDeCafeStockManager.App.Views.PrintedBillingForm;
 using CorazonDeCafeStockManager.App.Views.ProductForm;
 using CorazonDeCafeStockManager.App.Views.ProductsForm;
+using CorazonDeCafeStockManager.App.Views.ReportsForm;
 
 namespace CorazonDeCafeStockManager.App.Presenters
 {
@@ -22,11 +27,15 @@ namespace CorazonDeCafeStockManager.App.Presenters
         private IProductsView? productsView;
         private ICustomersView? customersView;
         private IEmployeesView? employeesView;
+        private IOrdersView? ordersView;
         private IBackupView? backupView;
         private IProductView? productView;
         private IEmployeeView? employeeView;
         private IBillingView? billingView;
         private ICustomerView? customerView;
+        private IReportsView? reportsView;
+        private IOrderView? orderView;
+        private PrintedBillingForm? printedBillingForm;
 
         // Presenter
         private BillingPresenter? billingPresenter;
@@ -41,19 +50,19 @@ namespace CorazonDeCafeStockManager.App.Presenters
             this.view.ShowEmployeesView += ShowEmployeesView;
             this.view.ShowBackupView += ShowBackupView;
             this.view.ShowBillingView += ShowBillingView;
-            this.view.CloseView += CloseView;
+            this.view.ShowOrdersView += ShowOrdersView;
+            this.view.ShowReportsView += ShowReportsView;
         }
 
         public void ShowHomeView()
         {
-            ShowCustomersView(this, EventArgs.Empty);
+            ShowReportsView(this, EventArgs.Empty);
             VerifyRole();
             view.Show();
         }
 
         private void VerifyRole()
-        {
-
+        {       
             if (SessionManager.RoleId != 1)
             {
                 view.BackupButton.Visible = false;
@@ -62,17 +71,18 @@ namespace CorazonDeCafeStockManager.App.Presenters
             if (SessionManager.RoleId != 1 && SessionManager.RoleId != 2)
             {
                 view.EmployeeButton.Visible = false;
-                view.ReportButton.Visible = false;
             }
 
             if (SessionManager.RoleId == 3 || SessionManager.RoleId == 4)
             {
                 view.BillingButton.Visible = true;
+                view.ProductButton.Visible = false;
+                view.CustomerButton.Visible = false;
             }
 
             if (SessionManager.RoleId == 4)
             {
-                view.SaleButton.Visible = false;
+                view.OrderButton.Visible = false;
             }
         }
 
@@ -93,6 +103,24 @@ namespace CorazonDeCafeStockManager.App.Presenters
             IProductRepository productRepository = new ProductRepository(dbContext);
             productsView = ProductsForm.GetInstance(view.ControlPanel);
             ProductsPresenter ProductsPresenter = new(productsView, productRepository, this);
+        }
+        public void ShowOrdersView(object? sender, EventArgs e)
+        {
+            if (ordersView != null)
+            {
+                return;
+            }
+
+            this.CloseView(sender, e);
+            view.RemoveBackgroundBtns();
+            view.OrderButton.BackColor = Color.FromArgb(255, 219, 197);
+
+            view.IconHeader.BackgroundImage = Properties.Resources.sales;
+            view.TitleHeader.Text = "VENTAS";
+
+            IBillingRepository billingRepository = new BillingRepository(dbContext);
+            ordersView = OrdersForm.GetInstance(view.ControlPanel);
+            OrdersPresenter OrdersPresenter = new(ordersView, billingRepository, this);
         }
 
         public void ShowProductView(object? sender, EventArgs e)
@@ -190,6 +218,20 @@ namespace CorazonDeCafeStockManager.App.Presenters
 
             EmployeePresenter EmployeePresenter = new(employeeView, EmployeeRepository, Employee!, this);
         }
+        public void ShowOrderView(object? sender, EventArgs e)
+        {
+            if (orderView != null)
+            {
+                return;
+            }
+
+            this.CloseView(sender, e);
+            Order Order = (Order)sender!;
+
+            IBillingRepository billingRepository = new BillingRepository(dbContext);
+            orderView = OrderForm.GetInstance(view.ControlPanel);
+            OrderPresenter OrderPresenter = new(orderView, billingRepository, Order!, this);
+        }
         public void ShowBillingView(object? sender, EventArgs e)
         {
 
@@ -234,10 +276,27 @@ namespace CorazonDeCafeStockManager.App.Presenters
             backupView = BackupForm.GetInstance(view.ControlPanel);
             BackupPresenter BackupPresenter = new(backupView, backupRepository, this);
         }
+        public void ShowReportsView(object? sender, EventArgs e)
+        {
+            if (reportsView != null)
+            {
+                return;
+            }
+
+            this.CloseView(sender, e);
+            view.RemoveBackgroundBtns();
+            view.ReportButton.BackColor = Color.FromArgb(255, 219, 197);
+
+            view.IconHeader.BackgroundImage = Properties.Resources.stats;
+            view.TitleHeader.Text = "REPORTES";
+            IBillingRepository billingRepository = new BillingRepository(dbContext);
+
+            reportsView = ReportsForm.GetInstance(view.ControlPanel);
+            ReportsPresenter reportsPresenter = new(reportsView, billingRepository, this);
+        }
 
         private void LogoutEvent(object? sender, EventArgs e)
         {
-            // are you sure to logout message dialog
             DialogResult dialogResult = MessageBox.Show("¿Estás seguro de cerrar sesión?", "Cerrar sesión", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
             if (dialogResult == DialogResult.Yes)
@@ -246,6 +305,22 @@ namespace CorazonDeCafeStockManager.App.Presenters
                 view.Close();
                 _ = new AuthPresenter(dbContext);
             }
+        }
+
+        public void SetPrintedBilling(PrintedBillingForm printedBillingForm)
+        {
+            this.printedBillingForm = printedBillingForm;
+        }
+
+        public void ShowPrintedBilling()
+        {
+            if (printedBillingForm == null)
+            {
+                return;
+            }
+
+            printedBillingForm.Show();
+            printedBillingForm.BringToFront();
         }
 
         private void CloseView(object? sender, EventArgs e)
@@ -290,6 +365,24 @@ namespace CorazonDeCafeStockManager.App.Presenters
             {
                 billingView.Close();
                 billingView = null;
+            }
+
+            if (ordersView != null)
+            {
+                ordersView.Close();
+                ordersView = null;
+            }
+
+            if (orderView != null)
+            {
+                orderView.Close();
+                orderView = null;
+            }
+
+            if (reportsView != null)
+            {
+                reportsView.Close();
+                reportsView = null;
             }
         }
     }

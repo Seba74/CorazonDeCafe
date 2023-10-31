@@ -3,11 +3,10 @@
     public interface IHomeView
     {
         Control ControlPanel { get; }
-        Control HomeButton { get; }
         Control ProductButton { get; }
         Control CustomerButton { get; }
         Control EmployeeButton { get; }
-        Control SaleButton { get; }
+        Control OrderButton { get; }
         Control BillingButton { get; }
         Control BackupButton { get; }
         Control ReportButton { get; }
@@ -18,8 +17,9 @@
         event EventHandler? ShowCustomersView;
         event EventHandler? ShowEmployeesView;
         event EventHandler? ShowBillingView;
+        event EventHandler? ShowOrdersView;
         event EventHandler? ShowBackupView;
-        event EventHandler? CloseView;
+        event EventHandler? ShowReportsView;
         event EventHandler? LogoutEvent;
 
         void RemoveBackgroundBtns();

@@ -100,13 +100,13 @@ public class CustomerRepository : ICustomerRepository
         try
         {
             LocalStorage.Customers = await _context.Customers!.Include(p => p.User).Include(p => p.User.Address).ToListAsync();
+            return LocalStorage.Customers ?? new();
         }
         catch (Exception)
         {
             throw new LocalException("Error al obtener los clientes");
         }
 
-        return LocalStorage.Customers ?? new();
     }
     public async Task<Customer> GetCustomerById(int id)
     {

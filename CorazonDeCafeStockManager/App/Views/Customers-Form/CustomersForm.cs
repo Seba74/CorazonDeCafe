@@ -47,8 +47,6 @@ namespace CorazonDeCafeStockManager.App.Views.CustomersForm
         {
             if (SessionManager.Id != 1 && SessionManager.Id != 2)
             {
-                btnAdd.Visible = false;
-                btnEdit.Visible = false;
                 customersDataGrid.DoubleClick += (_, __) => HandleActionEvent(HandleSelectCustomer);
             }
             else customersDataGrid.DoubleClick += (_, __) => HandleActionEvent(HandleEditClick);

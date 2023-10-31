@@ -3,6 +3,7 @@ using CorazonDeCafeStockManager.App.EntityData;
 using CorazonDeCafeStockManager.App.Models;
 using CorazonDeCafeStockManager.App.Repositories;
 using CorazonDeCafeStockManager.App.Views.BillingForm;
+using CorazonDeCafeStockManager.App.Views.PrintedBillingForm;
 using CorazonDeCafeStockManager.utils.Custom.TextBox;
 using Microsoft.IdentityModel.Tokens;
 
@@ -57,7 +58,7 @@ namespace CorazonDeCafeStockManager.App.Presenters
 
         }
 
-        public async void LoadCustomer()
+        public async Task LoadCustomer()
         {
             customers = await customerRepository.GetAllCustomers();
         }
@@ -128,7 +129,7 @@ namespace CorazonDeCafeStockManager.App.Presenters
             Cart.Customer = customer;
         }
 
-        private void SaveOrderEvent(object sender, EventArgs e)
+        private async void SaveOrderEvent(object sender, EventArgs e)
         {
 
             if (string.IsNullOrEmpty(view.BillingType!.Texts))
@@ -161,24 +162,59 @@ namespace CorazonDeCafeStockManager.App.Presenters
                 return;
             }
 
-            Cart.Order!.CustomerId = Cart.Customer.Id;
-            Cart.Order.CustomerCuil = view.CustomerCUIT?.Texts;
-            Cart.Order.BillingType = LocalStorage.BillingTypes!.FirstOrDefault(bt => bt.Description == view.BillingType.Texts)!.Id;
-            Cart.Order.PaymentMethod = LocalStorage.PaymentMethods!.FirstOrDefault(pm => pm.Description == view.PaymentMethod!.Texts)!.Id;
-            Cart.Order.Status = 1;
+            try
+            {
+                Cart.Order!.CustomerId = Cart.Customer.Id;
+                Cart.Order.CustomerCuit = view.CustomerCUIT?.Texts;
+                Cart.Order.BillingType = LocalStorage.BillingTypes!.FirstOrDefault(bt => bt.Description == view.BillingType.Texts)!.Id;
+                Cart.Order.PaymentMethod = LocalStorage.PaymentMethods!.FirstOrDefault(pm => pm.Description == view.PaymentMethod!.Texts)!.Id;
+                Cart.Order.Status = 1;
 
-            billingRepository.AddBilling(Cart.Order);
-            Cart.ClearCart();
-            homePresenter.ShowHomeView();
-            view.Close();
+                await billingRepository.AddBilling(Cart.Order);
+                
+                Order savedOrder = await billingRepository.GetLastBilling();
+
+                PrintedBillingForm printedBillingForm = new();
+                printedBillingForm.SetDataToPrintedBillingForm(savedOrder);
+
+                Cart.ClearCart();
+                ResetData();
+
+                homePresenter.SetPrintedBilling(printedBillingForm);
+                homePresenter.ShowPrintedBilling();
+            }
+            catch (LocalException exception)
+            {
+                view.ShowError(exception.Message);
+            }
+        }
+
+        private void ResetData()
+        {
+            view.CustomerName = string.Empty;
+            view.CustomerAddress = string.Empty;
+            view.CustomerContact = string.Empty;
+            view.CustomerCUIT!.Texts = string.Empty;
+            view.BillingType!.Texts = LocalStorage.BillingTypes!.FirstOrDefault(bt => bt.Id == 2)!.Description;
+            view.PaymentMethod!.Texts = LocalStorage.PaymentMethods!.FirstOrDefault(pm => pm.Id == 1)!.Description;
+
+            view.OrderSubtotal = "0.00";
+            view.OrderIva = "0.00";
+            view.OrderTotal = "0.00";
+
+            view.CartList = new List<OrderProductData>();
+            view.LoadProducts();
         }
 
         private void CancelOrderEvent(object sender, EventArgs e)
         {
-            Cart.ClearCart();
-            view.Close();
-
-            homePresenter.ShowHomeView();
+            DialogResult dialogResult = MessageBox.Show("¿Está seguro que desea cancelar la venta?", "Cancelar venta", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                Cart.ClearCart();
+                homePresenter.ShowHomeView();
+                view.Close();
+            }
         }
 
         private void AmountChangedEvent(object sender, DataGridViewCellEventArgs e)
@@ -284,7 +320,7 @@ namespace CorazonDeCafeStockManager.App.Presenters
 
         private void BtnCustomerEvent(object sender, EventArgs e)
         {
-            this.homePresenter.ShowCustomersView(sender, e);
+            homePresenter.ShowCustomersView(sender, e);
         }
 
         public void ShowView() => view.Show();

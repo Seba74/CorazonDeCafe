@@ -15,6 +15,8 @@ public partial class Employee
 
     public int RoleId { get; set; }
 
+    public virtual ICollection<Order> Orders { get; set; } = new List<Order>();
+
     public virtual ICollection<Product> ProductCreatedBies { get; set; } = new List<Product>();
 
     public virtual ICollection<Product> ProductUpdatedBies { get; set; } = new List<Product>();
