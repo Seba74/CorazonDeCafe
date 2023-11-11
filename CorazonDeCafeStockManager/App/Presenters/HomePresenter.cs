@@ -102,7 +102,7 @@ namespace CorazonDeCafeStockManager.App.Presenters
 
             IProductRepository productRepository = new ProductRepository(dbContext);
             productsView = ProductsForm.GetInstance(view.ControlPanel);
-            ProductsPresenter ProductsPresenter = new(productsView, productRepository, this);
+            _ = new ProductsPresenter(productsView, productRepository, this);
         }
         public void ShowOrdersView(object? sender, EventArgs e)
         {
@@ -120,7 +120,7 @@ namespace CorazonDeCafeStockManager.App.Presenters
 
             IBillingRepository billingRepository = new BillingRepository(dbContext);
             ordersView = OrdersForm.GetInstance(view.ControlPanel);
-            OrdersPresenter OrdersPresenter = new(ordersView, billingRepository, this);
+            _ = new OrdersPresenter(ordersView, billingRepository, this);
         }
 
         public void ShowProductView(object? sender, EventArgs e)
@@ -139,8 +139,7 @@ namespace CorazonDeCafeStockManager.App.Presenters
 
             IProductRepository productRepository = new ProductRepository(dbContext);
             productView = ProductForm.GetInstance(view.ControlPanel);
-
-            ProductPresenter ProductPresenter = new(productView, productRepository, product!, this);
+            _ = new ProductPresenter(productView, productRepository, product!, this);
         }
         public void ShowCustomersView(object? sender, EventArgs e)
         {
@@ -158,7 +157,7 @@ namespace CorazonDeCafeStockManager.App.Presenters
 
             ICustomerRepository customerRepository = new CustomerRepository(dbContext);
             customersView = CustomersForm.GetInstance(view.ControlPanel);
-            CustomersPresenter CustomersPresenter = new(customersView, customerRepository, this);
+            _ = new CustomersPresenter(customersView, customerRepository, this);
         }
 
         public void ShowCustomerView(object? sender, EventArgs e)
@@ -177,8 +176,7 @@ namespace CorazonDeCafeStockManager.App.Presenters
 
             ICustomerRepository CustomerRepository = new CustomerRepository(dbContext);
             customerView = CustomerForm.GetInstance(view.ControlPanel);
-
-            CustomerPresenter CustomerPresenter = new(customerView, CustomerRepository, Customer!, this);
+            _ = new CustomerPresenter(customerView, CustomerRepository, Customer!, this);
         }
         public void ShowEmployeesView(object? sender, EventArgs e)
         {
@@ -196,7 +194,7 @@ namespace CorazonDeCafeStockManager.App.Presenters
 
             IEmployeeRepository employeeRepository = new EmployeeRepository(dbContext);
             employeesView = EmployeesForm.GetInstance(view.ControlPanel);
-            EmployeesPresenter EmployeesPresenter = new(employeesView, employeeRepository, this);
+            _ = new EmployeesPresenter(employeesView, employeeRepository, this);
         }
 
         public void ShowEmployeeView(object? sender, EventArgs e)
@@ -215,8 +213,7 @@ namespace CorazonDeCafeStockManager.App.Presenters
 
             IEmployeeRepository EmployeeRepository = new EmployeeRepository(dbContext);
             employeeView = EmployeeForm.GetInstance(view.ControlPanel);
-
-            EmployeePresenter EmployeePresenter = new(employeeView, EmployeeRepository, Employee!, this);
+            _ = new EmployeePresenter(employeeView, EmployeeRepository, Employee!, this);
         }
         public void ShowOrderView(object? sender, EventArgs e)
         {
@@ -230,7 +227,7 @@ namespace CorazonDeCafeStockManager.App.Presenters
 
             IBillingRepository billingRepository = new BillingRepository(dbContext);
             orderView = OrderForm.GetInstance(view.ControlPanel);
-            OrderPresenter OrderPresenter = new(orderView, billingRepository, Order!, this);
+            _ = new OrderPresenter(orderView, billingRepository, Order!, this);
         }
         public void ShowBillingView(object? sender, EventArgs e)
         {
@@ -274,7 +271,7 @@ namespace CorazonDeCafeStockManager.App.Presenters
 
             IBackupRepository backupRepository = new BackupRepository(dbContext);
             backupView = BackupForm.GetInstance(view.ControlPanel);
-            BackupPresenter BackupPresenter = new(backupView, backupRepository, this);
+            _ = new BackupPresenter(backupView, backupRepository, this);
         }
         public void ShowReportsView(object? sender, EventArgs e)
         {
@@ -292,7 +289,9 @@ namespace CorazonDeCafeStockManager.App.Presenters
             IBillingRepository billingRepository = new BillingRepository(dbContext);
 
             reportsView = ReportsForm.GetInstance(view.ControlPanel);
-            ReportsPresenter reportsPresenter = new(reportsView, billingRepository, this);
+            IOrdersView ordersView = OrdersForm.GetInstance(reportsView.PanelOrders);
+            OrdersPresenter ordersPresenter = new(ordersView, billingRepository, this);
+            _ = new ReportsPresenter(reportsView, billingRepository, ordersPresenter, this);
         }
 
         private void LogoutEvent(object? sender, EventArgs e)

@@ -26,6 +26,16 @@ namespace CorazonDeCafeStockManager.App.Views.OrdersForm
             InitializeComponent();
             InitializeEvents();
 
+            if (SessionManager.RoleId == 4)
+            {
+                btnEdit.Visible = false;
+                SelectedBillingType.Visible = false;
+                SelectedPaymentMethod.Visible = false;
+
+                ordersDataGrid.Columns[4].Visible = false;
+                ordersDataGrid.Columns[5].Visible = false;
+            }
+
             loadFonts = new LoadFonts();
             SetForm();
         }
@@ -54,7 +64,10 @@ namespace CorazonDeCafeStockManager.App.Views.OrdersForm
             ordersDataGrid.CellContentClick += (sender, e) => ShowOrderDetailsEvent?.Invoke(this, e);
             reload.Click += (sender, e) => ResetOrdersEvent?.Invoke(this, EventArgs.Empty);
             btnEdit.Click += (sender, e) => HandleEditClick();
-            ordersDataGrid.DoubleClick += (sender, e) => HandleEditClick();
+            if (SessionManager.RoleId != 4)
+            {
+                ordersDataGrid.DoubleClick += (sender, e) => HandleEditClick();
+            }
         }
         private void HandleEditClick()
         {

@@ -1,8 +1,11 @@
-﻿using System.Windows.Forms.DataVisualization.Charting;
+﻿using System.Drawing;
+using System.Windows.Forms.DataVisualization.Charting;
 using CorazonDeCafeStockManager.App.Common;
+using CorazonDeCafeStockManager.App.EntityData;
 using CorazonDeCafeStockManager.App.Models;
 using CorazonDeCafeStockManager.App.Repositories;
 using CorazonDeCafeStockManager.App.Views.ReportsForm;
+using Google.Protobuf.WellKnownTypes;
 
 namespace CorazonDeCafeStockManager.App.Presenters
 {
@@ -10,22 +13,31 @@ namespace CorazonDeCafeStockManager.App.Presenters
     {
         private readonly IReportsView view;
         private readonly IBillingRepository billingRepository;
+        private readonly OrdersPresenter ordersPresenter;
         private readonly HomePresenter homePresenter;
-        public ReportsPresenter(IReportsView view, IBillingRepository billingRepository, HomePresenter homePresenter)
+        public ReportsPresenter(IReportsView view, IBillingRepository billingRepository, OrdersPresenter ordersPresenter, HomePresenter homePresenter)
         {
             this.view = view;
             this.homePresenter = homePresenter;
-
             this.billingRepository = billingRepository;
+            this.ordersPresenter = ordersPresenter;
 
             this.view.SearchBillingsEvent += SearchBillingsEvent;
             this.view.SearchAmountEvent += SearchAmountEvent;
 
+            LoadBillings();
             _ = LoadData();
 
-            LoadBillings();
+
 
             this.view.Show();
+
+        }
+
+        private void LoadCharts()
+        {
+            SearchBillingsEvent(this, EventArgs.Empty);
+            SearchAmountEvent(this, EventArgs.Empty);
         }
 
         private void LoadBillings()
@@ -48,20 +60,21 @@ namespace CorazonDeCafeStockManager.App.Presenters
             view.EndDateAmount.MaxDate = DateTime.Now.Date;
 
             DateTime startMonth = DateTime.Now;
-            startMonth = new DateTime(startMonth.Year, startMonth.Month, 1);
+            startMonth = new DateTime(startMonth.Year, startMonth.Month - 1, 1);
 
             view.StartDateAmount.Value = startMonth.Date;
             view.StartDateBillings.Value = startMonth.Date;
 
             view.EndDateBillings.Value = DateTime.Now.Date;
             view.EndDateAmount.Value = DateTime.Now.Date;
+
         }
 
         private async Task LoadData()
         {
-            Product product = await billingRepository.GetProductPop();
             Customer customer = await billingRepository.GetCustomerPop();
             PaymentMethod paymentMethod = await billingRepository.GetPaymentMethodPop();
+            Product product = await billingRepository.GetProductPop();
             int lastMonthBillings = await billingRepository.GetLastMonthBillings();
 
             view.ProductPop = product.Name;
@@ -74,7 +87,7 @@ namespace CorazonDeCafeStockManager.App.Presenters
         {
             var startDate = view.StartDateBillings.Value;
             var endDate = view.EndDateBillings.Value;
-            var employee = view.SelectedEmployee.SelectedItem;
+            var employee = view.SelectedEmployee.SelectedItem ?? "Todos";
 
             int employeeId = 0;
             if (employee != null && employee.ToString() != "Todos")
@@ -90,7 +103,16 @@ namespace CorazonDeCafeStockManager.App.Presenters
                 return;
             }
 
-            var orders = await billingRepository.GetBillingsByDateAndEmployeeId(startDate, endDate, employeeId);
+            IEnumerable<OrderStats> orders;
+            if (SessionManager.RoleId == 4)
+            {
+                orders = await billingRepository.GetBillingsByDateAndEmployeeId(startDate, endDate, SessionManager.Id);
+            }
+            else
+            {
+                orders = await billingRepository.GetBillingsByDateAndEmployeeId(startDate, endDate, employeeId);
+            }
+
             var chart = view.ChartAmount;
 
             chart.Series.Clear();
@@ -111,7 +133,7 @@ namespace CorazonDeCafeStockManager.App.Presenters
         {
             var startDate = view.StartDateAmount.Value;
             var endDate = view.EndDateAmount.Value;
-            var employee = view.SelectedEmployee.SelectedItem;
+            var employee = view.SelectedEmployee2.SelectedItem;
 
             int employeeId = 0;
             if (employee != null && employee.ToString() != "Todos")
@@ -127,21 +149,35 @@ namespace CorazonDeCafeStockManager.App.Presenters
                 return;
             }
 
-            var products = await billingRepository.GetBillingsCantByDateAndEmployeeId(startDate, endDate, employeeId);
-            var chart = view.ChartBillings;
-
+            IEnumerable<OrderByEmployee> orders = await billingRepository.GetBillingsByEmployee(startDate, endDate, employeeId);
+            Chart chart = view.ChartBillings;
             chart.Series.Clear();
-            chart.Series.Add("Cantidad");
-            chart.Series["Cantidad"].ChartType = SeriesChartType.SplineArea;
 
-            foreach (var product in products)
+            Series series = new()
             {
-                chart.Series["Cantidad"].Points.AddXY(product.CreatedAt.ToString("dd/MM"), product.Amount);
+                ChartType = SeriesChartType.Pie
+            };
+
+            foreach (var order in orders)
+            {
+                var employeeFullName = order.Employee!.User.Name + " " + order.Employee!.User.Surname;
+                var totalOrders = order.TotalOrders;
+                series.Points.AddXY(employeeFullName, totalOrders);
+                series.Points.Last().Label = $"{totalOrders}";
+                series.Points.Last().LegendText = employeeFullName;
+
+
+
             }
 
-            chart.ChartAreas[0].AxisX.Interval = 1;
-            chart.ChartAreas[0].AxisX.LabelStyle.Angle = -45;
-            chart.ChartAreas[0].AxisX.LabelStyle.Interval = 1;
+            chart.Series.Add(series);
+
+            foreach (var point in series.Points)
+            {
+                point.LabelForeColor = Color.White;
+                point.Font = new Font("Arial", 10, FontStyle.Bold);
+            }
+
         }
 
         public void ShowView() => view!.Show();

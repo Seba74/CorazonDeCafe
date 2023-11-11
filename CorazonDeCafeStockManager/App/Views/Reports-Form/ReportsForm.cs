@@ -16,71 +16,34 @@ namespace CorazonDeCafeStockManager.App.Views.ReportsForm
     public partial class ReportsForm : Form, IReportsView
     {
 
-        public string PaymentPop
-        {
-            get => paymentPop.Text;
-            set => paymentPop.Text = value;
-        }
-        public string LastOrders
-        {
-            get => lastOrders.Text;
-            set => lastOrders.Text = value;
-        }
-        public string ProductPop
-        {
-            get => productPop.Text;
-            set => productPop.Text = value;
-        }
-        public string CustomerPop
-        {
-            get => customerPop.Text;
-            set => customerPop.Text = value;
-        }
-        public ComboBoxCustom SelectedEmployee
-        {
-            get => selectedEmployee;
-            set => selectedEmployee = value;
-        }
-        public ComboBoxCustom SelectedEmployee2
-        {
-            get => selectedEmployee2;
-            set => selectedEmployee2 = value;
-        }
-        public CalendarCustom StartDateBillings
-        {
-            get => startDate;
-            set => startDate = value;
-        }
-        public CalendarCustom StartDateAmount
-        {
-            get => startDate2;
-            set => startDate2 = value;
-        }
-        public CalendarCustom EndDateBillings
-        {
-            get => endDate;
-            set => endDate = value;
-        }
-        public CalendarCustom EndDateAmount
-        {
-            get => endDate2;
-            set => endDate2 = value;
-        }
-        public Chart ChartAmount
-        {
-            get => chartAmount;
-            set => chartAmount = value;
-        }
-        public Chart ChartBillings
-        {
-            get => chartBillings;
-            set => chartBillings = value;
-        }
+        public string PaymentPop { get => paymentPop.Text; set => paymentPop.Text = value; }
+        public string LastOrders { get => lastOrders.Text; set => lastOrders.Text = value; }
+        public string ProductPop { get => productPop.Text; set => productPop.Text = value; }
+        public string CustomerPop { get => customerPop.Text; set => customerPop.Text = value; }
+        public ComboBoxCustom SelectedEmployee { get => selectedEmployee; set => selectedEmployee = value; }
+        public ComboBoxCustom SelectedEmployee2 { get => selectedEmployee2; set => selectedEmployee2 = value; }
+        public CalendarCustom StartDateBillings { get => startDate; set => startDate = value; }
+        public CalendarCustom StartDateAmount { get => startDate2; set => startDate2 = value; }
+        public CalendarCustom EndDateBillings { get => endDate; set => endDate = value; }
+        public CalendarCustom EndDateAmount { get => endDate2; set => endDate2 = value; }
+        public Chart ChartAmount { get => chartAmount; set => chartAmount = value; }
+        public Chart ChartBillings { get => chartBillings; set => chartBillings = value; }
+        public Panel PanelBillings { get => panelBillings; set => panelBillings = value; }
+        public Panel PanelOrders { get => panelOrders; set => panelOrders = value; }
 
         public ReportsForm()
         {
             InitializeComponent();
             InitializeEvents();
+            PanelOrders.Visible = false;
+
+            if (SessionManager.RoleId == 4)
+            {
+                selectedEmployee.Visible = false;
+                labelEmployee.Visible = false;
+                PanelOrders.Visible = true;
+                PanelBillings.Visible = false;
+            }
         }
 
         private void InitializeEvents()

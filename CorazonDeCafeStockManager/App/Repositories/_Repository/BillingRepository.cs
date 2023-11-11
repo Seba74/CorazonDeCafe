@@ -27,10 +27,16 @@ public class BillingRepository : IBillingRepository
         LocalStorage.Orders ??= await _context.Orders!.Include(o => o.Customer).ThenInclude(c => c!.User).ToListAsync() ?? throw new LocalException("No se encontraron ordenes");
         return LocalStorage.Orders;
     }
+    public async Task<IEnumerable<Order>> GetAllBillingsByEmployeeId(int id)
+    {
+        return await _context.Orders!.Include(o => o.Customer).ThenInclude(c => c!.User).Where(o => o.EmployeeId == id).ToListAsync() ?? throw new LocalException("No se encontraron ordenes");
+    }
 
     public async Task<Order> GetBillingById(int id)
     {
-        Order order = await _context.Orders!.Include(o => o.Customer).ThenInclude(c => c!.User).ThenInclude(u => u.Address).Include(o => o.BillingType).Include(o => o.PaymentMethod).Include(o => o.OrderProducts).ThenInclude(op => op.Product).FirstOrDefaultAsync(o => o.Id == id) ?? throw new LocalException("No se encontró la orden");
+        Order order = await _context.Orders!.Include(o => o.Customer).ThenInclude(c => c!.User).ThenInclude(u => u.Address)
+            .Include(o => o.BillingType).Include(o => o.PaymentMethod).Include(o => o.OrderProducts)
+            .ThenInclude(op => op.Product).FirstOrDefaultAsync(o => o.Id == id) ?? throw new LocalException("No se encontró la orden");
         return order;
     }
 
@@ -84,7 +90,9 @@ public class BillingRepository : IBillingRepository
 
     public async Task<Order> GetLastBilling()
     {
-        Order order = await _context.Orders!.Include(o => o.Customer).ThenInclude(c => c!.User).ThenInclude(u => u.Address).Include(o => o.BillingType).Include(o => o.PaymentMethod).Include(o => o.OrderProducts).ThenInclude(op => op.Product).OrderByDescending(o => o.Id).FirstOrDefaultAsync() ?? throw new LocalException("No se encontró la orden");
+        Order order = await _context.Orders!.Include(o => o.Customer).ThenInclude(c => c!.User).ThenInclude(u => u.Address)
+            .Include(o => o.BillingType).Include(o => o.PaymentMethod).Include(o => o.OrderProducts)
+            .ThenInclude(op => op.Product).OrderByDescending(o => o.Id).FirstOrDefaultAsync() ?? throw new LocalException("No se encontró la orden");
         return order;
     }
 
@@ -122,8 +130,6 @@ public class BillingRepository : IBillingRepository
     public async Task<Product> GetProductPop()
     {
         IEnumerable<OrderProduct> orderProducts = await _context.OrderProducts!.ToListAsync() ?? throw new LocalException("No se encontraron productos");
-        IEnumerable<Product> products = await _context.Products!.ToListAsync() ?? throw new LocalException("No se encontraron productos");
-
         var productPop = orderProducts.GroupBy(op => op.ProductId).Select(op => new { ProductId = op.Key, Amount = op.Sum(op => op.Amount) }).OrderByDescending(op => op.Amount).FirstOrDefault();
 
         Product product = await _context.Products!.FirstOrDefaultAsync(p => p.Id == productPop!.ProductId) ?? throw new LocalException("No se encontró el producto");
@@ -133,10 +139,17 @@ public class BillingRepository : IBillingRepository
 
     public async Task<Customer> GetCustomerPop()
     {
+
+        if(SessionManager.RoleId == 3 || SessionManager.RoleId == 4)
+        {
+            IEnumerable<Order> ordersEmp = await _context.Orders!.Where(o => o.EmployeeId == SessionManager.Id).ToListAsync() ?? throw new LocalException("No se encontraron ordenes");
+            var customerPopEmp = ordersEmp.GroupBy(o => o.CustomerId).Select(o => new { CustomerId = o.Key, Amount = o.Count() }).OrderByDescending(o => o.Amount).FirstOrDefault();
+            Customer customerEmp = await _context.Customers!.Include(c => c.User).FirstOrDefaultAsync(c => c.Id == customerPopEmp!.CustomerId) ?? throw new LocalException("No se encontró el cliente");
+            return customerEmp;
+        }
+
         IEnumerable<Order> orders = await _context.Orders!.ToListAsync() ?? throw new LocalException("No se encontraron ordenes");
-
         var customerPop = orders.GroupBy(o => o.CustomerId).Select(o => new { CustomerId = o.Key, Amount = o.Count() }).OrderByDescending(o => o.Amount).FirstOrDefault();
-
         Customer customer = await _context.Customers!.Include(c => c.User).FirstOrDefaultAsync(c => c.Id == customerPop!.CustomerId) ?? throw new LocalException("No se encontró el cliente");
 
         return customer;
@@ -144,10 +157,17 @@ public class BillingRepository : IBillingRepository
 
     public async Task<PaymentMethod> GetPaymentMethodPop()
     {
+
+        if(SessionManager.RoleId == 3 || SessionManager.RoleId == 4)
+        {
+            IEnumerable<Order> ordersEmp = await _context.Orders!.Where(o => o.EmployeeId == SessionManager.Id).ToListAsync() ?? throw new LocalException("No se encontraron ordenes");
+            var paymentMethodPopEmp = ordersEmp.GroupBy(o => o.PaymentMethodId).Select(o => new { PaymentMethodId = o.Key, Amount = o.Count() }).OrderByDescending(o => o.Amount).FirstOrDefault();
+            PaymentMethod paymentMethodEmp = await _context.PaymentMethods!.FirstOrDefaultAsync(pm => pm.Id == paymentMethodPopEmp!.PaymentMethodId) ?? throw new LocalException("No se encontró el método de pago");
+            return paymentMethodEmp;
+        }   
+
         IEnumerable<Order> orders = await _context.Orders!.ToListAsync() ?? throw new LocalException("No se encontraron ordenes");
-
         var paymentMethodPop = orders.GroupBy(o => o.PaymentMethodId).Select(o => new { PaymentMethodId = o.Key, Amount = o.Count() }).OrderByDescending(o => o.Amount).FirstOrDefault();
-
         PaymentMethod paymentMethod = await _context.PaymentMethods!.FirstOrDefaultAsync(pm => pm.Id == paymentMethodPop!.PaymentMethodId) ?? throw new LocalException("No se encontró el método de pago");
 
         return paymentMethod;
@@ -155,12 +175,22 @@ public class BillingRepository : IBillingRepository
 
     public async Task<int> GetLastMonthBillings()
     {
-        IEnumerable<Order> orders = await _context.Orders!.Where(o => o.Status == 1).ToListAsync() ?? throw new LocalException("No se encontraron ordenes");
 
+        if(SessionManager.RoleId == 3 || SessionManager.RoleId == 4)
+        {
+            IEnumerable<Order> ordersEmp = await _context.Orders!.Where(o => o.EmployeeId == SessionManager.Id && o.Status == 1).ToListAsync() ?? throw new LocalException("No se encontraron ordenes");
+            DateTime startMonthEmp = DateTime.Now;
+            startMonthEmp = new DateTime(startMonthEmp.Year, startMonthEmp.Month, 1);
+            DateTime endMonthEmp = startMonthEmp.AddMonths(1).AddDays(-1);
+            IEnumerable<Order> lastMonthBillingsEmp = ordersEmp.Where(o => o.CreatedAt >= startMonthEmp && o.CreatedAt <= endMonthEmp);
+            return lastMonthBillingsEmp.Count();
+        }
+
+
+        IEnumerable<Order> orders = await _context.Orders!.Where(o => o.Status == 1).ToListAsync() ?? throw new LocalException("No se encontraron ordenes");
         DateTime startMonth = DateTime.Now;
         startMonth = new DateTime(startMonth.Year, startMonth.Month, 1);
         DateTime endMonth = startMonth.AddMonths(1).AddDays(-1);
-
         IEnumerable<Order> lastMonthBillings = orders.Where(o => o.CreatedAt >= startMonth && o.CreatedAt <= endMonth);
 
         return lastMonthBillings.Count();
@@ -177,6 +207,7 @@ public class BillingRepository : IBillingRepository
             orders = await _context.Orders!.Where(o => o.Status == 1 && o.EmployeeId == employeeId).ToListAsync() ?? throw new LocalException("No se encontraron ordenes");
         }
 
+        endDate = endDate.AddDays(1);
         IEnumerable<Order> billings = orders.Where(o => o.CreatedAt >= startDate && o.CreatedAt <= endDate);
 
         var groupedOrders = billings.GroupBy(o => o.CreatedAt?.Date);
@@ -203,7 +234,7 @@ public class BillingRepository : IBillingRepository
             orders = await _context.Orders!.Where(o => o.Status == 1 && o.EmployeeId == employeeId).ToListAsync() ?? throw new LocalException("No se encontraron ordenes");
         }
 
-
+        endDate = endDate.AddDays(1);
         IEnumerable<Order> billings = orders.Where(o => o.CreatedAt >= startDate && o.CreatedAt <= endDate);
 
         var groupedOrders = billings.GroupBy(o => o.CreatedAt?.Date);
@@ -219,5 +250,30 @@ public class BillingRepository : IBillingRepository
         return billingsGrouped;
     }
 
+    public async Task<IEnumerable<OrderByEmployee>> GetBillingsByEmployee(DateTime startDate, DateTime endDate, int? employeeId)
+    {
+        IEnumerable<Order> orders;
+        if (employeeId == 0)
+        {
+            orders = await _context.Orders!.Where(o => o.Status == 1).ToListAsync() ?? throw new LocalException("No se encontraron ordenes");
+        }
+        else
+        {
+            orders = await _context.Orders!.Where(o => o.Status == 1 && o.EmployeeId == employeeId).ToListAsync() ?? throw new LocalException("No se encontraron ordenes");
+        }
+
+        endDate = endDate.AddDays(1);
+        IEnumerable<Order> billings = orders.Where(o => o.CreatedAt >= startDate && o.CreatedAt <= endDate);
+
+        var groupedOrders = billings.GroupBy(o => o.Employee);
+
+        var billingsGrouped = groupedOrders.Select(group =>
+            new OrderByEmployee
+            {
+                Employee = group.Key,
+                TotalOrders = group.Count()
+            });
+        return billingsGrouped;
+    }
 }
 

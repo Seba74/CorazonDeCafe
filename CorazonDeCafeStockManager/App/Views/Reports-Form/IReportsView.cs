@@ -23,6 +23,8 @@ namespace CorazonDeCafeStockManager.App.Views.ReportsForm
         CalendarCustom EndDateAmount { get; set; }
         Chart ChartAmount { get; set; }
         Chart ChartBillings { get; set; }
+        Panel PanelBillings { get; set; }
+        Panel PanelOrders { get; set; }
 
         // Events
         event EventHandler Load;

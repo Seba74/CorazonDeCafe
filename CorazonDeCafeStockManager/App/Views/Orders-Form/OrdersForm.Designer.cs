@@ -355,7 +355,7 @@ namespace CorazonDeCafeStockManager.App.Views.OrdersForm
             reload.Font = new Font("Poppins Light", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
             reload.ForeColor = Color.FromArgb(145, 90, 57);
             reload.Image = Properties.Resources.reload;
-            reload.Location = new Point(876, 17);
+            reload.Location = new Point(854, 17);
             reload.MaximumSize = new Size(80, 38);
             reload.Name = "reload";
             reload.Padding = new Padding(6, 0, 6, 0);
@@ -380,7 +380,7 @@ namespace CorazonDeCafeStockManager.App.Views.OrdersForm
             btnEdit.ForeColor = Color.FromArgb(145, 90, 57);
             btnEdit.Image = Properties.Resources.edit;
             btnEdit.ImageAlign = ContentAlignment.MiddleRight;
-            btnEdit.Location = new Point(763, 17);
+            btnEdit.Location = new Point(741, 17);
             btnEdit.MaximumSize = new Size(160, 38);
             btnEdit.Name = "btnEdit";
             btnEdit.Padding = new Padding(6, 0, 6, 0);

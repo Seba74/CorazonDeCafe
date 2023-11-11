@@ -268,7 +268,7 @@ namespace CorazonDeCafeStockManager.App.Presenters
                     imageName = view.ProductImagen;
                 }
 
-                string fileSavePath = Path.Combine("..", "..", "..", "..", "..", "..", "products", imageName!);
+                string fileSavePath = Path.Combine("..", "..", "..", "products", imageName!);
                 string fileName = openFileDialog.SafeFileName;
                 this.fileSavePath = fileSavePath;
                 filePath = openFileDialog.FileName;

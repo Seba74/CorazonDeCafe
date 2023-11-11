@@ -28,12 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             panel1 = new Panel();
             label1 = new Label();
             lastOrders = new Label();
@@ -49,6 +49,8 @@
             label10 = new Label();
             label4 = new Label();
             panel6 = new Panel();
+            labelEmployee = new Label();
+            selectedEmployee = new ComboBoxCustom();
             filterBillings = new ButtonCustom();
             endDate = new CalendarCustom();
             panel7 = new Panel();
@@ -56,7 +58,10 @@
             label6 = new Label();
             label5 = new Label();
             startDate = new CalendarCustom();
-            panel8 = new Panel();
+            panelOrders = new Panel();
+            panelBillings = new Panel();
+            label12 = new Label();
+            selectedEmployee2 = new ComboBoxCustom();
             filterAmount = new ButtonCustom();
             endDate2 = new CalendarCustom();
             panel9 = new Panel();
@@ -66,10 +71,6 @@
             startDate2 = new CalendarCustom();
             label9 = new Label();
             panel10 = new Panel();
-            label11 = new Label();
-            selectedEmployee = new ComboBoxCustom();
-            label12 = new Label();
-            selectedEmployee2 = new ComboBoxCustom();
             panel1.SuspendLayout();
             panel5.SuspendLayout();
             panel4.SuspendLayout();
@@ -78,7 +79,7 @@
             panel6.SuspendLayout();
             panel7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)chartAmount).BeginInit();
-            panel8.SuspendLayout();
+            panelBillings.SuspendLayout();
             panel9.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)chartBillings).BeginInit();
             panel10.SuspendLayout();
@@ -139,7 +140,7 @@
             panel5.Controls.Add(panel1);
             panel5.Location = new Point(10, 60);
             panel5.Name = "panel5";
-            panel5.Size = new Size(950, 63);
+            panel5.Size = new Size(1028, 63);
             panel5.TabIndex = 4;
             // 
             // panel4
@@ -173,9 +174,9 @@
             label2.ForeColor = Color.FromArgb(146, 90, 57);
             label2.Location = new Point(3, 0);
             label2.Name = "label2";
-            label2.Size = new Size(194, 25);
+            label2.Size = new Size(132, 25);
             label2.TabIndex = 42;
-            label2.Text = "Producto popular - ventas";
+            label2.Text = "Producto popular";
             // 
             // panel3
             // 
@@ -207,9 +208,9 @@
             label3.ForeColor = Color.FromArgb(146, 90, 57);
             label3.Location = new Point(3, 0);
             label3.Name = "label3";
-            label3.Size = new Size(211, 25);
+            label3.Size = new Size(134, 25);
             label3.TabIndex = 43;
-            label3.Text = "Cliente frecuente - compras";
+            label3.Text = "Cliente frecuente";
             // 
             // panel2
             // 
@@ -247,7 +248,7 @@
             // 
             // panel6
             // 
-            panel6.Controls.Add(label11);
+            panel6.Controls.Add(labelEmployee);
             panel6.Controls.Add(selectedEmployee);
             panel6.Controls.Add(filterBillings);
             panel6.Controls.Add(endDate);
@@ -260,6 +261,40 @@
             panel6.Name = "panel6";
             panel6.Size = new Size(473, 464);
             panel6.TabIndex = 49;
+            // 
+            // labelEmployee
+            // 
+            labelEmployee.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            labelEmployee.AutoSize = true;
+            labelEmployee.Font = new Font("Poppins Light", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            labelEmployee.ForeColor = Color.FromArgb(146, 90, 57);
+            labelEmployee.Location = new Point(240, 57);
+            labelEmployee.Name = "labelEmployee";
+            labelEmployee.Size = new Size(80, 25);
+            labelEmployee.TabIndex = 57;
+            labelEmployee.Text = "Vendedor";
+            // 
+            // selectedEmployee
+            // 
+            selectedEmployee.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
+            selectedEmployee.BackColor = Color.FromArgb(255, 219, 197);
+            selectedEmployee.BorderColor = Color.FromArgb(145, 90, 57);
+            selectedEmployee.BorderRadius = 5;
+            selectedEmployee.BorderSize = 0;
+            selectedEmployee.DropDownStyle = ComboBoxStyle.DropDown;
+            selectedEmployee.Font = new Font("Poppins Light", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            selectedEmployee.ForeColor = Color.FromArgb(145, 90, 57);
+            selectedEmployee.IconColor = Color.FromArgb(145, 90, 57);
+            selectedEmployee.ListBackColor = Color.FromArgb(230, 228, 245);
+            selectedEmployee.ListTextColor = Color.FromArgb(145, 90, 57);
+            selectedEmployee.Location = new Point(237, 85);
+            selectedEmployee.MaximumSize = new Size(200, 38);
+            selectedEmployee.MinimumSize = new Size(110, 30);
+            selectedEmployee.Name = "selectedEmployee";
+            selectedEmployee.Padding = new Padding(0, 0, 0, 2);
+            selectedEmployee.Size = new Size(174, 38);
+            selectedEmployee.TabIndex = 56;
+            selectedEmployee.Texts = "Todos";
             // 
             // filterBillings
             // 
@@ -314,19 +349,19 @@
             // 
             // chartAmount
             // 
-            chartArea3.Name = "ChartArea1";
-            chartAmount.ChartAreas.Add(chartArea3);
-            legend3.Name = "Legend1";
-            chartAmount.Legends.Add(legend3);
+            chartArea1.Name = "ChartArea1";
+            chartAmount.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            chartAmount.Legends.Add(legend1);
             chartAmount.Location = new Point(3, 3);
             chartAmount.Name = "chartAmount";
             chartAmount.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Chocolate;
-            series3.ChartArea = "ChartArea1";
-            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series3.Legend = "Legend1";
-            series3.Name = "Series1";
-            series3.YValuesPerPoint = 2;
-            chartAmount.Series.Add(series3);
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            series1.YValuesPerPoint = 2;
+            chartAmount.Series.Add(series1);
             chartAmount.Size = new Size(443, 300);
             chartAmount.TabIndex = 0;
             chartAmount.Text = "chart1";
@@ -376,21 +411,62 @@
             startDate.TextColor = Color.FromArgb(145, 90, 57);
             startDate.Value = new DateTime(2001, 10, 25, 0, 0, 0, 0);
             // 
-            // panel8
+            // panelOrders
             // 
-            panel8.Controls.Add(label12);
-            panel8.Controls.Add(selectedEmployee2);
-            panel8.Controls.Add(filterAmount);
-            panel8.Controls.Add(endDate2);
-            panel8.Controls.Add(panel9);
-            panel8.Controls.Add(label7);
-            panel8.Controls.Add(label8);
-            panel8.Controls.Add(startDate2);
-            panel8.Controls.Add(label9);
-            panel8.Location = new Point(479, 0);
-            panel8.Name = "panel8";
-            panel8.Size = new Size(473, 464);
-            panel8.TabIndex = 53;
+            panelOrders.Location = new Point(458, -5);
+            panelOrders.Name = "panelOrders";
+            panelOrders.Size = new Size(576, 458);
+            panelOrders.TabIndex = 59;
+            // 
+            // panelBillings
+            // 
+            panelBillings.Controls.Add(label12);
+            panelBillings.Controls.Add(selectedEmployee2);
+            panelBillings.Controls.Add(filterAmount);
+            panelBillings.Controls.Add(endDate2);
+            panelBillings.Controls.Add(panel9);
+            panelBillings.Controls.Add(label7);
+            panelBillings.Controls.Add(label8);
+            panelBillings.Controls.Add(startDate2);
+            panelBillings.Controls.Add(label9);
+            panelBillings.Location = new Point(492, 3);
+            panelBillings.Name = "panelBillings";
+            panelBillings.Size = new Size(473, 464);
+            panelBillings.TabIndex = 53;
+            // 
+            // label12
+            // 
+            label12.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            label12.AutoSize = true;
+            label12.Font = new Font("Poppins Light", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            label12.ForeColor = Color.FromArgb(146, 90, 57);
+            label12.Location = new Point(239, 56);
+            label12.Name = "label12";
+            label12.Size = new Size(80, 25);
+            label12.TabIndex = 57;
+            label12.Text = "Vendedor";
+            // 
+            // selectedEmployee2
+            // 
+            selectedEmployee2.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
+            selectedEmployee2.BackColor = Color.FromArgb(255, 219, 197);
+            selectedEmployee2.BorderColor = Color.FromArgb(145, 90, 57);
+            selectedEmployee2.BorderRadius = 5;
+            selectedEmployee2.BorderSize = 0;
+            selectedEmployee2.DropDownStyle = ComboBoxStyle.DropDown;
+            selectedEmployee2.Font = new Font("Poppins Light", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            selectedEmployee2.ForeColor = Color.FromArgb(145, 90, 57);
+            selectedEmployee2.IconColor = Color.FromArgb(145, 90, 57);
+            selectedEmployee2.ListBackColor = Color.FromArgb(230, 228, 245);
+            selectedEmployee2.ListTextColor = Color.FromArgb(145, 90, 57);
+            selectedEmployee2.Location = new Point(237, 84);
+            selectedEmployee2.MaximumSize = new Size(200, 38);
+            selectedEmployee2.MinimumSize = new Size(110, 30);
+            selectedEmployee2.Name = "selectedEmployee2";
+            selectedEmployee2.Padding = new Padding(0, 0, 0, 2);
+            selectedEmployee2.Size = new Size(174, 38);
+            selectedEmployee2.TabIndex = 58;
+            selectedEmployee2.Texts = "Todos";
             // 
             // filterAmount
             // 
@@ -445,19 +521,19 @@
             // 
             // chartBillings
             // 
-            chartArea4.Name = "ChartArea1";
-            chartBillings.ChartAreas.Add(chartArea4);
-            legend4.Name = "Legend1";
-            chartBillings.Legends.Add(legend4);
+            chartArea2.Name = "ChartArea1";
+            chartBillings.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            chartBillings.Legends.Add(legend2);
             chartBillings.Location = new Point(3, 3);
             chartBillings.Name = "chartBillings";
             chartBillings.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Chocolate;
-            series4.ChartArea = "ChartArea1";
-            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.SplineArea;
-            series4.Legend = "Legend1";
-            series4.Name = "Series1";
-            series4.YValuesPerPoint = 4;
-            chartBillings.Series.Add(series4);
+            series2.ChartArea = "ChartArea1";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.SplineArea;
+            series2.Legend = "Legend1";
+            series2.Name = "Series1";
+            series2.YValuesPerPoint = 4;
+            chartBillings.Series.Add(series2);
             chartBillings.Size = new Size(443, 300);
             chartBillings.TabIndex = 0;
             chartBillings.Text = "chart2";
@@ -522,88 +598,21 @@
             // panel10
             // 
             panel10.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            panel10.Controls.Add(panel8);
+            panel10.Controls.Add(panelOrders);
+            panel10.Controls.Add(panelBillings);
             panel10.Controls.Add(panel6);
-            panel10.Location = new Point(9, 146);
+            panel10.Location = new Point(9, 163);
             panel10.Name = "panel10";
-            panel10.Size = new Size(952, 464);
+            panel10.Size = new Size(1030, 470);
             panel10.TabIndex = 54;
-            // 
-            // label11
-            // 
-            label11.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            label11.AutoSize = true;
-            label11.Font = new Font("Poppins Light", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            label11.ForeColor = Color.FromArgb(146, 90, 57);
-            label11.Location = new Point(240, 57);
-            label11.Name = "label11";
-            label11.Size = new Size(80, 25);
-            label11.TabIndex = 57;
-            label11.Text = "Vendedor";
-            // 
-            // selectedEmployee
-            // 
-            selectedEmployee.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
-            selectedEmployee.BackColor = Color.FromArgb(255, 219, 197);
-            selectedEmployee.BorderColor = Color.FromArgb(145, 90, 57);
-            selectedEmployee.BorderRadius = 5;
-            selectedEmployee.BorderSize = 0;
-            selectedEmployee.DropDownStyle = ComboBoxStyle.DropDown;
-            selectedEmployee.Font = new Font("Poppins Light", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            selectedEmployee.ForeColor = Color.FromArgb(145, 90, 57);
-            selectedEmployee.IconColor = Color.FromArgb(145, 90, 57);
-            selectedEmployee.ListBackColor = Color.FromArgb(230, 228, 245);
-            selectedEmployee.ListTextColor = Color.FromArgb(145, 90, 57);
-            selectedEmployee.Location = new Point(237, 85);
-            selectedEmployee.MaximumSize = new Size(200, 38);
-            selectedEmployee.MinimumSize = new Size(110, 30);
-            selectedEmployee.Name = "selectedEmployee";
-            selectedEmployee.Padding = new Padding(0, 0, 0, 2);
-            selectedEmployee.Size = new Size(174, 38);
-            selectedEmployee.TabIndex = 56;
-            selectedEmployee.Texts = "Todos";
-            // 
-            // label12
-            // 
-            label12.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            label12.AutoSize = true;
-            label12.Font = new Font("Poppins Light", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            label12.ForeColor = Color.FromArgb(146, 90, 57);
-            label12.Location = new Point(239, 56);
-            label12.Name = "label12";
-            label12.Size = new Size(80, 25);
-            label12.TabIndex = 57;
-            label12.Text = "Vendedor";
-            // 
-            // selectedEmployee2
-            // 
-            selectedEmployee2.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
-            selectedEmployee2.BackColor = Color.FromArgb(255, 219, 197);
-            selectedEmployee2.BorderColor = Color.FromArgb(145, 90, 57);
-            selectedEmployee2.BorderRadius = 5;
-            selectedEmployee2.BorderSize = 0;
-            selectedEmployee2.DropDownStyle = ComboBoxStyle.DropDown;
-            selectedEmployee2.Font = new Font("Poppins Light", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            selectedEmployee2.ForeColor = Color.FromArgb(145, 90, 57);
-            selectedEmployee2.IconColor = Color.FromArgb(145, 90, 57);
-            selectedEmployee2.ListBackColor = Color.FromArgb(230, 228, 245);
-            selectedEmployee2.ListTextColor = Color.FromArgb(145, 90, 57);
-            selectedEmployee2.Location = new Point(237, 84);
-            selectedEmployee2.MaximumSize = new Size(200, 38);
-            selectedEmployee2.MinimumSize = new Size(110, 30);
-            selectedEmployee2.Name = "selectedEmployee2";
-            selectedEmployee2.Padding = new Padding(0, 0, 0, 2);
-            selectedEmployee2.Size = new Size(174, 38);
-            selectedEmployee2.TabIndex = 58;
-            selectedEmployee2.Texts = "Todos";
             // 
             // ReportsForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(970, 613);
-            Controls.Add(panel10);
+            ClientSize = new Size(1048, 644);
             Controls.Add(panel5);
+            Controls.Add(panel10);
             Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point);
             FormBorderStyle = FormBorderStyle.None;
             Name = "ReportsForm";
@@ -622,8 +631,8 @@
             panel6.PerformLayout();
             panel7.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)chartAmount).EndInit();
-            panel8.ResumeLayout(false);
-            panel8.PerformLayout();
+            panelBillings.ResumeLayout(false);
+            panelBillings.PerformLayout();
             panel9.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)chartBillings).EndInit();
             panel10.ResumeLayout(false);
@@ -652,7 +661,7 @@
         private Label label5;
         private CalendarCustom endDate;
         private CalendarCustom startDate;
-        private Panel panel8;
+        private Panel panelBillings;
         private Panel panel9;
         private System.Windows.Forms.DataVisualization.Charting.Chart chartBillings;
         private Label label7;
@@ -664,9 +673,10 @@
         private Label label10;
         private ButtonCustom filterBillings;
         private ButtonCustom filterAmount;
-        private Label label11;
+        private Label labelEmployee;
         private ComboBoxCustom selectedEmployee;
         private Label label12;
         private ComboBoxCustom selectedEmployee2;
+        private Panel panelOrders;
     }
 }

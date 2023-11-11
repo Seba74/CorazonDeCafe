@@ -11,6 +11,7 @@ namespace CorazonDeCafeStockManager.App.Common
         {
             Order = null;
             Customer = null;
+
         }
 
         public static void AddProductToCart(OrderProductData orderProduct)

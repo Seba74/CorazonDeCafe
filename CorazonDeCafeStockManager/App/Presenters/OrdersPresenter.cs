@@ -39,16 +39,21 @@ namespace CorazonDeCafeStockManager.App.Presenters
         {
             try
             {
-                orders = await billingRepository.GetAllBillings();
-                ordersBackup = orders;
-                view.OrdersList = orders;
-                view.LoadOrders();
-                view.SelectedPaymentMethod.Items.Add("Todos");
-                view.SelectedPaymentMethod.Items.AddRange(LocalStorage.PaymentMethods!.Select(pm => pm.Description).ToArray());
+                    orders = await billingRepository.GetAllBillings();
 
-                view.SelectedBillingType.Items.Add("Todos");
-                view.SelectedBillingType.Items.AddRange(LocalStorage.BillingTypes!.Select(bt => bt.Description).ToArray());
+                    if (SessionManager.RoleId == 4)
+                    {
+                        orders = orders.Where(o => o.EmployeeId == SessionManager.Id);
+                    }
 
+                    ordersBackup = orders;
+                    view.OrdersList = orders;
+                    view.LoadOrders();
+                    view.SelectedPaymentMethod.Items.Add("Todos");
+                    view.SelectedPaymentMethod.Items.AddRange(LocalStorage.PaymentMethods!.Select(pm => pm.Description).ToArray());
+
+                    view.SelectedBillingType.Items.Add("Todos");
+                    view.SelectedBillingType.Items.AddRange(LocalStorage.BillingTypes!.Select(bt => bt.Description).ToArray());
             }
             catch (Exception e)
             {

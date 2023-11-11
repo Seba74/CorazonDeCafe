@@ -36,4 +36,10 @@ namespace CorazonDeCafeStockManager.App.EntityData
         public int Amount { get; set; }
         public DateTime CreatedAt { get; set; }
     }
+
+    public class OrderByEmployee
+    {
+        public Employee? Employee { get; set; }
+        public int TotalOrders { get; set; }
+    }
 }

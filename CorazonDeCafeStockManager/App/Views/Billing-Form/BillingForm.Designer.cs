@@ -29,15 +29,15 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BillingForm));
-            DataGridViewCellStyle dataGridViewCellStyle19 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle20 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle25 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle26 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle27 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle21 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle22 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle23 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle24 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle9 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
             panel1 = new Panel();
             panel2 = new Panel();
             btnCustomer = new ButtonCustom();
@@ -266,55 +266,55 @@
             cartGrid.AllowUserToDeleteRows = false;
             cartGrid.AllowUserToResizeColumns = false;
             cartGrid.AllowUserToResizeRows = false;
-            dataGridViewCellStyle19.BackColor = Color.FromArgb(146, 90, 57);
-            dataGridViewCellStyle19.ForeColor = Color.White;
-            dataGridViewCellStyle19.SelectionBackColor = Color.FromArgb(146, 90, 57);
-            dataGridViewCellStyle19.SelectionForeColor = Color.White;
-            cartGrid.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle19;
+            dataGridViewCellStyle1.BackColor = Color.FromArgb(146, 90, 57);
+            dataGridViewCellStyle1.ForeColor = Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(146, 90, 57);
+            dataGridViewCellStyle1.SelectionForeColor = Color.White;
+            cartGrid.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             cartGrid.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             cartGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             cartGrid.BackgroundColor = SystemColors.MenuBar;
             cartGrid.BorderStyle = BorderStyle.None;
             cartGrid.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
             cartGrid.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle20.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle20.BackColor = Color.FromArgb(146, 90, 57);
-            dataGridViewCellStyle20.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle20.ForeColor = SystemColors.Window;
-            dataGridViewCellStyle20.SelectionBackColor = Color.FromArgb(146, 90, 57);
-            dataGridViewCellStyle20.SelectionForeColor = SystemColors.Window;
-            dataGridViewCellStyle20.WrapMode = DataGridViewTriState.True;
-            cartGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle20;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = Color.FromArgb(146, 90, 57);
+            dataGridViewCellStyle2.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle2.ForeColor = SystemColors.Window;
+            dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(146, 90, 57);
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.Window;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
+            cartGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             cartGrid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             cartGrid.Columns.AddRange(new DataGridViewColumn[] { productId, Nombre, Precio, amount, Action });
             cartGrid.Cursor = Cursors.Hand;
-            dataGridViewCellStyle25.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle25.BackColor = Color.FromArgb(146, 90, 57);
-            dataGridViewCellStyle25.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle25.ForeColor = SystemColors.ControlLightLight;
-            dataGridViewCellStyle25.SelectionBackColor = Color.FromArgb(146, 90, 57);
-            dataGridViewCellStyle25.SelectionForeColor = Color.White;
-            dataGridViewCellStyle25.WrapMode = DataGridViewTriState.False;
-            cartGrid.DefaultCellStyle = dataGridViewCellStyle25;
+            dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = Color.FromArgb(146, 90, 57);
+            dataGridViewCellStyle7.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle7.ForeColor = SystemColors.ControlLightLight;
+            dataGridViewCellStyle7.SelectionBackColor = Color.FromArgb(146, 90, 57);
+            dataGridViewCellStyle7.SelectionForeColor = Color.White;
+            dataGridViewCellStyle7.WrapMode = DataGridViewTriState.False;
+            cartGrid.DefaultCellStyle = dataGridViewCellStyle7;
             cartGrid.GridColor = SystemColors.WindowText;
             cartGrid.Location = new Point(1, 0);
             cartGrid.MultiSelect = false;
             cartGrid.Name = "cartGrid";
-            dataGridViewCellStyle26.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle26.BackColor = Color.IndianRed;
-            dataGridViewCellStyle26.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle26.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle26.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle26.SelectionForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle26.WrapMode = DataGridViewTriState.True;
-            cartGrid.RowHeadersDefaultCellStyle = dataGridViewCellStyle26;
+            dataGridViewCellStyle8.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = Color.IndianRed;
+            dataGridViewCellStyle8.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle8.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle8.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle8.WrapMode = DataGridViewTriState.True;
+            cartGrid.RowHeadersDefaultCellStyle = dataGridViewCellStyle8;
             cartGrid.RowHeadersVisible = false;
             cartGrid.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToFirstHeader;
-            dataGridViewCellStyle27.BackColor = Color.FromArgb(146, 90, 57);
-            dataGridViewCellStyle27.ForeColor = Color.White;
-            dataGridViewCellStyle27.SelectionBackColor = Color.FromArgb(146, 90, 57);
-            dataGridViewCellStyle27.SelectionForeColor = Color.White;
-            cartGrid.RowsDefaultCellStyle = dataGridViewCellStyle27;
+            dataGridViewCellStyle9.BackColor = Color.FromArgb(146, 90, 57);
+            dataGridViewCellStyle9.ForeColor = Color.White;
+            dataGridViewCellStyle9.SelectionBackColor = Color.FromArgb(146, 90, 57);
+            dataGridViewCellStyle9.SelectionForeColor = Color.White;
+            cartGrid.RowsDefaultCellStyle = dataGridViewCellStyle9;
             cartGrid.RowTemplate.DefaultCellStyle.BackColor = SystemColors.Menu;
             cartGrid.RowTemplate.DefaultCellStyle.ForeColor = Color.Black;
             cartGrid.RowTemplate.DefaultCellStyle.SelectionBackColor = Color.FromArgb(255, 219, 197);
@@ -327,8 +327,8 @@
             // 
             // productId
             // 
-            dataGridViewCellStyle21.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            productId.DefaultCellStyle = dataGridViewCellStyle21;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            productId.DefaultCellStyle = dataGridViewCellStyle3;
             productId.FillWeight = 30F;
             productId.HeaderText = "Id";
             productId.MaxInputLength = 4;
@@ -347,9 +347,9 @@
             // Precio
             // 
             Precio.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle22.Format = "C2";
-            dataGridViewCellStyle22.NullValue = null;
-            Precio.DefaultCellStyle = dataGridViewCellStyle22;
+            dataGridViewCellStyle4.Format = "C2";
+            dataGridViewCellStyle4.NullValue = null;
+            Precio.DefaultCellStyle = dataGridViewCellStyle4;
             Precio.FillWeight = 72F;
             Precio.HeaderText = "Precio";
             Precio.Name = "Precio";
@@ -357,8 +357,8 @@
             // 
             // amount
             // 
-            dataGridViewCellStyle23.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            amount.DefaultCellStyle = dataGridViewCellStyle23;
+            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            amount.DefaultCellStyle = dataGridViewCellStyle5;
             amount.FillWeight = 60F;
             amount.HeaderText = "Cantidad";
             amount.MaxInputLength = 2;
@@ -366,13 +366,13 @@
             // 
             // Action
             // 
-            dataGridViewCellStyle24.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle24.BackColor = Color.FromArgb(145, 90, 57);
-            dataGridViewCellStyle24.Font = new Font("Poppins Light", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle24.ForeColor = Color.White;
-            dataGridViewCellStyle24.SelectionBackColor = Color.WhiteSmoke;
-            dataGridViewCellStyle24.SelectionForeColor = Color.LightGray;
-            Action.DefaultCellStyle = dataGridViewCellStyle24;
+            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle6.BackColor = Color.FromArgb(145, 90, 57);
+            dataGridViewCellStyle6.Font = new Font("Poppins Light", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle6.ForeColor = Color.White;
+            dataGridViewCellStyle6.SelectionBackColor = Color.WhiteSmoke;
+            dataGridViewCellStyle6.SelectionForeColor = Color.LightGray;
+            Action.DefaultCellStyle = dataGridViewCellStyle6;
             Action.FillWeight = 50F;
             Action.HeaderText = "Acción";
             Action.Name = "Action";
@@ -548,9 +548,9 @@
             orderSubtotal.AutoSize = true;
             orderSubtotal.Font = new Font("Poppins Light", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
             orderSubtotal.ForeColor = Color.Black;
-            orderSubtotal.Location = new Point(356, 24);
+            orderSubtotal.Location = new Point(330, 24);
             orderSubtotal.Name = "orderSubtotal";
-            orderSubtotal.RightToLeft = RightToLeft.Yes;
+            orderSubtotal.RightToLeft = RightToLeft.No;
             orderSubtotal.Size = new Size(51, 26);
             orderSubtotal.TabIndex = 59;
             orderSubtotal.Text = "00.00";
@@ -562,9 +562,9 @@
             orderIVA.AutoSize = true;
             orderIVA.Font = new Font("Poppins Light", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
             orderIVA.ForeColor = Color.Black;
-            orderIVA.Location = new Point(360, 71);
+            orderIVA.Location = new Point(330, 71);
             orderIVA.Name = "orderIVA";
-            orderIVA.RightToLeft = RightToLeft.Yes;
+            orderIVA.RightToLeft = RightToLeft.No;
             orderIVA.Size = new Size(51, 26);
             orderIVA.TabIndex = 58;
             orderIVA.Text = "00.00";
@@ -578,7 +578,7 @@
             orderTotal.ForeColor = Color.Red;
             orderTotal.Location = new Point(327, 113);
             orderTotal.Name = "orderTotal";
-            orderTotal.RightToLeft = RightToLeft.Yes;
+            orderTotal.RightToLeft = RightToLeft.No;
             orderTotal.Size = new Size(91, 39);
             orderTotal.TabIndex = 57;
             orderTotal.Text = "000.00";

@@ -7,6 +7,7 @@ public interface IBillingRepository
 {
     Task LoadBillingInfo();
     Task<IEnumerable<Order>> GetAllBillings();
+    Task<IEnumerable<Order>> GetAllBillingsByEmployeeId(int id);
     Task<Order> GetBillingById(int id);
     Task<IEnumerable<Order>> GetBillingsByCustomerId(int id);
     Task AddBilling(OrderData order);
@@ -18,4 +19,5 @@ public interface IBillingRepository
     Task<int> GetLastMonthBillings();
     Task<IEnumerable<OrderStats>> GetBillingsByDateAndEmployeeId(DateTime startDate, DateTime endDate, int? employeeId);
     Task<IEnumerable<OrderCantStats>> GetBillingsCantByDateAndEmployeeId(DateTime startDate, DateTime endDate, int? employeeId);
+    Task<IEnumerable<OrderByEmployee>> GetBillingsByEmployee(DateTime startDate, DateTime endDate, int? employeeId);
 }

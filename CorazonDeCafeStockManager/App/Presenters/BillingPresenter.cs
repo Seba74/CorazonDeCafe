@@ -180,6 +180,8 @@ namespace CorazonDeCafeStockManager.App.Presenters
                 Cart.ClearCart();
                 ResetData();
 
+                LocalStorage.Orders = null;
+
                 homePresenter.SetPrintedBilling(printedBillingForm);
                 homePresenter.ShowPrintedBilling();
             }
@@ -324,6 +326,6 @@ namespace CorazonDeCafeStockManager.App.Presenters
         }
 
         public void ShowView() => view.Show();
-        public void CloseView() => view!.Close();
+        public void CloseView() => view.Close();
     }
 }
