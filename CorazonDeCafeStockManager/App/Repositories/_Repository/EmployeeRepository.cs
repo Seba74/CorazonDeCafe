@@ -57,6 +57,7 @@ public class EmployeeRepository : IEmployeeRepository
             {
                 UserId = user.Id,
                 Username = employee.Username!,
+                Pass = HashPass.HashPassword(employee.Dni!),
                 RoleId = employee.RoleId,
             };
 

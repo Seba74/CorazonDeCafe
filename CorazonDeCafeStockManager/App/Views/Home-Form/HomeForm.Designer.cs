@@ -55,6 +55,7 @@
             pictureBox2 = new PictureBox();
             pictureBox3 = new PictureBox();
             pictureBox4 = new PictureBox();
+            btnManual = new ButtonCustom();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox5).BeginInit();
             panel4.SuspendLayout();
@@ -136,6 +137,7 @@
             // panel4
             // 
             panel4.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            panel4.Controls.Add(btnManual);
             panel4.Controls.Add(btnBilling);
             panel4.Controls.Add(btnBackup);
             panel4.Controls.Add(btnReports);
@@ -480,6 +482,29 @@
             pictureBox4.TabIndex = 19;
             pictureBox4.TabStop = false;
             // 
+            // btnManual
+            // 
+            btnManual.BackColor = Color.Transparent;
+            btnManual.BackgroundColor = Color.Transparent;
+            btnManual.BorderColor = Color.Transparent;
+            btnManual.BorderRadius = 8;
+            btnManual.BorderSize = 0;
+            btnManual.Cursor = Cursors.Hand;
+            btnManual.FlatAppearance.BorderSize = 0;
+            btnManual.FlatStyle = FlatStyle.Flat;
+            btnManual.Font = new Font("Poppins Light", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            btnManual.ForeColor = Color.Black;
+            btnManual.Image = (Image)resources.GetObject("btnManual.Image");
+            btnManual.ImageAlign = ContentAlignment.MiddleLeft;
+            btnManual.Location = new Point(10, 285);
+            btnManual.Name = "btnManual";
+            btnManual.Padding = new Padding(5, 3, 0, 3);
+            btnManual.Size = new Size(158, 41);
+            btnManual.TabIndex = 9;
+            btnManual.Text = "   MANUAL";
+            btnManual.TextColor = Color.Black;
+            btnManual.UseVisualStyleBackColor = false;
+            // 
             // Home
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -544,5 +569,6 @@
         private ButtonCustom btnReports;
         private ButtonCustom btnBackup;
         private ButtonCustom btnBilling;
+        private ButtonCustom btnManual;
     }
 }

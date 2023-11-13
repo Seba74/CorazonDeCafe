@@ -11,6 +11,7 @@ using CorazonDeCafeStockManager.App.Views.EmployeeForm;
 using CorazonDeCafeStockManager.App.Views.EmployeesForm;
 using CorazonDeCafeStockManager.App.Views.HomeForm;
 using CorazonDeCafeStockManager.App.Views.LoginForm;
+using CorazonDeCafeStockManager.App.Views.ManualForm;
 using CorazonDeCafeStockManager.App.Views.OrderForm;
 using CorazonDeCafeStockManager.App.Views.OrdersForm;
 using CorazonDeCafeStockManager.App.Views.PrintedBillingForm;
@@ -36,6 +37,7 @@ namespace CorazonDeCafeStockManager.App.Presenters
         private IReportsView? reportsView;
         private IOrderView? orderView;
         private PrintedBillingForm? printedBillingForm;
+        private ManualForm? manualForm;
 
         // Presenter
         private BillingPresenter? billingPresenter;
@@ -52,6 +54,7 @@ namespace CorazonDeCafeStockManager.App.Presenters
             this.view.ShowBillingView += ShowBillingView;
             this.view.ShowOrdersView += ShowOrdersView;
             this.view.ShowReportsView += ShowReportsView;
+            this.view.ShowManualView += ShowManualView;
         }
 
         public void ShowHomeView()
@@ -195,6 +198,22 @@ namespace CorazonDeCafeStockManager.App.Presenters
             IEmployeeRepository employeeRepository = new EmployeeRepository(dbContext);
             employeesView = EmployeesForm.GetInstance(view.ControlPanel);
             _ = new EmployeesPresenter(employeesView, employeeRepository, this);
+        }
+        public void ShowManualView(object? sender, EventArgs e)
+        {
+            if (employeesView != null)
+            {
+                return;
+            }
+
+            this.CloseView(sender, e);
+            view.RemoveBackgroundBtns();
+            view.ManualButton.BackColor = Color.FromArgb(255, 219, 197);
+
+            view.IconHeader.BackgroundImage = Properties.Resources.manual;
+            view.TitleHeader.Text = "MANUAL DE USUARIO";
+
+            manualForm = ManualForm.GetInstance(view.ControlPanel);
         }
 
         public void ShowEmployeeView(object? sender, EventArgs e)
@@ -382,6 +401,12 @@ namespace CorazonDeCafeStockManager.App.Presenters
             {
                 reportsView.Close();
                 reportsView = null;
+            }
+                
+            if(manualForm != null)
+            {
+                manualForm.Close();
+                manualForm = null;
             }
         }
     }

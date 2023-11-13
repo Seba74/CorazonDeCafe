@@ -10,6 +10,7 @@
         Control BillingButton { get; }
         Control BackupButton { get; }
         Control ReportButton { get; }
+        Control ManualButton { get; }
         Control IconHeader { get; }
         Control TitleHeader { get; }
 
@@ -19,6 +20,7 @@
         event EventHandler? ShowBillingView;
         event EventHandler? ShowOrdersView;
         event EventHandler? ShowBackupView;
+        event EventHandler? ShowManualView;
         event EventHandler? ShowReportsView;
         event EventHandler? LogoutEvent;
 

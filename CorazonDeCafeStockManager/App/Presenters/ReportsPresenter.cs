@@ -127,7 +127,6 @@ namespace CorazonDeCafeStockManager.App.Presenters
             chart.ChartAreas[0].AxisX.Interval = 1;
             chart.ChartAreas[0].AxisX.LabelStyle.Angle = -45;
             chart.ChartAreas[0].AxisX.LabelStyle.Interval = 1;
-
         }
         private async void SearchAmountEvent(object? sender, EventArgs e)
         {
@@ -152,6 +151,8 @@ namespace CorazonDeCafeStockManager.App.Presenters
             IEnumerable<OrderByEmployee> orders = await billingRepository.GetBillingsByEmployee(startDate, endDate, employeeId);
             Chart chart = view.ChartBillings;
             chart.Series.Clear();
+             
+
 
             Series series = new()
             {
@@ -166,8 +167,6 @@ namespace CorazonDeCafeStockManager.App.Presenters
                 series.Points.Last().Label = $"{totalOrders}";
                 series.Points.Last().LegendText = employeeFullName;
 
-
-
             }
 
             chart.Series.Add(series);
@@ -177,7 +176,6 @@ namespace CorazonDeCafeStockManager.App.Presenters
                 point.LabelForeColor = Color.White;
                 point.Font = new Font("Arial", 10, FontStyle.Bold);
             }
-
         }
 
         public void ShowView() => view!.Show();

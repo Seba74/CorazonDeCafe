@@ -115,9 +115,9 @@
             lastOrders.ForeColor = Color.Black;
             lastOrders.Location = new Point(53, 27);
             lastOrders.Name = "lastOrders";
-            lastOrders.Size = new Size(65, 25);
+            lastOrders.Size = new Size(75, 25);
             lastOrders.TabIndex = 48;
-            lastOrders.Text = "Imagen";
+            lastOrders.Text = "Loading...";
             // 
             // paymentPop
             // 
@@ -127,9 +127,9 @@
             paymentPop.ForeColor = Color.Black;
             paymentPop.Location = new Point(52, 27);
             paymentPop.Name = "paymentPop";
-            paymentPop.Size = new Size(65, 25);
+            paymentPop.Size = new Size(75, 25);
             paymentPop.TabIndex = 47;
-            paymentPop.Text = "Imagen";
+            paymentPop.Text = "Loading...";
             // 
             // panel5
             // 
@@ -161,9 +161,9 @@
             productPop.ForeColor = Color.Black;
             productPop.Location = new Point(25, 27);
             productPop.Name = "productPop";
-            productPop.Size = new Size(154, 25);
+            productPop.Size = new Size(75, 25);
             productPop.TabIndex = 49;
-            productPop.Text = "Cafe cafe cafe cafe";
+            productPop.Text = "Loading...";
             productPop.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // label2
@@ -196,9 +196,9 @@
             customerPop.ForeColor = Color.Black;
             customerPop.Location = new Point(81, 27);
             customerPop.Name = "customerPop";
-            customerPop.Size = new Size(65, 25);
+            customerPop.Size = new Size(75, 25);
             customerPop.TabIndex = 50;
-            customerPop.Text = "Imagen";
+            customerPop.Text = "Loading...";
             // 
             // label3
             // 
@@ -357,7 +357,7 @@
             chartAmount.Name = "chartAmount";
             chartAmount.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Chocolate;
             series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.StackedColumn;
             series1.Legend = "Legend1";
             series1.Name = "Series1";
             series1.YValuesPerPoint = 2;

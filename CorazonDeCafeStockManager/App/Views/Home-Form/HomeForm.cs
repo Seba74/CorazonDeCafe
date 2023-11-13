@@ -13,6 +13,7 @@ namespace CorazonDeCafeStockManager
         public Control OrderButton { get { return btnSales; } }
         public Control ReportButton { get { return btnReports; } }
         public Control BackupButton { get { return btnBackup; } }
+        public Control ManualButton { get { return btnManual; } }
         public Control IconHeader { get { return iconHeader; } }
         public Control TitleHeader { get { return titleHeader; } }
 
@@ -27,6 +28,7 @@ namespace CorazonDeCafeStockManager
             btnCustomers.Click += (_, __) => ShowCustomersView?.Invoke(this, EventArgs.Empty);
             btnEmployees.Click += (_, __) => ShowEmployeesView?.Invoke(this, EventArgs.Empty);
             btnBackup.Click += (_, __) => ShowBackupView?.Invoke(this, EventArgs.Empty);
+            btnManual.Click += (_, __) => ShowManualView?.Invoke(this, EventArgs.Empty);
             btnBilling.Click += (_, __) => ShowBillingView?.Invoke(null, EventArgs.Empty);
             btnSales.Click += (_, __) => ShowOrdersView?.Invoke(null, EventArgs.Empty);
             btnReports.Click += (_, __) => ShowReportsView?.Invoke(null, EventArgs.Empty);
@@ -56,6 +58,7 @@ namespace CorazonDeCafeStockManager
             btnBilling.BackColor = Color.Transparent;
             btnReports.BackColor = Color.Transparent;
             btnBackup.BackColor = Color.Transparent;
+            btnManual.BackColor = Color.Transparent;
         }
 
         public event EventHandler? ShowProductsView;
@@ -65,6 +68,7 @@ namespace CorazonDeCafeStockManager
         public event EventHandler? ShowBillingView;
         public event EventHandler? ShowOrdersView;
         public event EventHandler? ShowBackupView;
+        public event EventHandler? ShowManualView;
         public event EventHandler? LogoutEvent;
     }
 }
