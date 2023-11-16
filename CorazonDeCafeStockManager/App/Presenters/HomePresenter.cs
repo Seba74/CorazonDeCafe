@@ -69,6 +69,7 @@ namespace CorazonDeCafeStockManager.App.Presenters
             if (SessionManager.RoleId != 1)
             {
                 view.BackupButton.Visible = false;
+                view.ManualButton.Visible = false;
             }
 
             if (SessionManager.RoleId != 1 && SessionManager.RoleId != 2)
@@ -286,7 +287,7 @@ namespace CorazonDeCafeStockManager.App.Presenters
             view.BackupButton.BackColor = Color.FromArgb(255, 219, 197);
 
             view.IconHeader.BackgroundImage = Properties.Resources.backup2;
-            view.TitleHeader.Text = "EMPLEADOS";
+            view.TitleHeader.Text = "RESPALDO";
 
             IBackupRepository backupRepository = new BackupRepository(dbContext);
             backupView = BackupForm.GetInstance(view.ControlPanel);

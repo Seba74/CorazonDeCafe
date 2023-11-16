@@ -72,7 +72,7 @@ public class EmployeeRepository : IEmployeeRepository
         }
         catch (Exception)
         {
-            throw new ArgumentException("Error al agregar el empleado");
+            throw new Exception("Error al agregar el empleado");
         }
     }
 

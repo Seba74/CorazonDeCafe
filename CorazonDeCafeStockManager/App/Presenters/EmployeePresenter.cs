@@ -82,15 +82,16 @@ namespace CorazonDeCafeStockManager.App.Presenters
                 {
                     await EmployeeRepository.AddEmployee(employeeData);
                 }
+                
+                homePresenter.ShowEmployeesView(this, EventArgs.Empty);
+                view.Close();
             }
-            catch (LocalException ex)
+            catch (Exception ex)
             {
                 view.ShowError(ex.Message);
                 return;
             }
 
-            homePresenter.ShowEmployeesView(this, EventArgs.Empty);
-            view.Close();
         }
 
         private async void CancelEvent(object sender, EventArgs e)
@@ -126,7 +127,7 @@ namespace CorazonDeCafeStockManager.App.Presenters
                 !string.IsNullOrWhiteSpace(view.EmployeeEmail) ||
                 !string.IsNullOrWhiteSpace(view.EmployeePhone) ||
                 !string.IsNullOrWhiteSpace(view.EmployeeDni) ||
-                !string.IsNullOrWhiteSpace(view.EmployeeUsername)) 
+                !string.IsNullOrWhiteSpace(view.EmployeeUsername))
             {
                 DialogResult dialogResult = MessageBox.Show("Hay cambios sin guardar, ¿Desea cancelar?", "Cancelar", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (dialogResult == DialogResult.No)

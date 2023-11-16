@@ -185,7 +185,7 @@ namespace CorazonDeCafeStockManager.App.Presenters
                 homePresenter.SetPrintedBilling(printedBillingForm);
                 homePresenter.ShowPrintedBilling();
             }
-            catch (LocalException exception)
+            catch (Exception exception)
             {
                 view.ShowError(exception.Message);
             }
